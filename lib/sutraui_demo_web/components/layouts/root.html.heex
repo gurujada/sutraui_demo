@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
-    <.live_title default="SutrauiDemo" suffix=" · Phoenix Framework">
+    <.live_title default="Sutra UI" suffix=" - Sutra UI">
       {assigns[:page_title]}
     </.live_title>
     <link phx-track-static rel="stylesheet" href={~p"/assets/css/app.css"} />
@@ -13,24 +13,44 @@
     <script>
       (() => {
         const setTheme = (theme) => {
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          
           if (theme === "system") {
             localStorage.removeItem("phx:theme");
-            document.documentElement.removeAttribute("data-theme");
+            // For system, use OS preference
+            document.documentElement.classList.toggle("dark", prefersDark);
           } else {
             localStorage.setItem("phx:theme", theme);
-            document.documentElement.setAttribute("data-theme", theme);
+            // Apply .dark class for dark mode (Sutra UI uses .dark class)
+            document.documentElement.classList.toggle("dark", theme === "dark");
           }
         };
-        if (!document.documentElement.hasAttribute("data-theme")) {
-          setTheme(localStorage.getItem("phx:theme") || "system");
-        }
+
+        const toggleTheme = () => {
+          const current = localStorage.getItem("phx:theme") || "system";
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          const isDark = current === "dark" || (current === "system" && prefersDark);
+          setTheme(isDark ? "light" : "dark");
+        };
+
+        // Initialize theme on page load
+        const savedTheme = localStorage.getItem("phx:theme") || "system";
+        setTheme(savedTheme);
+
+        // Listen for OS theme changes when in system mode
+        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+          if (!localStorage.getItem("phx:theme")) {
+            document.documentElement.classList.toggle("dark", e.matches);
+          }
+        });
+
         window.addEventListener("storage", (e) => e.key === "phx:theme" && setTheme(e.newValue || "system"));
-        
         window.addEventListener("phx:set-theme", (e) => setTheme(e.target.dataset.phxTheme));
+        window.addEventListener("phx:toggle-theme", toggleTheme);
       })();
     </script>
   </head>
-  <body>
+  <body class="bg-background text-foreground antialiased">
     {@inner_content}
   </body>
 </html>

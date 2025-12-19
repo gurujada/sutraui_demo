@@ -84,8 +84,15 @@ defmodule SutrauiDemoWeb do
 
       # HTML escaping functionality
       import Phoenix.HTML
-      # Core UI components
+
+      # Sutra UI components
+      use SutraUI
+
+      # Core UI components (icon helper)
       import SutrauiDemoWeb.CoreComponents
+
+      # Documentation components
+      import SutrauiDemoWeb.DocsComponents
 
       # Common modules used in templates
       alias Phoenix.LiveView.JS
@@ -98,8 +105,6 @@ defmodule SutrauiDemoWeb do
 
   def verified_routes do
     quote do
-      use SutraUI
-
       use Phoenix.VerifiedRoutes,
         endpoint: SutrauiDemoWeb.Endpoint,
         router: SutrauiDemoWeb.Router,

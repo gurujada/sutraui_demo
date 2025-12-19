@@ -17,21 +17,28 @@ defmodule SutrauiDemoWeb.Router do
   scope "/", SutrauiDemoWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
-  end
+    live "/", LandingLive, :index
 
-  # Other scopes may use custom stacks.
-  # scope "/api", SutrauiDemoWeb do
-  #   pipe_through :api
-  # end
+    # Documentation pages
+    live "/docs", Docs.IntroductionLive, :index
+    live "/docs/installation", Docs.InstallationLive, :index
+    live "/docs/theming", Docs.ThemingLive, :index
+
+    # Component pages
+    live "/docs/components/button", Components.ButtonLive, :index
+    live "/docs/components/badge", Components.BadgeLive, :index
+    live "/docs/components/card", Components.CardLive, :index
+    live "/docs/components/input", Components.InputLive, :index
+    live "/docs/components/select", Components.SelectLive, :index
+    live "/docs/components/dialog", Components.DialogLive, :index
+    live "/docs/components/toast", Components.ToastLive, :index
+    live "/docs/components/tabs", Components.TabsLive, :index
+    live "/docs/components/table", Components.TableLive, :index
+    live "/docs/components/dropdown-menu", Components.DropdownMenuLive, :index
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:sutraui_demo, :dev_routes) do
-    # If you want to use the LiveDashboard in production, you should put
-    # it behind authentication and allow only admins to access it.
-    # If your application does not have an admins-only section yet,
-    # you can use Plug.BasicAuth to set up some basic authentication
-    # as long as you are also using SSL (which you should anyway).
     import Phoenix.LiveDashboard.Router
 
     scope "/dev" do
