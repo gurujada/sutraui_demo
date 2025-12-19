@@ -13,13 +13,13 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
         description="Dropdown menu with full keyboard navigation and accessibility support."
       />
 
-      <.component_demo title="Basic" code={basic_code()}>
+      <.component_demo
+        title="Basic"
+        code={basic_code()}
+        class="[&_.demo-preview]:min-h-[220px] [&_.demo-preview]:items-start [&_.demo-preview]:pt-4"
+      >
         <.dropdown_menu id="demo-dropdown-1">
-          <:trigger>
-            <.button variant="outline">
-              Open Menu <.icon name="hero-chevron-down" class="ml-2 h-4 w-4" />
-            </.button>
-          </:trigger>
+          <:trigger>Open Menu</:trigger>
           <.dropdown_item>Profile</.dropdown_item>
           <.dropdown_item>Settings</.dropdown_item>
           <.dropdown_separator />
@@ -32,11 +32,13 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
         Display keyboard shortcuts alongside menu items.
       </.prose>
 
-      <.component_demo title="With Shortcuts" code={shortcuts_code()}>
+      <.component_demo
+        title="With Shortcuts"
+        code={shortcuts_code()}
+        class="[&_.demo-preview]:min-h-[220px] [&_.demo-preview]:items-start [&_.demo-preview]:pt-4"
+      >
         <.dropdown_menu id="demo-dropdown-2">
-          <:trigger>
-            <.button variant="outline">Actions</.button>
-          </:trigger>
+          <:trigger>Actions</:trigger>
           <.dropdown_item shortcut="Ctrl+N">New File</.dropdown_item>
           <.dropdown_item shortcut="Ctrl+O">Open</.dropdown_item>
           <.dropdown_item shortcut="Ctrl+S">Save</.dropdown_item>
@@ -50,11 +52,13 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
         Organize items with labels and separators.
       </.prose>
 
-      <.component_demo title="With Labels" code={labels_code()}>
+      <.component_demo
+        title="With Labels"
+        code={labels_code()}
+        class="[&_.demo-preview]:min-h-[280px] [&_.demo-preview]:items-start [&_.demo-preview]:pt-4"
+      >
         <.dropdown_menu id="demo-dropdown-3">
-          <:trigger>
-            <.button variant="outline">My Account</.button>
-          </:trigger>
+          <:trigger>My Account</:trigger>
           <.dropdown_label>My Account</.dropdown_label>
           <.dropdown_item>Profile</.dropdown_item>
           <.dropdown_item>Billing</.dropdown_item>
@@ -65,7 +69,7 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
         </.dropdown_menu>
       </.component_demo>
 
-      <.section_heading id="notes">Notes</.section_heading>
+      <.section_heading id="notes">Usage Notes</.section_heading>
       <.list>
         <.list_item>
           Full keyboard navigation: Arrow Up/Down to navigate, Enter/Space to activate, Escape to close.
@@ -88,9 +92,7 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
   defp basic_code do
     """
     <.dropdown_menu id="my-menu">
-      <:trigger>
-        <.button variant="outline">Open Menu</.button>
-      </:trigger>
+      <:trigger>Open Menu</:trigger>
       <.dropdown_item>Profile</.dropdown_item>
       <.dropdown_item>Settings</.dropdown_item>
       <.dropdown_separator />
@@ -102,12 +104,12 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
   defp shortcuts_code do
     """
     <.dropdown_menu id="actions-menu">
-      <:trigger>
-        <.button variant="outline">Actions</.button>
-      </:trigger>
+      <:trigger>Actions</:trigger>
       <.dropdown_item shortcut="Ctrl+N">New File</.dropdown_item>
       <.dropdown_item shortcut="Ctrl+O">Open</.dropdown_item>
       <.dropdown_item shortcut="Ctrl+S">Save</.dropdown_item>
+      <.dropdown_separator />
+      <.dropdown_item shortcut="Ctrl+Q" variant="destructive">Quit</.dropdown_item>
     </.dropdown_menu>\
     """
   end
@@ -115,15 +117,14 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
   defp labels_code do
     """
     <.dropdown_menu id="account-menu">
-      <:trigger>
-        <.button variant="outline">My Account</.button>
-      </:trigger>
+      <:trigger>My Account</:trigger>
       <.dropdown_label>My Account</.dropdown_label>
       <.dropdown_item>Profile</.dropdown_item>
       <.dropdown_item>Billing</.dropdown_item>
       <.dropdown_separator />
       <.dropdown_label>Team</.dropdown_label>
       <.dropdown_item>Invite Members</.dropdown_item>
+      <.dropdown_item>Settings</.dropdown_item>
     </.dropdown_menu>\
     """
   end

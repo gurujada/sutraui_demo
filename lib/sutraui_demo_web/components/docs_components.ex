@@ -139,7 +139,7 @@ defmodule SutrauiDemoWeb.DocsComponents do
     highlighted =
       case assigns.language do
         "elixir" -> Makeup.highlight(assigns.code, lexer: Makeup.Lexers.ElixirLexer)
-        "heex" -> Makeup.highlight(assigns.code, lexer: Makeup.Lexers.HEExLexer)
+        "heex" -> Makeup.highlight(assigns.code, lexer: Makeup.Lexers.ElixirLexer)
         "html" -> Makeup.highlight(assigns.code, lexer: Makeup.Lexers.HTMLLexer)
         _ -> assigns.code
       end

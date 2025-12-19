@@ -58,11 +58,11 @@ defmodule SutrauiDemoWeb.Layouts do
     ~H"""
     <header class="site-header sticky top-0 z-50">
       <div class="mx-auto max-w-6xl flex h-16 items-center justify-between px-6">
-        <a href="/" class="site-logo">Sutra</a>
+        <a href="/" class="site-logo">Sutra UI</a>
 
         <nav class="flex items-center gap-8">
-          <a href="/docs" class="nav-link">Documentation</a>
-          <a href="/docs/components/button" class="nav-link">Components</a>
+          <.link navigate="/docs" class="nav-link">Documentation</.link>
+          <.link navigate="/docs/components/button" class="nav-link">Components</.link>
           <.theme_toggle />
           <a
             href="https://github.com/sutra-ui/sutra_ui"
@@ -153,9 +153,9 @@ defmodule SutrauiDemoWeb.Layouts do
     assigns = assign(assigns, :active, active)
 
     ~H"""
-    <a href={@href} class={["sidebar-link", @active && "active"]}>
+    <.link navigate={@href} class={["sidebar-link", @active && "active"]}>
       {@label}
-    </a>
+    </.link>
     """
   end
 

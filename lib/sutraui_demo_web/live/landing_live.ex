@@ -129,9 +129,9 @@ defmodule SutrauiDemoWeb.LandingLive do
               </div>
               <div class="showcase-footer">
                 <span class="showcase-name">Button</span>
-                <a href="/docs/components/button" class="showcase-link">
+                <.link navigate="/docs/components/button" class="showcase-link">
                   View <span>→</span>
-                </a>
+                </.link>
               </div>
             </div>
 
@@ -147,9 +147,9 @@ defmodule SutrauiDemoWeb.LandingLive do
               </div>
               <div class="showcase-footer">
                 <span class="showcase-name">Badge</span>
-                <a href="/docs/components/badge" class="showcase-link">
+                <.link navigate="/docs/components/badge" class="showcase-link">
                   View <span>→</span>
-                </a>
+                </.link>
               </div>
             </div>
 
@@ -162,9 +162,9 @@ defmodule SutrauiDemoWeb.LandingLive do
               </div>
               <div class="showcase-footer">
                 <span class="showcase-name">Input</span>
-                <a href="/docs/components/input" class="showcase-link">
+                <.link navigate="/docs/components/input" class="showcase-link">
                   View <span>→</span>
-                </a>
+                </.link>
               </div>
             </div>
 
@@ -190,9 +190,9 @@ defmodule SutrauiDemoWeb.LandingLive do
               </div>
               <div class="showcase-footer">
                 <span class="showcase-name">Tabs</span>
-                <a href="/docs/components/tabs" class="showcase-link">
+                <.link navigate="/docs/components/tabs" class="showcase-link">
                   View <span>→</span>
-                </a>
+                </.link>
               </div>
             </div>
 
@@ -213,9 +213,9 @@ defmodule SutrauiDemoWeb.LandingLive do
               </div>
               <div class="showcase-footer">
                 <span class="showcase-name">Card</span>
-                <a href="/docs/components/card" class="showcase-link">
+                <.link navigate="/docs/components/card" class="showcase-link">
                   View <span>→</span>
-                </a>
+                </.link>
               </div>
             </div>
 
@@ -245,9 +245,9 @@ defmodule SutrauiDemoWeb.LandingLive do
               </div>
               <div class="showcase-footer">
                 <span class="showcase-name">Dialog</span>
-                <a href="/docs/components/dialog" class="showcase-link">
+                <.link navigate="/docs/components/dialog" class="showcase-link">
                   View <span>→</span>
-                </a>
+                </.link>
               </div>
             </div>
           </div>
@@ -264,7 +264,7 @@ defmodule SutrauiDemoWeb.LandingLive do
           </p>
           <div class="flex justify-center gap-4 mt-10 animate-fade-up delay-2">
             <.button navigate="/docs">Get Started</.button>
-            <.button variant="outline" navigate="https://github.com/sutra-ui/sutra_ui">
+            <.button variant="outline" href="https://github.com/gurujada/sutra_ui">
               View on GitHub
             </.button>
           </div>
@@ -276,15 +276,15 @@ defmodule SutrauiDemoWeb.LandingLive do
         <div class="mx-auto max-w-6xl px-6">
           <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
-              <p class="site-logo mb-2">Sutra</p>
+              <p class="site-logo mb-2">Sutra UI</p>
               <p class="text-sm" style="color: var(--fg-muted);">
                 Open source under MIT license.
               </p>
             </div>
             <nav class="flex items-center gap-8">
-              <a href="/docs" class="footer-link">Documentation</a>
-              <a href="/docs/components/button" class="footer-link">Components</a>
-              <a href="https://github.com/sutra-ui/sutra_ui" class="footer-link">GitHub</a>
+              <.link navigate="/docs" class="footer-link">Documentation</.link>
+              <.link navigate="/docs/components/button" class="footer-link">Components</.link>
+              <a href="https://github.com/gurujada/sutra_ui" class="footer-link">GitHub</a>
             </nav>
           </div>
         </div>

@@ -107,7 +107,9 @@ defmodule SutrauiDemoWeb.Docs.IntroductionLive do
 
       <.prose>
         Ready to start using Sutra UI? Head over to the
-        <a href="/docs/installation" class="text-primary hover:underline">Installation Guide</a>
+        <.link navigate="/docs/installation" class="text-accent hover:underline">
+          Installation Guide
+        </.link>
         to add it to your Phoenix project.
       </.prose>
     </Layouts.docs>

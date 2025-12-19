@@ -30,131 +30,173 @@ defmodule SutrauiDemoWeb.Docs.ThemingLive do
       <.section_heading>CSS Variables</.section_heading>
 
       <.prose>
-        Sutra UI components use semantic color variables. Here are the main variables
-        you can customize:
+        Override theme variables in your
+        <.inline_code>app.css</.inline_code>
+        after
+        importing <.inline_code>sutra_ui.css</.inline_code>. Sutra UI uses the OKLCH
+        color format for better perceptual uniformity:
       </.prose>
 
       <.code_block language="elixir" code={css_variables_code()} />
 
       <.callout variant="info">
-        Color values use the HSL format without the
-        <.inline_code>hsl()</.inline_code>
-        wrapper. This allows Tailwind to apply opacity modifiers.
+        OKLCH colors provide better perceptual uniformity than HSL. The format is:
+        <.inline_code>oklch(L C H)</.inline_code>
+        where L = Lightness (0-1),
+        C = Chroma (0-0.4), H = Hue (0-360).
       </.callout>
+
+      <.section_heading>Using shadcn Themes</.section_heading>
+
+      <.prose>
+        Sutra UI uses the same CSS variable names as shadcn/ui. You can copy theme
+        variables directly from
+        <a
+          href="https://ui.shadcn.com/themes"
+          target="_blank"
+          class="text-accent hover:underline"
+        >
+          shadcn/ui themes
+        </a>
+        and paste them into your <.inline_code>app.css</.inline_code>:
+      </.prose>
+
+      <.code_block language="elixir" code={shadcn_code()} />
 
       <.section_heading>Dark Mode</.section_heading>
 
       <.prose>
-        Dark mode is implemented by overriding the CSS variables when a
-        <.inline_code>data-theme="dark"</.inline_code>
-        attribute is present on the
-        <.inline_code>&lt;html&gt;</.inline_code>
-        element:
+        Dark mode is implemented by overriding the CSS variables within a
+        <.inline_code>.dark</.inline_code>
+        class:
       </.prose>
 
       <.code_block language="elixir" code={dark_mode_code()} />
 
-      <.prose>
-        The theme toggle in the header sets this attribute and persists the preference
-        to localStorage.
-      </.prose>
-
-      <.section_heading>Creating Custom Themes</.section_heading>
+      <.section_heading>Variable Reference</.section_heading>
 
       <.prose>
-        To create a custom theme, override the CSS variables in your
-        <.inline_code>app.css</.inline_code>
-        file. Here's an example of a blue-focused theme:
+        Here are all the available CSS variables and their purpose:
       </.prose>
 
-      <.code_block language="elixir" code={custom_theme_code()} />
-
-      <.section_heading>Using Theme Colors</.section_heading>
+      <div class="my-6 overflow-hidden rounded-lg border" style="border-color: var(--border);">
+        <table class="w-full text-sm">
+          <thead>
+            <tr style="background: var(--bg-subtle); border-bottom: 1px solid var(--border);">
+              <th class="px-4 py-3 text-left font-medium">Variable</th>
+              <th class="px-4 py-3 text-left font-medium">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td class="px-4 py-3">
+                <.inline_code>--background</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Page background color</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td class="px-4 py-3">
+                <.inline_code>--foreground</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Default text color</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td class="px-4 py-3">
+                <.inline_code>--primary</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Primary brand color (buttons, links)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td class="px-4 py-3">
+                <.inline_code>--secondary</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Secondary/muted actions</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td class="px-4 py-3">
+                <.inline_code>--muted</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Muted backgrounds</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td class="px-4 py-3">
+                <.inline_code>--accent</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Hover/active states</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td class="px-4 py-3">
+                <.inline_code>--destructive</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Error/danger color</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td class="px-4 py-3">
+                <.inline_code>--border</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Border color</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3">
+                <.inline_code>--radius</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Base border radius</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <.prose>
-        You can use the theme colors in your own components with Tailwind's arbitrary
-        value syntax:
+        Each color variable also has a
+        <.inline_code>-foreground</.inline_code>
+        variant
+        for text that appears on that background (e.g., <.inline_code>--primary-foreground</.inline_code>).
       </.prose>
-
-      <.code_block language="heex" code={usage_code()} />
     </Layouts.docs>
     """
   end
 
   defp css_variables_code do
     """
+    @import "../../deps/sutra_ui/priv/static/sutra_ui.css";
+
+    /* Custom theme overrides */
     :root {
-      --background: 0 0% 100%;
-      --foreground: 240 10% 3.9%;
+      --primary: oklch(0.65 0.20 145);        /* Green */
+      --primary-foreground: oklch(0.98 0 0);  /* White text */
 
-      --card: 0 0% 100%;
-      --card-foreground: 240 10% 3.9%;
-
-      --popover: 0 0% 100%;
-      --popover-foreground: 240 10% 3.9%;
-
-      --primary: 240 5.9% 10%;
-      --primary-foreground: 0 0% 98%;
-
-      --secondary: 240 4.8% 95.9%;
-      --secondary-foreground: 240 5.9% 10%;
-
-      --muted: 240 4.8% 95.9%;
-      --muted-foreground: 240 3.8% 46.1%;
-
-      --accent: 240 4.8% 95.9%;
-      --accent-foreground: 240 5.9% 10%;
-
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 0 0% 98%;
-
-      --border: 240 5.9% 90%;
-      --input: 240 5.9% 90%;
-      --ring: 240 5.9% 10%;
-
+      --destructive: oklch(0.55 0.25 30);     /* Red */
       --radius: 0.5rem;
+    }\
+    """
+  end
+
+  defp shadcn_code do
+    """
+    /* Paste shadcn theme variables - they just work! */
+    :root {
+      --background: oklch(1 0 0);
+      --foreground: oklch(0.141 0.005 285.823);
+      --primary: oklch(0.21 0.006 285.885);
+      --primary-foreground: oklch(0.985 0 0);
+      --secondary: oklch(0.967 0.001 286.375);
+      --muted: oklch(0.967 0.001 286.375);
+      --accent: oklch(0.967 0.001 286.375);
+      --destructive: oklch(0.577 0.245 27.325);
+      --border: oklch(0.92 0.004 286.32);
+      --ring: oklch(0.705 0.015 286.067);
     }\
     """
   end
 
   defp dark_mode_code do
     """
-    [data-theme="dark"] {
-      --background: 240 10% 3.9%;
-      --foreground: 0 0% 98%;
-
-      --card: 240 10% 3.9%;
-      --card-foreground: 0 0% 98%;
-
+    .dark {
+      --background: oklch(0.141 0.005 285.823);
+      --foreground: oklch(0.985 0 0);
+      --primary: oklch(0.70 0.18 145);
       /* ... other dark mode colors ... */
     }\
-    """
-  end
-
-  defp custom_theme_code do
-    """
-    :root {
-      --primary: 221 83% 53%;        /* Blue */
-      --primary-foreground: 0 0% 100%;
-      --ring: 221 83% 53%;
-    }
-
-    [data-theme="dark"] {
-      --primary: 217 91% 60%;        /* Lighter blue for dark mode */
-      --primary-foreground: 0 0% 100%;
-      --ring: 217 91% 60%;
-    }\
-    """
-  end
-
-  defp usage_code do
-    """
-    <div class="bg-background text-foreground">
-      <p class="text-muted-foreground">Muted text</p>
-      <button class="bg-primary text-primary-foreground">
-        Primary button
-      </button>
-    </div>\
     """
   end
 end

@@ -13,12 +13,18 @@ defmodule SutrauiDemoWeb.Components.SelectLive do
         description="Custom select component with search/filter support and full keyboard navigation."
       />
 
-      <.component_demo title="Default" code={default_code()}>
-        <.select id="demo-select-1">
-          <.select_option value="apple" label="Apple" />
-          <.select_option value="banana" label="Banana" />
-          <.select_option value="orange" label="Orange" />
-        </.select>
+      <.component_demo
+        title="Default"
+        code={default_code()}
+        class="[&_.demo-preview]:min-h-[220px] [&_.demo-preview]:items-start [&_.demo-preview]:pt-4"
+      >
+        <div class="w-[200px]">
+          <.select id="demo-select-1">
+            <.select_option value="apple" label="Apple" />
+            <.select_option value="banana" label="Banana" />
+            <.select_option value="orange" label="Orange" />
+          </.select>
+        </div>
       </.component_demo>
 
       <.section_heading id="searchable">Searchable</.section_heading>
@@ -26,14 +32,20 @@ defmodule SutrauiDemoWeb.Components.SelectLive do
         Enable search to filter through options in large lists.
       </.prose>
 
-      <.component_demo title="Searchable" code={searchable_code()}>
-        <.select id="demo-select-2" searchable>
-          <.select_option value="apple" label="Apple" />
-          <.select_option value="banana" label="Banana" />
-          <.select_option value="cherry" label="Cherry" />
-          <.select_option value="date" label="Date" />
-          <.select_option value="elderberry" label="Elderberry" />
-        </.select>
+      <.component_demo
+        title="Searchable"
+        code={searchable_code()}
+        class="[&_.demo-preview]:min-h-[280px] [&_.demo-preview]:items-start [&_.demo-preview]:pt-4"
+      >
+        <div class="w-[200px]">
+          <.select id="demo-select-2" searchable>
+            <.select_option value="apple" label="Apple" />
+            <.select_option value="banana" label="Banana" />
+            <.select_option value="cherry" label="Cherry" />
+            <.select_option value="date" label="Date" />
+            <.select_option value="elderberry" label="Elderberry" />
+          </.select>
+        </div>
       </.component_demo>
 
       <.section_heading id="with-groups">With Groups</.section_heading>
@@ -41,21 +53,27 @@ defmodule SutrauiDemoWeb.Components.SelectLive do
         Organize options into logical groups.
       </.prose>
 
-      <.component_demo title="With Groups" code={groups_code()}>
-        <.select id="demo-select-3">
-          <.select_group label="Fruits">
-            <.select_option value="apple" label="Apple" />
-            <.select_option value="banana" label="Banana" />
-          </.select_group>
-          <.select_separator />
-          <.select_group label="Vegetables">
-            <.select_option value="carrot" label="Carrot" />
-            <.select_option value="potato" label="Potato" />
-          </.select_group>
-        </.select>
+      <.component_demo
+        title="With Groups"
+        code={groups_code()}
+        class="[&_.demo-preview]:min-h-[280px] [&_.demo-preview]:items-start [&_.demo-preview]:pt-4"
+      >
+        <div class="w-[200px]">
+          <.select id="demo-select-3">
+            <.select_group label="Fruits">
+              <.select_option value="apple" label="Apple" />
+              <.select_option value="banana" label="Banana" />
+            </.select_group>
+            <.select_separator />
+            <.select_group label="Vegetables">
+              <.select_option value="carrot" label="Carrot" />
+              <.select_option value="potato" label="Potato" />
+            </.select_group>
+          </.select>
+        </div>
       </.component_demo>
 
-      <.section_heading id="notes">Notes</.section_heading>
+      <.section_heading id="notes">Usage Notes</.section_heading>
       <.list>
         <.list_item>
           The select component uses the WAI-ARIA combobox pattern for accessibility.
