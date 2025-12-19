@@ -31,7 +31,7 @@ defmodule SutrauiDemoWeb.Layouts do
   def docs(assigns) do
     ~H"""
     <div class="min-h-screen" style="background: var(--bg); color: var(--fg);">
-      <.site_header />
+      <.site_header show_menu_button={true} current_path={@current_path} />
 
       <div class="mx-auto max-w-6xl px-6">
         <div class="flex gap-16">
@@ -49,20 +49,46 @@ defmodule SutrauiDemoWeb.Layouts do
         </div>
       </div>
 
+      <.mobile_sidebar current_path={@current_path} />
       <.toast_container flash={@flash} />
     </div>
     """
   end
 
+  attr :show_menu_button, :boolean, default: false
+  attr :current_path, :string, default: "/"
+
   def site_header(assigns) do
     ~H"""
     <header class="site-header sticky top-0 z-50">
       <div class="mx-auto max-w-6xl flex h-16 items-center justify-between px-6">
-        <a href="/" class="site-logo">Sutra UI</a>
+        <div class="flex items-center gap-4">
+          <button
+            :if={@show_menu_button}
+            type="button"
+            class="lg:hidden nav-link -ml-2 p-2"
+            aria-label="Open menu"
+            phx-click={JS.dispatch("phx:open-mobile-menu")}
+          >
+            <svg
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <a href="/" class="site-logo">Sutra UI</a>
+        </div>
 
-        <nav class="flex items-center gap-8">
-          <.link navigate="/docs" class="nav-link">Documentation</.link>
-          <.link navigate="/docs/components/button" class="nav-link">Components</.link>
+        <nav class="flex items-center gap-6">
+          <.link navigate="/docs" class="nav-link hidden sm:block">Documentation</.link>
+          <.link navigate="/docs/components/button" class="nav-link hidden sm:block">
+            Components
+          </.link>
+          <.color_theme_picker />
           <.theme_toggle />
           <a
             href="https://github.com/sutra-ui/sutra_ui"
@@ -77,6 +103,279 @@ defmodule SutrauiDemoWeb.Layouts do
         </nav>
       </div>
     </header>
+    """
+  end
+
+  attr :current_path, :string, default: "/"
+
+  def mobile_sidebar(assigns) do
+    ~H"""
+    <div
+      id="mobile-sidebar"
+      class="mobile-sidebar-overlay fixed inset-0 z-50 hidden lg:hidden"
+      phx-hook=".MobileSidebar"
+    >
+      <div
+        class="mobile-sidebar-backdrop absolute inset-0 opacity-0 transition-opacity duration-300"
+        style="background: rgba(0, 0, 0, 0.5);"
+        data-sidebar-backdrop
+      >
+      </div>
+
+      <div
+        class="mobile-sidebar-panel absolute left-0 top-0 h-full w-72 -translate-x-full transition-transform duration-300"
+        style="background: var(--bg); border-right: 1px solid var(--border);"
+        data-sidebar-panel
+      >
+        <div
+          class="flex h-16 items-center justify-between px-6 border-b"
+          style="border-color: var(--border);"
+        >
+          <span class="site-logo">Sutra UI</span>
+          <button
+            type="button"
+            class="nav-link p-2 -mr-2"
+            aria-label="Close menu"
+            data-sidebar-close
+          >
+            <svg
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="px-6 py-8 overflow-y-auto" style="height: calc(100% - 4rem);">
+          <.docs_sidebar current_path={@current_path} />
+        </div>
+      </div>
+    </div>
+
+    <script :type={Phoenix.LiveView.ColocatedHook} name=".MobileSidebar">
+      export default {
+        mounted() {
+          const container = this.el;
+          const backdrop = container.querySelector('[data-sidebar-backdrop]');
+          const panel = container.querySelector('[data-sidebar-panel]');
+          const closeBtn = container.querySelector('[data-sidebar-close]');
+          let isOpen = false;
+
+          const open = () => {
+            if (isOpen) return;
+            isOpen = true;
+            container.classList.remove('hidden');
+            // Trigger animation after display change
+            requestAnimationFrame(() => {
+              backdrop.classList.add('opacity-100');
+              backdrop.classList.remove('opacity-0');
+              panel.classList.remove('-translate-x-full');
+            });
+            document.body.style.overflow = 'hidden';
+          };
+
+          const close = () => {
+            if (!isOpen) return;
+            isOpen = false;
+            backdrop.classList.remove('opacity-100');
+            backdrop.classList.add('opacity-0');
+            panel.classList.add('-translate-x-full');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+              container.classList.add('hidden');
+            }, 300);
+          };
+
+          // Immediate close for navigation (no animation delay)
+          const closeImmediate = () => {
+            if (!isOpen) return;
+            isOpen = false;
+            document.body.style.overflow = '';
+            container.classList.add('hidden');
+            backdrop.classList.remove('opacity-100');
+            backdrop.classList.add('opacity-0');
+            panel.classList.add('-translate-x-full');
+          };
+
+          // Listen for open/close events
+          window.addEventListener('phx:open-mobile-menu', open);
+          window.addEventListener('phx:close-mobile-menu', closeImmediate);
+
+          // Close handlers
+          closeBtn.addEventListener('click', close);
+          backdrop.addEventListener('click', close);
+
+          const handleKeydown = (e) => {
+            if (e.key === 'Escape' && isOpen) {
+              close();
+            }
+          };
+          document.addEventListener('keydown', handleKeydown);
+          
+          // Clean up
+          this.destroy = () => {
+            // Always restore body overflow on destroy
+            document.body.style.overflow = '';
+            window.removeEventListener('phx:open-mobile-menu', open);
+            window.removeEventListener('phx:close-mobile-menu', closeImmediate);
+            document.removeEventListener('keydown', handleKeydown);
+          };
+        },
+        destroyed() {
+          if (this.destroy) this.destroy();
+        }
+      }
+    </script>
+    """
+  end
+
+  @themes [
+    %{id: "neutral", label: "Neutral", color: "#737373"},
+    %{id: "blue", label: "Blue", color: "#3b82f6"},
+    %{id: "green", label: "Green", color: "#22c55e"},
+    %{id: "rose", label: "Rose", color: "#f43f5e"},
+    %{id: "orange", label: "Orange", color: "#f97316"},
+    %{id: "violet", label: "Violet", color: "#8b5cf6"}
+  ]
+
+  def color_theme_picker(assigns) do
+    assigns = assign(assigns, :themes, @themes)
+
+    ~H"""
+    <div id="theme-switcher" phx-hook=".ThemeSwitcher" class="relative">
+      <button
+        type="button"
+        class="nav-link flex items-center gap-1.5"
+        aria-label="Change color theme"
+        aria-haspopup="true"
+        data-theme-trigger
+      >
+        <svg
+          class="w-4 h-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 2a10 10 0 0 1 0 20" fill="currentColor" />
+        </svg>
+        <svg class="w-3 h-3 opacity-60" viewBox="0 0 12 12" fill="currentColor">
+          <path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+      </button>
+
+      <div
+        class="theme-dropdown absolute right-0 top-full mt-2 p-1.5 rounded-lg border hidden"
+        style="background: var(--bg-elevated); border-color: var(--border); min-width: 140px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);"
+        data-theme-dropdown
+      >
+        <div
+          class="px-2 py-1.5 text-xs font-medium mb-1"
+          style="color: var(--fg-muted); font-family: var(--font-mono);"
+        >
+          Color Theme
+        </div>
+        <button
+          :for={theme <- @themes}
+          type="button"
+          class="theme-option w-full flex items-center gap-2.5 px-2 py-1.5 rounded text-sm text-left transition-colors"
+          style="color: var(--fg-secondary);"
+          data-theme-value={theme.id}
+        >
+          <span
+            class="w-3.5 h-3.5 rounded-full border"
+            style={"background: #{theme.color}; border-color: color-mix(in srgb, #{theme.color} 70%, black);"}
+          >
+          </span>
+          {theme.label}
+          <svg
+            class="theme-check ml-auto w-4 h-4 hidden"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M5 12l5 5L20 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <script :type={Phoenix.LiveView.ColocatedHook} name=".ThemeSwitcher">
+      export default {
+        mounted() {
+          const container = this.el;
+          const trigger = container.querySelector('[data-theme-trigger]');
+          const dropdown = container.querySelector('[data-theme-dropdown]');
+          const options = container.querySelectorAll('.theme-option');
+
+          // Update checkmark for current theme
+          const updateCheck = () => {
+            const current = localStorage.getItem('phx:color-theme') || 'neutral';
+            options.forEach(opt => {
+              const check = opt.querySelector('.theme-check');
+              if (opt.dataset.themeValue === current) {
+                check.classList.remove('hidden');
+                opt.style.color = 'var(--fg)';
+                opt.style.background = 'var(--bg-subtle)';
+              } else {
+                check.classList.add('hidden');
+                opt.style.color = 'var(--fg-secondary)';
+                opt.style.background = 'transparent';
+              }
+            });
+          };
+
+          updateCheck();
+
+          // Toggle dropdown
+          trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle('hidden');
+            updateCheck();
+          });
+
+          // Select theme
+          options.forEach(opt => {
+            opt.addEventListener('click', () => {
+              const theme = opt.dataset.themeValue;
+              window.dispatchEvent(new CustomEvent('phx:set-color-theme', { detail: { theme } }));
+              dropdown.classList.add('hidden');
+              updateCheck();
+            });
+
+            // Hover state
+            opt.addEventListener('mouseenter', () => {
+              if (!opt.querySelector('.theme-check').classList.contains('hidden')) return;
+              opt.style.background = 'var(--bg-subtle)';
+            });
+            opt.addEventListener('mouseleave', () => {
+              if (!opt.querySelector('.theme-check').classList.contains('hidden')) return;
+              opt.style.background = 'transparent';
+            });
+          });
+
+          // Close on outside click
+          document.addEventListener('click', (e) => {
+            if (!container.contains(e.target)) {
+              dropdown.classList.add('hidden');
+            }
+          });
+
+          // Close on escape
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+              dropdown.classList.add('hidden');
+            }
+          });
+        }
+      }
+    </script>
     """
   end
 
@@ -153,7 +452,11 @@ defmodule SutrauiDemoWeb.Layouts do
     assigns = assign(assigns, :active, active)
 
     ~H"""
-    <.link navigate={@href} class={["sidebar-link", @active && "active"]}>
+    <.link
+      navigate={@href}
+      class={["sidebar-link", @active && "active"]}
+      phx-click={JS.dispatch("phx:close-mobile-menu")}
+    >
       {@label}
     </.link>
     """

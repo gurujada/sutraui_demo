@@ -61,6 +61,66 @@
     --muted-foreground: oklch(0.556 0.016 285.938);
     --accent: oklch(0.97 0.001 286.375);
     --accent-foreground: oklch(0.205 0.006 285.885);
+    --ring: oklch(0.205 0.006 285.885);
+}
+
+/* ========================================
+   COLOR THEMES - Light Mode
+   ======================================== */
+
+/* Blue Theme */
+[data-theme="blue"] {
+    --primary: oklch(0.546 0.245 262.881);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0.014 254.604);
+    --secondary-foreground: oklch(0.379 0.146 265.522);
+    --accent: oklch(0.97 0.014 254.604);
+    --accent-foreground: oklch(0.379 0.146 265.522);
+    --ring: oklch(0.546 0.245 262.881);
+}
+
+/* Green Theme */
+[data-theme="green"] {
+    --primary: oklch(0.627 0.194 149.214);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.962 0.044 156.743);
+    --secondary-foreground: oklch(0.393 0.111 152.535);
+    --accent: oklch(0.962 0.044 156.743);
+    --accent-foreground: oklch(0.393 0.111 152.535);
+    --ring: oklch(0.627 0.194 149.214);
+}
+
+/* Rose Theme */
+[data-theme="rose"] {
+    --primary: oklch(0.645 0.246 16.439);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.969 0.015 12.422);
+    --secondary-foreground: oklch(0.455 0.188 13.697);
+    --accent: oklch(0.969 0.015 12.422);
+    --accent-foreground: oklch(0.455 0.188 13.697);
+    --ring: oklch(0.645 0.246 16.439);
+}
+
+/* Orange Theme */
+[data-theme="orange"] {
+    --primary: oklch(0.705 0.191 47.604);
+    --primary-foreground: oklch(0.216 0.034 47.254);
+    --secondary: oklch(0.954 0.038 75.164);
+    --secondary-foreground: oklch(0.474 0.119 46.818);
+    --accent: oklch(0.954 0.038 75.164);
+    --accent-foreground: oklch(0.474 0.119 46.818);
+    --ring: oklch(0.705 0.191 47.604);
+}
+
+/* Violet Theme */
+[data-theme="violet"] {
+    --primary: oklch(0.606 0.25 292.717);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.959 0.029 296.695);
+    --secondary-foreground: oklch(0.446 0.176 293.071);
+    --accent: oklch(0.959 0.029 296.695);
+    --accent-foreground: oklch(0.446 0.176 293.071);
+    --ring: oklch(0.606 0.25 292.717);
 }
 
 .dark {
@@ -93,6 +153,66 @@
     --muted-foreground: oklch(0.708 0.013 285.822);
     --accent: oklch(0.274 0.006 286.033);
     --accent-foreground: oklch(0.985 0 0);
+    --ring: oklch(0.708 0.013 285.822);
+}
+
+/* ========================================
+   COLOR THEMES - Dark Mode
+   ======================================== */
+
+/* Blue Theme - Dark */
+.dark[data-theme="blue"] {
+    --primary: oklch(0.623 0.214 259.815);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.268 0.058 269.391);
+    --secondary-foreground: oklch(0.811 0.111 256.847);
+    --accent: oklch(0.268 0.058 269.391);
+    --accent-foreground: oklch(0.811 0.111 256.847);
+    --ring: oklch(0.623 0.214 259.815);
+}
+
+/* Green Theme - Dark */
+.dark[data-theme="green"] {
+    --primary: oklch(0.696 0.17 162.48);
+    --primary-foreground: oklch(0.147 0.043 152.862);
+    --secondary: oklch(0.269 0.051 152.535);
+    --secondary-foreground: oklch(0.792 0.126 156.531);
+    --accent: oklch(0.269 0.051 152.535);
+    --accent-foreground: oklch(0.792 0.126 156.531);
+    --ring: oklch(0.696 0.17 162.48);
+}
+
+/* Rose Theme - Dark */
+.dark[data-theme="rose"] {
+    --primary: oklch(0.645 0.246 16.439);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.272 0.041 8.638);
+    --secondary-foreground: oklch(0.812 0.121 14.049);
+    --accent: oklch(0.272 0.041 8.638);
+    --accent-foreground: oklch(0.812 0.121 14.049);
+    --ring: oklch(0.645 0.246 16.439);
+}
+
+/* Orange Theme - Dark */
+.dark[data-theme="orange"] {
+    --primary: oklch(0.705 0.191 47.604);
+    --primary-foreground: oklch(0.216 0.034 47.254);
+    --secondary: oklch(0.28 0.051 46.818);
+    --secondary-foreground: oklch(0.821 0.111 68.521);
+    --accent: oklch(0.28 0.051 46.818);
+    --accent-foreground: oklch(0.821 0.111 68.521);
+    --ring: oklch(0.705 0.191 47.604);
+}
+
+/* Violet Theme - Dark */
+.dark[data-theme="violet"] {
+    --primary: oklch(0.606 0.25 292.717);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.283 0.063 293.346);
+    --secondary-foreground: oklch(0.786 0.139 293.346);
+    --accent: oklch(0.283 0.063 293.346);
+    --accent-foreground: oklch(0.786 0.139 293.346);
+    --ring: oklch(0.606 0.25 292.717);
 }
 
 /* ========================================

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" data-theme="neutral">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,41 +18,53 @@
     </script>
     <script>
       (() => {
-        const setTheme = (theme) => {
+        const THEMES = ["neutral", "blue", "green", "rose", "orange", "violet"];
+        
+        const setMode = (mode) => {
           const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
           
-          if (theme === "system") {
-            localStorage.removeItem("phx:theme");
-            // For system, use OS preference
+          if (mode === "system") {
+            localStorage.removeItem("phx:mode");
             document.documentElement.classList.toggle("dark", prefersDark);
           } else {
-            localStorage.setItem("phx:theme", theme);
-            // Apply .dark class for dark mode (Sutra UI uses .dark class)
-            document.documentElement.classList.toggle("dark", theme === "dark");
+            localStorage.setItem("phx:mode", mode);
+            document.documentElement.classList.toggle("dark", mode === "dark");
           }
         };
 
-        const toggleTheme = () => {
-          const current = localStorage.getItem("phx:theme") || "system";
-          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-          const isDark = current === "dark" || (current === "system" && prefersDark);
-          setTheme(isDark ? "light" : "dark");
+        const setTheme = (theme) => {
+          if (THEMES.includes(theme)) {
+            localStorage.setItem("phx:color-theme", theme);
+            document.documentElement.setAttribute("data-theme", theme);
+          }
         };
 
-        // Initialize theme on page load
-        const savedTheme = localStorage.getItem("phx:theme") || "system";
+        const toggleMode = () => {
+          const current = localStorage.getItem("phx:mode") || "system";
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          const isDark = current === "dark" || (current === "system" && prefersDark);
+          setMode(isDark ? "light" : "dark");
+        };
+
+        // Initialize on page load
+        const savedMode = localStorage.getItem("phx:mode") || localStorage.getItem("phx:theme") || "system";
+        const savedTheme = localStorage.getItem("phx:color-theme") || "neutral";
+        setMode(savedMode);
         setTheme(savedTheme);
 
         // Listen for OS theme changes when in system mode
         window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-          if (!localStorage.getItem("phx:theme")) {
+          if (!localStorage.getItem("phx:mode")) {
             document.documentElement.classList.toggle("dark", e.matches);
           }
         });
 
-        window.addEventListener("storage", (e) => e.key === "phx:theme" && setTheme(e.newValue || "system"));
-        window.addEventListener("phx:set-theme", (e) => setTheme(e.target.dataset.phxTheme));
-        window.addEventListener("phx:toggle-theme", toggleTheme);
+        window.addEventListener("storage", (e) => {
+          if (e.key === "phx:mode" || e.key === "phx:theme") setMode(e.newValue || "system");
+          if (e.key === "phx:color-theme") setTheme(e.newValue || "neutral");
+        });
+        window.addEventListener("phx:toggle-theme", toggleMode);
+        window.addEventListener("phx:set-color-theme", (e) => setTheme(e.detail.theme));
       })();
     </script>
   </head>

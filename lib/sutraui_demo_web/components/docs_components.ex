@@ -71,7 +71,7 @@ defmodule SutrauiDemoWeb.DocsComponents do
             aria-label="Copy code"
           >
             <span class="copy-text">Copy</span>
-            <span class="check-text hidden" style="color: var(--accent);">Copied</span>
+            <span class="check-text hidden" style="color: var(--site-accent);">Copied</span>
           </button>
         </div>
 
@@ -118,6 +118,14 @@ defmodule SutrauiDemoWeb.DocsComponents do
                 await navigator.clipboard.writeText(codeEl.textContent);
                 copyText.classList.add('hidden');
                 checkText.classList.remove('hidden');
+                
+                // Trigger toast notification
+                this.pushEvent("show_toast", { 
+                  variant: "default", 
+                  title: "Copied to clipboard",
+                  description: "Code snippet copied successfully"
+                });
+                
                 setTimeout(() => {
                   copyText.classList.remove('hidden');
                   checkText.classList.add('hidden');

@@ -52,6 +52,9 @@ defmodule SutrauiDemoWeb do
     quote do
       use Phoenix.LiveView
 
+      # Common handlers for docs pages (toast on copy, etc.)
+      on_mount SutrauiDemoWeb.DocsHandlers
+
       unquote(html_helpers())
     end
   end
