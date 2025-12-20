@@ -43,6 +43,11 @@ defmodule SutrauiDemoWeb.Router do
     live "/docs/components/slider", Components.SliderLive, :index
     live "/docs/components/range-slider", Components.RangeSliderLive, :index
     live "/docs/components/live-select", Components.LiveSelectLive, :index
+    live "/docs/components/alert", Components.AlertLive, :index
+    live "/docs/components/progress", Components.ProgressLive, :index
+    live "/docs/components/spinner", Components.SpinnerLive, :index
+    live "/docs/components/skeleton", Components.SkeletonLive, :index
+    live "/docs/components/empty", Components.EmptyLive, :index
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

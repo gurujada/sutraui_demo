@@ -452,6 +452,7 @@ defmodule SutrauiDemoWeb.Layouts do
       <div>
         <h4 class="sidebar-title">Components</h4>
         <div class="space-y-1">
+          <.sidebar_link href="/docs/components/alert" label="Alert" current_path={@current_path} />
           <.sidebar_link href="/docs/components/badge" label="Badge" current_path={@current_path} />
           <.sidebar_link href="/docs/components/button" label="Button" current_path={@current_path} />
           <.sidebar_link href="/docs/components/card" label="Card" current_path={@current_path} />
@@ -466,11 +467,17 @@ defmodule SutrauiDemoWeb.Layouts do
             label="Dropdown Menu"
             current_path={@current_path}
           />
+          <.sidebar_link href="/docs/components/empty" label="Empty" current_path={@current_path} />
           <.sidebar_link href="/docs/components/field" label="Field" current_path={@current_path} />
           <.sidebar_link href="/docs/components/input" label="Input" current_path={@current_path} />
           <.sidebar_link
             href="/docs/components/live-select"
             label="Live Select"
+            current_path={@current_path}
+          />
+          <.sidebar_link
+            href="/docs/components/progress"
+            label="Progress"
             current_path={@current_path}
           />
           <.sidebar_link
@@ -484,7 +491,17 @@ defmodule SutrauiDemoWeb.Layouts do
             current_path={@current_path}
           />
           <.sidebar_link href="/docs/components/select" label="Select" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/skeleton"
+            label="Skeleton"
+            current_path={@current_path}
+          />
           <.sidebar_link href="/docs/components/slider" label="Slider" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/spinner"
+            label="Spinner"
+            current_path={@current_path}
+          />
           <.sidebar_link href="/docs/components/switch" label="Switch" current_path={@current_path} />
           <.sidebar_link href="/docs/components/table" label="Table" current_path={@current_path} />
           <.sidebar_link href="/docs/components/tabs" label="Tabs" current_path={@current_path} />
@@ -592,6 +609,11 @@ defmodule SutrauiDemoWeb.Layouts do
       group: "Components",
       items: [
         %{
+          label: "Alert",
+          href: "/docs/components/alert",
+          keywords: ["warning", "error", "info", "message", "banner"]
+        },
+        %{
           label: "Badge",
           href: "/docs/components/badge",
           keywords: ["tag", "label", "status", "indicator"]
@@ -618,6 +640,11 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["menu", "context", "actions", "popover"]
         },
         %{
+          label: "Empty",
+          href: "/docs/components/empty",
+          keywords: ["empty state", "placeholder", "no data", "blank"]
+        },
+        %{
           label: "Field",
           href: "/docs/components/field",
           keywords: ["form", "label", "input", "wrapper", "fieldset"]
@@ -631,6 +658,11 @@ defmodule SutrauiDemoWeb.Layouts do
           label: "Live Select",
           href: "/docs/components/live-select",
           keywords: ["search", "autocomplete", "tags", "multi-select", "combobox"]
+        },
+        %{
+          label: "Progress",
+          href: "/docs/components/progress",
+          keywords: ["progress bar", "loading", "percentage", "completion"]
         },
         %{
           label: "Radio Group",
@@ -648,9 +680,19 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["dropdown", "picker", "choice", "option"]
         },
         %{
+          label: "Skeleton",
+          href: "/docs/components/skeleton",
+          keywords: ["loading", "placeholder", "shimmer", "content loader"]
+        },
+        %{
           label: "Slider",
           href: "/docs/components/slider",
           keywords: ["range", "value", "number", "adjust"]
+        },
+        %{
+          label: "Spinner",
+          href: "/docs/components/spinner",
+          keywords: ["loading", "loader", "spin", "waiting"]
         },
         %{
           label: "Switch",
