@@ -58,6 +58,17 @@ defmodule SutrauiDemoWeb.Router do
     live "/docs/components/pagination", Components.PaginationLive, :index
     live "/docs/components/tab-nav", Components.TabNavLive, :index
     live "/docs/components/sidebar", Components.SidebarLive, :index
+    live "/docs/components/accordion", Components.AccordionLive, :index
+    live "/docs/components/carousel", Components.CarouselLive, :index
+    live "/docs/components/command", Components.CommandLive, :index
+    live "/docs/components/filter-bar", Components.FilterBarLive, :index
+    live "/docs/components/flash", Components.FlashLive, :index
+    live "/docs/components/header", Components.HeaderLive, :index
+    live "/docs/components/input-group", Components.InputGroupLive, :index
+    live "/docs/components/item", Components.ItemLive, :index
+    live "/docs/components/loading-state", Components.LoadingStateLive, :index
+    live "/docs/components/simple-form", Components.SimpleFormLive, :index
+    live "/docs/components/theme-switcher", Components.ThemeSwitcherLive, :index
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

@@ -271,7 +271,7 @@ defmodule SutrauiDemoWeb.Layouts do
     assigns = assign(assigns, :themes, @themes)
 
     ~H"""
-    <div id="theme-switcher" phx-hook=".ThemeSwitcher" class="relative">
+    <div id="color-theme-picker" phx-hook=".ColorThemePicker" class="relative">
       <button
         type="button"
         class="nav-link flex items-center gap-1.5"
@@ -331,7 +331,7 @@ defmodule SutrauiDemoWeb.Layouts do
       </div>
     </div>
 
-    <script :type={Phoenix.LiveView.ColocatedHook} name=".ThemeSwitcher">
+    <script :type={Phoenix.LiveView.ColocatedHook} name=".ColorThemePicker">
       export default {
         mounted() {
           const container = this.el;
@@ -452,6 +452,11 @@ defmodule SutrauiDemoWeb.Layouts do
       <div>
         <h4 class="sidebar-title">Components</h4>
         <div class="space-y-1">
+          <.sidebar_link
+            href="/docs/components/accordion"
+            label="Accordion"
+            current_path={@current_path}
+          />
           <.sidebar_link href="/docs/components/alert" label="Alert" current_path={@current_path} />
           <.sidebar_link href="/docs/components/avatar" label="Avatar" current_path={@current_path} />
           <.sidebar_link href="/docs/components/badge" label="Badge" current_path={@current_path} />
@@ -463,8 +468,18 @@ defmodule SutrauiDemoWeb.Layouts do
           <.sidebar_link href="/docs/components/button" label="Button" current_path={@current_path} />
           <.sidebar_link href="/docs/components/card" label="Card" current_path={@current_path} />
           <.sidebar_link
+            href="/docs/components/carousel"
+            label="Carousel"
+            current_path={@current_path}
+          />
+          <.sidebar_link
             href="/docs/components/checkbox"
             label="Checkbox"
+            current_path={@current_path}
+          />
+          <.sidebar_link
+            href="/docs/components/command"
+            label="Command"
             current_path={@current_path}
           />
           <.sidebar_link href="/docs/components/dialog" label="Dialog" current_path={@current_path} />
@@ -475,12 +490,30 @@ defmodule SutrauiDemoWeb.Layouts do
           />
           <.sidebar_link href="/docs/components/empty" label="Empty" current_path={@current_path} />
           <.sidebar_link href="/docs/components/field" label="Field" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/filter-bar"
+            label="Filter Bar"
+            current_path={@current_path}
+          />
+          <.sidebar_link href="/docs/components/flash" label="Flash" current_path={@current_path} />
+          <.sidebar_link href="/docs/components/header" label="Header" current_path={@current_path} />
           <.sidebar_link href="/docs/components/input" label="Input" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/input-group"
+            label="Input Group"
+            current_path={@current_path}
+          />
+          <.sidebar_link href="/docs/components/item" label="Item" current_path={@current_path} />
           <.sidebar_link href="/docs/components/kbd" label="Kbd" current_path={@current_path} />
           <.sidebar_link href="/docs/components/label" label="Label" current_path={@current_path} />
           <.sidebar_link
             href="/docs/components/live-select"
             label="Live Select"
+            current_path={@current_path}
+          />
+          <.sidebar_link
+            href="/docs/components/loading-state"
+            label="Loading State"
             current_path={@current_path}
           />
           <.sidebar_link
@@ -520,6 +553,11 @@ defmodule SutrauiDemoWeb.Layouts do
             current_path={@current_path}
           />
           <.sidebar_link
+            href="/docs/components/simple-form"
+            label="Simple Form"
+            current_path={@current_path}
+          />
+          <.sidebar_link
             href="/docs/components/skeleton"
             label="Skeleton"
             current_path={@current_path}
@@ -541,6 +579,11 @@ defmodule SutrauiDemoWeb.Layouts do
           <.sidebar_link
             href="/docs/components/textarea"
             label="Textarea"
+            current_path={@current_path}
+          />
+          <.sidebar_link
+            href="/docs/components/theme-switcher"
+            label="Theme Switcher"
             current_path={@current_path}
           />
           <.sidebar_link href="/docs/components/toast" label="Toast" current_path={@current_path} />
@@ -647,6 +690,11 @@ defmodule SutrauiDemoWeb.Layouts do
       group: "Components",
       items: [
         %{
+          label: "Accordion",
+          href: "/docs/components/accordion",
+          keywords: ["collapse", "expand", "faq", "sections", "disclosure"]
+        },
+        %{
           label: "Alert",
           href: "/docs/components/alert",
           keywords: ["warning", "error", "info", "message", "banner"]
@@ -673,9 +721,19 @@ defmodule SutrauiDemoWeb.Layouts do
         },
         %{label: "Card", href: "/docs/components/card", keywords: ["container", "box", "panel"]},
         %{
+          label: "Carousel",
+          href: "/docs/components/carousel",
+          keywords: ["slider", "slideshow", "gallery", "scroll", "snap"]
+        },
+        %{
           label: "Checkbox",
           href: "/docs/components/checkbox",
           keywords: ["check", "tick", "toggle", "boolean"]
+        },
+        %{
+          label: "Command",
+          href: "/docs/components/command",
+          keywords: ["palette", "search", "cmdk", "spotlight", "keyboard"]
         },
         %{
           label: "Dialog",
@@ -698,9 +756,34 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["form", "label", "input", "wrapper", "fieldset"]
         },
         %{
+          label: "Filter Bar",
+          href: "/docs/components/filter-bar",
+          keywords: ["filter", "search", "form", "index", "list"]
+        },
+        %{
+          label: "Flash",
+          href: "/docs/components/flash",
+          keywords: ["notification", "message", "alert", "feedback"]
+        },
+        %{
+          label: "Header",
+          href: "/docs/components/header",
+          keywords: ["page", "title", "subtitle", "actions"]
+        },
+        %{
           label: "Input",
           href: "/docs/components/input",
           keywords: ["text", "field", "form", "textbox"]
+        },
+        %{
+          label: "Input Group",
+          href: "/docs/components/input-group",
+          keywords: ["prefix", "suffix", "addon", "icon"]
+        },
+        %{
+          label: "Item",
+          href: "/docs/components/item",
+          keywords: ["list", "row", "card", "leading", "trailing"]
         },
         %{
           label: "Kbd",
@@ -716,6 +799,11 @@ defmodule SutrauiDemoWeb.Layouts do
           label: "Live Select",
           href: "/docs/components/live-select",
           keywords: ["search", "autocomplete", "tags", "multi-select", "combobox"]
+        },
+        %{
+          label: "Loading State",
+          href: "/docs/components/loading-state",
+          keywords: ["loading", "spinner", "wait", "fetch"]
         },
         %{
           label: "Nav Pills",
@@ -758,6 +846,11 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["navigation", "menu", "drawer", "panel", "collapsible"]
         },
         %{
+          label: "Simple Form",
+          href: "/docs/components/simple-form",
+          keywords: ["form", "auto", "styling", "wrapper"]
+        },
+        %{
           label: "Skeleton",
           href: "/docs/components/skeleton",
           keywords: ["loading", "placeholder", "shimmer", "content loader"]
@@ -796,6 +889,11 @@ defmodule SutrauiDemoWeb.Layouts do
           label: "Textarea",
           href: "/docs/components/textarea",
           keywords: ["text", "multiline", "paragraph", "long"]
+        },
+        %{
+          label: "Theme Switcher",
+          href: "/docs/components/theme-switcher",
+          keywords: ["theme", "dark", "light", "toggle", "mode"]
         },
         %{
           label: "Toast",

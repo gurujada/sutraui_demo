@@ -65,6 +65,16 @@
         });
         window.addEventListener("phx:toggle-theme", toggleMode);
         window.addEventListener("phx:set-color-theme", (e) => setTheme(e.detail.theme));
+        
+        // Bridge for Sutra UI's ThemeSwitcher component
+        window.addEventListener("sutra-ui:set-theme", (e) => {
+          const theme = e.detail?.theme;
+          if (theme === "light" || theme === "dark") {
+            setMode(theme);
+          } else if (theme === "system") {
+            setMode("system");
+          }
+        });
       })();
     </script>
   </head>
