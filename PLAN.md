@@ -187,17 +187,33 @@ Getting Started
   ├─ Installation
   └─ Theming
 
-Components
+Form Inputs (14)
+  ├─ Checkbox, Field, Filter Bar, Input, Input Group
+  ├─ Label, Live Select, Radio Group, Range Slider
+  ├─ Select, Simple Form, Slider, Switch, Textarea
+
+Buttons & Actions (2)
   ├─ Button
-  ├─ Badge
-  ├─ Card
-  ├─ Input
-  ├─ Select
-  ├─ Dialog
-  ├─ Toast
-  ├─ Tabs
-  ├─ Table
   └─ Dropdown Menu
+
+Layout (5)
+  ├─ Accordion, Card, Header, Item, Tabs
+
+Navigation (5)
+  ├─ Breadcrumb, Nav Pills, Pagination, Sidebar, Tab Nav
+
+Feedback (8)
+  ├─ Alert, Empty, Flash, Loading State
+  ├─ Progress, Skeleton, Spinner, Toast
+
+Overlays (4)
+  ├─ Command, Dialog, Popover, Tooltip
+
+Data Display (4)
+  ├─ Avatar, Badge, Carousel, Table
+
+Utilities (2)
+  ├─ Kbd, Theme Switcher
 ```
 
 ### Main Content Area
@@ -282,59 +298,70 @@ end
 
 **IMPORTANT:** After each phase, PAUSE. User previews in browser. Only after approval and git commit do we proceed to next phase.
 
-### Phase 1: Foundation
-1. [ ] Install and configure sutra_ui dependency
-2. [ ] Add makeup + makeup_elixir + makeup_html
-3. [ ] Remove core_components.ex, configure sutra_ui
-4. [ ] Configure Tailwind CSS v4 with sutra_ui
-5. [ ] Configure app.js with sutra hooks
-6. [ ] Create docs layout (header + sidebar + main)
-7. [ ] Build docs_components.ex (component_demo, code_block, etc.)
-8. [ ] Set up all routes
-9. [ ] Landing page
-10. [ ] Installation page
+### Phase 1: Foundation ✅ COMPLETE
+1. [x] Install and configure sutra_ui dependency
+2. [x] Add makeup + makeup_elixir + makeup_html
+3. [x] Remove core_components.ex, configure sutra_ui
+4. [x] Configure Tailwind CSS v4 with sutra_ui
+5. [x] Configure app.js with sutra hooks
+6. [x] Create docs layout (header + sidebar + main)
+7. [x] Build docs_components.ex (component_demo, code_block, etc.)
+8. [x] Set up all routes
+9. [x] Landing page
+10. [x] Installation page
 
-**→ PAUSE for review**
+### Phase 2: First 10 Components ✅ COMPLETE
+1. [x] Button
+2. [x] Badge
+3. [x] Card
+4. [x] Input
+5. [x] Select
+6. [x] Dialog
+7. [x] Toast
+8. [x] Tabs
+9. [x] Table
+10. [x] Dropdown Menu
 
-### Phase 2: First 10 Components
-For each component:
-1. Read Sutra source + docs for props/slots/behaviors
-2. Document metadata
-3. Build LiveView with examples
-4. Verify in browser
+### Phase 3: Polish & Additional Pages ✅ COMPLETE
+1. [x] Introduction page
+2. [x] Theming page
+3. [x] Theme switcher (6 color themes + light/dark mode)
+4. [x] Code copy with toast feedback
+5. [x] Mobile responsive sidebar (drawer)
 
-Components:
-1. [ ] Button
-2. [ ] Badge
-3. [ ] Card
-4. [ ] Input
-5. [ ] Select
-6. [ ] Dialog
-7. [ ] Toast
-8. [ ] Tabs
-9. [ ] Table
-10. [ ] Dropdown Menu
+### Phase 4: Wow Features ✅ COMPLETE
+1. [x] Command palette search (Cmd+K)
+2. [x] Smooth page transitions
+3. [x] Editorial typography (Instrument Serif + Geist)
 
-**→ PAUSE for review**
+### Phase 5: All Components ✅ COMPLETE (44 total)
 
-### Phase 3: Polish & Additional Pages
-1. [ ] Introduction page
-2. [ ] Theming page
-3. [ ] Theme switcher (predefined themes)
-4. [ ] Code copy with toast feedback
-5. [ ] Mobile responsive sidebar
+**Form Inputs (14):**
+- [x] Checkbox, Field, Filter Bar, Input, Input Group, Label
+- [x] Live Select, Radio Group, Range Slider, Select
+- [x] Simple Form, Slider, Switch, Textarea
 
-**→ PAUSE for review**
+**Buttons & Actions (2):**
+- [x] Button, Dropdown Menu
 
-### Phase 4: Wow Features
-1. [ ] Command palette search (Cmd+K)
-2. [ ] Smooth page transitions
-3. [ ] Any refinements
+**Layout (5):**
+- [x] Accordion, Card, Header, Item, Tabs
 
-**→ PAUSE for review**
+**Navigation (5):**
+- [x] Breadcrumb, Nav Pills, Pagination, Sidebar, Tab Nav
 
-### Phase 5: Remaining Components
-- All remaining ~34 components (separate plan)
+**Feedback (8):**
+- [x] Alert, Empty, Flash, Loading State, Progress
+- [x] Skeleton, Spinner, Toast
+
+**Overlays (4):**
+- [x] Command, Dialog, Popover, Tooltip
+
+**Data Display (4):**
+- [x] Avatar, Badge, Carousel, Table
+
+**Utilities (2):**
+- [x] Kbd, Theme Switcher
 
 ---
 
