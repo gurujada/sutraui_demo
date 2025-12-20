@@ -455,6 +455,11 @@ defmodule SutrauiDemoWeb.Layouts do
           <.sidebar_link href="/docs/components/alert" label="Alert" current_path={@current_path} />
           <.sidebar_link href="/docs/components/avatar" label="Avatar" current_path={@current_path} />
           <.sidebar_link href="/docs/components/badge" label="Badge" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/breadcrumb"
+            label="Breadcrumb"
+            current_path={@current_path}
+          />
           <.sidebar_link href="/docs/components/button" label="Button" current_path={@current_path} />
           <.sidebar_link href="/docs/components/card" label="Card" current_path={@current_path} />
           <.sidebar_link
@@ -479,6 +484,16 @@ defmodule SutrauiDemoWeb.Layouts do
             current_path={@current_path}
           />
           <.sidebar_link
+            href="/docs/components/nav-pills"
+            label="Nav Pills"
+            current_path={@current_path}
+          />
+          <.sidebar_link
+            href="/docs/components/pagination"
+            label="Pagination"
+            current_path={@current_path}
+          />
+          <.sidebar_link
             href="/docs/components/popover"
             label="Popover"
             current_path={@current_path}
@@ -500,6 +515,11 @@ defmodule SutrauiDemoWeb.Layouts do
           />
           <.sidebar_link href="/docs/components/select" label="Select" current_path={@current_path} />
           <.sidebar_link
+            href="/docs/components/sidebar"
+            label="Sidebar"
+            current_path={@current_path}
+          />
+          <.sidebar_link
             href="/docs/components/skeleton"
             label="Skeleton"
             current_path={@current_path}
@@ -511,6 +531,11 @@ defmodule SutrauiDemoWeb.Layouts do
             current_path={@current_path}
           />
           <.sidebar_link href="/docs/components/switch" label="Switch" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/tab-nav"
+            label="Tab Nav"
+            current_path={@current_path}
+          />
           <.sidebar_link href="/docs/components/table" label="Table" current_path={@current_path} />
           <.sidebar_link href="/docs/components/tabs" label="Tabs" current_path={@current_path} />
           <.sidebar_link
@@ -637,6 +662,11 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["tag", "label", "status", "indicator"]
         },
         %{
+          label: "Breadcrumb",
+          href: "/docs/components/breadcrumb",
+          keywords: ["navigation", "path", "hierarchy", "trail", "links"]
+        },
+        %{
           label: "Button",
           href: "/docs/components/button",
           keywords: ["btn", "click", "action", "submit"]
@@ -688,6 +718,16 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["search", "autocomplete", "tags", "multi-select", "combobox"]
         },
         %{
+          label: "Nav Pills",
+          href: "/docs/components/nav-pills",
+          keywords: ["navigation", "pills", "tabs", "responsive", "mobile"]
+        },
+        %{
+          label: "Pagination",
+          href: "/docs/components/pagination",
+          keywords: ["pages", "page", "next", "previous", "navigation"]
+        },
+        %{
           label: "Popover",
           href: "/docs/components/popover",
           keywords: ["popup", "dropdown", "floating", "overlay"]
@@ -713,6 +753,11 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["dropdown", "picker", "choice", "option"]
         },
         %{
+          label: "Sidebar",
+          href: "/docs/components/sidebar",
+          keywords: ["navigation", "menu", "drawer", "panel", "collapsible"]
+        },
+        %{
           label: "Skeleton",
           href: "/docs/components/skeleton",
           keywords: ["loading", "placeholder", "shimmer", "content loader"]
@@ -731,6 +776,11 @@ defmodule SutrauiDemoWeb.Layouts do
           label: "Switch",
           href: "/docs/components/switch",
           keywords: ["toggle", "on", "off", "boolean"]
+        },
+        %{
+          label: "Tab Nav",
+          href: "/docs/components/tab-nav",
+          keywords: ["tabs", "navigation", "routed", "server-side"]
         },
         %{
           label: "Table",

@@ -270,4 +270,57 @@ defmodule SutrauiDemoWeb.DocsComponents do
     </div>
     """
   end
+
+  slot :inner_block, required: true
+
+  def props_table(assigns) do
+    ~H"""
+    <div class="my-4 border rounded-lg overflow-hidden" style="border-color: var(--border);">
+      <table class="w-full text-sm">
+        <thead>
+          <tr style="background: var(--bg-subtle); border-bottom: 1px solid var(--border);">
+            <th class="px-4 py-2 text-left font-medium" style="color: var(--fg);">Prop</th>
+            <th class="px-4 py-2 text-left font-medium" style="color: var(--fg);">Type</th>
+            <th class="px-4 py-2 text-left font-medium" style="color: var(--fg);">Default</th>
+            <th class="px-4 py-2 text-left font-medium" style="color: var(--fg);">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {render_slot(@inner_block)}
+        </tbody>
+      </table>
+    </div>
+    """
+  end
+
+  attr :name, :string, required: true
+  attr :type, :string, required: true
+  attr :default, :string, default: "-"
+  attr :required, :boolean, default: false
+  slot :inner_block, required: true
+
+  def prop(assigns) do
+    ~H"""
+    <tr style="border-bottom: 1px solid var(--border);">
+      <td class="px-4 py-2">
+        <code
+          class="px-1.5 py-0.5 rounded text-xs"
+          style="background: var(--bg-muted); font-family: var(--font-mono);"
+        >
+          {@name}
+        </code>
+        <span :if={@required} class="ml-1 text-xs" style="color: var(--destructive);">*</span>
+      </td>
+      <td class="px-4 py-2" style="color: var(--fg-muted);">
+        <code class="text-xs" style="font-family: var(--font-mono);">{@type}</code>
+      </td>
+      <td class="px-4 py-2" style="color: var(--fg-muted);">
+        <code class="text-xs" style="font-family: var(--font-mono);">{@default}</code>
+      </td>
+      <td class="px-4 py-2" style="color: var(--fg-muted);">
+        {render_slot(@inner_block)}
+      </td>
+    </tr>
+    """
+  end
 end
