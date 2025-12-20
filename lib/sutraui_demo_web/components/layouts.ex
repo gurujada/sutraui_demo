@@ -59,7 +59,7 @@ defmodule SutrauiDemoWeb.Layouts do
       <div class="mx-auto max-w-6xl px-6">
         <div class="flex gap-16">
           <aside class="hidden lg:block w-56 shrink-0 py-12">
-            <div class="sticky top-24">
+            <div class="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto scrollbar-hide">
               <.docs_sidebar current_path={@current_path} />
             </div>
           </aside>
@@ -452,20 +452,48 @@ defmodule SutrauiDemoWeb.Layouts do
       <div>
         <h4 class="sidebar-title">Components</h4>
         <div class="space-y-1">
-          <.sidebar_link href="/docs/components/button" label="Button" current_path={@current_path} />
           <.sidebar_link href="/docs/components/badge" label="Badge" current_path={@current_path} />
+          <.sidebar_link href="/docs/components/button" label="Button" current_path={@current_path} />
           <.sidebar_link href="/docs/components/card" label="Card" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/input" label="Input" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/select" label="Select" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/checkbox"
+            label="Checkbox"
+            current_path={@current_path}
+          />
           <.sidebar_link href="/docs/components/dialog" label="Dialog" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/toast" label="Toast" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/tabs" label="Tabs" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/table" label="Table" current_path={@current_path} />
           <.sidebar_link
             href="/docs/components/dropdown-menu"
             label="Dropdown Menu"
             current_path={@current_path}
           />
+          <.sidebar_link href="/docs/components/field" label="Field" current_path={@current_path} />
+          <.sidebar_link href="/docs/components/input" label="Input" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/live-select"
+            label="Live Select"
+            current_path={@current_path}
+          />
+          <.sidebar_link
+            href="/docs/components/radio-group"
+            label="Radio Group"
+            current_path={@current_path}
+          />
+          <.sidebar_link
+            href="/docs/components/range-slider"
+            label="Range Slider"
+            current_path={@current_path}
+          />
+          <.sidebar_link href="/docs/components/select" label="Select" current_path={@current_path} />
+          <.sidebar_link href="/docs/components/slider" label="Slider" current_path={@current_path} />
+          <.sidebar_link href="/docs/components/switch" label="Switch" current_path={@current_path} />
+          <.sidebar_link href="/docs/components/table" label="Table" current_path={@current_path} />
+          <.sidebar_link href="/docs/components/tabs" label="Tabs" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/textarea"
+            label="Textarea"
+            current_path={@current_path}
+          />
+          <.sidebar_link href="/docs/components/toast" label="Toast" current_path={@current_path} />
         </div>
       </div>
     </nav>
@@ -564,25 +592,20 @@ defmodule SutrauiDemoWeb.Layouts do
       group: "Components",
       items: [
         %{
-          label: "Button",
-          href: "/docs/components/button",
-          keywords: ["btn", "click", "action", "submit"]
-        },
-        %{
           label: "Badge",
           href: "/docs/components/badge",
           keywords: ["tag", "label", "status", "indicator"]
         },
+        %{
+          label: "Button",
+          href: "/docs/components/button",
+          keywords: ["btn", "click", "action", "submit"]
+        },
         %{label: "Card", href: "/docs/components/card", keywords: ["container", "box", "panel"]},
         %{
-          label: "Input",
-          href: "/docs/components/input",
-          keywords: ["text", "field", "form", "textbox"]
-        },
-        %{
-          label: "Select",
-          href: "/docs/components/select",
-          keywords: ["dropdown", "picker", "choice", "option"]
+          label: "Checkbox",
+          href: "/docs/components/checkbox",
+          keywords: ["check", "tick", "toggle", "boolean"]
         },
         %{
           label: "Dialog",
@@ -590,14 +613,49 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["modal", "popup", "overlay", "alert"]
         },
         %{
-          label: "Toast",
-          href: "/docs/components/toast",
-          keywords: ["notification", "message", "alert", "snackbar"]
+          label: "Dropdown Menu",
+          href: "/docs/components/dropdown-menu",
+          keywords: ["menu", "context", "actions", "popover"]
         },
         %{
-          label: "Tabs",
-          href: "/docs/components/tabs",
-          keywords: ["tab", "panel", "switch", "navigation"]
+          label: "Field",
+          href: "/docs/components/field",
+          keywords: ["form", "label", "input", "wrapper", "fieldset"]
+        },
+        %{
+          label: "Input",
+          href: "/docs/components/input",
+          keywords: ["text", "field", "form", "textbox"]
+        },
+        %{
+          label: "Live Select",
+          href: "/docs/components/live-select",
+          keywords: ["search", "autocomplete", "tags", "multi-select", "combobox"]
+        },
+        %{
+          label: "Radio Group",
+          href: "/docs/components/radio-group",
+          keywords: ["radio", "option", "choice", "single"]
+        },
+        %{
+          label: "Range Slider",
+          href: "/docs/components/range-slider",
+          keywords: ["range", "dual", "min", "max", "filter"]
+        },
+        %{
+          label: "Select",
+          href: "/docs/components/select",
+          keywords: ["dropdown", "picker", "choice", "option"]
+        },
+        %{
+          label: "Slider",
+          href: "/docs/components/slider",
+          keywords: ["range", "value", "number", "adjust"]
+        },
+        %{
+          label: "Switch",
+          href: "/docs/components/switch",
+          keywords: ["toggle", "on", "off", "boolean"]
         },
         %{
           label: "Table",
@@ -605,9 +663,19 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["data", "grid", "list", "rows"]
         },
         %{
-          label: "Dropdown Menu",
-          href: "/docs/components/dropdown-menu",
-          keywords: ["menu", "context", "actions", "popover"]
+          label: "Tabs",
+          href: "/docs/components/tabs",
+          keywords: ["tab", "panel", "switch", "navigation"]
+        },
+        %{
+          label: "Textarea",
+          href: "/docs/components/textarea",
+          keywords: ["text", "multiline", "paragraph", "long"]
+        },
+        %{
+          label: "Toast",
+          href: "/docs/components/toast",
+          keywords: ["notification", "message", "alert", "snackbar"]
         }
       ]
     }
