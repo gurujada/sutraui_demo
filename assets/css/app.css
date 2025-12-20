@@ -697,6 +697,13 @@ body {
     color: var(--site-accent);
 }
 
+/* Search button */
+.search-trigger:hover {
+    background: var(--bg-muted) !important;
+    border-color: var(--border-strong) !important;
+    color: var(--fg-secondary) !important;
+}
+
 /* Animations */
 @keyframes fade-up {
     from {
@@ -719,3 +726,47 @@ body {
 .delay-3 { animation-delay: 0.3s; }
 .delay-4 { animation-delay: 0.4s; }
 .delay-5 { animation-delay: 0.5s; }
+
+/* ========================================
+   PAGE TRANSITIONS
+   ======================================== */
+
+/* Smooth fade transition for LiveView page navigation */
+@keyframes page-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply to article content in docs layout */
+article {
+    animation: page-fade-in 0.3s ease-out;
+}
+
+/* Main content on landing page */
+main > section {
+    animation: page-fade-in 0.4s ease-out;
+}
+
+/* Stagger children for a more refined effect */
+article > *:nth-child(1) { animation-delay: 0ms; }
+article > *:nth-child(2) { animation-delay: 30ms; }
+article > *:nth-child(3) { animation-delay: 60ms; }
+article > *:nth-child(4) { animation-delay: 90ms; }
+article > *:nth-child(5) { animation-delay: 120ms; }
+article > *:nth-child(n+6) { animation-delay: 150ms; }
+
+/* Subtle loading state during navigation */
+.phx-connected [data-phx-main] {
+    transition: opacity 0.15s ease;
+}
+
+.phx-loading [data-phx-main] {
+    opacity: 0.7;
+    pointer-events: none;
+}

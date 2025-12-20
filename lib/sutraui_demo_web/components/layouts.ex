@@ -18,8 +18,31 @@ defmodule SutrauiDemoWeb.Layouts do
       <main>
         {render_slot(@inner_block)}
       </main>
+      <.command_palette />
       <.toast_container flash={@flash} />
     </div>
+    """
+  end
+
+  def search_button(assigns) do
+    ~H"""
+    <button
+      type="button"
+      class="search-trigger hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm transition-colors"
+      style="background: var(--bg-subtle); border-color: var(--border); color: var(--fg-muted);"
+      phx-click={JS.dispatch("phx:open-command-palette")}
+    >
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
+      </svg>
+      <span class="hidden md:inline">Search...</span>
+      <kbd
+        class="hidden md:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs font-mono"
+        style="background: var(--bg-muted); color: var(--fg-muted);"
+      >
+        <span class="text-xs">⌘</span>K
+      </kbd>
+    </button>
     """
   end
 
@@ -50,6 +73,7 @@ defmodule SutrauiDemoWeb.Layouts do
       </div>
 
       <.mobile_sidebar current_path={@current_path} />
+      <.command_palette />
       <.toast_container flash={@flash} />
     </div>
     """
@@ -88,6 +112,7 @@ defmodule SutrauiDemoWeb.Layouts do
           <.link navigate="/docs/components/button" class="nav-link hidden sm:block">
             Components
           </.link>
+          <.search_button />
           <.color_theme_picker />
           <.theme_toggle />
           <a
@@ -511,6 +536,172 @@ defmodule SutrauiDemoWeb.Layouts do
         </svg>
       </.flash>
     </div>
+    """
+  end
+
+  @nav_items [
+    %{
+      group: "Getting Started",
+      items: [
+        %{
+          label: "Introduction",
+          href: "/docs",
+          keywords: ["intro", "overview", "about", "start"]
+        },
+        %{
+          label: "Installation",
+          href: "/docs/installation",
+          keywords: ["setup", "install", "config", "getting started"]
+        },
+        %{
+          label: "Theming",
+          href: "/docs/theming",
+          keywords: ["theme", "colors", "dark mode", "light mode", "customize"]
+        }
+      ]
+    },
+    %{
+      group: "Components",
+      items: [
+        %{
+          label: "Button",
+          href: "/docs/components/button",
+          keywords: ["btn", "click", "action", "submit"]
+        },
+        %{
+          label: "Badge",
+          href: "/docs/components/badge",
+          keywords: ["tag", "label", "status", "indicator"]
+        },
+        %{label: "Card", href: "/docs/components/card", keywords: ["container", "box", "panel"]},
+        %{
+          label: "Input",
+          href: "/docs/components/input",
+          keywords: ["text", "field", "form", "textbox"]
+        },
+        %{
+          label: "Select",
+          href: "/docs/components/select",
+          keywords: ["dropdown", "picker", "choice", "option"]
+        },
+        %{
+          label: "Dialog",
+          href: "/docs/components/dialog",
+          keywords: ["modal", "popup", "overlay", "alert"]
+        },
+        %{
+          label: "Toast",
+          href: "/docs/components/toast",
+          keywords: ["notification", "message", "alert", "snackbar"]
+        },
+        %{
+          label: "Tabs",
+          href: "/docs/components/tabs",
+          keywords: ["tab", "panel", "switch", "navigation"]
+        },
+        %{
+          label: "Table",
+          href: "/docs/components/table",
+          keywords: ["data", "grid", "list", "rows"]
+        },
+        %{
+          label: "Dropdown Menu",
+          href: "/docs/components/dropdown-menu",
+          keywords: ["menu", "context", "actions", "popover"]
+        }
+      ]
+    }
+  ]
+
+  def command_palette(assigns) do
+    assigns = assign(assigns, :nav_items, @nav_items)
+
+    ~H"""
+    <.command_dialog id="cmd-palette" placeholder="Search documentation...">
+      <.command_group :for={section <- @nav_items} heading={section.group}>
+        <.command_item
+          :for={item <- section.items}
+          id={"cmd-#{item.label |> String.downcase() |> String.replace(" ", "-")}"}
+          keywords={item.keywords}
+          phx-click={JS.navigate(item.href)}
+        >
+          <svg
+            class="w-4 h-4 opacity-60"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path d="M9 12h6M12 9v6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
+          </svg>
+          {item.label}
+        </.command_item>
+      </.command_group>
+    </.command_dialog>
+
+    <div id="cmd-k-listener" phx-hook=".CommandPalette"></div>
+
+    <script :type={Phoenix.LiveView.ColocatedHook} name=".CommandPalette">
+      export default {
+        mounted() {
+          const openPalette = () => {
+            const dialog = document.getElementById('cmd-palette');
+            if (dialog) {
+              dialog.showModal();
+              const input = dialog.querySelector('input');
+              if (input) {
+                input.focus();
+                input.value = '';
+              }
+            }
+          };
+
+          const handleKeydown = (e) => {
+            // Cmd+K (Mac) or Ctrl+K (Windows/Linux)
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+              e.preventDefault();
+              openPalette();
+            }
+          };
+
+          document.addEventListener('keydown', handleKeydown);
+          window.addEventListener('phx:open-command-palette', openPalette);
+
+          // Close dialog on item selection (navigation)
+          const dialog = document.getElementById('cmd-palette');
+          if (dialog) {
+            dialog.addEventListener('click', (e) => {
+              const item = e.target.closest('[role="menuitem"]');
+              if (item) {
+                dialog.close();
+              }
+            });
+
+            // Close on backdrop click
+            dialog.addEventListener('click', (e) => {
+              if (e.target === dialog) {
+                dialog.close();
+              }
+            });
+
+            // Close on Escape
+            dialog.addEventListener('keydown', (e) => {
+              if (e.key === 'Escape') {
+                dialog.close();
+              }
+            });
+          }
+
+          this.destroy = () => {
+            document.removeEventListener('keydown', handleKeydown);
+            window.removeEventListener('phx:open-command-palette', openPalette);
+          };
+        },
+        destroyed() {
+          if (this.destroy) this.destroy();
+        }
+      }
+    </script>
     """
   end
 end
