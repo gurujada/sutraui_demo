@@ -5,6 +5,11 @@ defmodule SutrauiDemoWeb.Components.NavPillsLive do
     {:ok, assign(socket, page_title: "Nav Pills", active_tab: "Overview")}
   end
 
+  def handle_params(params, _uri, socket) do
+    tab = params["tab"] || "Overview"
+    {:noreply, assign(socket, active_tab: tab)}
+  end
+
   def render(assigns) do
     ~H"""
     <Layouts.docs flash={@flash} current_path="/docs/components/nav-pills">
@@ -14,10 +19,10 @@ defmodule SutrauiDemoWeb.Components.NavPillsLive do
       />
 
       <.component_demo title="Default" code={default_code()}>
-        <.nav_pills id="demo-nav-pills" active_label={@active_tab}>
-          <:item label="Overview" patch="/docs/components/nav-pills" />
-          <:item label="Analytics" patch="/docs/components/nav-pills" />
-          <:item label="Settings" patch="/docs/components/nav-pills" />
+        <.nav_pills id="demo-nav" active_label={@active_tab}>
+          <:item label="Overview" patch="/docs/components/nav-pills?tab=Overview" />
+          <:item label="Analytics" patch="/docs/components/nav-pills?tab=Analytics" />
+          <:item label="Settings" patch="/docs/components/nav-pills?tab=Settings" />
         </.nav_pills>
       </.component_demo>
 
@@ -36,83 +41,27 @@ defmodule SutrauiDemoWeb.Components.NavPillsLive do
         </li>
       </ul>
 
-      <.section_heading id="with-icons">With Icons</.section_heading>
+      <.section_heading id="usage">Usage</.section_heading>
       <.prose>
-        Use the inner block of each item slot to add icons.
+        Nav Pills requires an <.inline_code>id</.inline_code>, the
+        <.inline_code>active_label</.inline_code>
+        of the current item, and
+        <.inline_code>:item</.inline_code>
+        slots with
+        <.inline_code>label</.inline_code>
+        and
+        <.inline_code>patch</.inline_code>
+        attributes.
       </.prose>
 
-      <.component_demo title="With Icons" code={icons_code()}>
-        <.nav_pills id="icon-nav-pills" active_label="Dashboard">
-          <:item label="Dashboard" patch="/docs/components/nav-pills">
-            <svg
-              class="w-4 h-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <rect width="7" height="9" x="3" y="3" rx="1" />
-              <rect width="7" height="5" x="14" y="3" rx="1" />
-              <rect width="7" height="9" x="14" y="12" rx="1" />
-              <rect width="7" height="5" x="3" y="16" rx="1" />
-            </svg>
-          </:item>
-          <:item label="Projects" patch="/docs/components/nav-pills">
-            <svg
-              class="w-4 h-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
-            </svg>
-          </:item>
-          <:item label="Team" patch="/docs/components/nav-pills">
-            <svg
-              class="w-4 h-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-          </:item>
-        </.nav_pills>
-      </.component_demo>
+      <.code_block code={usage_code()} language="elixir" filename="Usage" />
 
-      <.section_heading id="props">Props</.section_heading>
-      <.props_table>
-        <.prop name="id" type="string" required>
-          Unique identifier for the navigation component
-        </.prop>
-        <.prop name="active_label" type="string" required>
-          Label of the currently active item
-        </.prop>
-        <.prop name="class" type="string">
-          Additional CSS classes for the container
-        </.prop>
-        <.prop name="aria_label" type="string" default="Navigation">
-          Accessible label for the navigation
-        </.prop>
-      </.props_table>
+      <.section_heading id="with-icons">With Icons</.section_heading>
+      <.prose>
+        Use the inner block of each item slot to add icons before the label.
+      </.prose>
 
-      <.section_heading id="item-slot">Item Slot</.section_heading>
-      <.props_table>
-        <.prop name="label" type="string" required>
-          Text label for the item
-        </.prop>
-        <.prop name="patch" type="string" required>
-          LiveView patch URL for navigation
-        </.prop>
-        <.prop name="inner_block" type="slot">
-          Optional icon or content before the label
-        </.prop>
-      </.props_table>
+      <.code_block code={icons_code()} language="elixir" filename="With Icons" />
 
       <.section_heading id="accessibility">Accessibility</.section_heading>
       <.prose>
@@ -142,17 +91,27 @@ defmodule SutrauiDemoWeb.Components.NavPillsLive do
     """
   end
 
+  defp usage_code do
+    """
+    <.nav_pills id="content-nav" active_label={@active_tab}>
+      <:item label="Overview" patch={~p"/content"} />
+      <:item label="Analytics" patch={~p"/content/analytics"} />
+      <:item label="Settings" patch={~p"/content/settings"} />
+    </.nav_pills>\
+    """
+  end
+
   defp icons_code do
     """
     <.nav_pills id="nav" active_label="Dashboard">
       <:item label="Dashboard" patch={~p"/dashboard"}>
-        <svg class="w-4 h-4">...</svg>
+        <.icon name="hero-squares-2x2" class="w-4 h-4" />
       </:item>
       <:item label="Projects" patch={~p"/projects"}>
-        <svg class="w-4 h-4">...</svg>
+        <.icon name="hero-folder" class="w-4 h-4" />
       </:item>
       <:item label="Team" patch={~p"/team"}>
-        <svg class="w-4 h-4">...</svg>
+        <.icon name="hero-users" class="w-4 h-4" />
       </:item>
     </.nav_pills>\
     """

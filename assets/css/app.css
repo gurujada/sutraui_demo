@@ -714,6 +714,15 @@ body {
     color: var(--fg-secondary) !important;
 }
 
+/* Pagination fix - allow prev/next buttons to expand for text content */
+.pagination-prev:has(~ .pagination-list),
+.pagination-next,
+.pagination-btn.pagination-prev,
+.pagination-btn.pagination-next {
+    width: auto;
+    min-width: 2.25rem;
+}
+
 /* Animations */
 @keyframes fade-up {
     from {

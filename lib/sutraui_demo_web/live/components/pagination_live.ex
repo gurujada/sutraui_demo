@@ -2,11 +2,41 @@ defmodule SutrauiDemoWeb.Components.PaginationLive do
   use SutrauiDemoWeb, :live_view
 
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, page_title: "Pagination", current_page: 5, total_pages: 20)}
+    {:ok,
+     assign(socket,
+       page_title: "Pagination",
+       # Each demo has its own page state
+       demo1_page: 5,
+       demo2_page: 3,
+       demo3_page: 10,
+       demo4_page: 5,
+       demo5_page: 1,
+       demo6_page: 20
+     )}
   end
 
-  def handle_event("page_changed", %{"page" => page}, socket) do
-    {:noreply, assign(socket, current_page: String.to_integer(page))}
+  def handle_event("demo1_page", %{"page" => page}, socket) do
+    {:noreply, assign(socket, demo1_page: String.to_integer(page))}
+  end
+
+  def handle_event("demo2_page", %{"page" => page}, socket) do
+    {:noreply, assign(socket, demo2_page: String.to_integer(page))}
+  end
+
+  def handle_event("demo3_page", %{"page" => page}, socket) do
+    {:noreply, assign(socket, demo3_page: String.to_integer(page))}
+  end
+
+  def handle_event("demo4_page", %{"page" => page}, socket) do
+    {:noreply, assign(socket, demo4_page: String.to_integer(page))}
+  end
+
+  def handle_event("demo5_page", %{"page" => page}, socket) do
+    {:noreply, assign(socket, demo5_page: String.to_integer(page))}
+  end
+
+  def handle_event("demo6_page", %{"page" => page}, socket) do
+    {:noreply, assign(socket, demo6_page: String.to_integer(page))}
   end
 
   def render(assigns) do
@@ -18,14 +48,7 @@ defmodule SutrauiDemoWeb.Components.PaginationLive do
       />
 
       <.component_demo title="Default" code={default_code()}>
-        <.pagination
-          page={@current_page}
-          total_pages={@total_pages}
-          on_page_change="page_changed"
-        />
-        <p class="mt-4 text-sm" style="color: var(--fg-muted);">
-          Current page: {@current_page}
-        </p>
+        <.pagination page={@demo1_page} total_pages={20} on_page_change="demo1_page" />
       </.component_demo>
 
       <.section_heading id="few-pages">Few Pages</.section_heading>
@@ -34,7 +57,7 @@ defmodule SutrauiDemoWeb.Components.PaginationLive do
       </.prose>
 
       <.component_demo title="Few Pages" code={few_pages_code()}>
-        <.pagination page={3} total_pages={5} on_page_change="page_changed" />
+        <.pagination page={@demo2_page} total_pages={5} on_page_change="demo2_page" />
       </.component_demo>
 
       <.section_heading id="sibling-count">Sibling Count</.section_heading>
@@ -45,7 +68,12 @@ defmodule SutrauiDemoWeb.Components.PaginationLive do
       </.prose>
 
       <.component_demo title="Sibling Count 2" code={sibling_code()}>
-        <.pagination page={10} total_pages={20} sibling_count={2} on_page_change="page_changed" />
+        <.pagination
+          page={@demo3_page}
+          total_pages={20}
+          sibling_count={2}
+          on_page_change="demo3_page"
+        />
       </.component_demo>
 
       <.section_heading id="custom-content">Custom Previous/Next</.section_heading>
@@ -58,7 +86,7 @@ defmodule SutrauiDemoWeb.Components.PaginationLive do
       </.prose>
 
       <.component_demo title="Custom Buttons" code={custom_code()}>
-        <.pagination page={5} total_pages={10} on_page_change="page_changed">
+        <.pagination page={@demo4_page} total_pages={10} on_page_change="demo4_page">
           <:previous>Previous</:previous>
           <:next>Next</:next>
         </.pagination>
@@ -70,31 +98,12 @@ defmodule SutrauiDemoWeb.Components.PaginationLive do
       </.prose>
 
       <.component_demo title="First Page" code={first_page_code()}>
-        <.pagination page={1} total_pages={20} on_page_change="page_changed" />
+        <.pagination page={@demo5_page} total_pages={20} on_page_change="demo5_page" />
       </.component_demo>
 
       <.component_demo title="Last Page" code={last_page_code()}>
-        <.pagination page={20} total_pages={20} on_page_change="page_changed" />
+        <.pagination page={@demo6_page} total_pages={20} on_page_change="demo6_page" />
       </.component_demo>
-
-      <.section_heading id="props">Props</.section_heading>
-      <.props_table>
-        <.prop name="page" type="integer" required>
-          Current page number (1-indexed)
-        </.prop>
-        <.prop name="total_pages" type="integer" required>
-          Total number of pages
-        </.prop>
-        <.prop name="sibling_count" type="integer" default="1">
-          Number of sibling pages to show on each side of current page
-        </.prop>
-        <.prop name="on_page_change" type="string">
-          Event name to send when page changes (sends page number)
-        </.prop>
-        <.prop name="class" type="string">
-          Additional CSS classes
-        </.prop>
-      </.props_table>
 
       <.section_heading id="accessibility">Accessibility</.section_heading>
       <.prose>

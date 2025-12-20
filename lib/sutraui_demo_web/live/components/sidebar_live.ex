@@ -139,69 +139,6 @@ defmodule SutrauiDemoWeb.Components.SidebarLive do
         </div>
       </.component_demo>
 
-      <.section_heading id="props">Props</.section_heading>
-      <.props_table>
-        <.prop name="id" type="string" required>
-          Unique identifier for the sidebar (required for JS hook)
-        </.prop>
-        <.prop name="side" type="string" default="left">
-          Which side to position the sidebar ("left" or "right")
-        </.prop>
-        <.prop name="open" type="boolean" default="true">
-          Initial open state for desktop
-        </.prop>
-        <.prop name="mobile_open" type="boolean" default="false">
-          Initial open state for mobile
-        </.prop>
-        <.prop name="breakpoint" type="integer" default="768">
-          Pixel width for mobile breakpoint
-        </.prop>
-        <.prop name="label" type="string" default="Sidebar navigation">
-          ARIA label for navigation
-        </.prop>
-        <.prop name="class" type="string">
-          Additional CSS classes
-        </.prop>
-      </.props_table>
-
-      <.section_heading id="subcomponents">Subcomponents</.section_heading>
-
-      <h4 class="font-medium mt-6 mb-2" style="color: var(--fg);">sidebar_group</h4>
-      <.props_table>
-        <.prop name="label" type="string">
-          Optional heading for the group
-        </.prop>
-        <.prop name="class" type="string">
-          Additional CSS classes
-        </.prop>
-      </.props_table>
-
-      <h4 class="font-medium mt-6 mb-2" style="color: var(--fg);">sidebar_item</h4>
-      <.props_table>
-        <.prop name="href" type="string" required>
-          URL for the link
-        </.prop>
-        <.prop name="variant" type="string" default="default">
-          Visual variant ("default" or "outline")
-        </.prop>
-        <.prop name="size" type="string" default="default">
-          Size variant ("default", "sm", or "lg")
-        </.prop>
-        <.prop name="current" type="boolean" default="false">
-          Whether this is the current page
-        </.prop>
-      </.props_table>
-
-      <h4 class="font-medium mt-6 mb-2" style="color: var(--fg);">sidebar_submenu</h4>
-      <.props_table>
-        <.prop name="label" type="string" required>
-          Label for the submenu
-        </.prop>
-        <.prop name="open" type="boolean" default="false">
-          Whether the submenu is initially open
-        </.prop>
-      </.props_table>
-
       <.section_heading id="programmatic-control">Programmatic Control</.section_heading>
       <.prose>
         Control the sidebar state from JavaScript using custom events:

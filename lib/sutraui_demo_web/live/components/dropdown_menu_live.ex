@@ -27,9 +27,47 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
         </.dropdown_menu>
       </.component_demo>
 
+      <.section_heading id="with-icons">With Icons</.section_heading>
+      <.prose>
+        Add icons to menu items for better visual communication.
+      </.prose>
+
+      <.component_demo
+        title="With Icons"
+        code={icons_code()}
+        class="[&_.demo-preview]:min-h-[280px] [&_.demo-preview]:items-start [&_.demo-preview]:pt-4"
+      >
+        <.dropdown_menu id="demo-dropdown-icons">
+          <:trigger>Actions</:trigger>
+          <.dropdown_item>
+            <span class="flex items-center gap-2">
+              <.icon name="hero-user" class="w-4 h-4" /> Profile
+            </span>
+          </.dropdown_item>
+          <.dropdown_item>
+            <span class="flex items-center gap-2">
+              <.icon name="hero-cog-6-tooth" class="w-4 h-4" /> Settings
+            </span>
+          </.dropdown_item>
+          <.dropdown_item>
+            <span class="flex items-center gap-2">
+              <.icon name="hero-credit-card" class="w-4 h-4" /> Billing
+            </span>
+          </.dropdown_item>
+          <.dropdown_separator />
+          <.dropdown_item variant="destructive">
+            <span class="flex items-center gap-2">
+              <.icon name="hero-arrow-right-start-on-rectangle" class="w-4 h-4" /> Log out
+            </span>
+          </.dropdown_item>
+        </.dropdown_menu>
+      </.component_demo>
+
       <.section_heading id="with-shortcuts">With Shortcuts</.section_heading>
       <.prose>
-        Display keyboard shortcuts alongside menu items.
+        Display keyboard shortcuts alongside menu items using the
+        <.inline_code>shortcut</.inline_code>
+        prop.
       </.prose>
 
       <.component_demo
@@ -38,12 +76,53 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
         class="[&_.demo-preview]:min-h-[220px] [&_.demo-preview]:items-start [&_.demo-preview]:pt-4"
       >
         <.dropdown_menu id="demo-dropdown-2">
-          <:trigger>Actions</:trigger>
-          <.dropdown_item shortcut="Ctrl+N">New File</.dropdown_item>
-          <.dropdown_item shortcut="Ctrl+O">Open</.dropdown_item>
-          <.dropdown_item shortcut="Ctrl+S">Save</.dropdown_item>
+          <:trigger>File</:trigger>
+          <.dropdown_item shortcut="⌘N">New File</.dropdown_item>
+          <.dropdown_item shortcut="⌘O">Open</.dropdown_item>
+          <.dropdown_item shortcut="⌘S">Save</.dropdown_item>
           <.dropdown_separator />
-          <.dropdown_item shortcut="Ctrl+Q" variant="destructive">Quit</.dropdown_item>
+          <.dropdown_item shortcut="⌘Q" variant="destructive">Quit</.dropdown_item>
+        </.dropdown_menu>
+      </.component_demo>
+
+      <.section_heading id="icons-and-shortcuts">Icons with Shortcuts</.section_heading>
+      <.prose>
+        Combine icons and keyboard shortcuts for a complete menu experience.
+      </.prose>
+
+      <.component_demo
+        title="Icons and Shortcuts"
+        code={icons_shortcuts_code()}
+        class="[&_.demo-preview]:min-h-[280px] [&_.demo-preview]:items-start [&_.demo-preview]:pt-4"
+      >
+        <.dropdown_menu id="demo-dropdown-full">
+          <:trigger>Edit</:trigger>
+          <.dropdown_item shortcut="⌘Z">
+            <span class="flex items-center gap-2">
+              <.icon name="hero-arrow-uturn-left" class="w-4 h-4" /> Undo
+            </span>
+          </.dropdown_item>
+          <.dropdown_item shortcut="⇧⌘Z">
+            <span class="flex items-center gap-2">
+              <.icon name="hero-arrow-uturn-right" class="w-4 h-4" /> Redo
+            </span>
+          </.dropdown_item>
+          <.dropdown_separator />
+          <.dropdown_item shortcut="⌘X">
+            <span class="flex items-center gap-2">
+              <.icon name="hero-scissors" class="w-4 h-4" /> Cut
+            </span>
+          </.dropdown_item>
+          <.dropdown_item shortcut="⌘C">
+            <span class="flex items-center gap-2">
+              <.icon name="hero-document-duplicate" class="w-4 h-4" /> Copy
+            </span>
+          </.dropdown_item>
+          <.dropdown_item shortcut="⌘V">
+            <span class="flex items-center gap-2">
+              <.icon name="hero-clipboard" class="w-4 h-4" /> Paste
+            </span>
+          </.dropdown_item>
         </.dropdown_menu>
       </.component_demo>
 
@@ -101,15 +180,62 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
     """
   end
 
-  defp shortcuts_code do
+  defp icons_code do
     """
     <.dropdown_menu id="actions-menu">
       <:trigger>Actions</:trigger>
-      <.dropdown_item shortcut="Ctrl+N">New File</.dropdown_item>
-      <.dropdown_item shortcut="Ctrl+O">Open</.dropdown_item>
-      <.dropdown_item shortcut="Ctrl+S">Save</.dropdown_item>
+      <.dropdown_item>
+        <span class="flex items-center gap-2">
+          <.icon name="hero-user" class="w-4 h-4" /> Profile
+        </span>
+      </.dropdown_item>
+      <.dropdown_item>
+        <span class="flex items-center gap-2">
+          <.icon name="hero-cog-6-tooth" class="w-4 h-4" /> Settings
+        </span>
+      </.dropdown_item>
       <.dropdown_separator />
-      <.dropdown_item shortcut="Ctrl+Q" variant="destructive">Quit</.dropdown_item>
+      <.dropdown_item variant="destructive">
+        <span class="flex items-center gap-2">
+          <.icon name="hero-arrow-right-start-on-rectangle" class="w-4 h-4" /> Log out
+        </span>
+      </.dropdown_item>
+    </.dropdown_menu>\
+    """
+  end
+
+  defp shortcuts_code do
+    """
+    <.dropdown_menu id="file-menu">
+      <:trigger>File</:trigger>
+      <.dropdown_item shortcut="⌘N">New File</.dropdown_item>
+      <.dropdown_item shortcut="⌘O">Open</.dropdown_item>
+      <.dropdown_item shortcut="⌘S">Save</.dropdown_item>
+      <.dropdown_separator />
+      <.dropdown_item shortcut="⌘Q" variant="destructive">Quit</.dropdown_item>
+    </.dropdown_menu>\
+    """
+  end
+
+  defp icons_shortcuts_code do
+    """
+    <.dropdown_menu id="edit-menu">
+      <:trigger>Edit</:trigger>
+      <.dropdown_item shortcut="⌘Z">
+        <span class="flex items-center gap-2">
+          <.icon name="hero-arrow-uturn-left" class="w-4 h-4" /> Undo
+        </span>
+      </.dropdown_item>
+      <.dropdown_item shortcut="⌘C">
+        <span class="flex items-center gap-2">
+          <.icon name="hero-document-duplicate" class="w-4 h-4" /> Copy
+        </span>
+      </.dropdown_item>
+      <.dropdown_item shortcut="⌘V">
+        <span class="flex items-center gap-2">
+          <.icon name="hero-clipboard" class="w-4 h-4" /> Paste
+        </span>
+      </.dropdown_item>
     </.dropdown_menu>\
     """
   end

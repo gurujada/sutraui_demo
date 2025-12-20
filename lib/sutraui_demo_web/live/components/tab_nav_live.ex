@@ -2,7 +2,12 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
   use SutrauiDemoWeb, :live_view
 
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, page_title: "Tab Nav", active_tab: :about)}
+    {:ok, assign(socket, page_title: "Tab Nav", active_tab: "about")}
+  end
+
+  def handle_params(params, _uri, socket) do
+    tab = params["tab"] || "about"
+    {:noreply, assign(socket, active_tab: tab)}
   end
 
   def render(assigns) do
@@ -22,67 +27,33 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
 
       <.component_demo title="Default" code={default_code()}>
         <.tab_nav>
-          <:tab patch="/docs/components/tab-nav" active={@active_tab == :about}>
+          <:tab patch="/docs/components/tab-nav?tab=about" active={@active_tab == "about"}>
             About
           </:tab>
-          <:tab patch="/docs/components/tab-nav" active={@active_tab == :members}>
+          <:tab patch="/docs/components/tab-nav?tab=members" active={@active_tab == "members"}>
             Members
           </:tab>
-          <:tab patch="/docs/components/tab-nav" active={@active_tab == :settings}>
+          <:tab patch="/docs/components/tab-nav?tab=settings" active={@active_tab == "settings"}>
             Settings
           </:tab>
         </.tab_nav>
       </.component_demo>
+
+      <.section_heading id="usage">Usage</.section_heading>
+      <.prose>
+        Tab Nav uses
+        <.inline_code>patch</.inline_code>
+        for LiveView navigation, keeping the socket connection alive.
+      </.prose>
+
+      <.code_block code={usage_code()} language="elixir" filename="Usage" />
 
       <.section_heading id="with-icons">With Icons</.section_heading>
       <.prose>
         Include icons alongside text in the tab inner block.
       </.prose>
 
-      <.component_demo title="With Icons" code={icons_code()}>
-        <.tab_nav>
-          <:tab patch="/docs/components/tab-nav" active={true}>
-            <svg
-              class="w-4 h-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" />
-            </svg>
-            About
-          </:tab>
-          <:tab patch="/docs/components/tab-nav" active={false}>
-            <svg
-              class="w-4 h-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-            Members
-          </:tab>
-          <:tab patch="/docs/components/tab-nav" active={false}>
-            <svg
-              class="w-4 h-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-              <circle cx="12" cy="12" r="3" />
-            </svg>
-            Settings
-          </:tab>
-        </.tab_nav>
-      </.component_demo>
+      <.code_block code={icons_code()} language="elixir" filename="With Icons" />
 
       <.section_heading id="use-case">When to Use</.section_heading>
       <.prose>
@@ -103,32 +74,11 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
         </.prose>
       </div>
 
-      <.section_heading id="props">Props</.section_heading>
-      <.props_table>
-        <.prop name="class" type="string">
-          Additional CSS classes for the container
-        </.prop>
-      </.props_table>
-
-      <.section_heading id="tab-slot">Tab Slot</.section_heading>
-      <.props_table>
-        <.prop name="patch" type="string" required>
-          LiveView patch URL to navigate to
-        </.prop>
-        <.prop name="active" type="boolean" required>
-          Whether this tab is currently active
-        </.prop>
-        <.prop name="inner_block" type="slot">
-          Tab content (icons and text)
-        </.prop>
-      </.props_table>
-
-      <.section_heading id="permission-aware">Permission-Aware Rendering</.section_heading>
+      <.section_heading id="accessibility">Accessibility</.section_heading>
       <.prose>
-        Conditionally render tabs based on user permissions using standard Elixir conditionals.
+        Tab Nav provides visual tab styling. For full keyboard navigation and ARIA support,
+        use the <.link navigate="/docs/components/tabs" class="text-link">Tabs</.link> component.
       </.prose>
-
-      <.code_block code={permission_code()} language="elixir" filename="Permission-Aware Tabs" />
     </Layouts.docs>
     """
   end
@@ -149,32 +99,36 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
     """
   end
 
-  defp icons_code do
+  defp usage_code do
     """
+    # In your LiveView
+    def mount(%{"id" => id}, _session, socket) do
+      {:ok, assign(socket, org: get_org(id), active_tab: :about)}
+    end
+
+    # In the template
     <.tab_nav>
-      <:tab patch={~p"/about"} active={true}>
-        <svg class="w-4 h-4">...</svg>
+      <:tab patch={~p"/orgs/\#{@org.id}"} active={@active_tab == :about}>
         About
       </:tab>
-      <:tab patch={~p"/members"} active={false}>
-        <svg class="w-4 h-4">...</svg>
+      <:tab patch={~p"/orgs/\#{@org.id}/members"} active={@active_tab == :members}>
         Members
       </:tab>
     </.tab_nav>\
     """
   end
 
-  defp permission_code do
+  defp icons_code do
     """
     <.tab_nav>
-      <:tab patch={~p"/overview"} active={@active_tab == :overview}>
-        Overview
+      <:tab patch={~p"/about"} active={true}>
+        <.icon name="hero-information-circle" class="w-4 h-4" />
+        About
       </:tab>
-      <%= if @can_manage do %>
-        <:tab patch={~p"/settings"} active={@active_tab == :settings}>
-          Settings
-        </:tab>
-      <% end %>
+      <:tab patch={~p"/members"} active={false}>
+        <.icon name="hero-users" class="w-4 h-4" />
+        Members
+      </:tab>
     </.tab_nav>\
     """
   end

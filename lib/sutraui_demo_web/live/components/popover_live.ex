@@ -15,10 +15,12 @@ defmodule SutrauiDemoWeb.Components.PopoverLive do
 
       <.component_demo title="Default" code={default_code()}>
         <.popover id="popover-default">
-          <:trigger>Open Popover</:trigger>
-          <div class="p-4 space-y-2">
-            <h4 class="font-medium text-sm" style="color: var(--fg);">Dimensions</h4>
-            <p class="text-sm" style="color: var(--fg-muted);">
+          <:trigger>
+            <span class="btn">Open Popover</span>
+          </:trigger>
+          <div class="space-y-2">
+            <h4 class="font-medium text-sm">Dimensions</h4>
+            <p class="text-sm text-muted-foreground">
               Set the dimensions for the layer.
             </p>
           </div>
@@ -35,28 +37,28 @@ defmodule SutrauiDemoWeb.Components.PopoverLive do
       <.component_demo title="Positions" code={positions_code()}>
         <div class="flex flex-wrap items-center gap-4">
           <.popover id="popover-top" side="top">
-            <:trigger>Top</:trigger>
-            <div class="p-4">
-              <p class="text-sm" style="color: var(--fg);">Popover on top</p>
-            </div>
+            <:trigger>
+              <span class="btn btn-outline">Top</span>
+            </:trigger>
+            <p class="text-sm">Popover on top</p>
           </.popover>
           <.popover id="popover-bottom" side="bottom">
-            <:trigger>Bottom</:trigger>
-            <div class="p-4">
-              <p class="text-sm" style="color: var(--fg);">Popover on bottom</p>
-            </div>
+            <:trigger>
+              <span class="btn btn-outline">Bottom</span>
+            </:trigger>
+            <p class="text-sm">Popover on bottom</p>
           </.popover>
           <.popover id="popover-left" side="left">
-            <:trigger>Left</:trigger>
-            <div class="p-4">
-              <p class="text-sm" style="color: var(--fg);">Popover on left</p>
-            </div>
+            <:trigger>
+              <span class="btn btn-outline">Left</span>
+            </:trigger>
+            <p class="text-sm">Popover on left</p>
           </.popover>
           <.popover id="popover-right" side="right">
-            <:trigger>Right</:trigger>
-            <div class="p-4">
-              <p class="text-sm" style="color: var(--fg);">Popover on right</p>
-            </div>
+            <:trigger>
+              <span class="btn btn-outline">Right</span>
+            </:trigger>
+            <p class="text-sm">Popover on right</p>
           </.popover>
         </div>
       </.component_demo>
@@ -68,11 +70,13 @@ defmodule SutrauiDemoWeb.Components.PopoverLive do
 
       <.component_demo title="With Form" code={form_code()}>
         <.popover id="popover-form">
-          <:trigger>Update dimensions</:trigger>
-          <div class="p-4 w-72 space-y-4">
+          <:trigger>
+            <span class="btn">Update dimensions</span>
+          </:trigger>
+          <div class="w-72 space-y-4">
             <div class="space-y-2">
-              <h4 class="font-medium text-sm" style="color: var(--fg);">Dimensions</h4>
-              <p class="text-sm" style="color: var(--fg-muted);">
+              <h4 class="font-medium text-sm">Dimensions</h4>
+              <p class="text-sm text-muted-foreground">
                 Set the dimensions for the layer.
               </p>
             </div>
@@ -112,13 +116,13 @@ defmodule SutrauiDemoWeb.Components.PopoverLive do
       <.component_demo title="Dynamic Trigger" code={dynamic_code()}>
         <.popover id="popover-dynamic">
           <:trigger :let={open}>
-            {if open, do: "Close", else: "Open"} Popover
+            <span class="btn btn-secondary">
+              {if open, do: "Close", else: "Open"} Popover
+            </span>
           </:trigger>
-          <div class="p-4">
-            <p class="text-sm" style="color: var(--fg);">
-              The trigger text changes based on state.
-            </p>
-          </div>
+          <p class="text-sm">
+            The trigger text changes based on state.
+          </p>
         </.popover>
       </.component_demo>
 
@@ -133,32 +137,23 @@ defmodule SutrauiDemoWeb.Components.PopoverLive do
             <.avatar src="https://github.com/shadcn.png" alt="User" size="md" />
           </:trigger>
           <div class="w-64">
-            <div class="p-4 border-b" style="border-color: var(--border);">
+            <div class="pb-4 border-b border-border">
               <div class="flex items-center gap-3">
                 <.avatar src="https://github.com/shadcn.png" alt="User" size="lg" />
                 <div>
-                  <p class="font-medium text-sm" style="color: var(--fg);">John Doe</p>
-                  <p class="text-xs" style="color: var(--fg-muted);">john@example.com</p>
+                  <p class="font-medium text-sm">John Doe</p>
+                  <p class="text-xs text-muted-foreground">john@example.com</p>
                 </div>
               </div>
             </div>
-            <div class="p-2">
-              <div
-                class="w-full text-left px-3 py-2 text-sm rounded-md cursor-pointer transition-colors"
-                style="color: var(--fg);"
-              >
+            <div class="pt-2 -mx-4 -mb-4">
+              <div class="w-full text-left px-4 py-2 text-sm hover:bg-muted rounded-none cursor-pointer">
                 Profile
               </div>
-              <div
-                class="w-full text-left px-3 py-2 text-sm rounded-md cursor-pointer transition-colors"
-                style="color: var(--fg);"
-              >
+              <div class="w-full text-left px-4 py-2 text-sm hover:bg-muted rounded-none cursor-pointer">
                 Settings
               </div>
-              <div
-                class="w-full text-left px-3 py-2 text-sm rounded-md cursor-pointer transition-colors"
-                style="color: var(--destructive);"
-              >
+              <div class="w-full text-left px-4 py-2 text-sm text-destructive hover:bg-muted rounded-none cursor-pointer">
                 Sign out
               </div>
             </div>
@@ -193,8 +188,10 @@ defmodule SutrauiDemoWeb.Components.PopoverLive do
   defp default_code do
     """
     <.popover id="my-popover">
-      <:trigger>Open Popover</:trigger>
-      <div class="p-4">
+      <:trigger>
+        <span class="btn">Open Popover</span>
+      </:trigger>
+      <div>
         <p>Popover content goes here.</p>
       </div>
     </.popover>\
@@ -204,12 +201,12 @@ defmodule SutrauiDemoWeb.Components.PopoverLive do
   defp positions_code do
     """
     <.popover id="top" side="top">
-      <:trigger>Top</:trigger>
-      <div class="p-4">Content</div>
+      <:trigger><span class="btn btn-outline">Top</span></:trigger>
+      <p>Content</p>
     </.popover>
     <.popover id="bottom" side="bottom">
-      <:trigger>Bottom</:trigger>
-      <div class="p-4">Content</div>
+      <:trigger><span class="btn btn-outline">Bottom</span></:trigger>
+      <p>Content</p>
     </.popover>\
     """
   end
@@ -217,8 +214,8 @@ defmodule SutrauiDemoWeb.Components.PopoverLive do
   defp form_code do
     """
     <.popover id="form-popover">
-      <:trigger>Update dimensions</:trigger>
-      <div class="p-4 w-72">
+      <:trigger><span class="btn">Update dimensions</span></:trigger>
+      <div class="w-72">
         <div class="grid gap-3">
           <div class="grid grid-cols-3 items-center gap-4">
             <.label for="width">Width</.label>
@@ -234,9 +231,11 @@ defmodule SutrauiDemoWeb.Components.PopoverLive do
     """
     <.popover id="dynamic">
       <:trigger :let={open}>
-        {if open, do: "Close", else: "Open"} Popover
+        <span class="btn btn-secondary">
+          {if open, do: "Close", else: "Open"} Popover
+        </span>
       </:trigger>
-      <div class="p-4">Content</div>
+      <p>Content</p>
     </.popover>\
     """
   end
@@ -247,12 +246,12 @@ defmodule SutrauiDemoWeb.Components.PopoverLive do
       <:trigger>
         <.avatar src="/avatar.png" />
       </:trigger>
-      <div class="w-64 p-4">
+      <div class="w-64">
         <div class="flex items-center gap-3">
           <.avatar src="/avatar.png" size="lg" />
           <div>
             <p class="font-medium">John Doe</p>
-            <p class="text-sm text-muted">john@example.com</p>
+            <p class="text-sm text-muted-foreground">john@example.com</p>
           </div>
         </div>
       </div>
