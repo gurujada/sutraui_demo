@@ -453,6 +453,7 @@ defmodule SutrauiDemoWeb.Layouts do
         <h4 class="sidebar-title">Components</h4>
         <div class="space-y-1">
           <.sidebar_link href="/docs/components/alert" label="Alert" current_path={@current_path} />
+          <.sidebar_link href="/docs/components/avatar" label="Avatar" current_path={@current_path} />
           <.sidebar_link href="/docs/components/badge" label="Badge" current_path={@current_path} />
           <.sidebar_link href="/docs/components/button" label="Button" current_path={@current_path} />
           <.sidebar_link href="/docs/components/card" label="Card" current_path={@current_path} />
@@ -470,9 +471,16 @@ defmodule SutrauiDemoWeb.Layouts do
           <.sidebar_link href="/docs/components/empty" label="Empty" current_path={@current_path} />
           <.sidebar_link href="/docs/components/field" label="Field" current_path={@current_path} />
           <.sidebar_link href="/docs/components/input" label="Input" current_path={@current_path} />
+          <.sidebar_link href="/docs/components/kbd" label="Kbd" current_path={@current_path} />
+          <.sidebar_link href="/docs/components/label" label="Label" current_path={@current_path} />
           <.sidebar_link
             href="/docs/components/live-select"
             label="Live Select"
+            current_path={@current_path}
+          />
+          <.sidebar_link
+            href="/docs/components/popover"
+            label="Popover"
             current_path={@current_path}
           />
           <.sidebar_link
@@ -511,6 +519,11 @@ defmodule SutrauiDemoWeb.Layouts do
             current_path={@current_path}
           />
           <.sidebar_link href="/docs/components/toast" label="Toast" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/tooltip"
+            label="Tooltip"
+            current_path={@current_path}
+          />
         </div>
       </div>
     </nav>
@@ -614,6 +627,11 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["warning", "error", "info", "message", "banner"]
         },
         %{
+          label: "Avatar",
+          href: "/docs/components/avatar",
+          keywords: ["user", "profile", "image", "initials", "picture"]
+        },
+        %{
           label: "Badge",
           href: "/docs/components/badge",
           keywords: ["tag", "label", "status", "indicator"]
@@ -655,9 +673,24 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["text", "field", "form", "textbox"]
         },
         %{
+          label: "Kbd",
+          href: "/docs/components/kbd",
+          keywords: ["keyboard", "shortcut", "key", "hotkey", "keybinding"]
+        },
+        %{
+          label: "Label",
+          href: "/docs/components/label",
+          keywords: ["form", "input", "text", "accessibility"]
+        },
+        %{
           label: "Live Select",
           href: "/docs/components/live-select",
           keywords: ["search", "autocomplete", "tags", "multi-select", "combobox"]
+        },
+        %{
+          label: "Popover",
+          href: "/docs/components/popover",
+          keywords: ["popup", "dropdown", "floating", "overlay"]
         },
         %{
           label: "Progress",
@@ -718,6 +751,11 @@ defmodule SutrauiDemoWeb.Layouts do
           label: "Toast",
           href: "/docs/components/toast",
           keywords: ["notification", "message", "alert", "snackbar"]
+        },
+        %{
+          label: "Tooltip",
+          href: "/docs/components/tooltip",
+          keywords: ["hint", "hover", "info", "help"]
         }
       ]
     }
