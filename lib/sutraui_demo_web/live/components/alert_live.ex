@@ -50,19 +50,7 @@ defmodule SutrauiDemoWeb.Components.AlertLive do
         <div class="space-y-4">
           <.alert>
             <:icon>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" />
-              </svg>
+              <.icon name="lucide-info" class="size-4" />
             </:icon>
             <:title>Information</:title>
             <:description>This is an informational message for the user.</:description>
@@ -70,19 +58,7 @@ defmodule SutrauiDemoWeb.Components.AlertLive do
 
           <.alert variant="destructive">
             <:icon>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="10" /><path d="m15 9-6 6" /><path d="m9 9 6 6" />
-              </svg>
+              <.icon name="lucide-x-circle" class="size-4" />
             </:icon>
             <:title>Deletion Failed</:title>
             <:description>There was a problem deleting your file. Please try again.</:description>
@@ -117,9 +93,7 @@ defmodule SutrauiDemoWeb.Components.AlertLive do
     """
     <.alert>
       <:icon>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" />
-        </svg>
+        <.icon name="lucide-info" class="size-4" />
       </:icon>
       <:title>Information</:title>
       <:description>This is an informational message.</:description>

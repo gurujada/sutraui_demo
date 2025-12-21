@@ -44,7 +44,7 @@ defmodule SutrauiDemoWeb.Components.ButtonLive do
           <.button size="default">Default</.button>
           <.button size="lg">Large</.button>
           <.button size="icon" aria-label="Settings">
-            <.icon name="hero-cog-6-tooth" class="h-4 w-4" />
+            <.icon name="lucide-settings" class="size-4" />
           </.button>
         </div>
       </.component_demo>
@@ -57,10 +57,10 @@ defmodule SutrauiDemoWeb.Components.ButtonLive do
       <.component_demo title="With Icon" code={icon_code()}>
         <div class="flex flex-wrap gap-4">
           <.button>
-            <.icon name="hero-envelope" class="mr-2 h-4 w-4" /> Login with Email
+            <.icon name="lucide-mail" class="mr-2 size-4" /> Login with Email
           </.button>
           <.button variant="outline">
-            <.icon name="hero-arrow-down-tray" class="mr-2 h-4 w-4" /> Download
+            <.icon name="lucide-download" class="mr-2 size-4" /> Download
           </.button>
         </div>
       </.component_demo>
@@ -136,7 +136,7 @@ defmodule SutrauiDemoWeb.Components.ButtonLive do
     <.button size="default">Default</.button>
     <.button size="lg">Large</.button>
     <.button size="icon" aria-label="Settings">
-      <.icon name="hero-cog-6-tooth" class="h-4 w-4" />
+      <.icon name="lucide-settings" class="size-4" />
     </.button>\
     """
   end
@@ -144,10 +144,10 @@ defmodule SutrauiDemoWeb.Components.ButtonLive do
   defp icon_code do
     """
     <.button>
-      <.icon name="hero-envelope" class="mr-2 h-4 w-4" /> Login with Email
+      <.icon name="lucide-mail" class="mr-2 size-4" /> Login with Email
     </.button>
     <.button variant="outline">
-      <.icon name="hero-arrow-down-tray" class="mr-2 h-4 w-4" /> Download
+      <.icon name="lucide-download" class="mr-2 size-4" /> Download
     </.button>\
     """
   end

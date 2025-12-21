@@ -41,23 +41,23 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
           <:trigger>Actions</:trigger>
           <.dropdown_item>
             <span class="flex items-center gap-2">
-              <.icon name="hero-user" class="w-4 h-4" /> Profile
+              <.icon name="lucide-user" class="size-4" /> Profile
             </span>
           </.dropdown_item>
           <.dropdown_item>
             <span class="flex items-center gap-2">
-              <.icon name="hero-cog-6-tooth" class="w-4 h-4" /> Settings
+              <.icon name="lucide-settings" class="size-4" /> Settings
             </span>
           </.dropdown_item>
           <.dropdown_item>
             <span class="flex items-center gap-2">
-              <.icon name="hero-credit-card" class="w-4 h-4" /> Billing
+              <.icon name="lucide-credit-card" class="size-4" /> Billing
             </span>
           </.dropdown_item>
           <.dropdown_separator />
           <.dropdown_item variant="destructive">
             <span class="flex items-center gap-2">
-              <.icon name="hero-arrow-right-start-on-rectangle" class="w-4 h-4" /> Log out
+              <.icon name="lucide-log-out" class="size-4" /> Log out
             </span>
           </.dropdown_item>
         </.dropdown_menu>
@@ -99,28 +99,28 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
           <:trigger>Edit</:trigger>
           <.dropdown_item shortcut="⌘Z">
             <span class="flex items-center gap-2">
-              <.icon name="hero-arrow-uturn-left" class="w-4 h-4" /> Undo
+              <.icon name="lucide-undo" class="size-4" /> Undo
             </span>
           </.dropdown_item>
           <.dropdown_item shortcut="⇧⌘Z">
             <span class="flex items-center gap-2">
-              <.icon name="hero-arrow-uturn-right" class="w-4 h-4" /> Redo
+              <.icon name="lucide-redo" class="size-4" /> Redo
             </span>
           </.dropdown_item>
           <.dropdown_separator />
           <.dropdown_item shortcut="⌘X">
             <span class="flex items-center gap-2">
-              <.icon name="hero-scissors" class="w-4 h-4" /> Cut
+              <.icon name="lucide-scissors" class="size-4" /> Cut
             </span>
           </.dropdown_item>
           <.dropdown_item shortcut="⌘C">
             <span class="flex items-center gap-2">
-              <.icon name="hero-document-duplicate" class="w-4 h-4" /> Copy
+              <.icon name="lucide-copy" class="size-4" /> Copy
             </span>
           </.dropdown_item>
           <.dropdown_item shortcut="⌘V">
             <span class="flex items-center gap-2">
-              <.icon name="hero-clipboard" class="w-4 h-4" /> Paste
+              <.icon name="lucide-clipboard" class="size-4" /> Paste
             </span>
           </.dropdown_item>
         </.dropdown_menu>
@@ -186,18 +186,18 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
       <:trigger>Actions</:trigger>
       <.dropdown_item>
         <span class="flex items-center gap-2">
-          <.icon name="hero-user" class="w-4 h-4" /> Profile
+          <.icon name="lucide-user" class="size-4" /> Profile
         </span>
       </.dropdown_item>
       <.dropdown_item>
         <span class="flex items-center gap-2">
-          <.icon name="hero-cog-6-tooth" class="w-4 h-4" /> Settings
+          <.icon name="lucide-settings" class="size-4" /> Settings
         </span>
       </.dropdown_item>
       <.dropdown_separator />
       <.dropdown_item variant="destructive">
         <span class="flex items-center gap-2">
-          <.icon name="hero-arrow-right-start-on-rectangle" class="w-4 h-4" /> Log out
+          <.icon name="lucide-log-out" class="size-4" /> Log out
         </span>
       </.dropdown_item>
     </.dropdown_menu>\
@@ -223,17 +223,17 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
       <:trigger>Edit</:trigger>
       <.dropdown_item shortcut="⌘Z">
         <span class="flex items-center gap-2">
-          <.icon name="hero-arrow-uturn-left" class="w-4 h-4" /> Undo
+          <.icon name="lucide-undo" class="size-4" /> Undo
         </span>
       </.dropdown_item>
       <.dropdown_item shortcut="⌘C">
         <span class="flex items-center gap-2">
-          <.icon name="hero-document-duplicate" class="w-4 h-4" /> Copy
+          <.icon name="lucide-copy" class="size-4" /> Copy
         </span>
       </.dropdown_item>
       <.dropdown_item shortcut="⌘V">
         <span class="flex items-center gap-2">
-          <.icon name="hero-clipboard" class="w-4 h-4" /> Paste
+          <.icon name="lucide-clipboard" class="size-4" /> Paste
         </span>
       </.dropdown_item>
     </.dropdown_menu>\

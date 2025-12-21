@@ -278,12 +278,20 @@ defmodule SutrauiDemoWeb.LandingLive do
             <div>
               <p class="site-logo mb-2">Sutra UI</p>
               <p class="text-sm" style="color: var(--fg-muted);">
-                Open source under MIT license.
+                by
+                <a
+                  href="https://github.com/gurujada"
+                  class="underline hover:no-underline"
+                  style="color: var(--fg-muted);"
+                >
+                  Gurujada
+                </a>
               </p>
             </div>
             <nav class="flex items-center gap-8">
               <.link navigate="/docs" class="footer-link">Documentation</.link>
               <.link navigate="/docs/components/button" class="footer-link">Components</.link>
+              <a href="https://hex.pm/packages/sutra_ui" class="footer-link">Hex.pm</a>
               <a href="https://github.com/gurujada/sutra_ui" class="footer-link">GitHub</a>
             </nav>
           </div>

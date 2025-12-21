@@ -5,6 +5,7 @@
 /* Sutra UI base */
 @import "../../deps/sutra_ui/priv/static/sutra_ui.css";
 
+@plugin "../vendor/lucide";
 /* Source paths */
 @source "../../deps/sutra_ui/lib";
 @source "../css";
@@ -26,32 +27,41 @@
    ======================================== */
 
 :root {
-    --font-display: 'Instrument Serif', Georgia, serif;
-    --font-body: 'Geist', system-ui, sans-serif;
-    --font-mono: 'Geist Mono', 'SF Mono', monospace;
-    
+    --font-display: "Instrument Serif", Georgia, serif;
+    --font-body: "Geist", system-ui, sans-serif;
+    --font-mono: "Geist Mono", "SF Mono", monospace;
+
     /* Warm, sophisticated palette - site chrome */
     --bg: #fffcf9;
     --bg-elevated: #ffffff;
     --bg-subtle: #faf7f4;
     --bg-muted: #f2eeea;
-    
+
     --fg: #1a1613;
     --fg-secondary: #4a4541;
     --fg-muted: #8a8480;
-    
+
     --border: #e8e4e0;
     --border-strong: #d4cfc9;
-    
+
     /* Site branding accent - warm coral/terracotta */
     --site-accent: #c4503a;
     --site-accent-hover: #a8412f;
     --accent-subtle: #fdf2f0;
-    
+
     /* Gradients */
-    --gradient-warm: linear-gradient(135deg, #faf7f4 0%, #fff9f5 50%, #fefcfa 100%);
-    --gradient-hero: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(196, 80, 58, 0.08) 0%, transparent 60%);
-    
+    --gradient-warm: linear-gradient(
+        135deg,
+        #faf7f4 0%,
+        #fff9f5 50%,
+        #fefcfa 100%
+    );
+    --gradient-hero: radial-gradient(
+        ellipse 80% 50% at 50% -20%,
+        rgba(196, 80, 58, 0.08) 0%,
+        transparent 60%
+    );
+
     /* Sutra UI theme - neutral gray for component hover states */
     --primary: oklch(0.205 0.006 285.885);
     --primary-foreground: oklch(0.985 0 0);
@@ -128,22 +138,31 @@
     --bg-elevated: #1a1816;
     --bg-subtle: #1e1c1a;
     --bg-muted: #2a2725;
-    
+
     --fg: #f5f2ef;
     --fg-secondary: #c9c5c0;
     --fg-muted: #8a8480;
-    
+
     --border: #2e2b28;
     --border-strong: #3d3935;
-    
+
     /* Site branding accent */
     --site-accent: #e07058;
     --site-accent-hover: #eb8575;
     --accent-subtle: #2a1f1c;
-    
-    --gradient-warm: linear-gradient(135deg, #121110 0%, #171413 50%, #1a1715 100%);
-    --gradient-hero: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(224, 112, 88, 0.12) 0%, transparent 60%);
-    
+
+    --gradient-warm: linear-gradient(
+        135deg,
+        #121110 0%,
+        #171413 50%,
+        #1a1715 100%
+    );
+    --gradient-hero: radial-gradient(
+        ellipse 80% 50% at 50% -20%,
+        rgba(224, 112, 88, 0.12) 0%,
+        transparent 60%
+    );
+
     /* Sutra UI theme - dark mode */
     --primary: oklch(0.985 0 0);
     --primary-foreground: oklch(0.205 0.006 285.885);
@@ -238,7 +257,7 @@ body {
 }
 
 .texture-overlay::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
@@ -295,7 +314,9 @@ body {
     font-size: 0.9rem;
     color: var(--fg-secondary);
     padding: 0.375rem 0;
-    transition: color 0.15s, padding-left 0.15s;
+    transition:
+        color 0.15s,
+        padding-left 0.15s;
 }
 
 .sidebar-link:hover {
@@ -318,7 +339,7 @@ body {
 }
 
 .hero-section::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background: var(--gradient-hero);
@@ -447,7 +468,9 @@ body {
     border: 1px solid var(--border);
     border-radius: 0.75rem;
     overflow: hidden;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
 }
 
 .showcase-card:hover {
@@ -558,15 +581,58 @@ body {
 
 /* Syntax colors */
 .highlight {
-    .k, .kd, .kn, .kp, .kr { color: var(--site-accent); }
-    .s, .s1, .s2, .sa, .sb, .sc, .dl, .sh { color: #16a34a; }
-    .m, .mb, .mf, .mh, .mi, .mo { color: #ca8a04; }
-    .nf, .fm { color: #2563eb; }
-    .nc, .nn { color: #9333ea; }
-    .ss, .na { color: #0891b2; }
-    .c, .c1, .cm, .cp, .cs { color: var(--fg-muted); font-style: italic; }
-    .o, .ow { color: var(--site-accent); }
-    .p { color: var(--fg-muted); }
+    .k,
+    .kd,
+    .kn,
+    .kp,
+    .kr {
+        color: var(--site-accent);
+    }
+    .s,
+    .s1,
+    .s2,
+    .sa,
+    .sb,
+    .sc,
+    .dl,
+    .sh {
+        color: #16a34a;
+    }
+    .m,
+    .mb,
+    .mf,
+    .mh,
+    .mi,
+    .mo {
+        color: #ca8a04;
+    }
+    .nf,
+    .fm {
+        color: #2563eb;
+    }
+    .nc,
+    .nn {
+        color: #9333ea;
+    }
+    .ss,
+    .na {
+        color: #0891b2;
+    }
+    .c,
+    .c1,
+    .cm,
+    .cp,
+    .cs {
+        color: var(--fg-muted);
+        font-style: italic;
+    }
+    .o,
+    .ow {
+        color: var(--site-accent);
+    }
+    .p {
+        color: var(--fg-muted);
+    }
 }
 
 /* ========================================
@@ -699,12 +765,12 @@ body {
 
 /* Hide scrollbar but keep scroll functionality */
 .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari, Opera */
+    display: none; /* Chrome, Safari, Opera */
 }
 
 /* Search button */
@@ -740,11 +806,21 @@ body {
     opacity: 0;
 }
 
-.delay-1 { animation-delay: 0.1s; }
-.delay-2 { animation-delay: 0.2s; }
-.delay-3 { animation-delay: 0.3s; }
-.delay-4 { animation-delay: 0.4s; }
-.delay-5 { animation-delay: 0.5s; }
+.delay-1 {
+    animation-delay: 0.1s;
+}
+.delay-2 {
+    animation-delay: 0.2s;
+}
+.delay-3 {
+    animation-delay: 0.3s;
+}
+.delay-4 {
+    animation-delay: 0.4s;
+}
+.delay-5 {
+    animation-delay: 0.5s;
+}
 
 /* ========================================
    PAGE TRANSITIONS
@@ -773,12 +849,24 @@ main > section {
 }
 
 /* Stagger children for a more refined effect */
-article > *:nth-child(1) { animation-delay: 0ms; }
-article > *:nth-child(2) { animation-delay: 30ms; }
-article > *:nth-child(3) { animation-delay: 60ms; }
-article > *:nth-child(4) { animation-delay: 90ms; }
-article > *:nth-child(5) { animation-delay: 120ms; }
-article > *:nth-child(n+6) { animation-delay: 150ms; }
+article > *:nth-child(1) {
+    animation-delay: 0ms;
+}
+article > *:nth-child(2) {
+    animation-delay: 30ms;
+}
+article > *:nth-child(3) {
+    animation-delay: 60ms;
+}
+article > *:nth-child(4) {
+    animation-delay: 90ms;
+}
+article > *:nth-child(5) {
+    animation-delay: 120ms;
+}
+article > *:nth-child(n + 6) {
+    animation-delay: 150ms;
+}
 
 /* Subtle loading state during navigation */
 .phx-connected [data-phx-main] {

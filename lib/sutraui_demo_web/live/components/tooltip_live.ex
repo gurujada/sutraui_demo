@@ -69,51 +69,17 @@ defmodule SutrauiDemoWeb.Components.TooltipLive do
         <div class="flex items-center gap-2">
           <.tooltip id="tooltip-bold" tooltip="Bold">
             <.button variant="ghost" size="icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z" />
-                <path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z" />
-              </svg>
+              <.icon name="lucide-bold" class="size-4" />
             </.button>
           </.tooltip>
           <.tooltip id="tooltip-italic" tooltip="Italic">
             <.button variant="ghost" size="icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <line x1="19" x2="10" y1="4" y2="4" />
-                <line x1="14" x2="5" y1="20" y2="20" />
-                <line x1="15" x2="9" y1="4" y2="20" />
-              </svg>
+              <.icon name="lucide-italic" class="size-4" />
             </.button>
           </.tooltip>
           <.tooltip id="tooltip-underline" tooltip="Underline">
             <.button variant="ghost" size="icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M6 4v6a6 6 0 0 0 12 0V4" />
-                <line x1="4" x2="20" y1="20" y2="20" />
-              </svg>
+              <.icon name="lucide-underline" class="size-4" />
             </.button>
           </.tooltip>
         </div>
@@ -149,35 +115,12 @@ defmodule SutrauiDemoWeb.Components.TooltipLive do
         <div class="flex items-center gap-2">
           <.tooltip id="tooltip-save" tooltip="Save (⌘S)">
             <.button variant="outline">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4 mr-2"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
-                <polyline points="17,21 17,13 7,13 7,21" />
-                <polyline points="7,3 7,8 15,8" />
-              </svg>
-              Save
+              <.icon name="lucide-save" class="size-4 mr-2" /> Save
             </.button>
           </.tooltip>
           <.tooltip id="tooltip-copy" tooltip="Copy (⌘C)">
             <.button variant="outline">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4 mr-2"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-              </svg>
-              Copy
+              <.icon name="lucide-copy" class="size-4 mr-2" /> Copy
             </.button>
           </.tooltip>
         </div>
@@ -237,7 +180,7 @@ defmodule SutrauiDemoWeb.Components.TooltipLive do
     """
     <.tooltip id="bold" tooltip="Bold">
       <.button variant="ghost" size="icon">
-        <svg>...</svg>
+        <.icon name="lucide-bold" class="size-4" />
       </.button>
     </.tooltip>\
     """

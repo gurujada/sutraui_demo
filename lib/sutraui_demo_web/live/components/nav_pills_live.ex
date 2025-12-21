@@ -105,13 +105,13 @@ defmodule SutrauiDemoWeb.Components.NavPillsLive do
     """
     <.nav_pills id="nav" active_label="Dashboard">
       <:item label="Dashboard" patch={~p"/dashboard"}>
-        <.icon name="hero-squares-2x2" class="w-4 h-4" />
+        <.icon name="lucide-layout-grid" class="size-4" />
       </:item>
       <:item label="Projects" patch={~p"/projects"}>
-        <.icon name="hero-folder" class="w-4 h-4" />
+        <.icon name="lucide-folder" class="size-4" />
       </:item>
       <:item label="Team" patch={~p"/team"}>
-        <.icon name="hero-users" class="w-4 h-4" />
+        <.icon name="lucide-users" class="size-4" />
       </:item>
     </.nav_pills>\
     """

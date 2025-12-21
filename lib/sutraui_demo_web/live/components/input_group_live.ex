@@ -26,17 +26,7 @@ defmodule SutrauiDemoWeb.Components.InputGroupLive do
       <.component_demo title="Icon Prefix" code={icon_prefix_code()}>
         <.input_group>
           <:prefix type="icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
-            </svg>
+            <.icon name="lucide-search" class="size-4" />
           </:prefix>
           <input type="text" class="input pl-9" placeholder="Search..." />
         </.input_group>
@@ -63,18 +53,7 @@ defmodule SutrauiDemoWeb.Components.InputGroupLive do
       <.component_demo title="Email Input" code={email_code()}>
         <.input_group class="max-w-md">
           <:suffix type="icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <rect width="20" height="16" x="2" y="4" rx="2" />
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-            </svg>
+            <.icon name="lucide-mail" class="size-4" />
           </:suffix>
           <input type="email" class="input pr-9" placeholder="Enter email" />
         </.input_group>
@@ -96,18 +75,7 @@ defmodule SutrauiDemoWeb.Components.InputGroupLive do
               aria-label="Copy to clipboard"
               phx-click="copy"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
-                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-              </svg>
+              <.icon name="lucide-copy" class="size-3.5" />
             </button>
           </:suffix>
           <input type="text" class="input pr-9" value="https://example.com/share/abc123" readonly />
@@ -124,17 +92,7 @@ defmodule SutrauiDemoWeb.Components.InputGroupLive do
           <textarea class="textarea min-h-27 pb-12" placeholder="Enter message..."></textarea>
           <:footer>
             <button type="button" class="btn-icon-outline rounded-full size-6">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48" />
-              </svg>
+              <.icon name="lucide-paperclip" class="size-3.5" />
             </button>
             <div class="text-muted-foreground text-sm ml-auto">0/500</div>
           </:footer>
@@ -191,7 +149,7 @@ defmodule SutrauiDemoWeb.Components.InputGroupLive do
     """
     <.input_group>
       <:prefix type="icon">
-        <svg><!-- search icon --></svg>
+        <.icon name="lucide-search" class="size-4" />
       </:prefix>
       <input type="text" class="input pl-9" placeholder="Search..." />
     </.input_group>\
@@ -212,7 +170,7 @@ defmodule SutrauiDemoWeb.Components.InputGroupLive do
     """
     <.input_group>
       <:suffix type="icon">
-        <svg><!-- mail icon --></svg>
+        <.icon name="lucide-mail" class="size-4" />
       </:suffix>
       <input type="email" class="input pr-9" placeholder="Enter email" />
     </.input_group>\
@@ -224,7 +182,7 @@ defmodule SutrauiDemoWeb.Components.InputGroupLive do
     <.input_group>
       <:suffix type="interactive">
         <button type="button" class="btn-icon-ghost size-6">
-          <svg><!-- copy icon --></svg>
+          <.icon name="lucide-copy" class="size-3.5" />
         </button>
       </:suffix>
       <input type="text" class="input pr-9" value="https://..." readonly />
@@ -238,7 +196,7 @@ defmodule SutrauiDemoWeb.Components.InputGroupLive do
       <textarea class="textarea min-h-27 pb-12" placeholder="..."></textarea>
       <:footer>
         <button type="button" class="btn-icon-outline rounded-full size-6">
-          <svg><!-- attach icon --></svg>
+          <.icon name="lucide-paperclip" class="size-3.5" />
         </button>
         <div class="text-muted-foreground text-sm ml-auto">0/500</div>
       </:footer>

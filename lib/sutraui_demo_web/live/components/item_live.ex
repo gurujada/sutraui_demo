@@ -33,21 +33,7 @@ defmodule SutrauiDemoWeb.Components.ItemLive do
         <.item>
           <:leading>
             <div class="item-icon-box">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
-                <path d="M12 8v4" />
-                <path d="M12 16h.01" />
-              </svg>
+              <.icon name="lucide-shield-alert" class="size-6" />
             </div>
           </:leading>
           <:title>Security Alert</:title>
@@ -72,17 +58,7 @@ defmodule SutrauiDemoWeb.Components.ItemLive do
           <:description>Last seen 5 minutes ago</:description>
           <:trailing>
             <.button variant="ghost" size="icon" class="rounded-full">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14" /><path d="M12 5v14" />
-              </svg>
+              <.icon name="lucide-plus" class="size-4" />
             </.button>
           </:trailing>
         </.item>
@@ -125,33 +101,12 @@ defmodule SutrauiDemoWeb.Components.ItemLive do
         <.item as="a" href="#" variant="outline">
           <:leading>
             <div class="item-icon-inline">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
-                <path d="m9 12 2 2 4-4" />
-              </svg>
+              <.icon name="lucide-badge-check" class="size-5" />
             </div>
           </:leading>
           <:title>Your profile has been verified.</:title>
           <:trailing>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="m9 18 6-6-6-6" />
-            </svg>
+            <.icon name="lucide-chevron-right" class="size-4" />
           </:trailing>
         </.item>
       </.component_demo>
@@ -167,18 +122,7 @@ defmodule SutrauiDemoWeb.Components.ItemLive do
         <.item as="button" variant="outline" phx-click="item_clicked">
           <:leading>
             <div class="item-icon-box">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M12 20h9" />
-                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
-              </svg>
+              <.icon name="lucide-pencil" class="size-5" />
             </div>
           </:leading>
           <:title>Edit Settings</:title>
@@ -203,7 +147,7 @@ defmodule SutrauiDemoWeb.Components.ItemLive do
     <.item>
       <:leading>
         <div class="item-icon-box">
-          <svg><!-- shield icon --></svg>
+          <.icon name="lucide-shield-alert" class="size-6" />
         </div>
       </:leading>
       <:title>Security Alert</:title>
@@ -224,7 +168,9 @@ defmodule SutrauiDemoWeb.Components.ItemLive do
       <:title>John Doe</:title>
       <:description>Last seen 5 minutes ago</:description>
       <:trailing>
-        <.button variant="ghost" size="icon">+</.button>
+        <.button variant="ghost" size="icon">
+          <.icon name="lucide-plus" class="size-4" />
+        </.button>
       </:trailing>
     </.item>\
     """
@@ -251,12 +197,12 @@ defmodule SutrauiDemoWeb.Components.ItemLive do
     <.item as="a" href="/profile" variant="outline">
       <:leading>
         <div class="item-icon-inline">
-          <svg><!-- verified icon --></svg>
+          <.icon name="lucide-badge-check" class="size-5" />
         </div>
       </:leading>
       <:title>Your profile has been verified.</:title>
       <:trailing>
-        <svg><!-- chevron right --></svg>
+        <.icon name="lucide-chevron-right" class="size-4" />
       </:trailing>
     </.item>\
     """
@@ -267,7 +213,7 @@ defmodule SutrauiDemoWeb.Components.ItemLive do
     <.item as="button" variant="outline" phx-click="item_clicked">
       <:leading>
         <div class="item-icon-box">
-          <svg><!-- edit icon --></svg>
+          <.icon name="lucide-pencil" class="size-5" />
         </div>
       </:leading>
       <:title>Edit Settings</:title>

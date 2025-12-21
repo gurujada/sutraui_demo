@@ -32,9 +32,7 @@ defmodule SutrauiDemoWeb.Layouts do
       style="background: var(--bg-subtle); border-color: var(--border); color: var(--fg-muted);"
       phx-click={JS.dispatch("phx:open-command-palette")}
     >
-      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
-      </svg>
+      <.icon name="lucide-search" class="size-4" />
       <span class="hidden md:inline">Search...</span>
       <kbd
         class="hidden md:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs font-mono"
@@ -94,15 +92,7 @@ defmodule SutrauiDemoWeb.Layouts do
             aria-label="Open menu"
             phx-click={JS.dispatch("phx:open-mobile-menu")}
           >
-            <svg
-              class="w-5 h-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-            >
-              <path d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+            <.icon name="lucide-menu" class="size-5" />
           </button>
           <a href="/" class="site-logo">Sutra UI</a>
         </div>
@@ -116,14 +106,12 @@ defmodule SutrauiDemoWeb.Layouts do
           <.color_theme_picker />
           <.theme_toggle />
           <a
-            href="https://github.com/sutra-ui/sutra_ui"
+            href="https://github.com/gurujada/sutra_ui"
             target="_blank"
             class="nav-link"
             aria-label="GitHub"
           >
-            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-            </svg>
+            <.icon name="lucide-github" class="size-5" />
           </a>
         </nav>
       </div>
@@ -163,15 +151,7 @@ defmodule SutrauiDemoWeb.Layouts do
             aria-label="Close menu"
             data-sidebar-close
           >
-            <svg
-              class="w-5 h-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-            >
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
+            <.icon name="lucide-x" class="size-5" />
           </button>
         </div>
 
@@ -279,19 +259,8 @@ defmodule SutrauiDemoWeb.Layouts do
         aria-haspopup="true"
         data-theme-trigger
       >
-        <svg
-          class="w-4 h-4"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-        >
-          <circle cx="12" cy="12" r="10" />
-          <path d="M12 2a10 10 0 0 1 0 20" fill="currentColor" />
-        </svg>
-        <svg class="w-3 h-3 opacity-60" viewBox="0 0 12 12" fill="currentColor">
-          <path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" />
-        </svg>
+        <.icon name="lucide-palette" class="size-4" />
+        <.icon name="lucide-chevron-down" class="size-3 opacity-60" />
       </button>
 
       <div
@@ -318,15 +287,7 @@ defmodule SutrauiDemoWeb.Layouts do
           >
           </span>
           {theme.label}
-          <svg
-            class="theme-check ml-auto w-4 h-4 hidden"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M5 12l5 5L20 7" />
-          </svg>
+          <.icon name="lucide-check" class="theme-check ml-auto size-4 hidden" />
         </button>
       </div>
     </div>
@@ -412,25 +373,8 @@ defmodule SutrauiDemoWeb.Layouts do
       class="nav-link"
       aria-label="Toggle theme"
     >
-      <svg
-        class="w-5 h-5 block dark:hidden"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.5"
-      >
-        <circle cx="12" cy="12" r="4" />
-        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
-      </svg>
-      <svg
-        class="w-5 h-5 hidden dark:block"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.5"
-      >
-        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-      </svg>
+      <.icon name="lucide-sun" class="size-5 block dark:hidden" />
+      <.icon name="lucide-moon" class="size-5 hidden dark:block" />
     </button>
     """
   end
@@ -453,20 +397,42 @@ defmodule SutrauiDemoWeb.Layouts do
       <div>
         <h4 class="sidebar-title">Form Inputs</h4>
         <div class="space-y-1">
-          <.sidebar_link href="/docs/components/checkbox" label="Checkbox" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/checkbox"
+            label="Checkbox"
+            current_path={@current_path}
+          />
           <.sidebar_link href="/docs/components/field" label="Field" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/filter-bar" label="Filter Bar" current_path={@current_path} />
           <.sidebar_link href="/docs/components/input" label="Input" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/input-group" label="Input Group" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/input-group"
+            label="Input Group"
+            current_path={@current_path}
+          />
           <.sidebar_link href="/docs/components/label" label="Label" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/live-select" label="Live Select" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/radio-group" label="Radio Group" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/range-slider" label="Range Slider" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/live-select"
+            label="Live Select"
+            current_path={@current_path}
+          />
+          <.sidebar_link
+            href="/docs/components/radio-group"
+            label="Radio Group"
+            current_path={@current_path}
+          />
+          <.sidebar_link
+            href="/docs/components/range-slider"
+            label="Range Slider"
+            current_path={@current_path}
+          />
           <.sidebar_link href="/docs/components/select" label="Select" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/simple-form" label="Simple Form" current_path={@current_path} />
           <.sidebar_link href="/docs/components/slider" label="Slider" current_path={@current_path} />
           <.sidebar_link href="/docs/components/switch" label="Switch" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/textarea" label="Textarea" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/textarea"
+            label="Textarea"
+            current_path={@current_path}
+          />
         </div>
       </div>
 
@@ -475,7 +441,11 @@ defmodule SutrauiDemoWeb.Layouts do
         <h4 class="sidebar-title">Buttons & Actions</h4>
         <div class="space-y-1">
           <.sidebar_link href="/docs/components/button" label="Button" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/dropdown-menu" label="Dropdown Menu" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/dropdown-menu"
+            label="Dropdown Menu"
+            current_path={@current_path}
+          />
         </div>
       </div>
 
@@ -483,10 +453,23 @@ defmodule SutrauiDemoWeb.Layouts do
       <div>
         <h4 class="sidebar-title">Layout</h4>
         <div class="space-y-1">
-          <.sidebar_link href="/docs/components/accordion" label="Accordion" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/accordion"
+            label="Accordion"
+            current_path={@current_path}
+          />
           <.sidebar_link href="/docs/components/card" label="Card" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/filter-bar"
+            label="Filter Bar"
+            current_path={@current_path}
+          />
           <.sidebar_link href="/docs/components/header" label="Header" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/item" label="Item" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/simple-form"
+            label="Simple Form"
+            current_path={@current_path}
+          />
           <.sidebar_link href="/docs/components/tabs" label="Tabs" current_path={@current_path} />
         </div>
       </div>
@@ -495,9 +478,21 @@ defmodule SutrauiDemoWeb.Layouts do
       <div>
         <h4 class="sidebar-title">Navigation</h4>
         <div class="space-y-1">
-          <.sidebar_link href="/docs/components/breadcrumb" label="Breadcrumb" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/nav-pills" label="Nav Pills" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/pagination" label="Pagination" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/breadcrumb"
+            label="Breadcrumb"
+            current_path={@current_path}
+          />
+          <.sidebar_link
+            href="/docs/components/nav-pills"
+            label="Nav Pills"
+            current_path={@current_path}
+          />
+          <.sidebar_link
+            href="/docs/components/pagination"
+            label="Pagination"
+            current_path={@current_path}
+          />
           <.sidebar_link href="/docs/components/sidebar" label="Sidebar" current_path={@current_path} />
           <.sidebar_link href="/docs/components/tab-nav" label="Tab Nav" current_path={@current_path} />
         </div>
@@ -510,9 +505,21 @@ defmodule SutrauiDemoWeb.Layouts do
           <.sidebar_link href="/docs/components/alert" label="Alert" current_path={@current_path} />
           <.sidebar_link href="/docs/components/empty" label="Empty" current_path={@current_path} />
           <.sidebar_link href="/docs/components/flash" label="Flash" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/loading-state" label="Loading State" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/progress" label="Progress" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/skeleton" label="Skeleton" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/loading-state"
+            label="Loading State"
+            current_path={@current_path}
+          />
+          <.sidebar_link
+            href="/docs/components/progress"
+            label="Progress"
+            current_path={@current_path}
+          />
+          <.sidebar_link
+            href="/docs/components/skeleton"
+            label="Skeleton"
+            current_path={@current_path}
+          />
           <.sidebar_link href="/docs/components/spinner" label="Spinner" current_path={@current_path} />
           <.sidebar_link href="/docs/components/toast" label="Toast" current_path={@current_path} />
         </div>
@@ -535,7 +542,12 @@ defmodule SutrauiDemoWeb.Layouts do
         <div class="space-y-1">
           <.sidebar_link href="/docs/components/avatar" label="Avatar" current_path={@current_path} />
           <.sidebar_link href="/docs/components/badge" label="Badge" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/carousel" label="Carousel" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/carousel"
+            label="Carousel"
+            current_path={@current_path}
+          />
+          <.sidebar_link href="/docs/components/item" label="Item" current_path={@current_path} />
           <.sidebar_link href="/docs/components/table" label="Table" current_path={@current_path} />
         </div>
       </div>
@@ -545,7 +557,11 @@ defmodule SutrauiDemoWeb.Layouts do
         <h4 class="sidebar-title">Utilities</h4>
         <div class="space-y-1">
           <.sidebar_link href="/docs/components/kbd" label="Kbd" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/theme-switcher" label="Theme Switcher" current_path={@current_path} />
+          <.sidebar_link
+            href="/docs/components/theme-switcher"
+            label="Theme Switcher"
+            current_path={@current_path}
+          />
         </div>
       </div>
     </nav>
@@ -585,15 +601,7 @@ defmodule SutrauiDemoWeb.Layouts do
         hidden
       >
         {gettext("Attempting to reconnect")}
-        <svg
-          class="ml-1 w-3 h-3 inline animate-spin"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-        </svg>
+        <.icon name="lucide-loader-2" class="ml-1 size-3 inline animate-spin" />
       </.flash>
 
       <.flash
@@ -605,15 +613,7 @@ defmodule SutrauiDemoWeb.Layouts do
         hidden
       >
         {gettext("Attempting to reconnect")}
-        <svg
-          class="ml-1 w-3 h-3 inline animate-spin"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-        </svg>
+        <.icon name="lucide-loader-2" class="ml-1 size-3 inline animate-spin" />
       </.flash>
     </div>
     """
@@ -643,85 +643,257 @@ defmodule SutrauiDemoWeb.Layouts do
     %{
       group: "Form Inputs",
       items: [
-        %{label: "Checkbox", href: "/docs/components/checkbox", keywords: ["check", "tick", "toggle", "boolean"]},
-        %{label: "Field", href: "/docs/components/field", keywords: ["form", "label", "input", "wrapper", "fieldset"]},
-        %{label: "Filter Bar", href: "/docs/components/filter-bar", keywords: ["filter", "search", "form", "index", "list"]},
-        %{label: "Input", href: "/docs/components/input", keywords: ["text", "field", "form", "textbox"]},
-        %{label: "Input Group", href: "/docs/components/input-group", keywords: ["prefix", "suffix", "addon", "icon"]},
-        %{label: "Label", href: "/docs/components/label", keywords: ["form", "input", "text", "accessibility"]},
-        %{label: "Live Select", href: "/docs/components/live-select", keywords: ["search", "autocomplete", "tags", "multi-select", "combobox"]},
-        %{label: "Radio Group", href: "/docs/components/radio-group", keywords: ["radio", "option", "choice", "single"]},
-        %{label: "Range Slider", href: "/docs/components/range-slider", keywords: ["range", "dual", "min", "max", "filter"]},
-        %{label: "Select", href: "/docs/components/select", keywords: ["dropdown", "picker", "choice", "option"]},
-        %{label: "Simple Form", href: "/docs/components/simple-form", keywords: ["form", "auto", "styling", "wrapper"]},
-        %{label: "Slider", href: "/docs/components/slider", keywords: ["range", "value", "number", "adjust"]},
-        %{label: "Switch", href: "/docs/components/switch", keywords: ["toggle", "on", "off", "boolean"]},
-        %{label: "Textarea", href: "/docs/components/textarea", keywords: ["text", "multiline", "paragraph", "long"]}
+        %{
+          label: "Checkbox",
+          href: "/docs/components/checkbox",
+          keywords: ["check", "tick", "toggle", "boolean"]
+        },
+        %{
+          label: "Field",
+          href: "/docs/components/field",
+          keywords: ["form", "label", "input", "wrapper", "fieldset"]
+        },
+        %{
+          label: "Input",
+          href: "/docs/components/input",
+          keywords: ["text", "field", "form", "textbox"]
+        },
+        %{
+          label: "Input Group",
+          href: "/docs/components/input-group",
+          keywords: ["prefix", "suffix", "addon", "icon"]
+        },
+        %{
+          label: "Label",
+          href: "/docs/components/label",
+          keywords: ["form", "input", "text", "accessibility"]
+        },
+        %{
+          label: "Live Select",
+          href: "/docs/components/live-select",
+          keywords: ["search", "autocomplete", "tags", "multi-select", "combobox"]
+        },
+        %{
+          label: "Radio Group",
+          href: "/docs/components/radio-group",
+          keywords: ["radio", "option", "choice", "single"]
+        },
+        %{
+          label: "Range Slider",
+          href: "/docs/components/range-slider",
+          keywords: ["range", "dual", "min", "max", "filter"]
+        },
+        %{
+          label: "Select",
+          href: "/docs/components/select",
+          keywords: ["dropdown", "picker", "choice", "option"]
+        },
+        %{
+          label: "Slider",
+          href: "/docs/components/slider",
+          keywords: ["range", "value", "number", "adjust"]
+        },
+        %{
+          label: "Switch",
+          href: "/docs/components/switch",
+          keywords: ["toggle", "on", "off", "boolean"]
+        },
+        %{
+          label: "Textarea",
+          href: "/docs/components/textarea",
+          keywords: ["text", "multiline", "paragraph", "long"]
+        }
       ]
     },
     %{
       group: "Buttons & Actions",
       items: [
-        %{label: "Button", href: "/docs/components/button", keywords: ["btn", "click", "action", "submit"]},
-        %{label: "Dropdown Menu", href: "/docs/components/dropdown-menu", keywords: ["menu", "context", "actions", "popover"]}
+        %{
+          label: "Button",
+          href: "/docs/components/button",
+          keywords: ["btn", "click", "action", "submit"]
+        },
+        %{
+          label: "Dropdown Menu",
+          href: "/docs/components/dropdown-menu",
+          keywords: ["menu", "context", "actions", "popover"]
+        }
       ]
     },
     %{
       group: "Layout",
       items: [
-        %{label: "Accordion", href: "/docs/components/accordion", keywords: ["collapse", "expand", "faq", "sections", "disclosure"]},
+        %{
+          label: "Accordion",
+          href: "/docs/components/accordion",
+          keywords: ["collapse", "expand", "faq", "sections", "disclosure"]
+        },
         %{label: "Card", href: "/docs/components/card", keywords: ["container", "box", "panel"]},
-        %{label: "Header", href: "/docs/components/header", keywords: ["page", "title", "subtitle", "actions"]},
-        %{label: "Item", href: "/docs/components/item", keywords: ["list", "row", "card", "leading", "trailing"]},
-        %{label: "Tabs", href: "/docs/components/tabs", keywords: ["tab", "panel", "switch", "navigation"]}
+        %{
+          label: "Filter Bar",
+          href: "/docs/components/filter-bar",
+          keywords: ["filter", "search", "form", "index", "list"]
+        },
+        %{
+          label: "Header",
+          href: "/docs/components/header",
+          keywords: ["page", "title", "subtitle", "actions"]
+        },
+        %{
+          label: "Simple Form",
+          href: "/docs/components/simple-form",
+          keywords: ["form", "auto", "styling", "wrapper"]
+        },
+        %{
+          label: "Tabs",
+          href: "/docs/components/tabs",
+          keywords: ["tab", "panel", "switch", "navigation"]
+        }
       ]
     },
     %{
       group: "Navigation",
       items: [
-        %{label: "Breadcrumb", href: "/docs/components/breadcrumb", keywords: ["navigation", "path", "hierarchy", "trail", "links"]},
-        %{label: "Nav Pills", href: "/docs/components/nav-pills", keywords: ["navigation", "pills", "tabs", "responsive", "mobile"]},
-        %{label: "Pagination", href: "/docs/components/pagination", keywords: ["pages", "page", "next", "previous", "navigation"]},
-        %{label: "Sidebar", href: "/docs/components/sidebar", keywords: ["navigation", "menu", "drawer", "panel", "collapsible"]},
-        %{label: "Tab Nav", href: "/docs/components/tab-nav", keywords: ["tabs", "navigation", "routed", "server-side"]}
+        %{
+          label: "Breadcrumb",
+          href: "/docs/components/breadcrumb",
+          keywords: ["navigation", "path", "hierarchy", "trail", "links"]
+        },
+        %{
+          label: "Nav Pills",
+          href: "/docs/components/nav-pills",
+          keywords: ["navigation", "pills", "tabs", "responsive", "mobile"]
+        },
+        %{
+          label: "Pagination",
+          href: "/docs/components/pagination",
+          keywords: ["pages", "page", "next", "previous", "navigation"]
+        },
+        %{
+          label: "Sidebar",
+          href: "/docs/components/sidebar",
+          keywords: ["navigation", "menu", "drawer", "panel", "collapsible"]
+        },
+        %{
+          label: "Tab Nav",
+          href: "/docs/components/tab-nav",
+          keywords: ["tabs", "navigation", "routed", "server-side"]
+        }
       ]
     },
     %{
       group: "Feedback",
       items: [
-        %{label: "Alert", href: "/docs/components/alert", keywords: ["warning", "error", "info", "message", "banner"]},
-        %{label: "Empty", href: "/docs/components/empty", keywords: ["empty state", "placeholder", "no data", "blank"]},
-        %{label: "Flash", href: "/docs/components/flash", keywords: ["notification", "message", "alert", "feedback"]},
-        %{label: "Loading State", href: "/docs/components/loading-state", keywords: ["loading", "spinner", "wait", "fetch"]},
-        %{label: "Progress", href: "/docs/components/progress", keywords: ["progress bar", "loading", "percentage", "completion"]},
-        %{label: "Skeleton", href: "/docs/components/skeleton", keywords: ["loading", "placeholder", "shimmer", "content loader"]},
-        %{label: "Spinner", href: "/docs/components/spinner", keywords: ["loading", "loader", "spin", "waiting"]},
-        %{label: "Toast", href: "/docs/components/toast", keywords: ["notification", "message", "alert", "snackbar"]}
+        %{
+          label: "Alert",
+          href: "/docs/components/alert",
+          keywords: ["warning", "error", "info", "message", "banner"]
+        },
+        %{
+          label: "Empty",
+          href: "/docs/components/empty",
+          keywords: ["empty state", "placeholder", "no data", "blank"]
+        },
+        %{
+          label: "Flash",
+          href: "/docs/components/flash",
+          keywords: ["notification", "message", "alert", "feedback"]
+        },
+        %{
+          label: "Loading State",
+          href: "/docs/components/loading-state",
+          keywords: ["loading", "spinner", "wait", "fetch"]
+        },
+        %{
+          label: "Progress",
+          href: "/docs/components/progress",
+          keywords: ["progress bar", "loading", "percentage", "completion"]
+        },
+        %{
+          label: "Skeleton",
+          href: "/docs/components/skeleton",
+          keywords: ["loading", "placeholder", "shimmer", "content loader"]
+        },
+        %{
+          label: "Spinner",
+          href: "/docs/components/spinner",
+          keywords: ["loading", "loader", "spin", "waiting"]
+        },
+        %{
+          label: "Toast",
+          href: "/docs/components/toast",
+          keywords: ["notification", "message", "alert", "snackbar"]
+        }
       ]
     },
     %{
       group: "Overlays",
       items: [
-        %{label: "Command", href: "/docs/components/command", keywords: ["palette", "search", "cmdk", "spotlight", "keyboard"]},
-        %{label: "Dialog", href: "/docs/components/dialog", keywords: ["modal", "popup", "overlay", "alert"]},
-        %{label: "Popover", href: "/docs/components/popover", keywords: ["popup", "dropdown", "floating", "overlay"]},
-        %{label: "Tooltip", href: "/docs/components/tooltip", keywords: ["hint", "hover", "info", "help"]}
+        %{
+          label: "Command",
+          href: "/docs/components/command",
+          keywords: ["palette", "search", "cmdk", "spotlight", "keyboard"]
+        },
+        %{
+          label: "Dialog",
+          href: "/docs/components/dialog",
+          keywords: ["modal", "popup", "overlay", "alert"]
+        },
+        %{
+          label: "Popover",
+          href: "/docs/components/popover",
+          keywords: ["popup", "dropdown", "floating", "overlay"]
+        },
+        %{
+          label: "Tooltip",
+          href: "/docs/components/tooltip",
+          keywords: ["hint", "hover", "info", "help"]
+        }
       ]
     },
     %{
       group: "Data Display",
       items: [
-        %{label: "Avatar", href: "/docs/components/avatar", keywords: ["user", "profile", "image", "initials", "picture"]},
-        %{label: "Badge", href: "/docs/components/badge", keywords: ["tag", "label", "status", "indicator"]},
-        %{label: "Carousel", href: "/docs/components/carousel", keywords: ["slider", "slideshow", "gallery", "scroll", "snap"]},
-        %{label: "Table", href: "/docs/components/table", keywords: ["data", "grid", "list", "rows"]}
+        %{
+          label: "Avatar",
+          href: "/docs/components/avatar",
+          keywords: ["user", "profile", "image", "initials", "picture"]
+        },
+        %{
+          label: "Badge",
+          href: "/docs/components/badge",
+          keywords: ["tag", "label", "status", "indicator"]
+        },
+        %{
+          label: "Carousel",
+          href: "/docs/components/carousel",
+          keywords: ["slider", "slideshow", "gallery", "scroll", "snap"]
+        },
+        %{
+          label: "Item",
+          href: "/docs/components/item",
+          keywords: ["list", "row", "card", "leading", "trailing"]
+        },
+        %{
+          label: "Table",
+          href: "/docs/components/table",
+          keywords: ["data", "grid", "list", "rows"]
+        }
       ]
     },
     %{
       group: "Utilities",
       items: [
-        %{label: "Kbd", href: "/docs/components/kbd", keywords: ["keyboard", "shortcut", "key", "hotkey", "keybinding"]},
-        %{label: "Theme Switcher", href: "/docs/components/theme-switcher", keywords: ["theme", "dark", "light", "toggle", "mode"]}
+        %{
+          label: "Kbd",
+          href: "/docs/components/kbd",
+          keywords: ["keyboard", "shortcut", "key", "hotkey", "keybinding"]
+        },
+        %{
+          label: "Theme Switcher",
+          href: "/docs/components/theme-switcher",
+          keywords: ["theme", "dark", "light", "toggle", "mode"]
+        }
       ]
     }
   ]
@@ -738,15 +910,7 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords={item.keywords}
           phx-click={JS.navigate(item.href)}
         >
-          <svg
-            class="w-4 h-4 opacity-60"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-          >
-            <path d="M9 12h6M12 9v6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
-          </svg>
+          <.icon name="lucide-file-text" class="size-4 opacity-60" />
           {item.label}
         </.command_item>
       </.command_group>

@@ -122,11 +122,11 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
     """
     <.tab_nav>
       <:tab patch={~p"/about"} active={true}>
-        <.icon name="hero-information-circle" class="w-4 h-4" />
+        <.icon name="lucide-info" class="size-4" />
         About
       </:tab>
       <:tab patch={~p"/members"} active={false}>
-        <.icon name="hero-users" class="w-4 h-4" />
+        <.icon name="lucide-users" class="size-4" />
         Members
       </:tab>
     </.tab_nav>\

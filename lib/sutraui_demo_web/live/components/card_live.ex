@@ -43,19 +43,7 @@ defmodule SutrauiDemoWeb.Components.CardLive do
         <.card class="w-[380px]">
           <:header>
             <div class="flex items-center gap-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="size-5"
-              >
-                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
-                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
-              </svg>
+              <.icon name="lucide-bell" class="size-5" />
               <span class="font-semibold">Notifications</span>
             </div>
             <p class="text-sm text-muted-foreground">You have 3 unread messages.</p>
@@ -87,20 +75,7 @@ defmodule SutrauiDemoWeb.Components.CardLive do
           </:content>
           <:footer class="flex">
             <.button class="w-full">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="mr-2 size-4"
-              >
-                <polyline points="9 11 12 14 22 4" />
-                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
-              </svg>
-              Mark all as read
+              <.icon name="lucide-square-check" class="mr-2 size-4" /> Mark all as read
             </.button>
           </:footer>
         </.card>
@@ -180,7 +155,7 @@ defmodule SutrauiDemoWeb.Components.CardLive do
     <.card class="w-[380px]">
       <:header>
         <div class="flex items-center gap-2">
-          <svg class="size-5"><!-- bell icon --></svg>
+          <.icon name="lucide-bell" class="size-5" />
           <span class="font-semibold">Notifications</span>
         </div>
         <p class="text-sm text-muted-foreground">You have 3 unread messages.</p>
