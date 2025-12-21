@@ -48,14 +48,14 @@ defmodule SutrauiDemoWeb.Components.FilterBarLive do
       <.component_demo title="Basic" code={basic_code()}>
         <.filter_bar on_change="filter">
           <:filter>
-            <input type="text" name="search" value={@search} placeholder="Search..." class="input" />
+            <.input type="text" name="search" value={@search} placeholder="Search..." />
           </:filter>
           <:filter>
-            <select name="status" class="select">
-              <option value="" selected={@status == ""}>All Statuses</option>
-              <option value="active" selected={@status == "active"}>Active</option>
-              <option value="inactive" selected={@status == "inactive"}>Inactive</option>
-            </select>
+            <.select id="basic-status-select" name="status" value={@status}>
+              <.select_option value="" label="All Statuses" />
+              <.select_option value="active" label="Active" />
+              <.select_option value="inactive" label="Inactive" />
+            </.select>
           </:filter>
         </.filter_bar>
       </.component_demo>
@@ -72,28 +72,22 @@ defmodule SutrauiDemoWeb.Components.FilterBarLive do
       <.component_demo title="With Clear" code={clear_code()}>
         <.filter_bar on_change="filter" on_clear="clear_filters" show_clear={@has_filters}>
           <:filter>
-            <input
-              type="text"
-              name="search"
-              value={@search}
-              placeholder="Search products..."
-              class="input"
-            />
+            <.input type="text" name="search" value={@search} placeholder="Search products..." />
           </:filter>
           <:filter>
-            <select name="status" class="select">
-              <option value="" selected={@status == ""}>All Statuses</option>
-              <option value="active" selected={@status == "active"}>Active</option>
-              <option value="archived" selected={@status == "archived"}>Archived</option>
-            </select>
+            <.select id="clear-status-select" name="status" value={@status}>
+              <.select_option value="" label="All Statuses" />
+              <.select_option value="active" label="Active" />
+              <.select_option value="archived" label="Archived" />
+            </.select>
           </:filter>
           <:filter>
-            <select name="category" class="select">
-              <option value="" selected={@category == ""}>All Categories</option>
-              <option value="electronics" selected={@category == "electronics"}>Electronics</option>
-              <option value="clothing" selected={@category == "clothing"}>Clothing</option>
-              <option value="books" selected={@category == "books"}>Books</option>
-            </select>
+            <.select id="clear-category-select" name="category" value={@category}>
+              <.select_option value="" label="All Categories" />
+              <.select_option value="electronics" label="Electronics" />
+              <.select_option value="clothing" label="Clothing" />
+              <.select_option value="books" label="Books" />
+            </.select>
           </:filter>
         </.filter_bar>
 
@@ -118,14 +112,14 @@ defmodule SutrauiDemoWeb.Components.FilterBarLive do
       <.component_demo title="Two Columns" code={cols_code()}>
         <.filter_bar on_change="filter" cols={2}>
           <:filter>
-            <input type="text" name="search" value={@search} placeholder="Search..." class="input" />
+            <.input type="text" name="search" value={@search} placeholder="Search..." />
           </:filter>
           <:filter>
-            <select name="status" class="select">
-              <option value="" selected={@status == ""}>All</option>
-              <option value="active" selected={@status == "active"}>Active</option>
-              <option value="inactive" selected={@status == "inactive"}>Inactive</option>
-            </select>
+            <.select id="cols2-status-select" name="status" value={@status}>
+              <.select_option value="" label="All" />
+              <.select_option value="active" label="Active" />
+              <.select_option value="inactive" label="Inactive" />
+            </.select>
           </:filter>
         </.filter_bar>
       </.component_demo>
@@ -133,24 +127,24 @@ defmodule SutrauiDemoWeb.Components.FilterBarLive do
       <.component_demo title="Four Columns" code={four_cols_code()}>
         <.filter_bar on_change="filter" cols={4}>
           <:filter>
-            <input type="text" name="name" value="" placeholder="Name" class="input" />
+            <.input type="text" name="name" value="" placeholder="Name" />
           </:filter>
           <:filter>
-            <input type="text" name="email" value="" placeholder="Email" class="input" />
+            <.input type="text" name="email" value="" placeholder="Email" />
           </:filter>
           <:filter>
-            <select name="role" class="select">
-              <option value="">All Roles</option>
-              <option value="admin">Admin</option>
-              <option value="user">User</option>
-            </select>
+            <.select id="cols4-role-select" name="role" value="">
+              <.select_option value="" label="All Roles" />
+              <.select_option value="admin" label="Admin" />
+              <.select_option value="user" label="User" />
+            </.select>
           </:filter>
           <:filter>
-            <select name="status" class="select">
-              <option value="">All</option>
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
+            <.select id="cols4-status-select" name="status" value="">
+              <.select_option value="" label="All" />
+              <.select_option value="active" label="Active" />
+              <.select_option value="inactive" label="Inactive" />
+            </.select>
           </:filter>
         </.filter_bar>
       </.component_demo>
@@ -162,13 +156,13 @@ defmodule SutrauiDemoWeb.Components.FilterBarLive do
     """
     <.filter_bar on_change="filter">
       <:filter>
-        <input type="text" name="search" value={@search} class="input" />
+        <.input type="text" name="search" value={@search} placeholder="Search..." />
       </:filter>
       <:filter>
-        <select name="status" class="select">
-          <option value="">All</option>
-          <option value="active">Active</option>
-        </select>
+        <.select id="status-select" name="status" value={@status}>
+          <.select_option value="" label="All" />
+          <.select_option value="active" label="Active" />
+        </.select>
       </:filter>
     </.filter_bar>\
     """
@@ -178,13 +172,13 @@ defmodule SutrauiDemoWeb.Components.FilterBarLive do
     """
     <.filter_bar on_change="filter" on_clear="clear_filters" show_clear={@has_filters}>
       <:filter>
-        <input type="text" name="search" value={@search} class="input" />
+        <.input type="text" name="search" value={@search} placeholder="Search..." />
       </:filter>
       <:filter>
-        <select name="status" class="select">...</select>
-      </:filter>
-      <:filter>
-        <select name="category" class="select">...</select>
+        <.select id="status-select" name="status" value={@status}>
+          <.select_option value="" label="All Statuses" />
+          <.select_option value="active" label="Active" />
+        </.select>
       </:filter>
     </.filter_bar>\
     """
@@ -194,10 +188,13 @@ defmodule SutrauiDemoWeb.Components.FilterBarLive do
     """
     <.filter_bar on_change="filter" cols={2}>
       <:filter>
-        <input type="text" name="search" class="input" />
+        <.input type="text" name="search" placeholder="Search..." />
       </:filter>
       <:filter>
-        <select name="status" class="select">...</select>
+        <.select id="status-select" name="status" value={@status}>
+          <.select_option value="" label="All" />
+          <.select_option value="active" label="Active" />
+        </.select>
       </:filter>
     </.filter_bar>\
     """
@@ -206,10 +203,20 @@ defmodule SutrauiDemoWeb.Components.FilterBarLive do
   defp four_cols_code do
     """
     <.filter_bar on_change="filter" cols={4}>
-      <:filter><input type="text" name="name" class="input" /></:filter>
-      <:filter><input type="text" name="email" class="input" /></:filter>
-      <:filter><select name="role" class="select">...</select></:filter>
-      <:filter><select name="status" class="select">...</select></:filter>
+      <:filter><.input type="text" name="name" placeholder="Name" /></:filter>
+      <:filter><.input type="text" name="email" placeholder="Email" /></:filter>
+      <:filter>
+        <.select id="role-select" name="role" value="">
+          <.select_option value="" label="All Roles" />
+          <.select_option value="admin" label="Admin" />
+        </.select>
+      </:filter>
+      <:filter>
+        <.select id="status-select" name="status" value="">
+          <.select_option value="" label="All" />
+          <.select_option value="active" label="Active" />
+        </.select>
+      </:filter>
     </.filter_bar>\
     """
   end

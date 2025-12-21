@@ -30,16 +30,16 @@ defmodule SutrauiDemoWeb.Components.NavPillsLive do
       <.prose>
         Nav Pills automatically adapts to screen size:
       </.prose>
-      <ul class="list-disc list-inside space-y-1 text-sm" style="color: var(--fg-secondary);">
-        <li>
+      <.list>
+        <.list_item>
           <span class="font-medium" style="color: var(--fg);">Desktop:</span>
           Shows all items as horizontal pill buttons
-        </li>
-        <li>
+        </.list_item>
+        <.list_item>
           <span class="font-medium" style="color: var(--fg);">Mobile:</span>
           Converts to a dropdown menu showing the active item
-        </li>
-      </ul>
+        </.list_item>
+      </.list>
 
       <.section_heading id="usage">Usage</.section_heading>
       <.prose>
@@ -61,22 +61,34 @@ defmodule SutrauiDemoWeb.Components.NavPillsLive do
         Use the inner block of each item slot to add icons before the label.
       </.prose>
 
-      <.code_block code={icons_code()} language="elixir" filename="With Icons" />
+      <.component_demo title="With Icons" code={icons_code()}>
+        <.nav_pills id="icons-nav" active_label={@active_tab}>
+          <:item label="Overview" patch="/docs/components/nav-pills?tab=Overview">
+            <.icon name="lucide-layout-grid" class="size-4 mr-2" />
+          </:item>
+          <:item label="Analytics" patch="/docs/components/nav-pills?tab=Analytics">
+            <.icon name="lucide-chart-bar" class="size-4 mr-2" />
+          </:item>
+          <:item label="Settings" patch="/docs/components/nav-pills?tab=Settings">
+            <.icon name="lucide-settings" class="size-4 mr-2" />
+          </:item>
+        </.nav_pills>
+      </.component_demo>
 
       <.section_heading id="accessibility">Accessibility</.section_heading>
       <.prose>
         The nav pills component includes proper ARIA attributes:
       </.prose>
-      <ul class="list-disc list-inside space-y-1 text-sm" style="color: var(--fg-secondary);">
-        <li>
+      <.list>
+        <.list_item>
           Desktop pills use
           <.inline_code>role="navigation"</.inline_code>
           with
           <.inline_code>aria-label</.inline_code>
-        </li>
-        <li>Mobile dropdown uses proper ARIA popup attributes</li>
-        <li>Active item is clearly indicated visually and semantically</li>
-      </ul>
+        </.list_item>
+        <.list_item>Mobile dropdown uses proper ARIA popup attributes</.list_item>
+        <.list_item>Active item is clearly indicated visually and semantically</.list_item>
+      </.list>
     </Layouts.docs>
     """
   end
@@ -105,13 +117,13 @@ defmodule SutrauiDemoWeb.Components.NavPillsLive do
     """
     <.nav_pills id="nav" active_label="Dashboard">
       <:item label="Dashboard" patch={~p"/dashboard"}>
-        <.icon name="lucide-layout-grid" class="size-4" />
+        <.icon name="lucide-layout-grid" class="size-4 mr-2" />
       </:item>
       <:item label="Projects" patch={~p"/projects"}>
-        <.icon name="lucide-folder" class="size-4" />
+        <.icon name="lucide-folder" class="size-4 mr-2" />
       </:item>
       <:item label="Team" patch={~p"/team"}>
-        <.icon name="lucide-users" class="size-4" />
+        <.icon name="lucide-users" class="size-4 mr-2" />
       </:item>
     </.nav_pills>\
     """

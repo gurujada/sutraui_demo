@@ -103,6 +103,21 @@ defmodule SutrauiDemoWeb.Components.SwitchLive do
         <.inline_code>aria-checked</.inline_code>
         for proper screen reader support.
       </.prose>
+      <.list>
+        <.list_item>
+          <strong>Keyboard:</strong>
+          Press
+          <.inline_code>Space</.inline_code>
+          to toggle. Use
+          <.inline_code>Tab</.inline_code>
+          to navigate between controls.
+        </.list_item>
+        <.list_item>
+          Always pair with a visible label or provide an
+          <.inline_code>aria-label</.inline_code>
+          for screen readers.
+        </.list_item>
+      </.list>
     </Layouts.docs>
     """
   end

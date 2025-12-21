@@ -99,7 +99,7 @@ defmodule SutrauiDemoWeb.Layouts do
 
         <nav class="flex items-center gap-6">
           <.link navigate="/docs" class="nav-link hidden sm:block">Documentation</.link>
-          <.link navigate="/docs/components/button" class="nav-link hidden sm:block">
+          <.link navigate="/docs/components/checkbox" class="nav-link hidden sm:block">
             Components
           </.link>
           <.search_button />

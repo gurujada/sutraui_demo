@@ -35,3 +35,7 @@ sutraui_demo-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Project planning and review files
+REVIEW.md
+SKILL.md
+PLAN.md

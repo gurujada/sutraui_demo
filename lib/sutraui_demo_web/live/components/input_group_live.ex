@@ -71,15 +71,48 @@ defmodule SutrauiDemoWeb.Components.InputGroupLive do
           <:suffix type="interactive">
             <button
               type="button"
+              id="copy-url-btn"
               class="btn-icon-ghost size-6"
               aria-label="Copy to clipboard"
-              phx-click="copy"
+              phx-hook=".CopyToClipboard"
+              data-copy-target="copy-url-input"
             >
-              <.icon name="lucide-copy" class="size-3.5" />
+              <.icon name="lucide-copy" class="size-3.5 copy-icon" />
+              <.icon name="lucide-check" class="size-3.5 check-icon hidden text-green-600" />
             </button>
           </:suffix>
-          <input type="text" class="input pr-9" value="https://example.com/share/abc123" readonly />
+          <input
+            type="text"
+            id="copy-url-input"
+            class="input pr-9"
+            value="https://example.com/share/abc123"
+            readonly
+          />
         </.input_group>
+
+        <script :type={Phoenix.LiveView.ColocatedHook} name=".CopyToClipboard">
+          export default {
+            mounted() {
+              this.el.addEventListener("click", async () => {
+                const targetId = this.el.dataset.copyTarget;
+                const input = document.getElementById(targetId);
+                if (input) {
+                  await navigator.clipboard.writeText(input.value);
+                  const copyIcon = this.el.querySelector(".copy-icon");
+                  const checkIcon = this.el.querySelector(".check-icon");
+                  if (copyIcon && checkIcon) {
+                    copyIcon.classList.add("hidden");
+                    checkIcon.classList.remove("hidden");
+                    setTimeout(() => {
+                      copyIcon.classList.remove("hidden");
+                      checkIcon.classList.add("hidden");
+                    }, 2000);
+                  }
+                }
+              });
+            }
+          }
+        </script>
       </.component_demo>
 
       <.section_heading id="textarea-footer">Textarea with Footer</.section_heading>

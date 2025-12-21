@@ -53,7 +53,19 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
         Include icons alongside text in the tab inner block.
       </.prose>
 
-      <.code_block code={icons_code()} language="elixir" filename="With Icons" />
+      <.component_demo title="With Icons" code={icons_code()}>
+        <.tab_nav>
+          <:tab patch="/docs/components/tab-nav?tab=about" active={@active_tab == "about"}>
+            <.icon name="lucide-info" class="size-4 mr-2" /> About
+          </:tab>
+          <:tab patch="/docs/components/tab-nav?tab=members" active={@active_tab == "members"}>
+            <.icon name="lucide-users" class="size-4 mr-2" /> Members
+          </:tab>
+          <:tab patch="/docs/components/tab-nav?tab=settings" active={@active_tab == "settings"}>
+            <.icon name="lucide-settings" class="size-4 mr-2" /> Settings
+          </:tab>
+        </.tab_nav>
+      </.component_demo>
 
       <.section_heading id="use-case">When to Use</.section_heading>
       <.prose>
@@ -122,11 +134,11 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
     """
     <.tab_nav>
       <:tab patch={~p"/about"} active={true}>
-        <.icon name="lucide-info" class="size-4" />
+        <.icon name="lucide-info" class="size-4 mr-2" />
         About
       </:tab>
       <:tab patch={~p"/members"} active={false}>
-        <.icon name="lucide-users" class="size-4" />
+        <.icon name="lucide-users" class="size-4 mr-2" />
         Members
       </:tab>
     </.tab_nav>\
