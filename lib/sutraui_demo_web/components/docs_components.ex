@@ -118,14 +118,14 @@ defmodule SutrauiDemoWeb.DocsComponents do
                 await navigator.clipboard.writeText(codeEl.textContent);
                 copyText.classList.add('hidden');
                 checkText.classList.remove('hidden');
-                
+
                 // Trigger toast notification
-                this.pushEvent("show_toast", { 
-                  variant: "default", 
+                this.pushEvent("show_toast", {
+                  variant: "default",
                   title: "Copied to clipboard",
                   description: "Code snippet copied successfully"
                 });
-                
+
                 setTimeout(() => {
                   copyText.classList.remove('hidden');
                   checkText.classList.add('hidden');
@@ -241,19 +241,6 @@ defmodule SutrauiDemoWeb.DocsComponents do
         </div>
       </div>
     </div>
-    """
-  end
-
-  slot :inner_block, required: true
-
-  def kbd(assigns) do
-    ~H"""
-    <kbd
-      class="inline-flex h-5 items-center rounded px-1.5 text-xs"
-      style="background: var(--bg-muted); border: 1px solid var(--border); font-family: var(--font-mono);"
-    >
-      {render_slot(@inner_block)}
-    </kbd>
     """
   end
 

@@ -16,13 +16,13 @@ defmodule SutrauiDemoWeb.Components.CommandLive do
       <.callout>
         <strong>Try it now!</strong>
         Press
-        <SutrauiDemoWeb.DocsComponents.kbd>Cmd</SutrauiDemoWeb.DocsComponents.kbd>
+        <.kbd>Cmd</.kbd>
         +
-        <SutrauiDemoWeb.DocsComponents.kbd>K</SutrauiDemoWeb.DocsComponents.kbd>
+        <.kbd>K</.kbd>
         (or
-        <SutrauiDemoWeb.DocsComponents.kbd>Ctrl</SutrauiDemoWeb.DocsComponents.kbd>
+        <.kbd>Ctrl</.kbd>
         +
-        <SutrauiDemoWeb.DocsComponents.kbd>K</SutrauiDemoWeb.DocsComponents.kbd>
+        <.kbd>K</.kbd>
         on Windows/Linux) to open this site's command palette.
       </.callout>
 

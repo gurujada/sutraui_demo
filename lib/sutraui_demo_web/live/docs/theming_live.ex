@@ -79,6 +79,8 @@ defmodule SutrauiDemoWeb.Docs.ThemingLive do
         Here are all the available CSS variables and their purpose:
       </.prose>
 
+      <.subsection_heading>Core Colors</.subsection_heading>
+
       <div class="my-6 overflow-hidden rounded-lg border" style="border-color: var(--border);">
         <table class="w-full text-sm">
           <thead>
@@ -136,11 +138,124 @@ defmodule SutrauiDemoWeb.Docs.ThemingLive do
               </td>
               <td class="px-4 py-3 text-muted-foreground">Border color</td>
             </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td class="px-4 py-3">
+                <.inline_code>--input</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Input border color</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td class="px-4 py-3">
+                <.inline_code>--ring</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Focus ring color</td>
+            </tr>
             <tr>
               <td class="px-4 py-3">
                 <.inline_code>--radius</.inline_code>
               </td>
               <td class="px-4 py-3 text-muted-foreground">Base border radius</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <.subsection_heading>Surface Colors</.subsection_heading>
+
+      <div class="my-6 overflow-hidden rounded-lg border" style="border-color: var(--border);">
+        <table class="w-full text-sm">
+          <thead>
+            <tr style="background: var(--bg-subtle); border-bottom: 1px solid var(--border);">
+              <th class="px-4 py-3 text-left font-medium">Variable</th>
+              <th class="px-4 py-3 text-left font-medium">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td class="px-4 py-3">
+                <.inline_code>--card</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Card background</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3">
+                <.inline_code>--popover</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Popover/dropdown background</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <.subsection_heading>Sidebar Colors</.subsection_heading>
+
+      <div class="my-6 overflow-hidden rounded-lg border" style="border-color: var(--border);">
+        <table class="w-full text-sm">
+          <thead>
+            <tr style="background: var(--bg-subtle); border-bottom: 1px solid var(--border);">
+              <th class="px-4 py-3 text-left font-medium">Variable</th>
+              <th class="px-4 py-3 text-left font-medium">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td class="px-4 py-3">
+                <.inline_code>--sidebar</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Sidebar background</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td class="px-4 py-3">
+                <.inline_code>--sidebar-foreground</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Sidebar text color</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td class="px-4 py-3">
+                <.inline_code>--sidebar-primary</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Sidebar active item</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td class="px-4 py-3">
+                <.inline_code>--sidebar-accent</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Sidebar hover state</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td class="px-4 py-3">
+                <.inline_code>--sidebar-border</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Sidebar border</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3">
+                <.inline_code>--sidebar-ring</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Sidebar focus ring</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <.subsection_heading>Chart Colors</.subsection_heading>
+
+      <div class="my-6 overflow-hidden rounded-lg border" style="border-color: var(--border);">
+        <table class="w-full text-sm">
+          <thead>
+            <tr style="background: var(--bg-subtle); border-bottom: 1px solid var(--border);">
+              <th class="px-4 py-3 text-left font-medium">Variable</th>
+              <th class="px-4 py-3 text-left font-medium">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-4 py-3">
+                <.inline_code>--chart-1</.inline_code>
+                to
+                <.inline_code>--chart-5</.inline_code>
+              </td>
+              <td class="px-4 py-3 text-muted-foreground">Chart/data visualization colors</td>
             </tr>
           </tbody>
         </table>

@@ -369,10 +369,16 @@ body {
 }
 
 .hero-subtitle {
-    font-size: 1.125rem;
+    font-size: 1rem;
     color: var(--fg-secondary);
     line-height: 1.7;
     max-width: 480px;
+}
+
+@media (min-width: 640px) {
+    .hero-subtitle {
+        font-size: 1.125rem;
+    }
 }
 
 /* Decorative element */
@@ -403,17 +409,29 @@ body {
 
 .section-title {
     font-family: var(--font-display);
-    font-size: 2rem;
+    font-size: 1.625rem;
     font-weight: 400;
     letter-spacing: -0.02em;
     color: var(--fg);
 }
 
+@media (min-width: 640px) {
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
 .section-subtitle {
-    font-size: 1.0625rem;
+    font-size: 1rem;
     color: var(--fg-secondary);
     line-height: 1.7;
     max-width: 540px;
+}
+
+@media (min-width: 640px) {
+    .section-subtitle {
+        font-size: 1.0625rem;
+    }
 }
 
 /* ========================================
@@ -426,10 +444,24 @@ body {
     background: var(--border);
 }
 
+/* Mobile: single column with smaller padding */
+@media (max-width: 639px) {
+    .feature-grid {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
 .feature-card {
     background: var(--bg);
-    padding: 2rem;
+    padding: 1.5rem;
     transition: background 0.2s;
+}
+
+@media (min-width: 640px) {
+    .feature-card {
+        padding: 2rem;
+    }
 }
 
 .feature-card:hover {
@@ -438,11 +470,18 @@ body {
 
 .feature-number {
     font-family: var(--font-display);
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-style: italic;
     color: var(--border-strong);
     line-height: 1;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+@media (min-width: 640px) {
+    .feature-number {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
 }
 
 .feature-title {
@@ -479,13 +518,20 @@ body {
 }
 
 .showcase-preview {
-    padding: 2.5rem 2rem;
+    padding: 1.5rem 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 160px;
+    min-height: 140px;
     background: var(--bg-subtle);
     border-bottom: 1px solid var(--border);
+}
+
+@media (min-width: 640px) {
+    .showcase-preview {
+        padding: 2.5rem 2rem;
+        min-height: 160px;
+    }
 }
 
 .showcase-footer {
@@ -515,38 +561,8 @@ body {
 }
 
 /* ========================================
-   CODE BLOCKS
+   CODE BLOCKS (syntax highlighting via Makeup)
    ======================================== */
-
-.install-code {
-    background: var(--bg-muted);
-    border: 1px solid var(--border);
-    border-radius: 0.75rem;
-    overflow: hidden;
-}
-
-.install-code-header {
-    padding: 0.75rem 1.25rem;
-    border-bottom: 1px solid var(--border);
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--fg-muted);
-    background: var(--bg-subtle);
-}
-
-.install-code pre {
-    margin: 0;
-    padding: 1.25rem;
-    font-family: var(--font-mono);
-    font-size: 0.875rem;
-    line-height: 1.7;
-    overflow-x: auto;
-    color: var(--fg);
-}
-
-.install-code code {
-    font-family: inherit;
-}
 
 /* Syntax highlighting for docs */
 .code-block {

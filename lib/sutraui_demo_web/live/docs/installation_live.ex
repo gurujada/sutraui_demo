@@ -85,6 +85,10 @@ defmodule SutrauiDemoWeb.Docs.InstallationLive do
             to <.inline_code>html_helpers</.inline_code>:
           </.prose>
           <.code_block language="elixir" code={html_helpers_code()} />
+          <.prose>
+            This imports all components. You can also import selectively:
+          </.prose>
+          <.code_block language="elixir" code={selective_import_code()} />
         </.step>
 
         <.step number={5} title="Verify installation">
@@ -118,6 +122,24 @@ defmodule SutrauiDemoWeb.Docs.InstallationLive do
           to see what's available.
         </.list_item>
       </.list>
+
+      <.section_heading>Icons</.section_heading>
+
+      <.prose>
+        Sutra UI does not include an icon component — you're free to use any icon library you prefer.
+        We recommend
+        <.link href="https://lucide.dev" class="text-accent hover:underline">Lucide</.link>
+        as it pairs well with our design aesthetic. Add the dependency to your mix.exs,
+        create a Tailwind plugin, and use icons as CSS classes:
+      </.prose>
+
+      <.code_block language="elixir" filename="mix.exs" code={lucide_deps_code()} />
+
+      <.prose>
+        Then use icons anywhere with Tailwind classes:
+      </.prose>
+
+      <.code_block language="heex" code={~s|<span class="lucide--check size-4" />|} />
     </Layouts.docs>
     """
   end
@@ -127,8 +149,7 @@ defmodule SutrauiDemoWeb.Docs.InstallationLive do
     # mix.exs
     def deps do
       [
-        {:sutra_ui, "~> 0.1"},
-        {:jason, "~> 1.0"}
+        {:sutra_ui, "~> 0.1"}
       ]
     end\
     """
@@ -145,8 +166,7 @@ defmodule SutrauiDemoWeb.Docs.InstallationLive do
     """
     def deps do
       [
-        {:sutra_ui, "~> 0.1"},
-        {:jason, "~> 1.0"}  # Required for dropdown_menu and live_select
+        {:sutra_ui, "~> 0.1"}
       ]
     end\
     """
@@ -170,6 +190,25 @@ defmodule SutrauiDemoWeb.Docs.InstallationLive do
         # ... other imports
       end
     end\
+    """
+  end
+
+  defp selective_import_code do
+    """
+    # Import only what you need
+    import SutraUI.Button
+    import SutraUI.Input\
+    """
+  end
+
+  defp lucide_deps_code do
+    """
+    {:lucide_icons,
+     github: "lucide-icons/lucide",
+     sparse: "icons",
+     app: false,
+     compile: false,
+     depth: 1}\
     """
   end
 end

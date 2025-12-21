@@ -9,23 +9,23 @@ defmodule SutrauiDemoWeb.LandingLive do
     ~H"""
     <Layouts.app flash={@flash}>
       <%!-- Hero - editorial, spacious --%>
-      <section class="hero-section min-h-[90vh] flex items-center relative">
-        <%!-- Decorative typography --%>
-        <div class="hero-decoration -right-20 top-1/4">S</div>
+      <section class="hero-section min-h-[70vh] md:min-h-[90vh] flex items-center relative py-16 md:py-0">
+        <%!-- Decorative typography - hidden on mobile --%>
+        <div class="hero-decoration -right-20 top-1/4 hidden md:block">S</div>
 
-        <div class="mx-auto max-w-6xl px-6 w-full relative z-10">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 w-full relative z-10">
           <div class="max-w-2xl animate-fade-up">
-            <p class="hero-eyebrow mb-6">Phoenix LiveView Components</p>
+            <p class="hero-eyebrow mb-4 md:mb-6">Phoenix LiveView Components</p>
             <h1 class="hero-title">
               Build <em>beautiful</em> interfaces with pure Phoenix
             </h1>
-            <p class="hero-subtitle mt-8">
+            <p class="hero-subtitle mt-6 md:mt-8">
               A carefully crafted collection of accessible, themeable components.
               No JavaScript dependencies. Just copy, paste, and make it yours.
             </p>
-            <div class="flex flex-wrap gap-4 mt-10">
-              <.button navigate="/docs">Get Started</.button>
-              <.button variant="outline" navigate="/docs/components/button">
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-8 md:mt-10">
+              <.button navigate="/docs" class="w-full sm:w-auto">Get Started</.button>
+              <.button variant="outline" navigate="/docs/components/button" class="w-full sm:w-auto">
                 Browse Components
               </.button>
             </div>
@@ -35,8 +35,8 @@ defmodule SutrauiDemoWeb.LandingLive do
 
       <%!-- Features - grid with numbers --%>
       <section class="py-0">
-        <div class="mx-auto max-w-6xl">
-          <div class="feature-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        <div class="mx-auto max-w-6xl px-4 sm:px-0">
+          <div class="feature-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             <div class="feature-card animate-fade-up">
               <div class="feature-number">01</div>
               <h3 class="feature-title">Zero Dependencies</h3>
@@ -70,9 +70,9 @@ defmodule SutrauiDemoWeb.LandingLive do
       </section>
 
       <%!-- Installation - clean, focused --%>
-      <section class="py-32">
-        <div class="mx-auto max-w-6xl px-6">
-          <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <section class="py-16 md:py-32">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6">
+          <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div class="animate-fade-up">
               <p class="section-label">Quick Start</p>
               <h2 class="section-title mt-2">Add to your Phoenix project</h2>
@@ -85,23 +85,16 @@ defmodule SutrauiDemoWeb.LandingLive do
               </.button>
             </div>
             <div class="animate-fade-up delay-2">
-              <div class="install-code">
-                <div class="install-code-header">mix.exs</div>
-                <pre phx-no-curly-interpolation><code>defp deps do
-    [
-    {:sutra_ui, "~> 0.1"}
-    ]
-    end</code></pre>
-              </div>
+              <.code_block language="elixir" filename="mix.exs" code={install_code()} />
             </div>
           </div>
         </div>
       </section>
 
       <%!-- Component Showcase --%>
-      <section class="py-32" style="background: var(--bg-subtle);">
-        <div class="mx-auto max-w-6xl px-6">
-          <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
+      <section class="py-16 md:py-32" style="background: var(--bg-subtle);">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6">
+          <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 md:mb-16">
             <div class="animate-fade-up">
               <p class="section-label">Components</p>
               <h2 class="section-title mt-2">Production-ready UI</h2>
@@ -117,14 +110,15 @@ defmodule SutrauiDemoWeb.LandingLive do
             </div>
           </div>
 
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <%!-- Button --%>
             <div class="showcase-card animate-fade-up">
               <div class="showcase-preview">
-                <div class="flex flex-wrap gap-3">
+                <div class="grid grid-cols-2 gap-3">
                   <.button>Primary</.button>
                   <.button variant="secondary">Secondary</.button>
                   <.button variant="outline">Outline</.button>
+                  <.button variant="ghost">Ghost</.button>
                 </div>
               </div>
               <div class="showcase-footer">
@@ -156,8 +150,9 @@ defmodule SutrauiDemoWeb.LandingLive do
             <%!-- Input --%>
             <div class="showcase-card animate-fade-up delay-2">
               <div class="showcase-preview">
-                <div class="w-full max-w-xs">
-                  <.input type="email" placeholder="you@example.com" label="Email address" />
+                <div class="w-full max-w-xs space-y-2">
+                  <.label>Email address</.label>
+                  <.input type="email" placeholder="you@example.com" />
                 </div>
               </div>
               <div class="showcase-footer">
@@ -255,16 +250,20 @@ defmodule SutrauiDemoWeb.LandingLive do
       </section>
 
       <%!-- CTA --%>
-      <section class="py-32">
-        <div class="mx-auto max-w-3xl px-6 text-center">
+      <section class="py-16 md:py-32">
+        <div class="mx-auto max-w-3xl px-4 sm:px-6 text-center">
           <h2 class="section-title animate-fade-up">Ready to build something beautiful?</h2>
           <p class="section-subtitle mx-auto mt-4 animate-fade-up delay-1">
             Get started with Sutra UI in minutes. Browse the documentation,
             explore components, and start building.
           </p>
-          <div class="flex justify-center gap-4 mt-10 animate-fade-up delay-2">
-            <.button navigate="/docs">Get Started</.button>
-            <.button variant="outline" href="https://github.com/gurujada/sutra_ui">
+          <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mt-8 md:mt-10 animate-fade-up delay-2">
+            <.button navigate="/docs" class="w-full sm:w-auto">Get Started</.button>
+            <.button
+              variant="outline"
+              href="https://github.com/gurujada/sutra_ui"
+              class="w-full sm:w-auto"
+            >
               View on GitHub
             </.button>
           </div>
@@ -272,23 +271,21 @@ defmodule SutrauiDemoWeb.LandingLive do
       </section>
 
       <%!-- Footer --%>
-      <footer class="site-footer py-12">
-        <div class="mx-auto max-w-6xl px-6">
-          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <footer class="site-footer py-8 md:py-12">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6">
+          <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div>
-              <p class="site-logo mb-2">Sutra UI</p>
-              <p class="text-sm" style="color: var(--fg-muted);">
-                by
-                <a
-                  href="https://github.com/gurujada"
-                  class="underline hover:no-underline"
-                  style="color: var(--fg-muted);"
-                >
-                  Gurujada
-                </a>
+              <p class="site-logo whitespace-nowrap">
+                Sutra UI
+                <span class="text-sm font-normal whitespace-nowrap" style="color: var(--fg-muted);">
+                  by
+                  <a href="https://github.com/gurujada" class="underline hover:no-underline">
+                    Gurujada
+                  </a>
+                </span>
               </p>
             </div>
-            <nav class="flex items-center gap-8">
+            <nav class="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-8">
               <.link navigate="/docs" class="footer-link">Documentation</.link>
               <.link navigate="/docs/components/button" class="footer-link">Components</.link>
               <a href="https://hex.pm/packages/sutra_ui" class="footer-link">Hex.pm</a>
@@ -298,6 +295,16 @@ defmodule SutrauiDemoWeb.LandingLive do
         </div>
       </footer>
     </Layouts.app>
+    """
+  end
+
+  defp install_code do
+    """
+    defp deps do
+      [
+        {:sutra_ui, "~> 0.1"}
+      ]
+    end\
     """
   end
 end
