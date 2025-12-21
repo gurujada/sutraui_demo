@@ -43,6 +43,10 @@ defmodule SutrauiDemoWeb.Components.FieldLive do
         </div>
       </.component_demo>
 
+      <%!--
+      TODO: Re-enable once Sutra UI Field supports automatic error extraction from form fields.
+      See ISSUES.md in sutra_ui repo.
+
       <.section_heading id="with-error">With Error</.section_heading>
       <.prose>
         Display validation errors using the
@@ -63,6 +67,7 @@ defmodule SutrauiDemoWeb.Components.FieldLive do
           </.field>
         </div>
       </.component_demo>
+      --%>
 
       <.section_heading id="horizontal">Horizontal Layout</.section_heading>
       <.prose>
@@ -176,17 +181,19 @@ defmodule SutrauiDemoWeb.Components.FieldLive do
     """
   end
 
-  defp error_code do
-    """
-    <.field invalid>
-      <:label>Password</:label>
-      <:input>
-        <.input type="password" placeholder="Enter password" />
-      </:input>
-      <:error>Password must be at least 8 characters.</:error>
-    </.field>\
-    """
-  end
+  # TODO: Re-enable once Sutra UI Field supports automatic error extraction from form fields.
+  # See ISSUES.md in sutra_ui repo.
+  # defp error_code do
+  #   """
+  #   <.field invalid>
+  #     <:label>Password</:label>
+  #     <:input>
+  #       <.input type="password" placeholder="Enter password" />
+  #     </:input>
+  #     <:error>Password must be at least 8 characters.</:error>
+  #   </.field>\
+  #   """
+  # end
 
   defp horizontal_code do
     """

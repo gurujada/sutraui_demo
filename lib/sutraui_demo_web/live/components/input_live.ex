@@ -21,7 +21,9 @@ defmodule SutrauiDemoWeb.Components.InputLive do
 
       <.section_heading id="with-label">With Label</.section_heading>
       <.prose>
-        Add a label to the input for better accessibility and UX.
+        Add a label using the
+        <.inline_code>label</.inline_code>
+        attribute. The label renders directly above the input.
       </.prose>
 
       <.component_demo title="With Label" code={label_code()}>
@@ -36,11 +38,19 @@ defmodule SutrauiDemoWeb.Components.InputLive do
       </.prose>
 
       <.component_demo title="Types" code={types_code()}>
-        <div class="space-y-4 w-full max-w-sm">
-          <.input type="email" label="Email" placeholder="name@example.com" />
-          <.input type="password" label="Password" placeholder="Enter password" />
-          <.input type="number" label="Amount" placeholder="0" />
-          <.input type="date" label="Date" />
+        <div class="w-full max-w-sm space-y-6">
+          <div>
+            <.input type="email" label="Email" placeholder="name@example.com" />
+          </div>
+          <div>
+            <.input type="password" label="Password" placeholder="Enter password" />
+          </div>
+          <div>
+            <.input type="number" label="Amount" placeholder="0" />
+          </div>
+          <div>
+            <.input type="date" label="Date" />
+          </div>
         </div>
       </.component_demo>
 
