@@ -26,7 +26,7 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
       </.prose>
 
       <.component_demo title="Default" code={default_code()}>
-        <.tab_nav>
+        <.tab_nav id="tab-nav-demo">
           <:tab patch="/docs/components/tab-nav?tab=about" active={@active_tab == "about"}>
             About
           </:tab>

@@ -324,13 +324,118 @@ body {
 }
 
 .sidebar-link.active {
-    color: var(--site-accent);
-    font-weight: 500;
+  color: var(--site-accent);
+  font-weight: 500;
+}
+
+/* Demo sidebar - container-constrained sidebar */
+.demo-sidebar-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  /* Remap sidebar CSS vars to site theme so library Tailwind classes blend */
+  --sidebar: var(--bg-subtle);
+  --sidebar-foreground: var(--fg);
+  --sidebar-primary: var(--site-accent);
+  --sidebar-primary-foreground: #fff;
+  --sidebar-accent: var(--bg-muted);
+  --sidebar-accent-foreground: var(--fg);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--site-accent);
+
+  /* Also set the --color-* versions that Tailwind v4 resolves */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* Toolbar/header area */
+.demo-sidebar-wrapper > .demo-sidebar-header {
+  flex-shrink: 0;
+  height: 48px;
+  z-index: 20;
+  position: relative;
+}
+
+/* Sidebar wrapper fills remaining space */
+.demo-sidebar-wrapper > .sidebar {
+  position: absolute;
+  top: 49px; /* Below the header */
+  left: 0;
+  width: 100%;
+  height: calc(100% - 49px);
+  z-index: 30;
+}
+
+/* Override library fixed positioning - make aside relative to container */
+.demo-sidebar-wrapper > .sidebar > aside {
+  position: absolute !important;
+  top: 0 !important;
+  right: auto !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  inset: auto !important;
+  width: 16rem !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  transform: translateX(-100%);
+  transition: transform 0.2s ease;
+  z-index: 31;
+}
+
+/* Override library inset utilities that conflict */
+.demo-sidebar-wrapper > .sidebar[data-side="left"] > aside,
+.demo-sidebar-wrapper > .sidebar[data-side="right"] > aside {
+  inset: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+}
+
+/* Right sidebar positioning */
+.demo-sidebar-wrapper > .sidebar[data-side="right"] > aside {
+  left: auto !important;
+  right: 0 !important;
+  transform: translateX(100%);
+  border-right: none !important;
+  border-left: 1px solid var(--border) !important;
+}
+
+.demo-sidebar-wrapper > .sidebar[data-side="right"][aria-hidden="false"] > aside {
+  transform: translateX(0);
+}
+
+/* Open state */
+.demo-sidebar-wrapper > .sidebar[aria-hidden="false"] > aside {
+  transform: translateX(0);
+}
+
+/* Hide backdrop in demo containers */
+.demo-sidebar-wrapper > .sidebar > .sidebar-backdrop {
+  display: none !important;
+}
+
+/* Trigger button - visible when sidebar closed */
+.demo-trigger-btn {
+  display: inline-flex;
+  z-index: 25;
+  position: relative;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 /* ========================================
-   HERO
-   ======================================== */
+HERO
+======================================== */
 
 .hero-section {
     background: var(--gradient-warm);

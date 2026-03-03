@@ -66,11 +66,12 @@ defmodule SutrauiDemo.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
-      {:sutra_ui, "~> 0.1.0"},
+      {:sutra_ui, git: "git@github.com:gurujada/sutra_ui.git"},
       # Syntax highlighting
       {:makeup, "~> 1.2"},
       {:makeup_elixir, "~> 1.0"},
-      {:makeup_html, "~> 0.2"}
+      {:makeup_html, "~> 0.2"},
+      {:tidewave, github: "cvkmohan/tidewave_phoenix", only: [:dev]}
     ]
   end
 

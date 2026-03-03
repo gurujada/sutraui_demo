@@ -5,11 +5,11 @@ defmodule SutrauiDemoWeb.Layouts do
   """
   use SutrauiDemoWeb, :html
 
-  embed_templates "layouts/*"
+  embed_templates("layouts/*")
 
-  attr :flash, :map, required: true
-  attr :current_scope, :map, default: nil
-  slot :inner_block, required: true
+  attr(:flash, :map, required: true)
+  attr(:current_scope, :map, default: nil)
+  slot(:inner_block, required: true)
 
   def app(assigns) do
     ~H"""
@@ -44,10 +44,10 @@ defmodule SutrauiDemoWeb.Layouts do
     """
   end
 
-  attr :flash, :map, required: true
-  attr :current_scope, :map, default: nil
-  attr :current_path, :string, default: "/"
-  slot :inner_block, required: true
+  attr(:flash, :map, required: true)
+  attr(:current_scope, :map, default: nil)
+  attr(:current_path, :string, default: "/")
+  slot(:inner_block, required: true)
 
   def docs(assigns) do
     ~H"""
@@ -77,8 +77,8 @@ defmodule SutrauiDemoWeb.Layouts do
     """
   end
 
-  attr :show_menu_button, :boolean, default: false
-  attr :current_path, :string, default: "/"
+  attr(:show_menu_button, :boolean, default: false)
+  attr(:current_path, :string, default: "/")
 
   def site_header(assigns) do
     ~H"""
@@ -119,7 +119,7 @@ defmodule SutrauiDemoWeb.Layouts do
     """
   end
 
-  attr :current_path, :string, default: "/"
+  attr(:current_path, :string, default: "/")
 
   def mobile_sidebar(assigns) do
     ~H"""
@@ -379,7 +379,7 @@ defmodule SutrauiDemoWeb.Layouts do
     """
   end
 
-  attr :current_path, :string, default: "/"
+  attr(:current_path, :string, default: "/")
 
   def docs_sidebar(assigns) do
     ~H"""
@@ -402,7 +402,6 @@ defmodule SutrauiDemoWeb.Layouts do
             label="Checkbox"
             current_path={@current_path}
           />
-          <.sidebar_link href="/docs/components/field" label="Field" current_path={@current_path} />
           <.sidebar_link href="/docs/components/input" label="Input" current_path={@current_path} />
           <.sidebar_link
             href="/docs/components/input-group"
@@ -583,8 +582,8 @@ defmodule SutrauiDemoWeb.Layouts do
     """
   end
 
-  attr :flash, :map, required: true
-  attr :id, :string, default: "flash-group"
+  attr(:flash, :map, required: true)
+  attr(:id, :string, default: "flash-group")
 
   def flash_group(assigns) do
     ~H"""
@@ -647,11 +646,6 @@ defmodule SutrauiDemoWeb.Layouts do
           label: "Checkbox",
           href: "/docs/components/checkbox",
           keywords: ["check", "tick", "toggle", "boolean"]
-        },
-        %{
-          label: "Field",
-          href: "/docs/components/field",
-          keywords: ["form", "label", "input", "wrapper", "fieldset"]
         },
         %{
           label: "Input",
