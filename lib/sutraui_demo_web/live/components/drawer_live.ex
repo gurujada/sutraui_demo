@@ -1,50 +1,50 @@
-defmodule SutrauiDemoWeb.Components.SidebarLive do
+defmodule SutrauiDemoWeb.Components.DrawerLive do
   use SutrauiDemoWeb, :live_view
 
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, page_title: "Sidebar")}
+    {:ok, assign(socket, page_title: "Drawer")}
   end
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/sidebar">
+    <Layouts.docs flash={@flash} current_path="/docs/components/drawer">
       <.docs_header
-        title="Sidebar"
-        description="A collapsible sidebar navigation component with mobile toggle support."
+        title="Drawer"
+        description="A collapsible drawer navigation component with mobile toggle support."
       />
 
       <.prose>
-        The sidebar provides a responsive navigation panel that can be toggled open/closed.
+        The drawer provides a responsive navigation panel that can be toggled open/closed.
         It supports mobile overlay mode, desktop persistent mode, collapsible submenus,
-        and active page highlighting. By default, sidebars are closed on desktop and
+        and active page highlighting. By default, drawers are closed on desktop and
         require a
-        <.inline_code>sidebar_trigger</.inline_code>
+        <.inline_code>drawer_trigger</.inline_code>
         or programmatic control to open.
       </.prose>
 
-      <.section_heading id="basic">Basic Sidebar</.section_heading>
+      <.section_heading id="basic">Basic Drawer</.section_heading>
       <.prose>
-        Click the menu button to toggle the sidebar. The sidebar slides in from the left.
-        Click anywhere outside the sidebar to close it.
+        Click the menu button to toggle the drawer. The drawer slides in from the left.
+        Click anywhere outside the drawer to close it.
       </.prose>
 
-      <.component_demo title="Basic Sidebar" code={basic_code()}>
+      <.component_demo title="Basic Drawer" code={basic_code()}>
         <div
-          class="demo-sidebar-wrapper border rounded-lg"
+          class="demo-drawer-wrapper border rounded-lg"
           style="height: 400px; border-color: var(--border);"
         >
           <div
-            class="demo-sidebar-header p-3 flex items-center justify-between border-b"
+            class="demo-drawer-header p-3 flex items-center justify-between border-b"
             style="border-color: var(--border); background: var(--bg);"
           >
             <span class="text-sm font-medium" style="color: var(--fg);">My App</span>
-            <.sidebar_trigger for="demo-basic" class="demo-trigger-btn" variant="outline" size="sm">
+            <.drawer_trigger for="demo-basic" class="demo-trigger-btn" variant="outline" size="sm">
               <.icon name="lucide-menu" class="size-4" />
               <span class="ml-1">Menu</span>
-            </.sidebar_trigger>
+            </.drawer_trigger>
           </div>
 
-          <.sidebar id="demo-basic">
+          <.drawer id="demo-basic">
             <:header>
               <div
                 class="flex items-center gap-2 p-4 border-b"
@@ -54,17 +54,17 @@ defmodule SutrauiDemoWeb.Components.SidebarLive do
               </div>
             </:header>
 
-            <.sidebar_group label="Navigation">
-              <.sidebar_item href="#" current>Home</.sidebar_item>
-              <.sidebar_item href="#">Dashboard</.sidebar_item>
-              <.sidebar_item href="#">Settings</.sidebar_item>
-            </.sidebar_group>
-          </.sidebar>
+            <.drawer_group label="Navigation">
+              <.drawer_item href="#" current>Home</.drawer_item>
+              <.drawer_item href="#">Dashboard</.drawer_item>
+              <.drawer_item href="#">Settings</.drawer_item>
+            </.drawer_group>
+          </.drawer>
 
           <div class="p-4" style="color: var(--fg-muted);">
             <p>Main content area</p>
-            <p class="text-sm mt-2">Click the Menu button to toggle the sidebar.</p>
-            <p class="text-sm mt-1">Click outside the sidebar to close it.</p>
+            <p class="text-sm mt-2">Click the Menu button to toggle the drawer.</p>
+            <p class="text-sm mt-1">Click outside the drawer to close it.</p>
           </div>
         </div>
       </.component_demo>
@@ -72,43 +72,43 @@ defmodule SutrauiDemoWeb.Components.SidebarLive do
       <.section_heading id="with-submenu">With Collapsible Submenu</.section_heading>
       <.prose>
         Use
-        <.inline_code>sidebar_submenu</.inline_code>
-        for collapsible sections within the sidebar.
+        <.inline_code>drawer_submenu</.inline_code>
+        for collapsible sections within the drawer.
       </.prose>
 
       <.component_demo title="Collapsible Submenu" code={submenu_code()}>
         <div
-          class="demo-sidebar-wrapper border rounded-lg"
+          class="demo-drawer-wrapper border rounded-lg"
           style="height: 450px; border-color: var(--border);"
         >
           <div
-            class="demo-sidebar-header p-3 flex items-center justify-between border-b"
+            class="demo-drawer-header p-3 flex items-center justify-between border-b"
             style="border-color: var(--border); background: var(--bg);"
           >
             <span class="text-sm font-medium" style="color: var(--fg);">Navigation</span>
-            <.sidebar_trigger for="demo-submenu" class="demo-trigger-btn" variant="outline" size="sm">
+            <.drawer_trigger for="demo-submenu" class="demo-trigger-btn" variant="outline" size="sm">
               <.icon name="lucide-menu" class="size-4" />
               <span class="ml-1">Menu</span>
-            </.sidebar_trigger>
+            </.drawer_trigger>
           </div>
 
-          <.sidebar id="demo-submenu">
-            <.sidebar_group label="Navigation">
-              <.sidebar_item href="#">Overview</.sidebar_item>
+          <.drawer id="demo-submenu">
+            <.drawer_group label="Navigation">
+              <.drawer_item href="#">Overview</.drawer_item>
 
-              <.sidebar_submenu label="Projects" open={true}>
-                <.sidebar_item href="#">Active</.sidebar_item>
-                <.sidebar_item href="#">Archived</.sidebar_item>
-                <.sidebar_item href="#">Drafts</.sidebar_item>
-              </.sidebar_submenu>
+              <.drawer_submenu label="Projects" open={true}>
+                <.drawer_item href="#">Active</.drawer_item>
+                <.drawer_item href="#">Archived</.drawer_item>
+                <.drawer_item href="#">Drafts</.drawer_item>
+              </.drawer_submenu>
 
-              <.sidebar_item href="#">Team</.sidebar_item>
-            </.sidebar_group>
-          </.sidebar>
+              <.drawer_item href="#">Team</.drawer_item>
+            </.drawer_group>
+          </.drawer>
 
           <div class="p-4" style="color: var(--fg-muted);">
             <p>Main content area</p>
-            <p class="text-sm mt-2">Click the Menu button to toggle the sidebar.</p>
+            <p class="text-sm mt-2">Click the Menu button to toggle the drawer.</p>
           </div>
         </div>
       </.component_demo>
@@ -120,11 +120,11 @@ defmodule SutrauiDemoWeb.Components.SidebarLive do
 
       <.component_demo title="Header and Footer" code={footer_code()}>
         <div
-          class="demo-sidebar-wrapper border rounded-lg"
+          class="demo-drawer-wrapper border rounded-lg"
           style="height: 500px; border-color: var(--border);"
         >
           <div
-            class="demo-sidebar-header p-3 flex items-center justify-between border-b"
+            class="demo-drawer-header p-3 flex items-center justify-between border-b"
             style="border-color: var(--border); background: var(--bg);"
           >
             <div class="flex items-center gap-2">
@@ -136,13 +136,13 @@ defmodule SutrauiDemoWeb.Components.SidebarLive do
               </div>
               <span class="text-sm font-medium" style="color: var(--fg);">Sutra UI</span>
             </div>
-            <.sidebar_trigger for="demo-footer" class="demo-trigger-btn" variant="outline" size="sm">
+            <.drawer_trigger for="demo-footer" class="demo-trigger-btn" variant="outline" size="sm">
               <.icon name="lucide-menu" class="size-4" />
               <span class="ml-1">Menu</span>
-            </.sidebar_trigger>
+            </.drawer_trigger>
           </div>
 
-          <.sidebar id="demo-footer">
+          <.drawer id="demo-footer">
             <:header>
               <div
                 class="flex items-center gap-2 p-4 border-b"
@@ -159,72 +159,72 @@ defmodule SutrauiDemoWeb.Components.SidebarLive do
             </:header>
 
             <div class="p-2">
-              <.sidebar_group label="Main">
-                <.sidebar_item href="#">Home</.sidebar_item>
-                <.sidebar_item href="#">Projects</.sidebar_item>
-                <.sidebar_item href="#">Analytics</.sidebar_item>
-              </.sidebar_group>
+              <.drawer_group label="Main">
+                <.drawer_item href="#">Home</.drawer_item>
+                <.drawer_item href="#">Projects</.drawer_item>
+                <.drawer_item href="#">Analytics</.drawer_item>
+              </.drawer_group>
 
-              <.sidebar_separator />
+              <.drawer_separator />
 
-              <.sidebar_group>
-                <.sidebar_item href="#">Documentation</.sidebar_item>
-                <.sidebar_item href="#">Support</.sidebar_item>
-              </.sidebar_group>
+              <.drawer_group>
+                <.drawer_item href="#">Documentation</.drawer_item>
+                <.drawer_item href="#">Support</.drawer_item>
+              </.drawer_group>
             </div>
 
             <:footer>
               <div class="p-2 border-t" style="border-color: var(--border);">
-                <.sidebar_item href="#">
+                <.drawer_item href="#">
                   <span class="flex items-center gap-2">
                     <.icon name="lucide-settings" class="size-4" /> Settings
                   </span>
-                </.sidebar_item>
+                </.drawer_item>
               </div>
             </:footer>
-          </.sidebar>
+          </.drawer>
 
           <div class="p-4" style="color: var(--fg-muted);">
             <p>Main content area</p>
             <p class="text-sm mt-2">
-              Sidebar has header branding, content sections, and a footer with settings.
+              Drawer has header branding, content sections, and a footer with settings.
             </p>
           </div>
         </div>
       </.component_demo>
 
-      <.section_heading id="sidebar-trigger">Sidebar Trigger</.section_heading>
+      <.section_heading id="drawer-trigger">Drawer Trigger</.section_heading>
       <.prose>
         Use
-        <.inline_code>sidebar_trigger</.inline_code>
-        to create a toggle button for the sidebar.
+        <.inline_code>drawer_trigger</.inline_code>
+        to create a toggle button for the drawer.
       </.prose>
 
       <.component_demo title="Trigger Variants" code={trigger_code()}>
         <div
-          class="demo-sidebar-wrapper border rounded-lg"
+          class="demo-drawer-wrapper border rounded-lg"
           style="height: 300px; border-color: var(--border);"
         >
           <div
-            class="demo-sidebar-header p-3 flex items-center justify-between border-b"
+            class="demo-drawer-header p-3 flex items-center justify-between border-b"
             style="border-color: var(--border); background: var(--bg);"
           >
             <span class="text-sm font-medium" style="color: var(--fg);">Trigger Demo</span>
             <div class="flex items-center gap-2">
-              <.sidebar_trigger for="demo-trigger-showcase" variant="ghost" size="sm">
+              <.drawer_trigger for="demo-trigger-showcase" variant="ghost" size="sm">
                 <.icon name="lucide-menu" class="size-4" />
-              </.sidebar_trigger>
-              <.sidebar_trigger for="demo-trigger-showcase-2" variant="outline" size="sm">
+              </.drawer_trigger>
+              <.drawer_trigger for="demo-trigger-showcase-2" variant="outline" size="sm">
                 <.icon name="lucide-menu" class="size-4 -scale-x-100" />
-              </.sidebar_trigger>
+              </.drawer_trigger>
             </div>
           </div>
 
           <div class="flex flex-wrap items-center gap-4 p-4" style="color: var(--fg-muted);">
-            <p class="text-sm w-full">Each trigger controls a different sidebar:</p>
+            <p class="text-sm w-full">Each trigger controls a different drawer:</p>
             <div class="flex items-center gap-2 text-xs">
               <span class="px-2 py-1 rounded" style="background: var(--bg-muted);">Ghost</span>
-              <span style="color: var(--fg-secondary);">→ Left sidebar</span>
+              <span style="color: var(--fg-secondary);">→ Left drawer</span>
             </div>
             <div class="flex items-center gap-2 text-xs">
               <span
@@ -233,31 +233,31 @@ defmodule SutrauiDemoWeb.Components.SidebarLive do
               >
                 Outline
               </span>
-              <span style="color: var(--fg-secondary);">→ Right sidebar</span>
+              <span style="color: var(--fg-secondary);">→ Right drawer</span>
             </div>
           </div>
 
-          <.sidebar id="demo-trigger-showcase">
-            <.sidebar_group label="Left Menu">
-              <.sidebar_item href="#">Option 1</.sidebar_item>
-              <.sidebar_item href="#">Option 2</.sidebar_item>
-              <.sidebar_item href="#">Option 3</.sidebar_item>
-            </.sidebar_group>
-          </.sidebar>
+          <.drawer id="demo-trigger-showcase">
+            <.drawer_group label="Left Menu">
+              <.drawer_item href="#">Option 1</.drawer_item>
+              <.drawer_item href="#">Option 2</.drawer_item>
+              <.drawer_item href="#">Option 3</.drawer_item>
+            </.drawer_group>
+          </.drawer>
 
-          <.sidebar id="demo-trigger-showcase-2" side="right">
-            <.sidebar_group label="Right Menu">
-              <.sidebar_item href="#">Option A</.sidebar_item>
-              <.sidebar_item href="#">Option B</.sidebar_item>
-              <.sidebar_item href="#">Option C</.sidebar_item>
-            </.sidebar_group>
-          </.sidebar>
+          <.drawer id="demo-trigger-showcase-2" side="right">
+            <.drawer_group label="Right Menu">
+              <.drawer_item href="#">Option A</.drawer_item>
+              <.drawer_item href="#">Option B</.drawer_item>
+              <.drawer_item href="#">Option C</.drawer_item>
+            </.drawer_group>
+          </.drawer>
         </div>
       </.component_demo>
 
       <.section_heading id="programmatic-control">Programmatic Control</.section_heading>
       <.prose>
-        Control the sidebar state from JavaScript using custom events:
+        Control the drawer state from JavaScript using custom events:
       </.prose>
 
       <.code_block
@@ -268,7 +268,7 @@ defmodule SutrauiDemoWeb.Components.SidebarLive do
 
       <.section_heading id="accessibility">Accessibility</.section_heading>
       <.prose>
-        The sidebar component includes comprehensive accessibility features:
+        The drawer component includes comprehensive accessibility features:
       </.prose>
       <ul class="list-disc list-inside space-y-1 text-sm" style="color: var(--fg-secondary);">
         <li>
@@ -296,51 +296,51 @@ defmodule SutrauiDemoWeb.Components.SidebarLive do
 
   defp basic_code do
     """
-    <.sidebar_trigger for="main-sidebar" />
-    <.sidebar id="main-sidebar">
+    <.drawer_trigger for="main-drawer" />
+    <.drawer id="main-drawer">
       <:header>
         <div class="flex items-center gap-2 p-4">
           <span class="font-semibold">My App</span>
         </div>
       </:header>
 
-      <.sidebar_group label="Navigation">
-        <.sidebar_item href="/" current>Home</.sidebar_item>
-        <.sidebar_item href="/dashboard">Dashboard</.sidebar_item>
-        <.sidebar_item href="/settings">Settings</.sidebar_item>
-      </.sidebar_group>
-    </.sidebar>
+      <.drawer_group label="Navigation">
+        <.drawer_item href="/" current>Home</.drawer_item>
+        <.drawer_item href="/dashboard">Dashboard</.drawer_item>
+        <.drawer_item href="/settings">Settings</.drawer_item>
+      </.drawer_group>
+    </.drawer>
 
     # Or initially open on desktop
-    <.sidebar_trigger for="main-sidebar" />
-    <.sidebar id="main-sidebar" open>
+    <.drawer_trigger for="main-drawer" />
+    <.drawer id="main-drawer" open>
       ...
-    </.sidebar>
+    </.drawer>
     """
   end
 
   defp submenu_code do
     """
-    <.sidebar_trigger for="nav-sidebar" />
-    <.sidebar id="nav-sidebar">
-      <.sidebar_group label="Navigation">
-        <.sidebar_item href="/">Overview</.sidebar_item>
+    <.drawer_trigger for="nav-drawer" />
+    <.drawer id="nav-drawer">
+      <.drawer_group label="Navigation">
+        <.drawer_item href="/">Overview</.drawer_item>
 
-        <.sidebar_submenu label="Projects" open>
-          <.sidebar_item href="/projects/active">Active</.sidebar_item>
-          <.sidebar_item href="/projects/archived">Archived</.sidebar_item>
-        </.sidebar_submenu>
+        <.drawer_submenu label="Projects" open>
+          <.drawer_item href="/projects/active">Active</.drawer_item>
+          <.drawer_item href="/projects/archived">Archived</.drawer_item>
+        </.drawer_submenu>
 
-        <.sidebar_item href="/team">Team</.sidebar_item>
-      </.sidebar_group>
-    </.sidebar>
+        <.drawer_item href="/team">Team</.drawer_item>
+      </.drawer_group>
+    </.drawer>
     """
   end
 
   defp footer_code do
     """
-    <.sidebar_trigger for="app-sidebar" />
-    <.sidebar id="app-sidebar">
+    <.drawer_trigger for="app-drawer" />
+    <.drawer id="app-drawer">
       <:header>
         <div class="flex items-center gap-2 p-4">
           <img src="/logo.svg" class="w-8 h-8" />
@@ -348,31 +348,31 @@ defmodule SutrauiDemoWeb.Components.SidebarLive do
         </div>
       </:header>
 
-      <.sidebar_group label="Main">
-        <.sidebar_item href="/">Home</.sidebar_item>
-        <.sidebar_item href="/projects">Projects</.sidebar_item>
-      </.sidebar_group>
+      <.drawer_group label="Main">
+        <.drawer_item href="/">Home</.drawer_item>
+        <.drawer_item href="/projects">Projects</.drawer_item>
+      </.drawer_group>
 
       <:footer>
-        <.sidebar_item href="/settings">Settings</.sidebar_item>
+        <.drawer_item href="/settings">Settings</.drawer_item>
       </:footer>
-    </.sidebar>
+    </.drawer>
     """
   end
 
   defp trigger_code do
     """
     # Default icon trigger (hamburger menu)
-    <.sidebar_trigger for="main-sidebar" />
+    <.drawer_trigger for="main-drawer" />
 
     # With outline variant
-    <.sidebar_trigger for="main-sidebar" variant="outline">
+    <.drawer_trigger for="main-drawer" variant="outline">
       <.icon name="lucide-menu" class="size-4" />
-    </.sidebar_trigger>
+    </.drawer_trigger>
 
     # Different sizes
-    <.sidebar_trigger for="main-sidebar" size="sm" />
-    <.sidebar_trigger for="main-sidebar" size="lg" />
+    <.drawer_trigger for="main-drawer" size="sm" />
+    <.drawer_trigger for="main-drawer" size="lg" />
 
     # Available variants: primary, secondary, destructive, outline, ghost, link
     """
@@ -380,19 +380,19 @@ defmodule SutrauiDemoWeb.Components.SidebarLive do
 
   defp js_control_code do
     """
-    // Toggle sidebar
-    document.dispatchEvent(new CustomEvent('sutra-ui:sidebar', {
-      detail: { id: 'main-sidebar' }
+    // Toggle drawer
+    document.dispatchEvent(new CustomEvent('sutra-ui:drawer', {
+      detail: { id: 'main-drawer' }
     }));
 
-    // Open sidebar
-    document.dispatchEvent(new CustomEvent('sutra-ui:sidebar', {
-      detail: { id: 'main-sidebar', action: 'open' }
+    // Open drawer
+    document.dispatchEvent(new CustomEvent('sutra-ui:drawer', {
+      detail: { id: 'main-drawer', action: 'open' }
     }));
 
-    // Close sidebar
-    document.dispatchEvent(new CustomEvent('sutra-ui:sidebar', {
-      detail: { id: 'main-sidebar', action: 'close' }
+    // Close drawer
+    document.dispatchEvent(new CustomEvent('sutra-ui:drawer', {
+      detail: { id: 'main-drawer', action: 'close' }
     }));
     """
   end

@@ -187,7 +187,7 @@ defmodule SutrauiDemoWeb.Docs.ThemingLive do
         </table>
       </div>
 
-      <.subsection_heading>Sidebar Colors</.subsection_heading>
+      <.subsection_heading>Drawer Colors</.subsection_heading>
 
       <div class="my-6 overflow-hidden rounded-lg border" style="border-color: var(--border);">
         <table class="w-full text-sm">
@@ -200,39 +200,39 @@ defmodule SutrauiDemoWeb.Docs.ThemingLive do
           <tbody>
             <tr style="border-bottom: 1px solid var(--border);">
               <td class="px-4 py-3">
-                <.inline_code>--sidebar</.inline_code>
+                <.inline_code>--drawer</.inline_code>
               </td>
-              <td class="px-4 py-3 text-muted-foreground">Sidebar background</td>
+              <td class="px-4 py-3 text-muted-foreground">Drawer background</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--border);">
               <td class="px-4 py-3">
-                <.inline_code>--sidebar-foreground</.inline_code>
+                <.inline_code>--drawer-foreground</.inline_code>
               </td>
-              <td class="px-4 py-3 text-muted-foreground">Sidebar text color</td>
+              <td class="px-4 py-3 text-muted-foreground">Drawer text color</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--border);">
               <td class="px-4 py-3">
-                <.inline_code>--sidebar-primary</.inline_code>
+                <.inline_code>--drawer-primary</.inline_code>
               </td>
-              <td class="px-4 py-3 text-muted-foreground">Sidebar active item</td>
+              <td class="px-4 py-3 text-muted-foreground">Drawer active item</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--border);">
               <td class="px-4 py-3">
-                <.inline_code>--sidebar-accent</.inline_code>
+                <.inline_code>--drawer-accent</.inline_code>
               </td>
-              <td class="px-4 py-3 text-muted-foreground">Sidebar hover state</td>
+              <td class="px-4 py-3 text-muted-foreground">Drawer hover state</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--border);">
               <td class="px-4 py-3">
-                <.inline_code>--sidebar-border</.inline_code>
+                <.inline_code>--drawer-border</.inline_code>
               </td>
-              <td class="px-4 py-3 text-muted-foreground">Sidebar border</td>
+              <td class="px-4 py-3 text-muted-foreground">Drawer border</td>
             </tr>
             <tr>
               <td class="px-4 py-3">
-                <.inline_code>--sidebar-ring</.inline_code>
+                <.inline_code>--drawer-ring</.inline_code>
               </td>
-              <td class="px-4 py-3 text-muted-foreground">Sidebar focus ring</td>
+              <td class="px-4 py-3 text-muted-foreground">Drawer focus ring</td>
             </tr>
           </tbody>
         </table>

@@ -58,7 +58,7 @@ defmodule SutrauiDemoWeb.Layouts do
         <div class="flex gap-16">
           <aside class="hidden lg:block w-56 shrink-0 py-12">
             <div class="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto scrollbar-hide">
-              <.docs_sidebar current_path={@current_path} />
+              <.docs_drawer current_path={@current_path} />
             </div>
           </aside>
 
@@ -70,7 +70,7 @@ defmodule SutrauiDemoWeb.Layouts do
         </div>
       </div>
 
-      <.mobile_sidebar current_path={@current_path} />
+      <.mobile_drawer current_path={@current_path} />
       <.command_palette />
       <.toast_container flash={@flash} />
     </div>
@@ -121,24 +121,24 @@ defmodule SutrauiDemoWeb.Layouts do
 
   attr(:current_path, :string, default: "/")
 
-  def mobile_sidebar(assigns) do
+  def mobile_drawer(assigns) do
     ~H"""
     <div
-      id="mobile-sidebar"
-      class="mobile-sidebar-overlay fixed inset-0 z-50 hidden lg:hidden"
-      phx-hook=".MobileSidebar"
+      id="mobile-drawer"
+      class="mobile-drawer-overlay fixed inset-0 z-50 hidden lg:hidden"
+      phx-hook=".MobileDrawer"
     >
       <div
-        class="mobile-sidebar-backdrop absolute inset-0 opacity-0 transition-opacity duration-300"
+        class="mobile-drawer-backdrop absolute inset-0 opacity-0 transition-opacity duration-300"
         style="background: rgba(0, 0, 0, 0.5);"
-        data-sidebar-backdrop
+        data-drawer-backdrop
       >
       </div>
 
       <div
-        class="mobile-sidebar-panel absolute left-0 top-0 h-full w-72 -translate-x-full transition-transform duration-300"
+        class="mobile-drawer-panel absolute left-0 top-0 h-full w-72 -translate-x-full transition-transform duration-300"
         style="background: var(--bg); border-right: 1px solid var(--border);"
-        data-sidebar-panel
+        data-drawer-panel
       >
         <div
           class="flex h-16 items-center justify-between px-6 border-b"
@@ -149,25 +149,25 @@ defmodule SutrauiDemoWeb.Layouts do
             type="button"
             class="nav-link p-2 -mr-2"
             aria-label="Close menu"
-            data-sidebar-close
+            data-drawer-close
           >
             <.icon name="lucide-x" class="size-5" />
           </button>
         </div>
 
         <div class="px-6 py-8 overflow-y-auto" style="height: calc(100% - 4rem);">
-          <.docs_sidebar current_path={@current_path} />
+          <.docs_drawer current_path={@current_path} />
         </div>
       </div>
     </div>
 
-    <script :type={Phoenix.LiveView.ColocatedHook} name=".MobileSidebar">
+    <script :type={Phoenix.LiveView.ColocatedHook} name=".MobileDrawer">
       export default {
         mounted() {
           const container = this.el;
-          const backdrop = container.querySelector('[data-sidebar-backdrop]');
-          const panel = container.querySelector('[data-sidebar-panel]');
-          const closeBtn = container.querySelector('[data-sidebar-close]');
+          const backdrop = container.querySelector('[data-drawer-backdrop]');
+          const panel = container.querySelector('[data-drawer-panel]');
+          const closeBtn = container.querySelector('[data-drawer-close]');
           let isOpen = false;
 
           const open = () => {
@@ -381,53 +381,53 @@ defmodule SutrauiDemoWeb.Layouts do
 
   attr(:current_path, :string, default: "/")
 
-  def docs_sidebar(assigns) do
+  def docs_drawer(assigns) do
     ~H"""
     <nav class="space-y-10">
       <div>
-        <h4 class="sidebar-title">Getting Started</h4>
+        <h4 class="drawer-title">Getting Started</h4>
         <div class="space-y-1">
-          <.sidebar_link href="/docs" label="Introduction" current_path={@current_path} />
-          <.sidebar_link href="/docs/installation" label="Installation" current_path={@current_path} />
-          <.sidebar_link href="/docs/theming" label="Theming" current_path={@current_path} />
+          <.drawer_link href="/docs" label="Introduction" current_path={@current_path} />
+          <.drawer_link href="/docs/installation" label="Installation" current_path={@current_path} />
+          <.drawer_link href="/docs/theming" label="Theming" current_path={@current_path} />
         </div>
       </div>
 
       <%!-- Form Inputs --%>
       <div>
-        <h4 class="sidebar-title">Form Inputs</h4>
+        <h4 class="drawer-title">Form Inputs</h4>
         <div class="space-y-1">
-          <.sidebar_link
+          <.drawer_link
             href="/docs/components/checkbox"
             label="Checkbox"
             current_path={@current_path}
           />
-          <.sidebar_link href="/docs/components/input" label="Input" current_path={@current_path} />
-          <.sidebar_link
+          <.drawer_link href="/docs/components/input" label="Input" current_path={@current_path} />
+          <.drawer_link
             href="/docs/components/input-group"
             label="Input Group"
             current_path={@current_path}
           />
-          <.sidebar_link href="/docs/components/label" label="Label" current_path={@current_path} />
-          <.sidebar_link
+          <.drawer_link href="/docs/components/label" label="Label" current_path={@current_path} />
+          <.drawer_link
             href="/docs/components/live-select"
             label="Live Select"
             current_path={@current_path}
           />
-          <.sidebar_link
+          <.drawer_link
             href="/docs/components/radio-group"
             label="Radio Group"
             current_path={@current_path}
           />
-          <.sidebar_link
+          <.drawer_link
             href="/docs/components/range-slider"
             label="Range Slider"
             current_path={@current_path}
           />
-          <.sidebar_link href="/docs/components/select" label="Select" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/slider" label="Slider" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/switch" label="Switch" current_path={@current_path} />
-          <.sidebar_link
+          <.drawer_link href="/docs/components/select" label="Select" current_path={@current_path} />
+          <.drawer_link href="/docs/components/slider" label="Slider" current_path={@current_path} />
+          <.drawer_link href="/docs/components/switch" label="Switch" current_path={@current_path} />
+          <.drawer_link
             href="/docs/components/textarea"
             label="Textarea"
             current_path={@current_path}
@@ -437,10 +437,10 @@ defmodule SutrauiDemoWeb.Layouts do
 
       <%!-- Buttons & Actions --%>
       <div>
-        <h4 class="sidebar-title">Buttons & Actions</h4>
+        <h4 class="drawer-title">Buttons & Actions</h4>
         <div class="space-y-1">
-          <.sidebar_link href="/docs/components/button" label="Button" current_path={@current_path} />
-          <.sidebar_link
+          <.drawer_link href="/docs/components/button" label="Button" current_path={@current_path} />
+          <.drawer_link
             href="/docs/components/dropdown-menu"
             label="Dropdown Menu"
             current_path={@current_path}
@@ -450,113 +450,113 @@ defmodule SutrauiDemoWeb.Layouts do
 
       <%!-- Layout --%>
       <div>
-        <h4 class="sidebar-title">Layout</h4>
+        <h4 class="drawer-title">Layout</h4>
         <div class="space-y-1">
-          <.sidebar_link
+          <.drawer_link
             href="/docs/components/accordion"
             label="Accordion"
             current_path={@current_path}
           />
-          <.sidebar_link href="/docs/components/card" label="Card" current_path={@current_path} />
-          <.sidebar_link
+          <.drawer_link href="/docs/components/card" label="Card" current_path={@current_path} />
+          <.drawer_link
             href="/docs/components/filter-bar"
             label="Filter Bar"
             current_path={@current_path}
           />
-          <.sidebar_link href="/docs/components/header" label="Header" current_path={@current_path} />
-          <.sidebar_link
+          <.drawer_link href="/docs/components/header" label="Header" current_path={@current_path} />
+          <.drawer_link
             href="/docs/components/simple-form"
             label="Simple Form"
             current_path={@current_path}
           />
-          <.sidebar_link href="/docs/components/tabs" label="Tabs" current_path={@current_path} />
+          <.drawer_link href="/docs/components/tabs" label="Tabs" current_path={@current_path} />
         </div>
       </div>
 
       <%!-- Navigation --%>
       <div>
-        <h4 class="sidebar-title">Navigation</h4>
+        <h4 class="drawer-title">Navigation</h4>
         <div class="space-y-1">
-          <.sidebar_link
+          <.drawer_link
             href="/docs/components/breadcrumb"
             label="Breadcrumb"
             current_path={@current_path}
           />
-          <.sidebar_link
+          <.drawer_link
             href="/docs/components/nav-pills"
             label="Nav Pills"
             current_path={@current_path}
           />
-          <.sidebar_link
+          <.drawer_link
             href="/docs/components/pagination"
             label="Pagination"
             current_path={@current_path}
           />
-          <.sidebar_link href="/docs/components/sidebar" label="Sidebar" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/tab-nav" label="Tab Nav" current_path={@current_path} />
+          <.drawer_link href="/docs/components/drawer" label="Drawer" current_path={@current_path} />
+          <.drawer_link href="/docs/components/tab-nav" label="Tab Nav" current_path={@current_path} />
         </div>
       </div>
 
       <%!-- Feedback --%>
       <div>
-        <h4 class="sidebar-title">Feedback</h4>
+        <h4 class="drawer-title">Feedback</h4>
         <div class="space-y-1">
-          <.sidebar_link href="/docs/components/alert" label="Alert" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/empty" label="Empty" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/flash" label="Flash" current_path={@current_path} />
-          <.sidebar_link
+          <.drawer_link href="/docs/components/alert" label="Alert" current_path={@current_path} />
+          <.drawer_link href="/docs/components/empty" label="Empty" current_path={@current_path} />
+          <.drawer_link href="/docs/components/flash" label="Flash" current_path={@current_path} />
+          <.drawer_link
             href="/docs/components/loading-state"
             label="Loading State"
             current_path={@current_path}
           />
-          <.sidebar_link
+          <.drawer_link
             href="/docs/components/progress"
             label="Progress"
             current_path={@current_path}
           />
-          <.sidebar_link
+          <.drawer_link
             href="/docs/components/skeleton"
             label="Skeleton"
             current_path={@current_path}
           />
-          <.sidebar_link href="/docs/components/spinner" label="Spinner" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/toast" label="Toast" current_path={@current_path} />
+          <.drawer_link href="/docs/components/spinner" label="Spinner" current_path={@current_path} />
+          <.drawer_link href="/docs/components/toast" label="Toast" current_path={@current_path} />
         </div>
       </div>
 
       <%!-- Overlays --%>
       <div>
-        <h4 class="sidebar-title">Overlays</h4>
+        <h4 class="drawer-title">Overlays</h4>
         <div class="space-y-1">
-          <.sidebar_link href="/docs/components/command" label="Command" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/dialog" label="Dialog" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/popover" label="Popover" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/tooltip" label="Tooltip" current_path={@current_path} />
+          <.drawer_link href="/docs/components/command" label="Command" current_path={@current_path} />
+          <.drawer_link href="/docs/components/dialog" label="Dialog" current_path={@current_path} />
+          <.drawer_link href="/docs/components/popover" label="Popover" current_path={@current_path} />
+          <.drawer_link href="/docs/components/tooltip" label="Tooltip" current_path={@current_path} />
         </div>
       </div>
 
       <%!-- Data Display --%>
       <div>
-        <h4 class="sidebar-title">Data Display</h4>
+        <h4 class="drawer-title">Data Display</h4>
         <div class="space-y-1">
-          <.sidebar_link href="/docs/components/avatar" label="Avatar" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/badge" label="Badge" current_path={@current_path} />
-          <.sidebar_link
+          <.drawer_link href="/docs/components/avatar" label="Avatar" current_path={@current_path} />
+          <.drawer_link href="/docs/components/badge" label="Badge" current_path={@current_path} />
+          <.drawer_link
             href="/docs/components/carousel"
             label="Carousel"
             current_path={@current_path}
           />
-          <.sidebar_link href="/docs/components/item" label="Item" current_path={@current_path} />
-          <.sidebar_link href="/docs/components/table" label="Table" current_path={@current_path} />
+          <.drawer_link href="/docs/components/item" label="Item" current_path={@current_path} />
+          <.drawer_link href="/docs/components/table" label="Table" current_path={@current_path} />
         </div>
       </div>
 
       <%!-- Utilities --%>
       <div>
-        <h4 class="sidebar-title">Utilities</h4>
+        <h4 class="drawer-title">Utilities</h4>
         <div class="space-y-1">
-          <.sidebar_link href="/docs/components/kbd" label="Kbd" current_path={@current_path} />
-          <.sidebar_link
+          <.drawer_link href="/docs/components/kbd" label="Kbd" current_path={@current_path} />
+          <.drawer_link
             href="/docs/components/theme-switcher"
             label="Theme Switcher"
             current_path={@current_path}
@@ -567,14 +567,14 @@ defmodule SutrauiDemoWeb.Layouts do
     """
   end
 
-  defp sidebar_link(assigns) do
+  defp drawer_link(assigns) do
     active = assigns.current_path == assigns.href
     assigns = assign(assigns, :active, active)
 
     ~H"""
     <.link
       navigate={@href}
-      class={["sidebar-link", @active && "active"]}
+      class={["drawer-link", @active && "active"]}
       phx-click={JS.dispatch("phx:close-mobile-menu")}
     >
       {@label}
@@ -764,8 +764,8 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["pages", "page", "next", "previous", "navigation"]
         },
         %{
-          label: "Sidebar",
-          href: "/docs/components/sidebar",
+          label: "Drawer",
+          href: "/docs/components/drawer",
           keywords: ["navigation", "menu", "drawer", "panel", "collapsible"]
         },
         %{

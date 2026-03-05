@@ -54,7 +54,7 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
       </.prose>
 
       <.component_demo title="With Icons" code={icons_code()}>
-        <.tab_nav>
+        <.tab_nav id="tab-nav-icons-demo">
           <:tab patch="/docs/components/tab-nav?tab=about" active={@active_tab == "about"}>
             <.icon name="lucide-info" class="size-4 mr-2" /> About
           </:tab>

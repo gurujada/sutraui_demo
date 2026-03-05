@@ -299,7 +299,7 @@ body {
    SIDEBAR
    ======================================== */
 
-.sidebar-title {
+.drawer-title {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
     font-weight: 500;
@@ -309,7 +309,7 @@ body {
     margin-bottom: 1rem;
 }
 
-.sidebar-link {
+.drawer-link {
     display: block;
     font-size: 0.9rem;
     color: var(--fg-secondary);
@@ -319,17 +319,17 @@ body {
         padding-left 0.15s;
 }
 
-.sidebar-link:hover {
+.drawer-link:hover {
     color: var(--fg);
 }
 
-.sidebar-link.active {
+.drawer-link.active {
   color: var(--site-accent);
   font-weight: 500;
 }
 
-/* Demo sidebar - container-constrained sidebar */
-.demo-sidebar-wrapper {
+/* Demo drawer - container-constrained drawer */
+.demo-drawer-wrapper {
   position: relative;
   width: 100%;
   height: 100%;
@@ -337,37 +337,37 @@ body {
   display: flex;
   flex-direction: column;
 
-  /* Remap sidebar CSS vars to site theme so library Tailwind classes blend */
-  --sidebar: var(--bg-subtle);
-  --sidebar-foreground: var(--fg);
-  --sidebar-primary: var(--site-accent);
-  --sidebar-primary-foreground: #fff;
-  --sidebar-accent: var(--bg-muted);
-  --sidebar-accent-foreground: var(--fg);
-  --sidebar-border: var(--border);
-  --sidebar-ring: var(--site-accent);
+  /* Remap drawer CSS vars to site theme so library classes blend */
+  --drawer: var(--bg-subtle);
+  --drawer-foreground: var(--fg);
+  --drawer-primary: var(--site-accent);
+  --drawer-primary-foreground: #fff;
+  --drawer-accent: var(--bg-muted);
+  --drawer-accent-foreground: var(--fg);
+  --drawer-border: var(--border);
+  --drawer-ring: var(--site-accent);
 
   /* Also set the --color-* versions that Tailwind v4 resolves */
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+  --color-drawer: var(--drawer);
+  --color-drawer-foreground: var(--drawer-foreground);
+  --color-drawer-primary: var(--drawer-primary);
+  --color-drawer-primary-foreground: var(--drawer-primary-foreground);
+  --color-drawer-accent: var(--drawer-accent);
+  --color-drawer-accent-foreground: var(--drawer-accent-foreground);
+  --color-drawer-border: var(--drawer-border);
+  --color-drawer-ring: var(--drawer-ring);
 }
 
 /* Toolbar/header area */
-.demo-sidebar-wrapper > .demo-sidebar-header {
+.demo-drawer-wrapper > .demo-drawer-header {
   flex-shrink: 0;
   height: 48px;
   z-index: 20;
   position: relative;
 }
 
-/* Sidebar wrapper fills remaining space */
-.demo-sidebar-wrapper > .sidebar {
+/* Drawer wrapper fills remaining space */
+.demo-drawer-wrapper > .drawer {
   position: absolute;
   top: 49px; /* Below the header */
   left: 0;
@@ -377,7 +377,7 @@ body {
 }
 
 /* Override library fixed positioning - make aside relative to container */
-.demo-sidebar-wrapper > .sidebar > aside {
+.demo-drawer-wrapper > .drawer > aside {
   position: absolute !important;
   top: 0 !important;
   right: auto !important;
@@ -394,15 +394,15 @@ body {
 }
 
 /* Override library inset utilities that conflict */
-.demo-sidebar-wrapper > .sidebar[data-side="left"] > aside,
-.demo-sidebar-wrapper > .sidebar[data-side="right"] > aside {
+.demo-drawer-wrapper > .drawer[data-side="left"] > aside,
+.demo-drawer-wrapper > .drawer[data-side="right"] > aside {
   inset: 0 !important;
   top: 0 !important;
   bottom: 0 !important;
 }
 
-/* Right sidebar positioning */
-.demo-sidebar-wrapper > .sidebar[data-side="right"] > aside {
+/* Right drawer positioning */
+.demo-drawer-wrapper > .drawer[data-side="right"] > aside {
   left: auto !important;
   right: 0 !important;
   transform: translateX(100%);
@@ -410,21 +410,21 @@ body {
   border-left: 1px solid var(--border) !important;
 }
 
-.demo-sidebar-wrapper > .sidebar[data-side="right"][aria-hidden="false"] > aside {
+.demo-drawer-wrapper > .drawer[data-side="right"][aria-hidden="false"] > aside {
   transform: translateX(0);
 }
 
 /* Open state */
-.demo-sidebar-wrapper > .sidebar[aria-hidden="false"] > aside {
+.demo-drawer-wrapper > .drawer[aria-hidden="false"] > aside {
   transform: translateX(0);
 }
 
 /* Hide backdrop in demo containers */
-.demo-sidebar-wrapper > .sidebar > .sidebar-backdrop {
+.demo-drawer-wrapper > .drawer > .drawer-backdrop {
   display: none !important;
 }
 
-/* Trigger button - visible when sidebar closed */
+/* Trigger button - visible when drawer closed */
 .demo-trigger-btn {
   display: inline-flex;
   z-index: 25;
