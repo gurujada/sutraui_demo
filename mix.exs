@@ -67,6 +67,7 @@ defmodule SutrauiDemo.MixProject do
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
       {:sutra_ui, git: "git@github.com:gurujada/sutra_ui.git"},
+      # {:sutra_ui, path: "../sutra_ui"},
       # Syntax highlighting
       {:makeup, "~> 1.2"},
       {:makeup_elixir, "~> 1.0"},

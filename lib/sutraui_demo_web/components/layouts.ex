@@ -7,6 +7,8 @@ defmodule SutrauiDemoWeb.Layouts do
 
   embed_templates("layouts/*")
 
+  defp sutra_version, do: "0.3.0"
+
   attr(:flash, :map, required: true)
   attr(:current_scope, :map, default: nil)
   slot(:inner_block, required: true)
@@ -95,6 +97,9 @@ defmodule SutrauiDemoWeb.Layouts do
             <.icon name="lucide-menu" class="size-5" />
           </button>
           <a href="/" class="site-logo">Sutra UI</a>
+          <span class="hidden sm:inline-flex items-center rounded-md border border-border bg-muted/40 px-2 py-0.5 text-xs font-medium text-muted-foreground">
+            v{sutra_version()}
+          </span>
         </div>
 
         <nav class="flex items-center gap-6">
@@ -144,7 +149,12 @@ defmodule SutrauiDemoWeb.Layouts do
           class="flex h-16 items-center justify-between px-6 border-b"
           style="border-color: var(--border);"
         >
-          <span class="site-logo">Sutra UI</span>
+          <div class="flex items-center gap-2">
+            <span class="site-logo">Sutra UI</span>
+            <span class="inline-flex items-center rounded-md border border-border bg-muted/40 px-2 py-0.5 text-xs font-medium text-muted-foreground">
+              v{sutra_version()}
+            </span>
+          </div>
           <button
             type="button"
             class="nav-link p-2 -mr-2"
