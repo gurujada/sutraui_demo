@@ -3,13 +3,15 @@ defmodule SutrauiDemoWeb.Components.FileUploadLive do
 
   def mount(_params, _session, socket) do
     socket =
-      allow_upload(socket, :documents,
-        accept: ~w(.pdf .png .jpg .jpeg),
+      socket
+      |> assign(page_title: "File Upload")
+      |> allow_upload(:documents,
+        accept: ~w(.pdf .png .zip),
         max_entries: 3,
-        max_file_size: 5_000_000
+        max_file_size: 10_000_000
       )
 
-    {:ok, assign(socket, page_title: "File Upload")}
+    {:ok, socket}
   end
 
   def render(assigns) do
@@ -17,32 +19,40 @@ defmodule SutrauiDemoWeb.Components.FileUploadLive do
     <Layouts.docs flash={@flash} current_path="/docs/components/file-upload">
       <.docs_header
         title="File Upload"
-        description="A styled LiveView upload dropzone built on Phoenix allow_upload/3."
+        description="Drag-and-drop file upload component built on Phoenix LiveView uploads."
       />
 
-      <.component_demo title="Default" code={default_code()}>
-        <form phx-change="validate-upload" phx-submit="save-upload" class="w-full">
+      <.component_demo title="Dropzone" code={drop_code()}>
+        <form phx-change="validate-upload" phx-submit="save-upload" class="w-full max-w-lg">
           <.file_upload
             upload={@uploads.documents}
             label="Upload documents"
-            description="PDF, PNG, or JPG up to 5 MB"
-          >
-            <:entry
-              :for={entry <- @uploads.documents.entries}
-              name={entry.client_name}
-              progress={entry.progress}
-              status={if entry.done?, do: "Ready", else: "Uploading"}
-            />
-          </.file_upload>
+            description="PDF, PNG, or ZIP up to 10MB"
+          />
         </form>
       </.component_demo>
 
-      <.section_heading id="static-state">Static State</.section_heading>
-      <.component_demo title="Progress Rows" code={progress_code()}>
-        <.file_upload label="Upload assets" description="Drag files here or browse">
-          <:entry name="brand-guidelines.pdf" progress={72} status="Uploading" />
-          <:entry name="avatar.png" progress={100} status="Ready" />
-        </.file_upload>
+      <.component_demo title="Custom Content" code={custom_code()}>
+        <div class="w-full max-w-lg">
+          <.file_upload upload={nil}>
+            <:drop_content>
+              <span class="text-4xl">📁</span>
+              <span class="text-sm font-medium" style="color: var(--fg);">Drop your files here</span>
+              <span class="text-xs" style="color: var(--fg-muted);">or click to browse</span>
+            </:drop_content>
+          </.file_upload>
+        </div>
+      </.component_demo>
+
+      <.component_demo title="Image Upload" code={image_code()}>
+        <div class="w-full max-w-lg">
+          <.file_upload
+            upload={nil}
+            accept="image/*"
+            label="Upload photos"
+            description="JPG or PNG, max 5 files"
+          />
+        </div>
       </.component_demo>
     </Layouts.docs>
     """
@@ -51,21 +61,36 @@ defmodule SutrauiDemoWeb.Components.FileUploadLive do
   def handle_event("validate-upload", _params, socket), do: {:noreply, socket}
   def handle_event("save-upload", _params, socket), do: {:noreply, socket}
 
-  defp default_code do
+  def handle_event("cancel-upload", %{"ref" => ref}, socket),
+    do: {:noreply, cancel_upload(socket, :documents, ref)}
+
+  defp drop_code do
     """
     # mount/3
-    allow_upload(socket, :documents, accept: ~w(.pdf .png .jpg), max_entries: 3)
+    allow_upload(socket, :documents, accept: ~w(.pdf .png .zip), max_entries: 3)
 
     # render/1
-    <.file_upload upload={@uploads.documents} label="Upload documents" />\
+    <form phx-change="validate-upload" phx-submit="save-upload">
+      <.file_upload
+        upload={@uploads.documents}
+        label="Upload documents"
+        description="PDF, PNG, or ZIP up to 10MB"
+      />
+    </form>\
     """
   end
 
-  defp progress_code do
+  defp custom_code do
     """
-    <.file_upload label="Upload assets">
-      <:entry name="brand-guidelines.pdf" progress={72} status="Uploading" />
+    <.file_upload upload={nil}>
+      <:drop_content>
+        Drop your files here
+      </:drop_content>
     </.file_upload>\
     """
+  end
+
+  defp image_code do
+    ~s|<.file_upload upload={nil} accept="image/*" label="Upload photos" description="JPG or PNG, max 5 files" />|
   end
 end

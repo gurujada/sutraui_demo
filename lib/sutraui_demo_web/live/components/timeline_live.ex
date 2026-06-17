@@ -10,48 +10,65 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
     <Layouts.docs flash={@flash} current_path="/docs/components/timeline">
       <.docs_header
         title="Timeline"
-        description="Displays chronological events for activity feeds, releases, and process history."
+        description="A vertical list of chronological events with connecting lines."
       />
 
       <.component_demo title="Default" code={default_code()}>
-        <.timeline>
-          <:item
-            title="Project created"
-            time="09:00"
-            description="Workspace and default settings were created."
-          />
-          <:item
-            title="Invite sent"
-            time="09:24"
-            description="Team members were invited to collaborate."
-          />
-          <:item
-            title="Ready for review"
-            time="10:10"
-            description="The project moved into final review."
-            state="current"
-          />
-        </.timeline>
+        <div class="w-full max-w-md">
+          <.timeline>
+            <:item time="12 min ago" state="current">
+              <h3 class="text-sm font-medium" style="color: var(--fg);">Deployed v2.4</h3>
+              <p class="text-sm" style="color: var(--fg-muted);">
+                Pushed to production, all checks green.
+              </p>
+            </:item>
+            <:item time="1 hour ago" state="complete">
+              <h3 class="text-sm font-medium" style="color: var(--fg);">Merged PR #342</h3>
+              <p class="text-sm" style="color: var(--fg-muted);">
+                Refactored auth module for better testability.
+              </p>
+            </:item>
+            <:item time="2 hours ago">
+              <div class="flex items-center gap-2">
+                <div
+                  class="size-5 rounded-full flex items-center justify-center text-[10px] font-bold"
+                  style="background: var(--primary); color: var(--primary-foreground);"
+                >
+                  J
+                </div>
+                <span class="text-sm font-medium" style="color: var(--fg);">
+                  Jess opened a new issue
+                </span>
+              </div>
+              <p class="text-sm ml-7" style="color: var(--fg-muted);">
+                Button color contrast on mobile
+              </p>
+            </:item>
+          </.timeline>
+        </div>
       </.component_demo>
 
-      <.section_heading id="custom-content">Custom Content</.section_heading>
-      <.component_demo title="Release Timeline" code={release_code()}>
-        <.timeline>
-          <:item title="v0.3.0" time="Today" state="complete">
-            <div
-              class="mt-3 rounded-md border p-3 text-sm"
-              style="border-color: var(--border); color: var(--fg-muted);"
-            >
-              Separator, Marquee, and the next component batch are available.
-            </div>
-          </:item>
-          <:item
-            title="v0.4.0"
-            time="Next"
-            description="More form and navigation primitives."
-            state="muted"
-          />
-        </.timeline>
+      <.section_heading id="with-icons">Custom Markers</.section_heading>
+      <.prose>
+        Use the
+        <.inline_code>icon</.inline_code>
+        slot attr for custom marker content.
+      </.prose>
+
+      <.component_demo title="Custom Markers" code={icons_code()}>
+        <div class="w-full max-w-md">
+          <.timeline>
+            <:item icon="📝" time="Today" state="current">
+              <h3 class="text-sm font-medium" style="color: var(--fg);">Draft saved</h3>
+            </:item>
+            <:item icon="✓" time="Yesterday" state="complete">
+              <h3 class="text-sm font-medium" style="color: var(--fg);">Review completed</h3>
+            </:item>
+            <:item icon="🚀" time="Monday" state="complete">
+              <h3 class="text-sm font-medium" style="color: var(--fg);">Launched v2.0</h3>
+            </:item>
+          </.timeline>
+        </div>
       </.component_demo>
     </Layouts.docs>
     """
@@ -60,18 +77,28 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
   defp default_code do
     """
     <.timeline>
-      <:item title="Project created" time="09:00" description="Workspace created." />
-      <:item title="Ready for review" time="10:10" state="current" />
+      <:item time="12 min ago" state="current">
+        <h3>Deployed v2.4</h3>
+      </:item>
+      <:item time="1 hour ago" state="complete">
+        <h3>Merged PR #342</h3>
+      </:item>
+      <:item time="2 hours ago">
+        <div class="flex items-center gap-2">
+          <div>J</div>
+          <span>Jess opened an issue</span>
+        </div>
+      </:item>
     </.timeline>\
     """
   end
 
-  defp release_code do
+  defp icons_code do
     """
     <.timeline>
-      <:item title="v0.3.0" time="Today" state="complete">
-        Separator and Marquee are available.
-      </:item>
+      <:item icon="📝" time="Today" state="current"><h3>Draft saved</h3></:item>
+      <:item icon="✓" time="Yesterday" state="complete"><h3>Review completed</h3></:item>
+      <:item icon="🚀" time="Monday" state="complete"><h3>Launched v2.0</h3></:item>
     </.timeline>\
     """
   end

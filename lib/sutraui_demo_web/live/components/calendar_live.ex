@@ -19,7 +19,6 @@ defmodule SutrauiDemoWeb.Components.CalendarLive do
           year={@selected.year}
           month={@selected.month}
           selected={@selected}
-          today={Date.utc_today()}
           select_event="select_date"
         />
       </.component_demo>
@@ -38,7 +37,7 @@ defmodule SutrauiDemoWeb.Components.CalendarLive do
 
   defp default_code do
     """
-    <.calendar selected={@selected} today={Date.utc_today()} select_event="select_date" />\
+    <.calendar selected={@selected} select_event="select_date" />\
     """
   end
 

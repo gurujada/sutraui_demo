@@ -66,7 +66,7 @@ defmodule SutrauiDemoWeb.DocsComponents do
           <div class="flex-1"></div>
           <button
             type="button"
-            class="demo-copy-btn px-3 text-xs"
+            class="demo-copy-btn px-3 text-xs hover:cursor-pointer"
             style="color: var(--fg-muted);"
             aria-label="Copy code"
           >
