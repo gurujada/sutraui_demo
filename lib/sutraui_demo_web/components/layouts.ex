@@ -414,6 +414,16 @@ defmodule SutrauiDemoWeb.Layouts do
           />
           <.drawer_link href="/docs/components/input" label="Input" current_path={@current_path} />
           <.drawer_link
+            href="/docs/components/input-otp"
+            label="Input OTP"
+            current_path={@current_path}
+          />
+          <.drawer_link
+            href="/docs/components/file-upload"
+            label="File Upload"
+            current_path={@current_path}
+          />
+          <.drawer_link
             href="/docs/components/input-group"
             label="Input Group"
             current_path={@current_path}
@@ -451,6 +461,11 @@ defmodule SutrauiDemoWeb.Layouts do
         <div class="space-y-1">
           <.drawer_link href="/docs/components/button" label="Button" current_path={@current_path} />
           <.drawer_link
+            href="/docs/components/context-menu"
+            label="Context Menu"
+            current_path={@current_path}
+          />
+          <.drawer_link
             href="/docs/components/dropdown-menu"
             label="Dropdown Menu"
             current_path={@current_path}
@@ -479,7 +494,13 @@ defmodule SutrauiDemoWeb.Layouts do
             label="Simple Form"
             current_path={@current_path}
           />
+          <.drawer_link href="/docs/components/stepper" label="Stepper" current_path={@current_path} />
           <.drawer_link href="/docs/components/tabs" label="Tabs" current_path={@current_path} />
+          <.drawer_link
+            href="/docs/components/tree-view"
+            label="Tree View"
+            current_path={@current_path}
+          />
         </div>
       </div>
 
@@ -540,6 +561,11 @@ defmodule SutrauiDemoWeb.Layouts do
         <div class="space-y-1">
           <.drawer_link href="/docs/components/command" label="Command" current_path={@current_path} />
           <.drawer_link href="/docs/components/dialog" label="Dialog" current_path={@current_path} />
+          <.drawer_link
+            href="/docs/components/hover-card"
+            label="Hover Card"
+            current_path={@current_path}
+          />
           <.drawer_link href="/docs/components/popover" label="Popover" current_path={@current_path} />
           <.drawer_link href="/docs/components/tooltip" label="Tooltip" current_path={@current_path} />
         </div>
@@ -557,12 +583,22 @@ defmodule SutrauiDemoWeb.Layouts do
             current_path={@current_path}
           />
           <.drawer_link
+            href="/docs/components/calendar"
+            label="Calendar"
+            current_path={@current_path}
+          />
+          <.drawer_link
             href="/docs/components/marquee"
             label="Marquee"
             current_path={@current_path}
           />
           <.drawer_link href="/docs/components/item" label="Item" current_path={@current_path} />
           <.drawer_link href="/docs/components/table" label="Table" current_path={@current_path} />
+          <.drawer_link
+            href="/docs/components/timeline"
+            label="Timeline"
+            current_path={@current_path}
+          />
         </div>
       </div>
 
@@ -673,6 +709,16 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["text", "field", "form", "textbox"]
         },
         %{
+          label: "Input OTP",
+          href: "/docs/components/input-otp",
+          keywords: ["otp", "pin", "mfa", "verification", "code"]
+        },
+        %{
+          label: "File Upload",
+          href: "/docs/components/file-upload",
+          keywords: ["upload", "file", "dropzone", "phoenix", "allow_upload"]
+        },
+        %{
           label: "Input Group",
           href: "/docs/components/input-group",
           keywords: ["prefix", "suffix", "addon", "icon"]
@@ -728,6 +774,11 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["btn", "click", "action", "submit"]
         },
         %{
+          label: "Context Menu",
+          href: "/docs/components/context-menu",
+          keywords: ["right click", "context", "menu", "actions"]
+        },
+        %{
           label: "Dropdown Menu",
           href: "/docs/components/dropdown-menu",
           keywords: ["menu", "context", "actions", "popover"]
@@ -759,9 +810,19 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["form", "auto", "styling", "wrapper"]
         },
         %{
+          label: "Stepper",
+          href: "/docs/components/stepper",
+          keywords: ["steps", "wizard", "progress", "flow"]
+        },
+        %{
           label: "Tabs",
           href: "/docs/components/tabs",
           keywords: ["tab", "panel", "switch", "navigation"]
+        },
+        %{
+          label: "Tree View",
+          href: "/docs/components/tree-view",
+          keywords: ["tree", "files", "hierarchy", "nested", "folders"]
         }
       ]
     },
@@ -854,6 +915,11 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["modal", "popup", "overlay", "alert"]
         },
         %{
+          label: "Hover Card",
+          href: "/docs/components/hover-card",
+          keywords: ["hover", "preview", "card", "tooltip"]
+        },
+        %{
           label: "Popover",
           href: "/docs/components/popover",
           keywords: ["popup", "dropdown", "floating", "overlay"]
@@ -884,6 +950,11 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["slider", "slideshow", "gallery", "scroll", "snap"]
         },
         %{
+          label: "Calendar",
+          href: "/docs/components/calendar",
+          keywords: ["calendar", "date", "month", "day"]
+        },
+        %{
           label: "Marquee",
           href: "/docs/components/marquee",
           keywords: [
@@ -905,6 +976,11 @@ defmodule SutrauiDemoWeb.Layouts do
           label: "Table",
           href: "/docs/components/table",
           keywords: ["data", "grid", "list", "rows"]
+        },
+        %{
+          label: "Timeline",
+          href: "/docs/components/timeline",
+          keywords: ["timeline", "activity", "events", "history"]
         }
       ]
     },
