@@ -556,6 +556,11 @@ defmodule SutrauiDemoWeb.Layouts do
             label="Carousel"
             current_path={@current_path}
           />
+          <.drawer_link
+            href="/docs/components/marquee"
+            label="Marquee"
+            current_path={@current_path}
+          />
           <.drawer_link href="/docs/components/item" label="Item" current_path={@current_path} />
           <.drawer_link href="/docs/components/table" label="Table" current_path={@current_path} />
         </div>
@@ -566,6 +571,11 @@ defmodule SutrauiDemoWeb.Layouts do
         <h4 class="drawer-title">Utilities</h4>
         <div class="space-y-1">
           <.drawer_link href="/docs/components/kbd" label="Kbd" current_path={@current_path} />
+          <.drawer_link
+            href="/docs/components/separator"
+            label="Separator"
+            current_path={@current_path}
+          />
           <.drawer_link
             href="/docs/components/theme-switcher"
             label="Theme Switcher"
@@ -874,6 +884,19 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["slider", "slideshow", "gallery", "scroll", "snap"]
         },
         %{
+          label: "Marquee",
+          href: "/docs/components/marquee",
+          keywords: [
+            "marquee",
+            "scroll",
+            "ticker",
+            "animation",
+            "banner",
+            "announcement",
+            "logos"
+          ]
+        },
+        %{
           label: "Item",
           href: "/docs/components/item",
           keywords: ["list", "row", "card", "leading", "trailing"]
@@ -892,6 +915,11 @@ defmodule SutrauiDemoWeb.Layouts do
           label: "Kbd",
           href: "/docs/components/kbd",
           keywords: ["keyboard", "shortcut", "key", "hotkey", "keybinding"]
+        },
+        %{
+          label: "Separator",
+          href: "/docs/components/separator",
+          keywords: ["divider", "hr", "line", "separator", "split"]
         },
         %{
           label: "Theme Switcher",

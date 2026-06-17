@@ -68,6 +68,8 @@ defmodule SutrauiDemoWeb.Router do
     live("/docs/components/loading-state", Components.LoadingStateLive, :index)
     live("/docs/components/simple-form", Components.SimpleFormLive, :index)
     live("/docs/components/theme-switcher", Components.ThemeSwitcherLive, :index)
+    live("/docs/components/separator", Components.SeparatorLive, :index)
+    live("/docs/components/marquee", Components.MarqueeLive, :index)
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
