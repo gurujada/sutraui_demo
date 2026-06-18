@@ -251,29 +251,6 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
           </.marquee>
         </div>
       </.component_demo>
-
-      <.section_heading id="notes">Notes</.section_heading>
-      <.list>
-        <.list_item>
-          The marquee is pure CSS — no JavaScript hook. Content is duplicated
-          internally so the scroll loop is seamless.
-        </.list_item>
-        <.list_item>
-          The duplicated track sets
-          <.inline_code>aria-hidden="true"</.inline_code>
-          so screen readers don't announce items twice.
-        </.list_item>
-        <.list_item>
-          Respects
-          <.inline_code>prefers-reduced-motion</.inline_code>
-          — the animation halts automatically for users who've opted out.
-        </.list_item>
-        <.list_item>
-          Use
-          <.inline_code>pause_on_hover</.inline_code>
-          (on by default) so users can pause the scroll by hovering to read.
-        </.list_item>
-      </.list>
     </Layouts.docs>
     """
   end
@@ -281,10 +258,9 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
   defp default_code do
     """
     <.marquee>
-      <:item>New components released weekly</:item>
-      <:item>Fast setup for Phoenix LiveView</:item>
-      <:item>Accessible defaults</:item>
-      <:item>CSS-first theming</:item>
+      <:item><.icon ... /> New components released weekly</:item>
+      <:item><.icon ... /> Fast setup for Phoenix LiveView</:item>
+      <:item><.icon ... /> Accessible defaults</:item>
     </.marquee>\
     """
   end
@@ -295,7 +271,6 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
       <:item>Zero JavaScript dependencies</:item>
       <:item>Dark mode included</:item>
       <:item>Copy-paste friendly source</:item>
-      <:item>Phoenix 1.8 ready</:item>
     </.marquee>\
     """
   end
@@ -303,12 +278,9 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
   defp logos_code do
     """
     <.marquee speed="slow" gap="lg">
-      <:item><img src="/images/logos/stripe.svg" alt="Stripe" /></:item>
-      <:item><img src="/images/logos/vercel.svg" alt="Vercel" /></:item>
-      <:item><img src="/images/logos/notion.svg" alt="Notion" /></:item>
-      <:item><img src="/images/logos/figma.svg" alt="Figma" /></:item>
-      <:item><img src="/images/logos/linear.svg" alt="Linear" /></:item>
-      <:item><img src="/images/logos/railway.svg" alt="Railway" /></:item>
+      <:item><img ... alt="Stripe" /></:item>
+      <:item><img ... alt="Vercel" /></:item>
+      <:item><img ... alt="Notion" /></:item>
     </.marquee>\
     """
   end
@@ -331,7 +303,6 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
     <.marquee direction="right">
       <:item>Right direction</:item>
       <:item>Reverse flow</:item>
-      <:item>Same seamless loop</:item>
     </.marquee>\
     """
   end
@@ -341,7 +312,6 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
     <.marquee fade_edges={false}>
       <:item>No gradient mask</:item>
       <:item>Sharp container edges</:item>
-      <:item>Useful for clipped layouts</:item>
     </.marquee>\
     """
   end
