@@ -13,19 +13,33 @@ defmodule SutrauiDemoWeb.Components.InputOTPLive do
         description="One-time password input with individual digit slots, paste support, and arrow-key navigation."
       />
 
-      <.component_demo
-        title="Default"
-        code={~s|<.input_otp id="demo-otp" name="code" value="123" length={6} />|}
-      >
+      <.component_demo title="Default" code={default_code()}>
         <.input_otp id="demo-otp" name="code" value="123" length={6} />
       </.component_demo>
 
-      <.component_demo
-        title="Four-digit PIN"
-        code={~s|<.input_otp id="demo-pin" name="pin" value="42" length={4} mask placeholder="•" />|}
-      >
+      <.section_heading id="masked-pin">Masked PIN</.section_heading>
+      <.prose>
+        Set
+        <.inline_code>mask</.inline_code>
+        to render password-style slots, and use a shorter
+        <.inline_code>length</.inline_code>
+        for PIN entry.
+      </.prose>
+
+      <.component_demo title="Four-digit PIN" code={pin_code()}>
         <.input_otp id="demo-pin" name="pin" value="42" length={4} mask placeholder="•" />
       </.component_demo>
+
+      <.section_heading id="grouped">Grouped with Separator</.section_heading>
+      <.prose>
+        Use the
+        <.inline_code>:group</.inline_code>
+        and
+        <.inline_code>:separator</.inline_code>
+        slots with
+        <.inline_code>input_otp_slot</.inline_code>
+        to build custom groupings.
+      </.prose>
 
       <.component_demo title="Grouped" code={grouped_code()}>
         <.input_otp id="demo-grouped" name="code" value="123" length={6}>
@@ -45,6 +59,18 @@ defmodule SutrauiDemoWeb.Components.InputOTPLive do
         </.input_otp>
       </.component_demo>
     </Layouts.docs>
+    """
+  end
+
+  defp default_code do
+    """
+    <.input_otp id="demo-otp" name="code" value="123" length={6} />\
+    """
+  end
+
+  defp pin_code do
+    """
+    <.input_otp id="demo-pin" name="pin" value="42" length={4} mask placeholder="•" />\
     """
   end
 

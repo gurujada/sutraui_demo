@@ -14,50 +14,35 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
       />
 
       <.component_demo title="Default" code={default_code()}>
-        <div
-          class="w-full rounded-lg border py-3"
-          style="background: var(--bg-elevated); border-color: var(--border);"
-        >
+        <div class="w-full rounded-lg border py-3 bg-card">
           <.marquee>
             <:item>
-              <span
-                class="inline-flex items-center gap-2 text-sm whitespace-nowrap"
-                style="color: var(--fg);"
-              >
-                <span style="color: var(--site-accent);">
+              <span class="inline-flex items-center gap-2 text-sm whitespace-nowrap text-foreground">
+                <span class="text-primary">
                   <.icon name="lucide-sparkles" class="size-4" />
                 </span>
                 New components released weekly
               </span>
             </:item>
             <:item>
-              <span
-                class="inline-flex items-center gap-2 text-sm whitespace-nowrap"
-                style="color: var(--fg);"
-              >
-                <span style="color: var(--site-accent);">
+              <span class="inline-flex items-center gap-2 text-sm whitespace-nowrap text-foreground">
+                <span class="text-primary">
                   <.icon name="lucide-truck" class="size-4" />
                 </span>
                 Fast setup for Phoenix LiveView
               </span>
             </:item>
             <:item>
-              <span
-                class="inline-flex items-center gap-2 text-sm whitespace-nowrap"
-                style="color: var(--fg);"
-              >
-                <span style="color: var(--site-accent);">
+              <span class="inline-flex items-center gap-2 text-sm whitespace-nowrap text-foreground">
+                <span class="text-primary">
                   <.icon name="lucide-shield-check" class="size-4" />
                 </span>
                 Accessible defaults
               </span>
             </:item>
             <:item>
-              <span
-                class="inline-flex items-center gap-2 text-sm whitespace-nowrap"
-                style="color: var(--fg);"
-              >
-                <span style="color: var(--site-accent);">
+              <span class="inline-flex items-center gap-2 text-sm whitespace-nowrap text-foreground">
+                <span class="text-primary">
                   <.icon name="lucide-palette" class="size-4" />
                 </span>
                 CSS-first theming
@@ -74,10 +59,7 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
       </.prose>
 
       <.component_demo title="Ticker" code={ticker_code()}>
-        <div
-          class="w-full border-y py-2.5"
-          style="background: var(--bg); border-color: var(--border);"
-        >
+        <div class="w-full border-y py-2.5 bg-background">
           <.marquee speed="slow" gap="lg">
             <:item>
               <.ticker_item icon="lucide-package-check">Zero JavaScript dependencies</.ticker_item>
@@ -101,10 +83,7 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
       </.prose>
 
       <.component_demo title="Trusted By" code={logos_code()}>
-        <div
-          class="w-full rounded-lg border py-4"
-          style="background: var(--bg-elevated); border-color: var(--border);"
-        >
+        <div class="w-full rounded-lg border py-4 bg-card">
           <.marquee speed="slow" gap="lg">
             <:item><.logo_item src="/images/logos/stripe.svg" name="Stripe" /></:item>
             <:item><.logo_item src="/images/logos/vercel.svg" name="Vercel" /></:item>
@@ -125,10 +104,7 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
 
       <.component_demo title="Speed Presets" code={speed_code()}>
         <div class="grid w-full gap-3">
-          <div
-            class="rounded-md border py-2"
-            style="background: var(--bg-elevated); border-color: var(--border);"
-          >
+          <div class="rounded-md border py-2 bg-card">
             <.marquee speed="fast">
               <:item>
                 <.plain_item tone="destructive">Fast cycle</.plain_item>
@@ -141,10 +117,7 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
               </:item>
             </.marquee>
           </div>
-          <div
-            class="rounded-md border py-2"
-            style="background: var(--bg-elevated); border-color: var(--border);"
-          >
+          <div class="rounded-md border py-2 bg-card">
             <.marquee speed="slow" fade_edges={false}>
               <:item>
                 <.plain_item>Slow cycle</.plain_item>
@@ -168,10 +141,7 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
       </.prose>
 
       <.component_demo title="Reverse Direction" code={reverse_code()}>
-        <div
-          class="w-full rounded-lg border py-3"
-          style="background: var(--bg-elevated); border-color: var(--border);"
-        >
+        <div class="w-full rounded-lg border py-3 bg-card">
           <.marquee direction="right">
             <:item>
               <.plain_item>Right direction</.plain_item>
@@ -187,10 +157,7 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
       </.component_demo>
 
       <.component_demo title="Without Edge Fade" code={no_fade_code()}>
-        <div
-          class="w-full rounded-lg border py-3"
-          style="background: var(--bg-elevated); border-color: var(--border);"
-        >
+        <div class="w-full rounded-lg border py-3 bg-card">
           <.marquee fade_edges={false}>
             <:item>
               <.plain_item>No gradient mask</.plain_item>
@@ -213,11 +180,8 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
 
   defp ticker_item(assigns) do
     ~H"""
-    <span class="inline-flex items-center gap-2 text-sm whitespace-nowrap" style="color: var(--fg);">
-      <span
-        class="inline-flex size-5 items-center justify-center rounded-full"
-        style="background: var(--primary); color: var(--primary-foreground);"
-      >
+    <span class="inline-flex items-center gap-2 text-sm whitespace-nowrap text-foreground">
+      <span class="inline-flex size-5 items-center justify-center rounded-full bg-primary text-primary-foreground">
         <.icon name={@icon} class="size-3" />
       </span>
       {render_slot(@inner_block)}
@@ -231,13 +195,10 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
   defp logo_item(assigns) do
     ~H"""
     <span class="inline-flex items-center gap-3 whitespace-nowrap px-2">
-      <span
-        class="inline-flex size-9 items-center justify-center rounded-md border bg-white"
-        style="border-color: var(--border);"
-      >
+      <span class="inline-flex size-9 items-center justify-center rounded-md border bg-white">
         <img src={@src} alt="" class="size-5 object-contain" aria-hidden="true" />
       </span>
-      <span class="text-sm font-medium" style="color: var(--fg);">{@name}</span>
+      <span class="text-sm font-medium text-foreground">{@name}</span>
     </span>
     """
   end
@@ -249,13 +210,13 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
     assigns =
       assign(
         assigns,
-        :dot_color,
-        if(assigns.tone == "destructive", do: "var(--destructive)", else: "var(--site-accent)")
+        :dot_class,
+        if(assigns.tone == "destructive", do: "bg-destructive", else: "bg-primary")
       )
 
     ~H"""
-    <span class="inline-flex items-center gap-2 text-sm whitespace-nowrap" style="color: var(--fg);">
-      <span class="size-1.5 rounded-full" style={"background: #{@dot_color};"}></span>
+    <span class="inline-flex items-center gap-2 text-sm whitespace-nowrap text-foreground">
+      <span class={["size-1.5 rounded-full", @dot_class]}></span>
       {render_slot(@inner_block)}
     </span>
     """

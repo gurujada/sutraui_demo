@@ -16,13 +16,13 @@ defmodule SutrauiDemoWeb.Components.SeparatorLive do
       <.component_demo title="Default" code={default_code()}>
         <div class="w-full max-w-sm">
           <div class="space-y-1">
-            <h4 class="text-sm font-medium" style="color: var(--fg);">Sutra UI</h4>
-            <p class="text-sm" style="color: var(--fg-muted);">
+            <h4 class="text-sm font-medium text-foreground">Sutra UI</h4>
+            <p class="text-sm text-muted-foreground">
               Phoenix LiveView components inspired by shadcn/ui.
             </p>
           </div>
           <.separator class="my-4" />
-          <div class="flex h-5 items-center gap-4 text-sm" style="color: var(--fg);">
+          <div class="flex h-5 items-center gap-4 text-sm text-foreground">
             <span>Blog</span>
             <.separator orientation="vertical" />
             <span>Docs</span>
@@ -40,7 +40,7 @@ defmodule SutrauiDemoWeb.Components.SeparatorLive do
       </.prose>
 
       <.component_demo title="Vertical" code={vertical_code()}>
-        <div class="flex h-10 items-center gap-4 text-sm" style="color: var(--fg);">
+        <div class="flex h-10 items-center gap-4 text-sm text-foreground">
           <span>Overview</span>
           <.separator orientation="vertical" />
           <span>Activity</span>
@@ -55,37 +55,34 @@ defmodule SutrauiDemoWeb.Components.SeparatorLive do
       </.prose>
 
       <.component_demo title="Settings List" code={list_code()}>
-        <div
-          class="w-full max-w-md rounded-lg border"
-          style="background: var(--bg-elevated); border-color: var(--border);"
-        >
+        <div class="w-full max-w-md rounded-lg border bg-card">
           <div class="flex items-center gap-3 px-4 py-3">
-            <span style="color: var(--fg-muted);">
+            <span class="text-muted-foreground">
               <.icon name="lucide-user" class="size-4" />
             </span>
             <div class="min-w-0">
-              <p class="text-sm font-medium" style="color: var(--fg);">Account</p>
-              <p class="text-xs" style="color: var(--fg-muted);">Profile and security</p>
+              <p class="text-sm font-medium text-foreground">Account</p>
+              <p class="text-xs text-muted-foreground">Profile and security</p>
             </div>
           </div>
           <.separator />
           <div class="flex items-center gap-3 px-4 py-3">
-            <span style="color: var(--fg-muted);">
+            <span class="text-muted-foreground">
               <.icon name="lucide-bell" class="size-4" />
             </span>
             <div class="min-w-0">
-              <p class="text-sm font-medium" style="color: var(--fg);">Notifications</p>
-              <p class="text-xs" style="color: var(--fg-muted);">Email and workspace alerts</p>
+              <p class="text-sm font-medium text-foreground">Notifications</p>
+              <p class="text-xs text-muted-foreground">Email and workspace alerts</p>
             </div>
           </div>
           <.separator />
           <div class="flex items-center gap-3 px-4 py-3">
-            <span style="color: var(--fg-muted);">
+            <span class="text-muted-foreground">
               <.icon name="lucide-credit-card" class="size-4" />
             </span>
             <div class="min-w-0">
-              <p class="text-sm font-medium" style="color: var(--fg);">Billing</p>
-              <p class="text-xs" style="color: var(--fg-muted);">Plan and payment details</p>
+              <p class="text-sm font-medium text-foreground">Billing</p>
+              <p class="text-xs text-muted-foreground">Plan and payment details</p>
             </div>
           </div>
         </div>
@@ -100,9 +97,9 @@ defmodule SutrauiDemoWeb.Components.SeparatorLive do
 
       <.component_demo title="Semantic" code={semantic_code()}>
         <div class="w-full max-w-sm space-y-4">
-          <p class="text-sm" style="color: var(--fg);">Account preferences</p>
+          <p class="text-sm text-foreground">Account preferences</p>
           <.separator decorative={false} aria-label="Account settings boundary" />
-          <p class="text-sm" style="color: var(--fg);">Team preferences</p>
+          <p class="text-sm text-foreground">Team preferences</p>
         </div>
       </.component_demo>
     </Layouts.docs>

@@ -22,7 +22,7 @@ defmodule SutrauiDemoWeb.Components.FileUploadLive do
         description="Drag-and-drop file upload component built on Phoenix LiveView uploads."
       />
 
-      <.component_demo title="Dropzone" code={drop_code()}>
+      <.component_demo title="Dropzone" code={dropzone_code()}>
         <form phx-change="validate-upload" phx-submit="save-upload" class="w-full max-w-lg">
           <.file_upload
             upload={@uploads.documents}
@@ -32,17 +32,35 @@ defmodule SutrauiDemoWeb.Components.FileUploadLive do
         </form>
       </.component_demo>
 
+      <.section_heading id="custom-content">Custom Content</.section_heading>
+      <.prose>
+        Override the default dropzone with the
+        <.inline_code>:drop_content</.inline_code>
+        slot. Pass
+        <.inline_code>upload={nil}</.inline_code>
+        for a static preview.
+      </.prose>
+
       <.component_demo title="Custom Content" code={custom_code()}>
         <div class="w-full max-w-lg">
           <.file_upload upload={nil}>
             <:drop_content>
               <span class="text-4xl">📁</span>
-              <span class="text-sm font-medium" style="color: var(--fg);">Drop your files here</span>
-              <span class="text-xs" style="color: var(--fg-muted);">or click to browse</span>
+              <span class="text-sm font-medium text-foreground">Drop your files here</span>
+              <span class="text-xs text-muted-foreground">or click to browse</span>
             </:drop_content>
           </.file_upload>
         </div>
       </.component_demo>
+
+      <.section_heading id="image-upload">Image Upload</.section_heading>
+      <.prose>
+        Restrict accepted types with
+        <.inline_code>accept</.inline_code>
+        and cap the number of files with
+        <.inline_code>max_files</.inline_code>
+        .
+      </.prose>
 
       <.component_demo title="Image Upload" code={image_code()}>
         <div class="w-full max-w-lg">
@@ -64,12 +82,8 @@ defmodule SutrauiDemoWeb.Components.FileUploadLive do
   def handle_event("cancel-upload", %{"ref" => ref}, socket),
     do: {:noreply, cancel_upload(socket, :documents, ref)}
 
-  defp drop_code do
+  defp dropzone_code do
     """
-    # mount/3
-    allow_upload(socket, :documents, accept: ~w(.pdf .png .zip), max_entries: 3)
-
-    # render/1
     <form phx-change="validate-upload" phx-submit="save-upload">
       <.file_upload
         upload={@uploads.documents}
@@ -84,13 +98,22 @@ defmodule SutrauiDemoWeb.Components.FileUploadLive do
     """
     <.file_upload upload={nil}>
       <:drop_content>
-        Drop your files here
+        <span class="text-4xl">📁</span>
+        <span class="text-sm font-medium text-foreground">Drop your files here</span>
+        <span class="text-xs text-muted-foreground">or click to browse</span>
       </:drop_content>
     </.file_upload>\
     """
   end
 
   defp image_code do
-    ~s|<.file_upload upload={nil} accept="image/*" label="Upload photos" description="JPG or PNG, max 5 files" />|
+    """
+    <.file_upload
+      upload={nil}
+      accept="image/*"
+      label="Upload photos"
+      description="JPG or PNG, max 5 files"
+    />\
+    """
   end
 end

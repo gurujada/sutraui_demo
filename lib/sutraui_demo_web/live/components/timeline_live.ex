@@ -10,62 +10,132 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
     <Layouts.docs flash={@flash} current_path="/docs/components/timeline">
       <.docs_header
         title="Timeline"
-        description="A vertical list of chronological events with connecting lines."
+        description="A vertical list of chronological events with dot markers and connector lines."
       />
 
-      <.component_demo title="Default" code={default_code()}>
+      <.component_demo title="Basic" code={basic_code()}>
         <div class="w-full max-w-md">
           <.timeline>
-            <:item time="12 min ago" state="current">
-              <h3 class="text-sm font-medium" style="color: var(--fg);">Deployed v2.4</h3>
-              <p class="text-sm" style="color: var(--fg-muted);">
-                Pushed to production, all checks green.
-              </p>
+            <:item time="2 hours ago">
+              <h4 class="text-sm font-medium">Deployed v2.4</h4>
+              <p class="text-sm text-muted-foreground">Pushed to production, all checks green.</p>
             </:item>
-            <:item time="1 hour ago" state="complete">
-              <h3 class="text-sm font-medium" style="color: var(--fg);">Merged PR #342</h3>
-              <p class="text-sm" style="color: var(--fg-muted);">
+            <:item time="4 hours ago">
+              <h4 class="text-sm font-medium">Merged PR #342</h4>
+              <p class="text-sm text-muted-foreground">
                 Refactored auth module for better testability.
               </p>
             </:item>
-            <:item time="2 hours ago">
-              <div class="flex items-center gap-2">
-                <div
-                  class="size-5 rounded-full flex items-center justify-center text-[10px] font-bold"
-                  style="background: var(--primary); color: var(--primary-foreground);"
-                >
-                  J
-                </div>
-                <span class="text-sm font-medium" style="color: var(--fg);">
-                  Jess opened a new issue
-                </span>
-              </div>
-              <p class="text-sm ml-7" style="color: var(--fg-muted);">
-                Button color contrast on mobile
-              </p>
+            <:item time="Yesterday" icon="📝">
+              <h4 class="text-sm font-medium">Draft saved</h4>
             </:item>
           </.timeline>
         </div>
       </.component_demo>
 
-      <.section_heading id="with-icons">Custom Markers</.section_heading>
+      <.section_heading id="custom-markers">Custom Markers</.section_heading>
       <.prose>
-        Use the
+        Use
         <.inline_code>icon</.inline_code>
-        slot attr for custom marker content.
+        to replace the dot with text or an emoji. Style it with
+        <.inline_code>marker_class</.inline_code>
+        .
       </.prose>
 
-      <.component_demo title="Custom Markers" code={icons_code()}>
+      <.component_demo title="Avatar Markers" code={markers_code()}>
         <div class="w-full max-w-md">
           <.timeline>
-            <:item icon="📝" time="Today" state="current">
-              <h3 class="text-sm font-medium" style="color: var(--fg);">Draft saved</h3>
+            <:item
+              time="12 min ago"
+              icon="A"
+              marker_class="bg-primary text-primary-foreground text-xs font-bold"
+            >
+              <p class="text-sm"><strong>Alex</strong> created a new project</p>
             </:item>
-            <:item icon="✓" time="Yesterday" state="complete">
-              <h3 class="text-sm font-medium" style="color: var(--fg);">Review completed</h3>
+            <:item
+              time="1 hour ago"
+              icon="S"
+              marker_class="bg-secondary text-secondary-foreground text-xs font-bold"
+            >
+              <p class="text-sm"><strong>Sarah</strong> left a comment</p>
+              <div class="mt-2 rounded-md border bg-muted/40 px-3 py-2 text-sm text-muted-foreground">
+                Looks good. The empty state copy feels much clearer now.
+              </div>
             </:item>
-            <:item icon="🚀" time="Monday" state="complete">
-              <h3 class="text-sm font-medium" style="color: var(--fg);">Launched v2.0</h3>
+            <:item
+              time="3 hours ago"
+              icon="M"
+              marker_class="bg-destructive text-destructive-foreground text-xs font-bold"
+            >
+              <p class="text-sm"><strong>Mike</strong> merged PR #342</p>
+            </:item>
+          </.timeline>
+        </div>
+      </.component_demo>
+
+      <.section_heading id="rich-content">Rich Content</.section_heading>
+      <.prose>
+        Drop avatars, links, cards, or any markup into each
+        <.inline_code>:item</.inline_code>
+        slot. The timeline provides the chrome — you own the content.
+      </.prose>
+
+      <.component_demo title="Activity Feed" code={feed_code()}>
+        <div class="w-full max-w-lg">
+          <.timeline>
+            <:item time="12 min ago">
+              <div class="flex items-start gap-3">
+                <img
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face"
+                  alt=""
+                  class="size-8 rounded-full"
+                />
+                <div>
+                  <p class="text-sm">
+                    <strong>Alex Morgan</strong>
+                    created
+                    <a href="#" class="font-medium text-primary hover:underline">Design System</a>
+                  </p>
+                  <p class="text-sm text-muted-foreground">Added the initial component checklist.</p>
+                </div>
+              </div>
+            </:item>
+            <:item time="1 hour ago">
+              <div class="flex items-start gap-3">
+                <img
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64&h=64&fit=crop&crop=face"
+                  alt=""
+                  class="size-8 rounded-full"
+                />
+                <div>
+                  <p class="text-sm">
+                    <strong>Sarah Lee</strong>
+                    commented on
+                    <a href="#" class="font-medium text-primary hover:underline">PR #342</a>
+                  </p>
+                  <div class="mt-2 rounded-md border bg-muted/40 px-3 py-2 text-sm text-muted-foreground">
+                    Looks good. The empty state copy feels much clearer now.
+                  </div>
+                </div>
+              </div>
+            </:item>
+            <:item time="3 hours ago">
+              <div class="flex items-start gap-3">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face"
+                  alt=""
+                  class="size-8 rounded-full"
+                />
+                <div>
+                  <p class="text-sm">
+                    <strong>Mike Ross</strong>
+                    merged <a href="#" class="font-medium text-primary hover:underline">PR #342</a>
+                  </p>
+                  <p class="text-sm text-muted-foreground">
+                    Refactored the auth module and updated tests.
+                  </p>
+                </div>
+              </div>
             </:item>
           </.timeline>
         </div>
@@ -74,31 +144,48 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
     """
   end
 
-  defp default_code do
+  defp basic_code do
     """
     <.timeline>
-      <:item time="12 min ago" state="current">
-        <h3>Deployed v2.4</h3>
-      </:item>
-      <:item time="1 hour ago" state="complete">
-        <h3>Merged PR #342</h3>
-      </:item>
       <:item time="2 hours ago">
-        <div class="flex items-center gap-2">
-          <div>J</div>
-          <span>Jess opened an issue</span>
-        </div>
+        <h4>Deployed v2.4</h4>
+        <p>Pushed to production, all checks green.</p>
+      </:item>
+      <:item time="Yesterday" icon="📝">
+        <h4>Draft saved</h4>
       </:item>
     </.timeline>\
     """
   end
 
-  defp icons_code do
+  defp markers_code do
     """
     <.timeline>
-      <:item icon="📝" time="Today" state="current"><h3>Draft saved</h3></:item>
-      <:item icon="✓" time="Yesterday" state="complete"><h3>Review completed</h3></:item>
-      <:item icon="🚀" time="Monday" state="complete"><h3>Launched v2.0</h3></:item>
+      <:item time="12 min ago" icon="A" marker_class="bg-primary text-primary-foreground text-xs font-bold">
+        <p><strong>Alex</strong> created a new project</p>
+      </:item>
+      <:item time="3 hours ago" icon="M" marker_class="bg-destructive text-destructive-foreground text-xs font-bold">
+        <p><strong>Mike</strong> merged PR #342</p>
+      </:item>
+    </.timeline>\
+    """
+  end
+
+  defp feed_code do
+    """
+    <.timeline>
+      <:item time="12 min ago">
+        <div class="flex items-start gap-3">
+          <img src="/avatar.jpg" alt="" class="size-8 rounded-full" />
+          <p><strong>Alex Morgan</strong> created <a href="#">Design System</a></p>
+        </div>
+      </:item>
+      <:item time="1 hour ago">
+        <div class="flex items-start gap-3">
+          <img src="/avatar.jpg" alt="" class="size-8 rounded-full" />
+          <p><strong>Sarah Lee</strong> commented on <a href="#">PR #342</a></p>
+        </div>
+      </:item>
     </.timeline>\
     """
   end

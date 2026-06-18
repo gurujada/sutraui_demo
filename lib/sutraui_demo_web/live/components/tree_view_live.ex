@@ -34,6 +34,10 @@ defmodule SutrauiDemoWeb.Components.TreeViewLive do
       </.component_demo>
 
       <.section_heading id="selected">Selected Item</.section_heading>
+      <.prose>
+        Mark the active node with <.inline_code>selected</.inline_code>. Disable a branch with <.inline_code>disabled</.inline_code>.
+      </.prose>
+
       <.component_demo title="Navigation Tree" code={selected_code()}>
         <div class="w-full max-w-sm">
           <.tree_view label="Settings">
@@ -46,6 +50,31 @@ defmodule SutrauiDemoWeb.Components.TreeViewLive do
           </.tree_view>
         </div>
       </.component_demo>
+
+      <.section_heading id="with-links">With Links</.section_heading>
+      <.prose>
+        Leaf nodes render as anchors when you pass <.inline_code>href</.inline_code>. Folders with children stay collapsible
+        <.inline_code>&lt;details&gt;</.inline_code>
+        elements.
+      </.prose>
+
+      <.component_demo title="File Browser" code={links_code()}>
+        <div class="w-full max-w-sm">
+          <.tree_view label="Source files">
+            <.tree_item label="src" expanded>
+              <.tree_item label="components">
+                <.tree_item label="button.ex" href="/files/button.ex" />
+                <.tree_item label="dialog.ex" href="/files/dialog.ex" />
+              </.tree_item>
+              <.tree_item label="app.ex" href="/files/app.ex" selected />
+            </.tree_item>
+            <.tree_item label="tests" expanded>
+              <.tree_item label="button_test.exs" href="/files/button_test.exs" />
+            </.tree_item>
+            <.tree_item label="mix.exs" href="/files/mix.exs" />
+          </.tree_view>
+        </div>
+      </.component_demo>
     </Layouts.docs>
     """
   end
@@ -54,7 +83,7 @@ defmodule SutrauiDemoWeb.Components.TreeViewLive do
     """
     <.tree_view label="Project files">
       <.tree_item label="lib" expanded>
-        <.tree_item label="sutra_ui">
+        <.tree_item label="sutra_ui" expanded>
           <.tree_item label="calendar.ex" selected />
         </.tree_item>
       </.tree_item>
@@ -70,6 +99,24 @@ defmodule SutrauiDemoWeb.Components.TreeViewLive do
         <.tree_item label="General" selected />
       </.tree_item>
       <.tree_item label="Security" disabled />
+    </.tree_view>\
+    """
+  end
+
+  defp links_code do
+    """
+    <.tree_view label="Source files">
+      <.tree_item label="src" expanded>
+        <.tree_item label="components">
+          <.tree_item label="button.ex" href="/files/button.ex" />
+          <.tree_item label="dialog.ex" href="/files/dialog.ex" />
+        </.tree_item>
+        <.tree_item label="app.ex" href="/files/app.ex" selected />
+      </.tree_item>
+      <.tree_item label="tests" expanded>
+        <.tree_item label="button_test.exs" href="/files/button_test.exs" />
+      </.tree_item>
+      <.tree_item label="mix.exs" href="/files/mix.exs" />
     </.tree_view>\
     """
   end
