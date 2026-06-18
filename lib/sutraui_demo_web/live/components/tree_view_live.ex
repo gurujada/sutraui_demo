@@ -15,7 +15,7 @@ defmodule SutrauiDemoWeb.Components.TreeViewLive do
 
       <.component_demo title="File Browser" code={files_code()}>
         <div class="w-full max-w-sm">
-          <.tree_view label="Project files">
+          <.tree_view id="project-files-tree" label="Project files">
             <.tree_item label="lib" expanded>
               <.tree_item label="sutra_ui" expanded>
                 <.tree_item label="button.ex" href="/docs/components/button" />
@@ -43,16 +43,16 @@ defmodule SutrauiDemoWeb.Components.TreeViewLive do
         <.inline_code>value</.inline_code>
         on each
         <.inline_code>tree_item</.inline_code>
-        to make leaf nodes selectable. The event fires with
-        <.inline_code>phx-value-node</.inline_code>
-        — no
+        to make leaf nodes selectable. The event includes a
+        <.inline_code>node</.inline_code>
+        param — no
         <.inline_code>phx-click</.inline_code>
         needed on each item.
       </.prose>
 
       <.component_demo title="Settings Tree" code={interactive_code()}>
         <div class="w-full max-w-sm">
-          <.tree_view label="Settings" select_event="select_node">
+          <.tree_view id="settings-tree" label="Settings" select_event="select_node">
             <.tree_item label="Workspace" expanded value="ws">
               <.tree_item label="General" value="general" selected={@selected_node == "general"} />
               <.tree_item label="Members" value="members" selected={@selected_node == "members"} />
@@ -82,10 +82,10 @@ defmodule SutrauiDemoWeb.Components.TreeViewLive do
 
       <.component_demo title="Custom Triggers" code={custom_code()}>
         <div class="w-full max-w-sm">
-          <.tree_view label="File system">
+          <.tree_view id="file-system-tree" label="File system">
             <.tree_item expanded>
               <:trigger>
-                <.icon name="lucide-folder-open" class="size-4 text-primary" />
+                <.icon name="lucide-folder-open" class="size-4 text-muted-foreground" />
                 <span class="font-medium">src</span>
               </:trigger>
               <.tree_item>
@@ -149,11 +149,17 @@ defmodule SutrauiDemoWeb.Components.TreeViewLive do
 
   defp files_code do
     """
-    <.tree_view label="Project files">
+    <.tree_view id="project-files-tree" label="Project files">
       <.tree_item label="lib" expanded>
         <.tree_item label="sutra_ui" expanded>
           <.tree_item label="button.ex" href="/docs/components/button" />
-          <.tree_item label="calendar.ex" selected />
+          <.tree_item label="calendar.ex" href="/docs/components/calendar" selected />
+          <.tree_item label="dialog.ex" href="/docs/components/dialog" />
+        </.tree_item>
+      </.tree_item>
+      <.tree_item label="priv" expanded>
+        <.tree_item label="static">
+          <.tree_item label="sutra_ui.css" href="/docs/theming" />
         </.tree_item>
       </.tree_item>
       <.tree_item label="README.md" href="/docs" />
@@ -163,23 +169,56 @@ defmodule SutrauiDemoWeb.Components.TreeViewLive do
 
   defp interactive_code do
     """
-    <.tree_view label="Settings" select_event="select_node">
+    <.tree_view id="settings-tree" label="Settings" select_event="select_node">
       <.tree_item label="Workspace" expanded value="ws">
-        <.tree_item label="General" value="general" selected />
-        <.tree_item label="Members" value="members" />
+        <.tree_item label="General" value="general" selected={@selected_node == "general"} />
+        <.tree_item label="Members" value="members" selected={@selected_node == "members"} />
+        <.tree_item label="Billing" value="billing" selected={@selected_node == "billing"} />
       </.tree_item>
-      <.tree_item label="Security" value="security" disabled />
-    </.tree_view>\
+      <.tree_item
+        label="Security"
+        value="security"
+        selected={@selected_node == "security"}
+        disabled
+      />
+    </.tree_view>
+    <p class="text-sm text-muted-foreground">
+      Selected: <strong class="text-foreground">{@selected_node}</strong>
+    </p>\
     """
   end
 
   defp custom_code do
     """
-    <.tree_view label="File system">
+    <.tree_view id="file-system-tree" label="File system">
       <.tree_item expanded>
-        <:trigger><.icon name="lucide-folder-open" class="size-4" /> src</:trigger>
+        <:trigger>
+          <.icon name="lucide-folder-open" class="size-4 text-muted-foreground" />
+          <span class="font-medium">src</span>
+        </:trigger>
         <.tree_item>
-          <:trigger><.icon name="lucide-file-code" class="size-4" /> app.ex</:trigger>
+          <:trigger>
+            <.icon name="lucide-file-code" class="size-4 text-muted-foreground" />
+            <span>app.ex</span>
+          </:trigger>
+        </.tree_item>
+        <.tree_item>
+          <:trigger>
+            <.icon name="lucide-file-code" class="size-4 text-muted-foreground" />
+            <span>router.ex</span>
+          </:trigger>
+        </.tree_item>
+      </.tree_item>
+      <.tree_item>
+        <:trigger>
+          <.icon name="lucide-folder" class="size-4 text-muted-foreground" />
+          <span>test</span>
+        </:trigger>
+        <.tree_item>
+          <:trigger>
+            <.icon name="lucide-file-code" class="size-4 text-muted-foreground" />
+            <span>router_test.exs</span>
+          </:trigger>
         </.tree_item>
       </.tree_item>
     </.tree_view>\

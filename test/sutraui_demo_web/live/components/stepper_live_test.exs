@@ -26,6 +26,29 @@ defmodule SutrauiDemoWeb.Components.StepperLiveTest do
     refute wizard_panel =~ "Complete required fields"
   end
 
+  test "typing in a touched empty wizard field validates that field live", %{conn: conn} do
+    {:ok, view, _html} = live(conn, ~p"/docs/components/stepper")
+
+    html =
+      render_change(view, "validate", %{
+        "wizard" => %{"full_name" => "", "email" => "", "_unused_email" => ""}
+      })
+
+    wizard_nav =
+      html
+      |> String.split(~s(id="workspace-wizard"), parts: 2)
+      |> List.last()
+      |> String.split(~s(id="workspace-wizard-panel"), parts: 2)
+      |> List.first()
+
+    assert wizard_nav =~ ~s(data-state="error")
+
+    wizard_panel = wizard_panel(html)
+
+    assert wizard_panel =~ "can&#39;t be blank"
+    assert length(Regex.scan(~r/can&#39;t be blank/, wizard_panel)) == 1
+  end
+
   test "submitting an incomplete wizard step marks only the current step as error", %{conn: conn} do
     {:ok, view, _html} = live(conn, ~p"/docs/components/stepper")
 

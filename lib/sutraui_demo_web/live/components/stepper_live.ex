@@ -2,7 +2,17 @@ defmodule SutrauiDemoWeb.Components.StepperLive do
   use SutrauiDemoWeb, :live_view
 
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, page_title: "Stepper", current_step: 2)}
+    socket =
+      socket
+      |> assign(page_title: "Stepper", current_step: 2)
+      |> assign(
+        wizard_step: "account",
+        wizard_params: %{},
+        wizard_errors: %{},
+        wizard_field_errors: %{}
+      )
+
+    {:ok, socket}
   end
 
   def render(assigns) do
@@ -207,6 +217,76 @@ defmodule SutrauiDemoWeb.Components.StepperLive do
         </div>
       </.component_demo>
 
+      <.section_heading id="wizard-form">Wizard Form</.section_heading>
+      <.prose>
+        Use the stepper as navigation chrome for larger LiveView forms. The
+        parent LiveView owns validation and decides when to advance.
+      </.prose>
+
+      <.component_demo title="Workspace Wizard" code={wizard_code()}>
+        <div class="w-full max-w-xl">
+          <.form
+            id="workspace-wizard-form"
+            for={%{}}
+            as={:wizard}
+            phx-change="validate"
+            phx-submit="next_step"
+            class="grid gap-6"
+          >
+            <.stepper_wizard
+              id="workspace-wizard"
+              current={@wizard_step}
+              errors={@wizard_errors}
+              orientation="responsive"
+            >
+              <:step id="account" label="Account" description="Profile details">
+                <div class="grid gap-4">
+                  <.input
+                    name="wizard[full_name]"
+                    label="Full name"
+                    value={@wizard_params["full_name"]}
+                    errors={field_errors(@wizard_field_errors, "full_name")}
+                    placeholder="Maya Chen"
+                  />
+                  <.input
+                    name="wizard[email]"
+                    type="email"
+                    label="Email"
+                    value={@wizard_params["email"]}
+                    errors={field_errors(@wizard_field_errors, "email")}
+                    placeholder="maya@example.com"
+                  />
+                </div>
+              </:step>
+              <:step id="workspace" label="Workspace" description="Team setup">
+                <div class="grid gap-4">
+                  <.input
+                    name="wizard[company]"
+                    label="Company"
+                    value={@wizard_params["company"]}
+                    placeholder="Acme Inc."
+                  />
+                  <.input
+                    name="wizard[workspace]"
+                    label="Workspace URL"
+                    value={@wizard_params["workspace"]}
+                    placeholder="acme"
+                  />
+                </div>
+              </:step>
+              <:step id="invite" label="Invite" description="Add teammates">
+                <div class="rounded-md border bg-muted/30 p-4 text-sm text-muted-foreground">
+                  Invite teammates after the workspace is created.
+                </div>
+              </:step>
+              <:actions>
+                <.button type="submit">Continue</.button>
+              </:actions>
+            </.stepper_wizard>
+          </.form>
+        </div>
+      </.component_demo>
+
       <.section_heading id="notes">Notes</.section_heading>
       <.list>
         <.list_item>
@@ -248,6 +328,40 @@ defmodule SutrauiDemoWeb.Components.StepperLive do
     {:noreply, assign(socket, current_step: step_index)}
   end
 
+  def handle_event("validate", %{"wizard" => params}, socket) do
+    field_errors = validate_touched_wizard_step(socket.assigns.wizard_step, params)
+
+    step_errors =
+      if field_errors == %{} do
+        %{}
+      else
+        %{socket.assigns.wizard_step => "Complete required fields"}
+      end
+
+    {:noreply,
+     socket
+     |> assign(wizard_params: params)
+     |> assign(wizard_errors: step_errors)
+     |> assign(wizard_field_errors: field_errors)}
+  end
+
+  def handle_event("next_step", %{"wizard" => params}, socket) do
+    case validate_wizard_step(socket.assigns.wizard_step, params) do
+      :ok ->
+        {:noreply,
+         socket
+         |> assign(wizard_step: next_wizard_step(socket.assigns.wizard_step))
+         |> assign(wizard_params: params, wizard_errors: %{}, wizard_field_errors: %{})}
+
+      {:error, field_errors} ->
+        {:noreply,
+         socket
+         |> assign(wizard_params: params)
+         |> assign(wizard_errors: %{socket.assigns.wizard_step => "Complete required fields"})
+         |> assign(wizard_field_errors: field_errors)}
+    end
+  end
+
   defp horizontal_code do
     """
     <.stepper current={2}>
@@ -286,7 +400,10 @@ defmodule SutrauiDemoWeb.Components.StepperLive do
       <:step value="profile"><h4>Profile</h4></:step>
       <:step value="workspace"><h4>Workspace</h4></:step>
       <:step value="invite"><h4>Invite</h4></:step>
-    </.stepper>\
+    </.stepper>
+    <p class="text-sm text-muted-foreground">
+      Click any marker above to jump to that step. Currently on step {@current_step}.
+    </p>\
     """
   end
 
@@ -320,4 +437,97 @@ defmodule SutrauiDemoWeb.Components.StepperLive do
     </.stepper>\
     """
   end
+
+  defp wizard_code do
+    """
+    <.form
+      id="workspace-wizard-form"
+      for={%{}}
+      as={:wizard}
+      phx-change="validate"
+      phx-submit="next_step"
+      class="grid gap-6"
+    >
+      <.stepper_wizard
+        id="workspace-wizard"
+        current={@wizard_step}
+        errors={@wizard_errors}
+        orientation="responsive"
+      >
+        <:step id="account" label="Account" description="Profile details">
+          <.input
+            name="wizard[full_name]"
+            label="Full name"
+            value={@wizard_params["full_name"]}
+            errors={field_errors(@wizard_field_errors, "full_name")}
+            placeholder="Maya Chen"
+          />
+          <.input
+            name="wizard[email]"
+            type="email"
+            label="Email"
+            value={@wizard_params["email"]}
+            errors={field_errors(@wizard_field_errors, "email")}
+            placeholder="maya@example.com"
+          />
+        </:step>
+        <:step id="workspace" label="Workspace" description="Team setup">
+          <.input name="wizard[company]" label="Company" value={@wizard_params["company"]} placeholder="Acme Inc." />
+          <.input name="wizard[workspace]" label="Workspace URL" value={@wizard_params["workspace"]} placeholder="acme" />
+        </:step>
+        <:step id="invite" label="Invite" description="Add teammates">
+          <div class="rounded-md border bg-muted/30 p-4 text-sm text-muted-foreground">
+            Invite teammates after the workspace is created.
+          </div>
+        </:step>
+        <:actions>
+          <.button type="submit">Continue</.button>
+        </:actions>
+      </.stepper_wizard>
+    </.form>\
+    """
+  end
+
+  defp validate_wizard_step("account", params) do
+    required =
+      %{}
+      |> require_param(params, "full_name")
+      |> require_param(params, "email")
+
+    if required == %{}, do: :ok, else: {:error, required}
+  end
+
+  defp validate_wizard_step(_step, _params), do: :ok
+
+  defp validate_touched_wizard_step("account", params) do
+    %{}
+    |> require_touched_param(params, "full_name")
+    |> require_touched_param(params, "email")
+  end
+
+  defp validate_touched_wizard_step(_step, _params), do: %{}
+
+  defp require_param(errors, params, field) do
+    value = params[field] |> to_string() |> String.trim()
+
+    if value == "" do
+      Map.put(errors, field, ["can't be blank"])
+    else
+      errors
+    end
+  end
+
+  defp require_touched_param(errors, params, field) do
+    if Map.has_key?(params, "_unused_#{field}") do
+      errors
+    else
+      require_param(errors, params, field)
+    end
+  end
+
+  defp field_errors(errors, field), do: Map.get(errors, field, [])
+
+  defp next_wizard_step("account"), do: "workspace"
+  defp next_wizard_step("workspace"), do: "invite"
+  defp next_wizard_step(step), do: step
 end

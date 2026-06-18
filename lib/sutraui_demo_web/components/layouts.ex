@@ -294,8 +294,7 @@ defmodule SutrauiDemoWeb.Layouts do
           <span
             class="w-3.5 h-3.5 rounded-full border"
             style={"background: #{theme.color}; border-color: color-mix(in srgb, #{theme.color} 70%, black);"}
-          >
-          </span>
+          ></span>
           {theme.label}
           <.icon name="lucide-check" class="theme-check ml-auto size-4 hidden" />
         </button>
@@ -416,11 +415,13 @@ defmodule SutrauiDemoWeb.Layouts do
           <.drawer_link
             href="/docs/components/input-otp"
             label="Input OTP"
+            marker="New"
             current_path={@current_path}
           />
           <.drawer_link
             href="/docs/components/file-upload"
             label="File Upload"
+            marker="New"
             current_path={@current_path}
           />
           <.drawer_link
@@ -463,6 +464,7 @@ defmodule SutrauiDemoWeb.Layouts do
           <.drawer_link
             href="/docs/components/context-menu"
             label="Context Menu"
+            marker="New"
             current_path={@current_path}
           />
           <.drawer_link
@@ -494,11 +496,17 @@ defmodule SutrauiDemoWeb.Layouts do
             label="Simple Form"
             current_path={@current_path}
           />
-          <.drawer_link href="/docs/components/stepper" label="Stepper" current_path={@current_path} />
+          <.drawer_link
+            href="/docs/components/stepper"
+            label="Stepper"
+            marker="New"
+            current_path={@current_path}
+          />
           <.drawer_link href="/docs/components/tabs" label="Tabs" current_path={@current_path} />
           <.drawer_link
             href="/docs/components/tree-view"
             label="Tree View"
+            marker="New"
             current_path={@current_path}
           />
         </div>
@@ -564,6 +572,7 @@ defmodule SutrauiDemoWeb.Layouts do
           <.drawer_link
             href="/docs/components/hover-card"
             label="Hover Card"
+            marker="New"
             current_path={@current_path}
           />
           <.drawer_link href="/docs/components/popover" label="Popover" current_path={@current_path} />
@@ -585,11 +594,13 @@ defmodule SutrauiDemoWeb.Layouts do
           <.drawer_link
             href="/docs/components/calendar"
             label="Calendar"
+            marker="New"
             current_path={@current_path}
           />
           <.drawer_link
             href="/docs/components/marquee"
             label="Marquee"
+            marker="New"
             current_path={@current_path}
           />
           <.drawer_link href="/docs/components/item" label="Item" current_path={@current_path} />
@@ -597,6 +608,7 @@ defmodule SutrauiDemoWeb.Layouts do
           <.drawer_link
             href="/docs/components/timeline"
             label="Timeline"
+            marker="New"
             current_path={@current_path}
           />
         </div>
@@ -610,6 +622,7 @@ defmodule SutrauiDemoWeb.Layouts do
           <.drawer_link
             href="/docs/components/separator"
             label="Separator"
+            marker="New"
             current_path={@current_path}
           />
           <.drawer_link
@@ -623,6 +636,11 @@ defmodule SutrauiDemoWeb.Layouts do
     """
   end
 
+  attr(:href, :string, required: true)
+  attr(:label, :string, required: true)
+  attr(:current_path, :string, required: true)
+  attr(:marker, :string, default: nil)
+
   defp drawer_link(assigns) do
     active = assigns.current_path == assigns.href
     assigns = assign(assigns, :active, active)
@@ -634,6 +652,12 @@ defmodule SutrauiDemoWeb.Layouts do
       phx-click={JS.dispatch("phx:close-mobile-menu")}
     >
       {@label}
+      <span
+        :if={@marker}
+        class="ml-2 rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-medium leading-none text-primary"
+      >
+        {@marker}
+      </span>
     </.link>
     """
   end

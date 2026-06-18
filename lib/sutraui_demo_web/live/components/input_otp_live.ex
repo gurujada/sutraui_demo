@@ -32,31 +32,16 @@ defmodule SutrauiDemoWeb.Components.InputOTPLive do
 
       <.section_heading id="grouped">Grouped With Separator</.section_heading>
       <.prose>
-        Use the
-        <.inline_code>:group</.inline_code>
-        and
+        Use
+        <.inline_code>groups</.inline_code>
+        with a
         <.inline_code>:separator</.inline_code>
-        slots with
-        <.inline_code>input_otp_slot</.inline_code>
-        to build custom groupings. Slots inherit <.inline_code>mask</.inline_code>, <.inline_code>placeholder</.inline_code>,
-        and
-        <.inline_code>invalid</.inline_code>
-        from the parent — no need to repeat them on each slot.
+        slot to build common verification-code groupings without repeating each slot.
       </.prose>
 
       <.component_demo title="Grouped" code={grouped_code()}>
-        <.input_otp id="demo-grouped" name="code" length={6} value="123">
-          <:group>
-            <.input_otp_slot index={0} />
-            <.input_otp_slot index={1} />
-            <.input_otp_slot index={2} />
-          </:group>
+        <.input_otp id="demo-grouped" name="code" length={6} value="123" groups={[3, 3]}>
           <:separator>—</:separator>
-          <:group>
-            <.input_otp_slot index={3} />
-            <.input_otp_slot index={4} />
-            <.input_otp_slot index={5} />
-          </:group>
         </.input_otp>
       </.component_demo>
 
@@ -69,10 +54,12 @@ defmodule SutrauiDemoWeb.Components.InputOTPLive do
       </.prose>
 
       <.component_demo title="Auto-Verify" code={auto_verify_code()}>
-        <.input_otp id="demo-auto" name="code" length={6} on_complete="verify_code" />
-        <p :if={@completed_code} class="mt-4 text-sm text-muted-foreground">
-          Auto-verified code: <strong class="text-foreground">{@completed_code}</strong>
-        </p>
+        <div class="grid justify-items-center gap-4">
+          <.input_otp id="demo-auto" name="code" length={6} on_complete="verify_code" />
+          <p :if={@completed_code} class="text-sm text-muted-foreground">
+            Auto-verified code: <strong class="text-foreground">{@completed_code}</strong>
+          </p>
+        </div>
       </.component_demo>
 
       <.section_heading id="invalid">Invalid State</.section_heading>
@@ -98,43 +85,36 @@ defmodule SutrauiDemoWeb.Components.InputOTPLive do
 
   defp default_code do
     """
-    <.input_otp id="verify" name="code" length={6} />\
+    <.input_otp id="demo-otp" name="code" length={6} />\
     """
   end
 
   defp pin_code do
     """
-    <.input_otp id="pin" name="pin" length={4} mask placeholder="•" />\
+    <.input_otp id="demo-pin" name="pin" length={4} mask placeholder="•" />\
     """
   end
 
   defp grouped_code do
     """
-    <.input_otp id="verify" name="code" length={6}>
-      <:group>
-        <.input_otp_slot index={0} />
-        <.input_otp_slot index={1} />
-        <.input_otp_slot index={2} />
-      </:group>
+    <.input_otp id="demo-grouped" name="code" length={6} value="123" groups={[3, 3]}>
       <:separator>—</:separator>
-      <:group>
-        <.input_otp_slot index={3} />
-        <.input_otp_slot index={4} />
-        <.input_otp_slot index={5} />
-      </:group>
     </.input_otp>\
     """
   end
 
   defp auto_verify_code do
     """
-    <.input_otp id="verify" name="code" length={6} on_complete="verify_code" />\
+    <.input_otp id="demo-auto" name="code" length={6} on_complete="verify_code" />
+    <p :if={@completed_code} class="text-sm text-muted-foreground">
+      Auto-verified code: <strong class="text-foreground">{@completed_code}</strong>
+    </p>\
     """
   end
 
   defp invalid_code do
     """
-    <.input_otp id="verify" name="code" length={6} value="000000" invalid />\
+    <.input_otp id="demo-invalid" name="code" length={6} value="000000" invalid />\
     """
   end
 end

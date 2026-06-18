@@ -258,9 +258,18 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
   defp default_code do
     """
     <.marquee>
-      <:item><.icon ... /> New components released weekly</:item>
-      <:item><.icon ... /> Fast setup for Phoenix LiveView</:item>
-      <:item><.icon ... /> Accessible defaults</:item>
+      <:item>
+        <.icon name="lucide-sparkles" class="size-4" /> New components released weekly
+      </:item>
+      <:item>
+        <.icon name="lucide-truck" class="size-4" /> Fast setup for Phoenix LiveView
+      </:item>
+      <:item>
+        <.icon name="lucide-shield-check" class="size-4" /> Accessible defaults
+      </:item>
+      <:item>
+        <.icon name="lucide-palette" class="size-4" /> CSS-first theming
+      </:item>
     </.marquee>\
     """
   end
@@ -268,9 +277,18 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
   defp ticker_code do
     """
     <.marquee speed="slow" gap="lg">
-      <:item>Zero JavaScript dependencies</:item>
-      <:item>Dark mode included</:item>
-      <:item>Copy-paste friendly source</:item>
+      <:item>
+        <.icon name="lucide-package-check" class="size-3" /> Zero JavaScript dependencies
+      </:item>
+      <:item>
+        <.icon name="lucide-moon" class="size-3" /> Dark mode included
+      </:item>
+      <:item>
+        <.icon name="lucide-braces" class="size-3" /> Copy-paste friendly source
+      </:item>
+      <:item>
+        <.icon name="lucide-circle-check" class="size-3" /> Phoenix 1.8 ready
+      </:item>
     </.marquee>\
     """
   end
@@ -278,9 +296,24 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
   defp logos_code do
     """
     <.marquee speed="slow" gap="lg">
-      <:item><img ... alt="Stripe" /></:item>
-      <:item><img ... alt="Vercel" /></:item>
-      <:item><img ... alt="Notion" /></:item>
+      <:item>
+        <img src="/images/logos/stripe.svg" alt="Stripe" class="size-5" /> Stripe
+      </:item>
+      <:item>
+        <img src="/images/logos/vercel.svg" alt="Vercel" class="size-5" /> Vercel
+      </:item>
+      <:item>
+        <img src="/images/logos/notion.svg" alt="Notion" class="size-5" /> Notion
+      </:item>
+      <:item>
+        <img src="/images/logos/figma.svg" alt="Figma" class="size-5" /> Figma
+      </:item>
+      <:item>
+        <img src="/images/logos/linear.svg" alt="Linear" class="size-5" /> Linear
+      </:item>
+      <:item>
+        <img src="/images/logos/railway.svg" alt="Railway" class="size-5" /> Railway
+      </:item>
     </.marquee>\
     """
   end
@@ -290,10 +323,12 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
     <.marquee speed="fast">
       <:item>Fast cycle</:item>
       <:item>Urgent announcements</:item>
+      <:item>Short copy only</:item>
     </.marquee>
     <.marquee speed="slow" fade_edges={false}>
       <:item>Slow cycle</:item>
       <:item>Comfortable reading pace</:item>
+      <:item>Longer content works here</:item>
     </.marquee>\
     """
   end
@@ -303,6 +338,7 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
     <.marquee direction="right">
       <:item>Right direction</:item>
       <:item>Reverse flow</:item>
+      <:item>Same seamless loop</:item>
     </.marquee>\
     """
   end
@@ -312,6 +348,7 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
     <.marquee fade_edges={false}>
       <:item>No gradient mask</:item>
       <:item>Sharp container edges</:item>
+      <:item>Useful for clipped layouts</:item>
     </.marquee>\
     """
   end
