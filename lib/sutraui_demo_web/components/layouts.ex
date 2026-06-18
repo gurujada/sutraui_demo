@@ -812,7 +812,7 @@ defmodule SutrauiDemoWeb.Layouts do
         %{
           label: "Stepper",
           href: "/docs/components/stepper",
-          keywords: ["steps", "wizard", "progress", "flow"]
+          keywords: ["steps", "wizard", "form", "checkout", "onboarding"]
         },
         %{
           label: "Tabs",
