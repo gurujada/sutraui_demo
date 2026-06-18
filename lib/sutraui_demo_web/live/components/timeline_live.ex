@@ -17,32 +17,57 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
         <div class="w-full max-w-md">
           <.timeline>
             <:item time="2 hours ago">
-              <h4 class="text-sm font-medium">Deployed v2.4</h4>
-              <p class="text-sm text-muted-foreground">Pushed to production, all checks green.</p>
+              <h4>Deployed v2.4</h4>
+              <p>Pushed to production, all checks green.</p>
             </:item>
             <:item time="4 hours ago">
-              <h4 class="text-sm font-medium">Merged PR #342</h4>
-              <p class="text-sm text-muted-foreground">
-                Refactored auth module for better testability.
-              </p>
+              <h4>Merged PR #342</h4>
+              <p>Refactored auth module for better testability.</p>
             </:item>
-            <:item time="Yesterday" icon="📝">
-              <h4 class="text-sm font-medium">Draft saved</h4>
+            <:item time="Yesterday">
+              <h4>Draft saved</h4>
+              <p>Auto-save captured the latest edits.</p>
             </:item>
           </.timeline>
         </div>
       </.component_demo>
 
-      <.section_heading id="custom-markers">Custom Markers</.section_heading>
+      <.section_heading id="icons">Icon Markers</.section_heading>
       <.prose>
-        Use
+        Pass an
         <.inline_code>icon</.inline_code>
-        to replace the dot with text or an emoji. Style it with
-        <.inline_code>marker_class</.inline_code>
-        .
+        slot attr to replace the default dot with text or an emoji.
       </.prose>
 
-      <.component_demo title="Avatar Markers" code={markers_code()}>
+      <.component_demo title="Icon Markers" code={icons_code()}>
+        <div class="w-full max-w-md">
+          <.timeline>
+            <:item time="2 hours ago" icon="🚀">
+              <h4>Deployed v2.4</h4>
+              <p>Pushed to production, all checks green.</p>
+            </:item>
+            <:item time="Yesterday" icon="📝">
+              <h4>Draft saved</h4>
+            </:item>
+            <:item time="3 days ago" icon="✅">
+              <h4>Tests passing</h4>
+              <p>All 962 tests green on CI.</p>
+            </:item>
+          </.timeline>
+        </div>
+      </.component_demo>
+
+      <.section_heading id="colored-markers">Colored Markers</.section_heading>
+      <.prose>
+        Use
+        <.inline_code>marker_class</.inline_code>
+        to style individual markers — perfect for distinguishing users or event
+        types. Combine with
+        <.inline_code>icon</.inline_code>
+        for initial-based avatars.
+      </.prose>
+
+      <.component_demo title="Colored Markers" code={colored_code()}>
         <div class="w-full max-w-md">
           <.timeline>
             <:item
@@ -50,14 +75,14 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
               icon="A"
               marker_class="bg-primary text-primary-foreground text-xs font-bold"
             >
-              <p class="text-sm"><strong>Alex</strong> created a new project</p>
+              <p><strong>Alex</strong> created a new project</p>
             </:item>
             <:item
               time="1 hour ago"
               icon="S"
               marker_class="bg-secondary text-secondary-foreground text-xs font-bold"
             >
-              <p class="text-sm"><strong>Sarah</strong> left a comment</p>
+              <p><strong>Sarah</strong> left a comment</p>
               <div class="mt-2 rounded-md border bg-muted/40 px-3 py-2 text-sm text-muted-foreground">
                 Looks good. The empty state copy feels much clearer now.
               </div>
@@ -67,7 +92,7 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
               icon="M"
               marker_class="bg-destructive text-destructive-foreground text-xs font-bold"
             >
-              <p class="text-sm"><strong>Mike</strong> merged PR #342</p>
+              <p><strong>Mike</strong> merged PR #342</p>
             </:item>
           </.timeline>
         </div>
@@ -140,6 +165,33 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
           </.timeline>
         </div>
       </.component_demo>
+
+      <.section_heading id="notes">Notes</.section_heading>
+      <.list>
+        <.list_item>
+          The timeline is a pure CSS component — no JavaScript hook. The
+          connector line is a flex element that stretches to fill the marker
+          column.
+        </.list_item>
+        <.list_item>
+          The marker and connector line are
+          <.inline_code>aria-hidden</.inline_code>
+          — they're decorative. The timestamp uses a semantic
+          <.inline_code>&lt;time&gt;</.inline_code>
+          element.
+        </.list_item>
+        <.list_item>
+          Use
+          <.inline_code>marker_class</.inline_code>
+          to color individual markers (e.g. <.inline_code>bg-primary text-primary-foreground</.inline_code>).
+        </.list_item>
+        <.list_item>
+          The
+          <.inline_code>icon</.inline_code>
+          slot attr replaces the default dot with text or an emoji. Without it,
+          a subtle bordered dot is shown.
+        </.list_item>
+      </.list>
     </Layouts.docs>
     """
   end
@@ -151,6 +203,21 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
         <h4>Deployed v2.4</h4>
         <p>Pushed to production, all checks green.</p>
       </:item>
+      <:item time="Yesterday">
+        <h4>Draft saved</h4>
+        <p>Auto-save captured the latest edits.</p>
+      </:item>
+    </.timeline>\
+    """
+  end
+
+  defp icons_code do
+    """
+    <.timeline>
+      <:item time="2 hours ago" icon="🚀">
+        <h4>Deployed v2.4</h4>
+        <p>Pushed to production, all checks green.</p>
+      </:item>
       <:item time="Yesterday" icon="📝">
         <h4>Draft saved</h4>
       </:item>
@@ -158,7 +225,7 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
     """
   end
 
-  defp markers_code do
+  defp colored_code do
     """
     <.timeline>
       <:item time="12 min ago" icon="A" marker_class="bg-primary text-primary-foreground text-xs font-bold">

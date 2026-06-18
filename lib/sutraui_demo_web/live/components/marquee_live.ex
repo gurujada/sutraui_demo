@@ -10,42 +10,32 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
     <Layouts.docs flash={@flash} current_path="/docs/components/marquee">
       <.docs_header
         title="Marquee"
-        description="A CSS-only scrolling banner for announcements, logo strips, and repeated inline content."
+        description="A CSS-only scrolling banner for announcements, logo strips, and repeating inline content."
       />
 
       <.component_demo title="Default" code={default_code()}>
-        <div class="w-full rounded-lg border py-3 bg-card">
+        <div class="w-full rounded-lg border bg-card py-3">
           <.marquee>
             <:item>
-              <span class="inline-flex items-center gap-2 text-sm whitespace-nowrap text-foreground">
-                <span class="text-primary">
-                  <.icon name="lucide-sparkles" class="size-4" />
-                </span>
+              <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                <.icon name="lucide-sparkles" class="size-4 text-primary" />
                 New components released weekly
               </span>
             </:item>
             <:item>
-              <span class="inline-flex items-center gap-2 text-sm whitespace-nowrap text-foreground">
-                <span class="text-primary">
-                  <.icon name="lucide-truck" class="size-4" />
-                </span>
+              <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                <.icon name="lucide-truck" class="size-4 text-primary" />
                 Fast setup for Phoenix LiveView
               </span>
             </:item>
             <:item>
-              <span class="inline-flex items-center gap-2 text-sm whitespace-nowrap text-foreground">
-                <span class="text-primary">
-                  <.icon name="lucide-shield-check" class="size-4" />
-                </span>
-                Accessible defaults
+              <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                <.icon name="lucide-shield-check" class="size-4 text-primary" /> Accessible defaults
               </span>
             </:item>
             <:item>
-              <span class="inline-flex items-center gap-2 text-sm whitespace-nowrap text-foreground">
-                <span class="text-primary">
-                  <.icon name="lucide-palette" class="size-4" />
-                </span>
-                CSS-first theming
+              <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                <.icon name="lucide-palette" class="size-4 text-primary" /> CSS-first theming
               </span>
             </:item>
           </.marquee>
@@ -59,19 +49,39 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
       </.prose>
 
       <.component_demo title="Ticker" code={ticker_code()}>
-        <div class="w-full border-y py-2.5 bg-background">
+        <div class="w-full border-y bg-background py-2.5">
           <.marquee speed="slow" gap="lg">
             <:item>
-              <.ticker_item icon="lucide-package-check">Zero JavaScript dependencies</.ticker_item>
+              <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                <span class="inline-flex size-5 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                  <.icon name="lucide-package-check" class="size-3" />
+                </span>
+                Zero JavaScript dependencies
+              </span>
             </:item>
             <:item>
-              <.ticker_item icon="lucide-moon">Dark mode included</.ticker_item>
+              <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                <span class="inline-flex size-5 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                  <.icon name="lucide-moon" class="size-3" />
+                </span>
+                Dark mode included
+              </span>
             </:item>
             <:item>
-              <.ticker_item icon="lucide-braces">Copy-paste friendly source</.ticker_item>
+              <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                <span class="inline-flex size-5 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                  <.icon name="lucide-braces" class="size-3" />
+                </span>
+                Copy-paste friendly source
+              </span>
             </:item>
             <:item>
-              <.ticker_item icon="lucide-circle-check">Phoenix 1.8 ready</.ticker_item>
+              <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                <span class="inline-flex size-5 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                  <.icon name="lucide-circle-check" class="size-3" />
+                </span>
+                Phoenix 1.8 ready
+              </span>
             </:item>
           </.marquee>
         </div>
@@ -83,50 +93,108 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
       </.prose>
 
       <.component_demo title="Trusted By" code={logos_code()}>
-        <div class="w-full rounded-lg border py-4 bg-card">
+        <div class="w-full rounded-lg border bg-card py-4">
           <.marquee speed="slow" gap="lg">
-            <:item><.logo_item src="/images/logos/stripe.svg" name="Stripe" /></:item>
-            <:item><.logo_item src="/images/logos/vercel.svg" name="Vercel" /></:item>
-            <:item><.logo_item src="/images/logos/notion.svg" name="Notion" /></:item>
-            <:item><.logo_item src="/images/logos/figma.svg" name="Figma" /></:item>
-            <:item><.logo_item src="/images/logos/linear.svg" name="Linear" /></:item>
-            <:item><.logo_item src="/images/logos/railway.svg" name="Railway" /></:item>
+            <:item>
+              <span class="inline-flex items-center gap-3 whitespace-nowrap px-2">
+                <span class="inline-flex size-9 items-center justify-center rounded-md border bg-white">
+                  <img src="/images/logos/stripe.svg" alt="" class="size-5 object-contain" />
+                </span>
+                <span class="text-sm font-medium text-foreground">Stripe</span>
+              </span>
+            </:item>
+            <:item>
+              <span class="inline-flex items-center gap-3 whitespace-nowrap px-2">
+                <span class="inline-flex size-9 items-center justify-center rounded-md border bg-white">
+                  <img src="/images/logos/vercel.svg" alt="" class="size-5 object-contain" />
+                </span>
+                <span class="text-sm font-medium text-foreground">Vercel</span>
+              </span>
+            </:item>
+            <:item>
+              <span class="inline-flex items-center gap-3 whitespace-nowrap px-2">
+                <span class="inline-flex size-9 items-center justify-center rounded-md border bg-white">
+                  <img src="/images/logos/notion.svg" alt="" class="size-5 object-contain" />
+                </span>
+                <span class="text-sm font-medium text-foreground">Notion</span>
+              </span>
+            </:item>
+            <:item>
+              <span class="inline-flex items-center gap-3 whitespace-nowrap px-2">
+                <span class="inline-flex size-9 items-center justify-center rounded-md border bg-white">
+                  <img src="/images/logos/figma.svg" alt="" class="size-5 object-contain" />
+                </span>
+                <span class="text-sm font-medium text-foreground">Figma</span>
+              </span>
+            </:item>
+            <:item>
+              <span class="inline-flex items-center gap-3 whitespace-nowrap px-2">
+                <span class="inline-flex size-9 items-center justify-center rounded-md border bg-white">
+                  <img src="/images/logos/linear.svg" alt="" class="size-5 object-contain" />
+                </span>
+                <span class="text-sm font-medium text-foreground">Linear</span>
+              </span>
+            </:item>
+            <:item>
+              <span class="inline-flex items-center gap-3 whitespace-nowrap px-2">
+                <span class="inline-flex size-9 items-center justify-center rounded-md border bg-white">
+                  <img src="/images/logos/railway.svg" alt="" class="size-5 object-contain" />
+                </span>
+                <span class="text-sm font-medium text-foreground">Railway</span>
+              </span>
+            </:item>
           </.marquee>
         </div>
       </.component_demo>
 
       <.section_heading id="speed">Speed</.section_heading>
       <.prose>
-        Choose from <.inline_code>fast</.inline_code>, <.inline_code>default</.inline_code>, or
+        Choose from
+        <.inline_code>fast</.inline_code>
+        (8s),
+        <.inline_code>default</.inline_code>
+        (15s), or
         <.inline_code>slow</.inline_code>
-        speed presets.
+        (27s) speed presets.
       </.prose>
 
       <.component_demo title="Speed Presets" code={speed_code()}>
         <div class="grid w-full gap-3">
-          <div class="rounded-md border py-2 bg-card">
+          <div class="rounded-md border bg-card py-2">
             <.marquee speed="fast">
               <:item>
-                <.plain_item tone="destructive">Fast cycle</.plain_item>
+                <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                  <span class="size-1.5 rounded-full bg-destructive"></span> Fast cycle
+                </span>
               </:item>
               <:item>
-                <.plain_item tone="destructive">Urgent announcements</.plain_item>
+                <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                  <span class="size-1.5 rounded-full bg-destructive"></span> Urgent announcements
+                </span>
               </:item>
               <:item>
-                <.plain_item tone="destructive">Short copy only</.plain_item>
+                <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                  <span class="size-1.5 rounded-full bg-destructive"></span> Short copy only
+                </span>
               </:item>
             </.marquee>
           </div>
-          <div class="rounded-md border py-2 bg-card">
+          <div class="rounded-md border bg-card py-2">
             <.marquee speed="slow" fade_edges={false}>
               <:item>
-                <.plain_item>Slow cycle</.plain_item>
+                <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                  <span class="size-1.5 rounded-full bg-primary"></span> Slow cycle
+                </span>
               </:item>
               <:item>
-                <.plain_item>Comfortable reading pace</.plain_item>
+                <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                  <span class="size-1.5 rounded-full bg-primary"></span> Comfortable reading pace
+                </span>
               </:item>
               <:item>
-                <.plain_item>Longer content works here</.plain_item>
+                <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                  <span class="size-1.5 rounded-full bg-primary"></span> Longer content works here
+                </span>
               </:item>
             </.marquee>
           </div>
@@ -141,84 +209,72 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
       </.prose>
 
       <.component_demo title="Reverse Direction" code={reverse_code()}>
-        <div class="w-full rounded-lg border py-3 bg-card">
+        <div class="w-full rounded-lg border bg-card py-3">
           <.marquee direction="right">
             <:item>
-              <.plain_item>Right direction</.plain_item>
+              <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                <span class="size-1.5 rounded-full bg-primary"></span> Right direction
+              </span>
             </:item>
             <:item>
-              <.plain_item>Reverse flow</.plain_item>
+              <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                <span class="size-1.5 rounded-full bg-primary"></span> Reverse flow
+              </span>
             </:item>
             <:item>
-              <.plain_item>Same seamless loop</.plain_item>
+              <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                <span class="size-1.5 rounded-full bg-primary"></span> Same seamless loop
+              </span>
             </:item>
           </.marquee>
         </div>
       </.component_demo>
 
       <.component_demo title="Without Edge Fade" code={no_fade_code()}>
-        <div class="w-full rounded-lg border py-3 bg-card">
+        <div class="w-full rounded-lg border bg-card py-3">
           <.marquee fade_edges={false}>
             <:item>
-              <.plain_item>No gradient mask</.plain_item>
+              <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                <span class="size-1.5 rounded-full bg-primary"></span> No gradient mask
+              </span>
             </:item>
             <:item>
-              <.plain_item>Sharp container edges</.plain_item>
+              <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                <span class="size-1.5 rounded-full bg-primary"></span> Sharp container edges
+              </span>
             </:item>
             <:item>
-              <.plain_item>Useful for clipped layouts</.plain_item>
+              <span class="inline-flex items-center gap-2 whitespace-nowrap text-sm text-foreground">
+                <span class="size-1.5 rounded-full bg-primary"></span> Useful for clipped layouts
+              </span>
             </:item>
           </.marquee>
         </div>
       </.component_demo>
+
+      <.section_heading id="notes">Notes</.section_heading>
+      <.list>
+        <.list_item>
+          The marquee is pure CSS — no JavaScript hook. Content is duplicated
+          internally so the scroll loop is seamless.
+        </.list_item>
+        <.list_item>
+          The duplicated track sets
+          <.inline_code>aria-hidden="true"</.inline_code>
+          so screen readers don't announce items twice.
+        </.list_item>
+        <.list_item>
+          Respects
+          <.inline_code>prefers-reduced-motion</.inline_code>
+          — the animation halts automatically for users who've opted out.
+        </.list_item>
+        <.list_item>
+          Use
+          <.inline_code>pause_on_hover</.inline_code>
+          (on by default) so users can pause the scroll by hovering to read.
+        </.list_item>
+      </.list>
     </Layouts.docs>
-    """
-  end
-
-  attr(:icon, :string, required: true)
-  slot(:inner_block, required: true)
-
-  defp ticker_item(assigns) do
-    ~H"""
-    <span class="inline-flex items-center gap-2 text-sm whitespace-nowrap text-foreground">
-      <span class="inline-flex size-5 items-center justify-center rounded-full bg-primary text-primary-foreground">
-        <.icon name={@icon} class="size-3" />
-      </span>
-      {render_slot(@inner_block)}
-    </span>
-    """
-  end
-
-  attr(:src, :string, required: true)
-  attr(:name, :string, required: true)
-
-  defp logo_item(assigns) do
-    ~H"""
-    <span class="inline-flex items-center gap-3 whitespace-nowrap px-2">
-      <span class="inline-flex size-9 items-center justify-center rounded-md border bg-white">
-        <img src={@src} alt="" class="size-5 object-contain" aria-hidden="true" />
-      </span>
-      <span class="text-sm font-medium text-foreground">{@name}</span>
-    </span>
-    """
-  end
-
-  attr(:tone, :string, default: "default")
-  slot(:inner_block, required: true)
-
-  defp plain_item(assigns) do
-    assigns =
-      assign(
-        assigns,
-        :dot_class,
-        if(assigns.tone == "destructive", do: "bg-destructive", else: "bg-primary")
-      )
-
-    ~H"""
-    <span class="inline-flex items-center gap-2 text-sm whitespace-nowrap text-foreground">
-      <span class={["size-1.5 rounded-full", @dot_class]}></span>
-      {render_slot(@inner_block)}
-    </span>
     """
   end
 
@@ -259,8 +315,14 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
 
   defp speed_code do
     """
-    <.marquee speed="fast">...</.marquee>
-    <.marquee speed="slow">...</.marquee>\
+    <.marquee speed="fast">
+      <:item>Fast cycle</:item>
+      <:item>Urgent announcements</:item>
+    </.marquee>
+    <.marquee speed="slow" fade_edges={false}>
+      <:item>Slow cycle</:item>
+      <:item>Comfortable reading pace</:item>
+    </.marquee>\
     """
   end
 
