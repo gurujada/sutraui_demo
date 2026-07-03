@@ -78,6 +78,8 @@ defmodule SutrauiDemoWeb.Router do
     live("/docs/components/file-upload", Components.FileUploadLive, :index)
     live("/docs/components/context-menu", Components.ContextMenuLive, :index)
     live("/docs/components/tree-view", Components.TreeViewLive, :index)
+    live("/docs/components/response", Components.ResponseLive, :index)
+    live("/docs/components/activity", Components.ActivityLive, :index)
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

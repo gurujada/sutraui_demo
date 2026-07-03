@@ -230,7 +230,7 @@ defmodule SutrauiDemoWeb.Layouts do
             }
           };
           document.addEventListener('keydown', handleKeydown);
-          
+
           // Clean up
           this.destroy = () => {
             // Always restore body overflow on destroy
@@ -614,6 +614,27 @@ defmodule SutrauiDemoWeb.Layouts do
         </div>
       </div>
 
+      <%!-- AI --%>
+      <div>
+        <h4 class="drawer-title">AI</h4>
+        <div class="space-y-1">
+          <.drawer_link
+            href="/docs/components/response"
+            label="Response"
+            marker="New"
+            marker_emoji="🔥"
+            current_path={@current_path}
+          />
+          <.drawer_link
+            href="/docs/components/activity"
+            label="Activity"
+            marker="New"
+            marker_emoji="🔥"
+            current_path={@current_path}
+          />
+        </div>
+      </div>
+
       <%!-- Utilities --%>
       <div>
         <h4 class="drawer-title">Utilities</h4>
@@ -640,6 +661,7 @@ defmodule SutrauiDemoWeb.Layouts do
   attr(:label, :string, required: true)
   attr(:current_path, :string, required: true)
   attr(:marker, :string, default: nil)
+  attr(:marker_emoji, :string, default: nil)
 
   defp drawer_link(assigns) do
     active = assigns.current_path == assigns.href
@@ -652,9 +674,12 @@ defmodule SutrauiDemoWeb.Layouts do
       phx-click={JS.dispatch("phx:close-mobile-menu")}
     >
       {@label}
+      <span :if={@marker_emoji} class="ml-1 text-xs leading-none" aria-hidden="true">
+        {@marker_emoji}
+      </span>
       <span
         :if={@marker}
-        class="ml-2 rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-medium leading-none text-primary"
+        class="ml-2 rounded-full bg-blue-500/10 px-1.5 py-0.5 text-[10px] font-medium leading-none text-blue-600 dark:text-blue-400"
       >
         {@marker}
       </span>
@@ -1005,6 +1030,21 @@ defmodule SutrauiDemoWeb.Layouts do
           label: "Timeline",
           href: "/docs/components/timeline",
           keywords: ["timeline", "activity", "events", "history"]
+        }
+      ]
+    },
+    %{
+      group: "AI",
+      items: [
+        %{
+          label: "Response",
+          href: "/docs/components/response",
+          keywords: ["ai", "markdown", "streaming", "response", "assistant"]
+        },
+        %{
+          label: "Activity",
+          href: "/docs/components/activity",
+          keywords: ["ai", "activity", "agent", "progress", "status"]
         }
       ]
     },
