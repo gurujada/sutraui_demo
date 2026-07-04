@@ -54,7 +54,6 @@ defmodule SutrauiDemoWeb.Router do
     live("/docs/components/tooltip", Components.TooltipLive, :index)
     live("/docs/components/popover", Components.PopoverLive, :index)
     live("/docs/components/breadcrumb", Components.BreadcrumbLive, :index)
-    live("/docs/components/nav-pills", Components.NavPillsLive, :index)
     live("/docs/components/pagination", Components.PaginationLive, :index)
     live("/docs/components/tab-nav", Components.TabNavLive, :index)
     live("/docs/components/drawer", Components.DrawerLive, :index)

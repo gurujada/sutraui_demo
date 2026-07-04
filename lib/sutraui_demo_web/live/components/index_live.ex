@@ -30,17 +30,17 @@ defmodule SutrauiDemoWeb.Components.IndexLive do
                   {item.label}
                 </span>
                 <span
-                  :if={Layouts.component_marker_emoji(item.href)}
+                  :if={item[:marker_emoji]}
                   class="shrink-0 text-xs leading-none"
                   aria-hidden="true"
                 >
-                  {Layouts.component_marker_emoji(item.href)}
+                  {item.marker_emoji}
                 </span>
                 <span
-                  :if={Layouts.new_component?(item.href)}
+                  :if={item[:marker]}
                   class="shrink-0 rounded-full bg-blue-500/10 px-1.5 py-0.5 text-[10px] font-medium leading-none text-blue-600 dark:text-blue-400"
                 >
-                  New
+                  {item.marker}
                 </span>
               </span>
             </.link>

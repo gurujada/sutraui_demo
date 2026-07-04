@@ -3,11 +3,11 @@
 @import "tailwindcss" source(none);
 
 /* Sutra UI base */
-@import "../../../sutra_ui/priv/static/sutra_ui.css";
+@import "../../deps/sutra_ui/priv/static/sutra_ui.css";
 
 @plugin "../vendor/lucide";
 /* Source paths */
-@source "../../../sutra_ui/lib";
+@source "../../deps/sutra_ui/lib";
 @source "../css";
 @source "../js";
 @source "../../lib/sutraui_demo_web";

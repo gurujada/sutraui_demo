@@ -257,32 +257,6 @@ defmodule SutrauiDemoWeb.Layouts do
     %{id: "violet", label: "Violet", color: "#8b5cf6"}
   ]
 
-  @new_component_paths MapSet.new([
-                         "/docs/components/input-otp",
-                         "/docs/components/file-upload",
-                         "/docs/components/context-menu",
-                         "/docs/components/stepper",
-                         "/docs/components/tree-view",
-                         "/docs/components/hover-card",
-                         "/docs/components/calendar",
-                         "/docs/components/marquee",
-                         "/docs/components/timeline",
-                         "/docs/components/response",
-                         "/docs/components/activity",
-                         "/docs/components/separator"
-                       ])
-
-  @ai_component_paths MapSet.new([
-                        "/docs/components/response",
-                        "/docs/components/activity"
-                      ])
-
-  def new_component?(href), do: MapSet.member?(@new_component_paths, href)
-
-  def component_marker_emoji(href) do
-    if MapSet.member?(@ai_component_paths, href), do: "🔥"
-  end
-
   def color_theme_picker(assigns) do
     assigns = assign(assigns, :themes, @themes)
 
@@ -417,264 +391,19 @@ defmodule SutrauiDemoWeb.Layouts do
   attr(:current_path, :string, default: "/")
 
   def docs_drawer(assigns) do
+    assigns = assign(assigns, :nav_items, nav_items())
+
     ~H"""
     <nav class="space-y-10">
-      <div>
-        <h4 class="drawer-title">Getting Started</h4>
-        <div class="space-y-1">
-          <.drawer_link href="/docs" label="Introduction" current_path={@current_path} />
-          <.drawer_link href="/docs/installation" label="Installation" current_path={@current_path} />
-          <.drawer_link href="/docs/theming" label="Theming" current_path={@current_path} />
-        </div>
-      </div>
-
-      <%!-- Form Inputs --%>
-      <div>
-        <h4 class="drawer-title">Form Inputs</h4>
+      <div :for={section <- @nav_items}>
+        <h4 class="drawer-title">{section.group}</h4>
         <div class="space-y-1">
           <.drawer_link
-            href="/docs/components/checkbox"
-            label="Checkbox"
-            current_path={@current_path}
-          />
-          <.drawer_link href="/docs/components/input" label="Input" current_path={@current_path} />
-          <.drawer_link
-            href="/docs/components/input-otp"
-            label="Input OTP"
-            marker="New"
-            current_path={@current_path}
-          />
-          <.drawer_link
-            href="/docs/components/file-upload"
-            label="File Upload"
-            marker="New"
-            current_path={@current_path}
-          />
-          <.drawer_link
-            href="/docs/components/input-group"
-            label="Input Group"
-            current_path={@current_path}
-          />
-          <.drawer_link href="/docs/components/label" label="Label" current_path={@current_path} />
-          <.drawer_link
-            href="/docs/components/live-select"
-            label="Live Select"
-            current_path={@current_path}
-          />
-          <.drawer_link
-            href="/docs/components/radio-group"
-            label="Radio Group"
-            current_path={@current_path}
-          />
-          <.drawer_link
-            href="/docs/components/range-slider"
-            label="Range Slider"
-            current_path={@current_path}
-          />
-          <.drawer_link href="/docs/components/select" label="Select" current_path={@current_path} />
-          <.drawer_link href="/docs/components/slider" label="Slider" current_path={@current_path} />
-          <.drawer_link href="/docs/components/switch" label="Switch" current_path={@current_path} />
-          <.drawer_link
-            href="/docs/components/textarea"
-            label="Textarea"
-            current_path={@current_path}
-          />
-        </div>
-      </div>
-
-      <%!-- Buttons & Actions --%>
-      <div>
-        <h4 class="drawer-title">Buttons & Actions</h4>
-        <div class="space-y-1">
-          <.drawer_link href="/docs/components/button" label="Button" current_path={@current_path} />
-          <.drawer_link
-            href="/docs/components/context-menu"
-            label="Context Menu"
-            marker="New"
-            current_path={@current_path}
-          />
-          <.drawer_link
-            href="/docs/components/dropdown-menu"
-            label="Dropdown Menu"
-            current_path={@current_path}
-          />
-        </div>
-      </div>
-
-      <%!-- Layout --%>
-      <div>
-        <h4 class="drawer-title">Layout</h4>
-        <div class="space-y-1">
-          <.drawer_link
-            href="/docs/components/accordion"
-            label="Accordion"
-            current_path={@current_path}
-          />
-          <.drawer_link href="/docs/components/card" label="Card" current_path={@current_path} />
-          <.drawer_link
-            href="/docs/components/filter-bar"
-            label="Filter Bar"
-            current_path={@current_path}
-          />
-          <.drawer_link href="/docs/components/header" label="Header" current_path={@current_path} />
-          <.drawer_link
-            href="/docs/components/simple-form"
-            label="Simple Form"
-            current_path={@current_path}
-          />
-          <.drawer_link
-            href="/docs/components/stepper"
-            label="Stepper"
-            marker="New"
-            current_path={@current_path}
-          />
-          <.drawer_link href="/docs/components/tabs" label="Tabs" current_path={@current_path} />
-          <.drawer_link
-            href="/docs/components/tree-view"
-            label="Tree View"
-            marker="New"
-            current_path={@current_path}
-          />
-        </div>
-      </div>
-
-      <%!-- Navigation --%>
-      <div>
-        <h4 class="drawer-title">Navigation</h4>
-        <div class="space-y-1">
-          <.drawer_link
-            href="/docs/components/breadcrumb"
-            label="Breadcrumb"
-            current_path={@current_path}
-          />
-          <.drawer_link
-            href="/docs/components/nav-pills"
-            label="Nav Pills"
-            current_path={@current_path}
-          />
-          <.drawer_link
-            href="/docs/components/pagination"
-            label="Pagination"
-            current_path={@current_path}
-          />
-          <.drawer_link href="/docs/components/drawer" label="Drawer" current_path={@current_path} />
-          <.drawer_link href="/docs/components/tab-nav" label="Tab Nav" current_path={@current_path} />
-        </div>
-      </div>
-
-      <%!-- Feedback --%>
-      <div>
-        <h4 class="drawer-title">Feedback</h4>
-        <div class="space-y-1">
-          <.drawer_link href="/docs/components/alert" label="Alert" current_path={@current_path} />
-          <.drawer_link href="/docs/components/empty" label="Empty" current_path={@current_path} />
-          <.drawer_link href="/docs/components/flash" label="Flash" current_path={@current_path} />
-          <.drawer_link
-            href="/docs/components/loading-state"
-            label="Loading State"
-            current_path={@current_path}
-          />
-          <.drawer_link
-            href="/docs/components/progress"
-            label="Progress"
-            current_path={@current_path}
-          />
-          <.drawer_link
-            href="/docs/components/skeleton"
-            label="Skeleton"
-            current_path={@current_path}
-          />
-          <.drawer_link href="/docs/components/spinner" label="Spinner" current_path={@current_path} />
-          <.drawer_link href="/docs/components/toast" label="Toast" current_path={@current_path} />
-        </div>
-      </div>
-
-      <%!-- Overlays --%>
-      <div>
-        <h4 class="drawer-title">Overlays</h4>
-        <div class="space-y-1">
-          <.drawer_link href="/docs/components/command" label="Command" current_path={@current_path} />
-          <.drawer_link href="/docs/components/dialog" label="Dialog" current_path={@current_path} />
-          <.drawer_link
-            href="/docs/components/hover-card"
-            label="Hover Card"
-            marker="New"
-            current_path={@current_path}
-          />
-          <.drawer_link href="/docs/components/popover" label="Popover" current_path={@current_path} />
-          <.drawer_link href="/docs/components/tooltip" label="Tooltip" current_path={@current_path} />
-        </div>
-      </div>
-
-      <%!-- Data Display --%>
-      <div>
-        <h4 class="drawer-title">Data Display</h4>
-        <div class="space-y-1">
-          <.drawer_link href="/docs/components/avatar" label="Avatar" current_path={@current_path} />
-          <.drawer_link href="/docs/components/badge" label="Badge" current_path={@current_path} />
-          <.drawer_link
-            href="/docs/components/carousel"
-            label="Carousel"
-            current_path={@current_path}
-          />
-          <.drawer_link
-            href="/docs/components/calendar"
-            label="Calendar"
-            marker="New"
-            current_path={@current_path}
-          />
-          <.drawer_link
-            href="/docs/components/marquee"
-            label="Marquee"
-            marker="New"
-            current_path={@current_path}
-          />
-          <.drawer_link href="/docs/components/item" label="Item" current_path={@current_path} />
-          <.drawer_link href="/docs/components/table" label="Table" current_path={@current_path} />
-          <.drawer_link
-            href="/docs/components/timeline"
-            label="Timeline"
-            marker="New"
-            current_path={@current_path}
-          />
-        </div>
-      </div>
-
-      <%!-- AI --%>
-      <div>
-        <h4 class="drawer-title">AI</h4>
-        <div class="space-y-1">
-          <.drawer_link
-            href="/docs/components/response"
-            label="Response"
-            marker="New"
-            marker_emoji="🔥"
-            current_path={@current_path}
-          />
-          <.drawer_link
-            href="/docs/components/activity"
-            label="Activity"
-            marker="New"
-            marker_emoji="🔥"
-            current_path={@current_path}
-          />
-        </div>
-      </div>
-
-      <%!-- Utilities --%>
-      <div>
-        <h4 class="drawer-title">Utilities</h4>
-        <div class="space-y-1">
-          <.drawer_link href="/docs/components/kbd" label="Kbd" current_path={@current_path} />
-          <.drawer_link
-            href="/docs/components/separator"
-            label="Separator"
-            marker="New"
-            current_path={@current_path}
-          />
-          <.drawer_link
-            href="/docs/components/theme-switcher"
-            label="Theme Switcher"
+            :for={item <- section.items}
+            href={item.href}
+            label={item.label}
+            marker={item[:marker]}
+            marker_emoji={item[:marker_emoji]}
             current_path={@current_path}
           />
         </div>
@@ -786,12 +515,14 @@ defmodule SutrauiDemoWeb.Layouts do
         %{
           label: "Input OTP",
           href: "/docs/components/input-otp",
-          keywords: ["otp", "pin", "mfa", "verification", "code"]
+          keywords: ["otp", "pin", "mfa", "verification", "code"],
+          marker: "New"
         },
         %{
           label: "File Upload",
           href: "/docs/components/file-upload",
-          keywords: ["upload", "file", "dropzone", "phoenix", "allow_upload"]
+          keywords: ["upload", "file", "dropzone", "phoenix", "allow_upload"],
+          marker: "New"
         },
         %{
           label: "Input Group",
@@ -851,7 +582,8 @@ defmodule SutrauiDemoWeb.Layouts do
         %{
           label: "Context Menu",
           href: "/docs/components/context-menu",
-          keywords: ["right click", "context", "menu", "actions"]
+          keywords: ["right click", "context", "menu", "actions"],
+          marker: "New"
         },
         %{
           label: "Dropdown Menu",
@@ -887,7 +619,8 @@ defmodule SutrauiDemoWeb.Layouts do
         %{
           label: "Stepper",
           href: "/docs/components/stepper",
-          keywords: ["steps", "wizard", "form", "checkout", "onboarding"]
+          keywords: ["steps", "wizard", "form", "checkout", "onboarding"],
+          marker: "New"
         },
         %{
           label: "Tabs",
@@ -897,7 +630,8 @@ defmodule SutrauiDemoWeb.Layouts do
         %{
           label: "Tree View",
           href: "/docs/components/tree-view",
-          keywords: ["tree", "files", "hierarchy", "nested", "folders"]
+          keywords: ["tree", "files", "hierarchy", "nested", "folders"],
+          marker: "New"
         }
       ]
     },
@@ -908,11 +642,6 @@ defmodule SutrauiDemoWeb.Layouts do
           label: "Breadcrumb",
           href: "/docs/components/breadcrumb",
           keywords: ["navigation", "path", "hierarchy", "trail", "links"]
-        },
-        %{
-          label: "Nav Pills",
-          href: "/docs/components/nav-pills",
-          keywords: ["navigation", "pills", "tabs", "responsive", "mobile"]
         },
         %{
           label: "Pagination",
@@ -927,7 +656,15 @@ defmodule SutrauiDemoWeb.Layouts do
         %{
           label: "Tab Nav",
           href: "/docs/components/tab-nav",
-          keywords: ["tabs", "navigation", "routed", "server-side"]
+          keywords: [
+            "tabs",
+            "navigation",
+            "routed",
+            "server-side",
+            "pills",
+            "responsive",
+            "mobile"
+          ]
         }
       ]
     },
@@ -992,7 +729,8 @@ defmodule SutrauiDemoWeb.Layouts do
         %{
           label: "Hover Card",
           href: "/docs/components/hover-card",
-          keywords: ["hover", "preview", "card", "tooltip"]
+          keywords: ["hover", "preview", "card", "tooltip"],
+          marker: "New"
         },
         %{
           label: "Popover",
@@ -1027,7 +765,8 @@ defmodule SutrauiDemoWeb.Layouts do
         %{
           label: "Calendar",
           href: "/docs/components/calendar",
-          keywords: ["calendar", "date", "month", "day"]
+          keywords: ["calendar", "date", "month", "day"],
+          marker: "New"
         },
         %{
           label: "Marquee",
@@ -1040,7 +779,8 @@ defmodule SutrauiDemoWeb.Layouts do
             "banner",
             "announcement",
             "logos"
-          ]
+          ],
+          marker: "New"
         },
         %{
           label: "Item",
@@ -1055,7 +795,8 @@ defmodule SutrauiDemoWeb.Layouts do
         %{
           label: "Timeline",
           href: "/docs/components/timeline",
-          keywords: ["timeline", "activity", "events", "history"]
+          keywords: ["timeline", "activity", "events", "history"],
+          marker: "New"
         }
       ]
     },
@@ -1065,12 +806,16 @@ defmodule SutrauiDemoWeb.Layouts do
         %{
           label: "Response",
           href: "/docs/components/response",
-          keywords: ["ai", "markdown", "streaming", "response", "assistant"]
+          keywords: ["ai", "markdown", "streaming", "response", "assistant"],
+          marker: "New",
+          marker_emoji: "🔥"
         },
         %{
           label: "Activity",
           href: "/docs/components/activity",
-          keywords: ["ai", "activity", "agent", "progress", "status"]
+          keywords: ["ai", "activity", "agent", "progress", "status"],
+          marker: "New",
+          marker_emoji: "🔥"
         }
       ]
     },
@@ -1085,7 +830,8 @@ defmodule SutrauiDemoWeb.Layouts do
         %{
           label: "Separator",
           href: "/docs/components/separator",
-          keywords: ["divider", "hr", "line", "separator", "split"]
+          keywords: ["divider", "hr", "line", "separator", "split"],
+          marker: "New"
         },
         %{
           label: "Theme Switcher",

@@ -15,14 +15,14 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
     <Layouts.docs flash={@flash} current_path="/docs/components/tab-nav">
       <.docs_header
         title="Tab Nav"
-        description="Visual tab navigation component for server-side routed tabs."
+        description="Responsive routed tab navigation for LiveView pages."
       />
 
       <.prose>
         Unlike the full
         <.inline_code>tabs</.inline_code>
-        component which manages content panels client-side, Tab Nav only provides the visual tab navigation.
-        Each tab links to a different LiveView route, allowing heavy content to load only when active.
+        component which manages content panels client-side, Tab Nav renders route links. It replaces the old
+        Nav Pills component and collapses to a mobile dropdown by default.
       </.prose>
 
       <.component_demo title="Default" code={default_code()}>
@@ -43,7 +43,9 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
       <.prose>
         Tab Nav uses
         <.inline_code>patch</.inline_code>
-        for LiveView navigation, keeping the socket connection alive.
+        for LiveView navigation, keeping the socket connection alive. Use
+        <.inline_code>collapse="never"</.inline_code>
+        only when the tab row should stay visible on small screens.
       </.prose>
 
       <.code_block code={usage_code()} language="elixir" filename="Usage" />
@@ -88,8 +90,14 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
 
       <.section_heading id="accessibility">Accessibility</.section_heading>
       <.prose>
-        Tab Nav provides visual tab styling. For full keyboard navigation and ARIA support,
-        use the <.link navigate="/docs/components/tabs" class="text-link">Tabs</.link> component.
+        Tab Nav uses navigation semantics with
+        <.inline_code>aria-current</.inline_code>
+        for the active route. For in-page tab panels with
+        <.inline_code>role="tablist"</.inline_code>
+        and
+        <.inline_code>role="tabpanel"</.inline_code>
+        use the <.link navigate="/docs/components/tabs" class="text-link">Tabs</.link>
+        component.
       </.prose>
     </Layouts.docs>
     """
@@ -97,7 +105,7 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
 
   defp default_code do
     """
-    <.tab_nav>
+    <.tab_nav id="org-tabs">
       <:tab patch={~p"/orgs/\#{@org.id}"} active={@active_tab == :about}>
         About
       </:tab>
@@ -119,12 +127,22 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
     end
 
     # In the template
-    <.tab_nav>
+    <.tab_nav id="org-tabs">
       <:tab patch={~p"/orgs/\#{@org.id}"} active={@active_tab == :about}>
         About
       </:tab>
       <:tab patch={~p"/orgs/\#{@org.id}/members"} active={@active_tab == :members}>
         Members
+      </:tab>
+    </.tab_nav>
+
+    # Optional: keep tabs visible on small screens
+    <.tab_nav id="settings-tabs" collapse="never">
+      <:tab patch={~p"/settings"} active={@active_tab == :profile}>
+        Profile
+      </:tab>
+      <:tab patch={~p"/settings/billing"} active={@active_tab == :billing}>
+        Billing
       </:tab>
     </.tab_nav>\
     """
@@ -132,7 +150,7 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
 
   defp icons_code do
     """
-    <.tab_nav>
+    <.tab_nav id="profile-tabs">
       <:tab patch={~p"/about"} active={true}>
         <.icon name="lucide-info" class="size-4 mr-2" />
         About
