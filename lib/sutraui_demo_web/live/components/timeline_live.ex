@@ -51,7 +51,7 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
             </:item>
             <:item time="3 days ago" icon="✅">
               <h4>Tests passing</h4>
-              <p>All 962 tests green on CI.</p>
+              <p>All component checks are green on CI.</p>
             </:item>
           </.timeline>
         </div>
@@ -259,7 +259,7 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
       </:item>
       <:item time="3 days ago" icon="✅">
         <h4>Tests passing</h4>
-        <p>All 962 tests green on CI.</p>
+        <p>All component checks are green on CI.</p>
       </:item>
     </.timeline>\
     """

@@ -8,6 +8,8 @@ defmodule SutrauiDemoWeb.Components.AIComponentsLiveTest do
 
     assert html =~ "Streaming Text"
     assert html =~ ~s(phx-hook="SutraUI.Response.Response")
+    assert html =~ "response-word"
+    refute html =~ "answer-word"
     assert html =~ "Markdown"
   end
 

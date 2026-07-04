@@ -37,7 +37,7 @@ defmodule SutrauiDemoWeb.Docs.ThemingLive do
         color format for better perceptual uniformity:
       </.prose>
 
-      <.code_block language="elixir" code={css_variables_code()} />
+      <.code_block language="css" code={css_variables_code()} />
 
       <.callout variant="info">
         OKLCH colors provide better perceptual uniformity than HSL. The format is:
@@ -61,7 +61,7 @@ defmodule SutrauiDemoWeb.Docs.ThemingLive do
         and paste them into your <.inline_code>app.css</.inline_code>:
       </.prose>
 
-      <.code_block language="elixir" code={shadcn_code()} />
+      <.code_block language="css" code={shadcn_code()} />
 
       <.section_heading>Dark Mode</.section_heading>
 
@@ -71,7 +71,7 @@ defmodule SutrauiDemoWeb.Docs.ThemingLive do
         class:
       </.prose>
 
-      <.code_block language="elixir" code={dark_mode_code()} />
+      <.code_block language="css" code={dark_mode_code()} />
 
       <.section_heading>Variable Reference</.section_heading>
 
@@ -240,6 +240,11 @@ defmodule SutrauiDemoWeb.Docs.ThemingLive do
 
       <.subsection_heading>Chart Colors</.subsection_heading>
 
+      <.prose>
+        Sutra UI does not include chart components, but it keeps shadcn-compatible
+        chart tokens in the theme so application charts can share the same palette.
+      </.prose>
+
       <div class="my-6 overflow-hidden rounded-lg border" style="border-color: var(--border);">
         <table class="w-full text-sm">
           <thead>
@@ -255,7 +260,9 @@ defmodule SutrauiDemoWeb.Docs.ThemingLive do
                 to
                 <.inline_code>--chart-5</.inline_code>
               </td>
-              <td class="px-4 py-3 text-muted-foreground">Chart/data visualization colors</td>
+              <td class="px-4 py-3 text-muted-foreground">
+                Optional palette for application charts and data visualizations
+              </td>
             </tr>
           </tbody>
         </table>

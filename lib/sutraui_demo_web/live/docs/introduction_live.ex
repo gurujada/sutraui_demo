@@ -18,14 +18,14 @@ defmodule SutrauiDemoWeb.Docs.IntroductionLive do
       <.prose>
         Sutra UI is a component library for Phoenix LiveView applications. Unlike traditional
         component libraries that rely on JavaScript frameworks, Sutra UI is built entirely
-        with Phoenix LiveView and Elixir, using runtime colocated hooks for any client-side
-        interactivity.
+        with Phoenix LiveView and Elixir, using colocated hooks for client-side
+        interactivity where needed.
       </.prose>
 
       <.prose>
-        Every component is designed to be accessible out of the box, following WAI-ARIA
-        patterns and supporting full keyboard navigation. The styling is built on Tailwind CSS v4
-        with CSS variables, making it easy to customize themes.
+        Components use semantic HTML, ARIA patterns where appropriate, and keyboard
+        behavior for interactive controls. The styling is built on Tailwind CSS v4 with
+        CSS variables, making it easy to customize themes.
       </.prose>
 
       <.section_heading>Key Features</.section_heading>
@@ -33,18 +33,18 @@ defmodule SutrauiDemoWeb.Docs.IntroductionLive do
       <.list>
         <.list_item>
           <strong>Zero JavaScript Dependencies</strong> - All interactivity is powered by
-          Phoenix LiveView's runtime colocated hooks. No npm packages required.
+          Phoenix LiveView colocated hooks. No npm packages required.
         </.list_item>
         <.list_item>
-          <strong>100% Accessible</strong> - WCAG 2.1 AA compliant with full keyboard
-          navigation, screen reader support, and proper ARIA attributes.
+          <strong>Accessibility-minded</strong> - Semantic markup, visible focus states,
+          screen reader support, and keyboard behavior where components need it.
         </.list_item>
         <.list_item>
           <strong>Dark Mode Built-in</strong> - Every component supports light and dark
           modes using CSS variables.
         </.list_item>
         <.list_item>
-          <strong>Phoenix 1.8+ Ready</strong> - Built for modern Phoenix with LiveView 1.1+
+          <strong>Phoenix 1.8+ Ready</strong> - Built for modern Phoenix with LiveView 1.2+
           and Tailwind CSS v4.
         </.list_item>
         <.list_item>
@@ -56,8 +56,9 @@ defmodule SutrauiDemoWeb.Docs.IntroductionLive do
       <.section_heading>Runtime Colocated Hooks</.section_heading>
 
       <.prose>
-        Sutra UI uses Phoenix LiveView's runtime colocated hooks feature (introduced in
-        Phoenix 1.8). This means JavaScript hooks are defined alongside their HEEx templates
+        Sutra UI uses Phoenix LiveView's colocated hooks feature (introduced in
+        Phoenix 1.8). Most hooks are runtime hooks rendered by their component; extracted
+        hooks are merged into your LiveSocket. Hook code is defined alongside HEEx templates
         using a special script tag syntax:
       </.prose>
 
@@ -84,8 +85,10 @@ defmodule SutrauiDemoWeb.Docs.IntroductionLive do
         Note the
         <.inline_code>.MyHook</.inline_code>
         naming convention with the dot prefix.
-        This is required for colocated hooks. The hooks are automatically extracted and
-        bundled with your application's JavaScript.
+        This is required for local colocated hooks. Runtime hooks are rendered by their
+        components, while extracted hooks are bundled through Phoenix's generated
+        <.inline_code>phoenix-colocated</.inline_code>
+        module.
       </.prose>
 
       <.section_heading>Philosophy</.section_heading>

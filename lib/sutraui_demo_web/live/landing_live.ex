@@ -21,7 +21,7 @@ defmodule SutrauiDemoWeb.LandingLive do
             </h1>
             <p class="hero-subtitle mt-6 md:mt-8">
               A carefully crafted collection of accessible, themeable components.
-              No JavaScript dependencies. Just copy, paste, and make it yours.
+              No JavaScript dependencies. Add the library, import the CSS, and make it yours.
             </p>
             <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-8 md:mt-10">
               <.button navigate="/docs" class="w-full sm:w-auto">Get Started</.button>
@@ -48,7 +48,7 @@ defmodule SutrauiDemoWeb.LandingLive do
               <div class="feature-number">02</div>
               <h3 class="feature-title">Fully Accessible</h3>
               <p class="feature-description">
-                WCAG 2.1 AA compliant. Keyboard navigation and screen readers built in.
+                Semantic markup, keyboard behavior, and screen reader support where components need it.
               </p>
             </div>
             <div class="feature-card animate-fade-up delay-2">
@@ -62,7 +62,7 @@ defmodule SutrauiDemoWeb.LandingLive do
               <div class="feature-number">04</div>
               <h3 class="feature-title">Own Your Code</h3>
               <p class="feature-description">
-                Copy components into your project. No runtime dependency, just source code.
+                Phoenix-native components with CSS-first styling and colocated hooks.
               </p>
             </div>
           </div>
@@ -78,7 +78,7 @@ defmodule SutrauiDemoWeb.LandingLive do
               <h2 class="section-title mt-2">Add to your Phoenix project</h2>
               <p class="section-subtitle mt-4">
                 One dependency. Run the installer. Start building.
-                Components are copied to your project so you own every line.
+                The installer wires up CSS and imports so you can start with real components immediately.
               </p>
               <.button variant="outline" navigate="/docs/installation" class="mt-8">
                 Read the full guide
@@ -104,21 +104,21 @@ defmodule SutrauiDemoWeb.LandingLive do
               </p>
             </div>
             <div class="animate-fade-up delay-1">
-              <.button variant="outline" navigate="/docs/components/button">
+              <.button variant="outline" navigate="/docs/components">
                 View all components
               </.button>
             </div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div class="grid auto-rows-fr grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <%!-- Button --%>
             <div class="showcase-card animate-fade-up">
               <div class="showcase-preview">
                 <div class="grid grid-cols-2 gap-3">
-                  <.button>Primary</.button>
-                  <.button variant="secondary">Secondary</.button>
-                  <.button variant="outline">Outline</.button>
-                  <.button variant="ghost">Ghost</.button>
+                  <.button size="sm">Primary</.button>
+                  <.button size="sm" variant="secondary">Secondary</.button>
+                  <.button size="sm" variant="outline">Outline</.button>
+                  <.button size="sm" variant="ghost">Ghost</.button>
                 </div>
               </div>
               <div class="showcase-footer">
@@ -171,13 +171,13 @@ defmodule SutrauiDemoWeb.LandingLive do
                     <:tab value="account">Account</:tab>
                     <:tab value="settings">Settings</:tab>
                     <:panel value="account">
-                      <p class="text-sm py-3" style="color: var(--fg-muted);">
-                        Manage your account details and preferences.
+                      <p class="text-sm py-2" style="color: var(--fg-muted);">
+                        Manage account details.
                       </p>
                     </:panel>
                     <:panel value="settings">
-                      <p class="text-sm py-3" style="color: var(--fg-muted);">
-                        Configure application settings here.
+                      <p class="text-sm py-2" style="color: var(--fg-muted);">
+                        Configure settings.
                       </p>
                     </:panel>
                   </.tabs>
@@ -197,11 +197,10 @@ defmodule SutrauiDemoWeb.LandingLive do
                 <.card class="w-full max-w-xs">
                   <:header>
                     <p class="font-medium">Notifications</p>
-                    <p class="text-sm" style="color: var(--fg-muted);">You have 3 unread messages</p>
                   </:header>
                   <:content>
                     <p class="text-sm" style="color: var(--fg-secondary);">
-                      Configure how you receive notifications.
+                      You have 3 unread messages.
                     </p>
                   </:content>
                 </.card>
@@ -217,7 +216,11 @@ defmodule SutrauiDemoWeb.LandingLive do
             <%!-- Dialog --%>
             <div class="showcase-card animate-fade-up delay-5">
               <div class="showcase-preview">
-                <.button phx-click={SutraUI.Dialog.show_dialog("landing-dialog")} variant="outline">
+                <.button
+                  phx-click={SutraUI.Dialog.show_dialog("landing-dialog")}
+                  variant="outline"
+                  size="sm"
+                >
                   Open Dialog
                 </.button>
                 <.dialog id="landing-dialog">
@@ -287,7 +290,7 @@ defmodule SutrauiDemoWeb.LandingLive do
             </div>
             <nav class="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-8">
               <.link navigate="/docs" class="footer-link">Documentation</.link>
-              <.link navigate="/docs/components/button" class="footer-link">Components</.link>
+              <.link navigate="/docs/components" class="footer-link">Components</.link>
               <a href="https://hex.pm/packages/sutra_ui" class="footer-link">Hex.pm</a>
               <a href="https://github.com/gurujada/sutra_ui" class="footer-link">GitHub</a>
             </nav>
@@ -302,7 +305,7 @@ defmodule SutrauiDemoWeb.LandingLive do
     """
     defp deps do
       [
-        {:sutra_ui, "~> 0.1"}
+        {:sutra_ui, "~> 0.4.0"}
       ]
     end\
     """

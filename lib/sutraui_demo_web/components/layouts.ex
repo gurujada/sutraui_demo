@@ -7,7 +7,7 @@ defmodule SutrauiDemoWeb.Layouts do
 
   embed_templates("layouts/*")
 
-  defp sutra_version, do: "0.3.0"
+  defp sutra_version, do: "0.4.0"
 
   attr(:flash, :map, required: true)
   attr(:current_scope, :map, default: nil)
@@ -104,7 +104,7 @@ defmodule SutrauiDemoWeb.Layouts do
 
         <nav class="flex items-center gap-6">
           <.link navigate="/docs" class="nav-link hidden sm:block">Documentation</.link>
-          <.link navigate="/docs/components/checkbox" class="nav-link hidden sm:block">
+          <.link navigate="/docs/components" class="nav-link hidden sm:block">
             Components
           </.link>
           <.search_button />
@@ -256,6 +256,32 @@ defmodule SutrauiDemoWeb.Layouts do
     %{id: "orange", label: "Orange", color: "#f97316"},
     %{id: "violet", label: "Violet", color: "#8b5cf6"}
   ]
+
+  @new_component_paths MapSet.new([
+                         "/docs/components/input-otp",
+                         "/docs/components/file-upload",
+                         "/docs/components/context-menu",
+                         "/docs/components/stepper",
+                         "/docs/components/tree-view",
+                         "/docs/components/hover-card",
+                         "/docs/components/calendar",
+                         "/docs/components/marquee",
+                         "/docs/components/timeline",
+                         "/docs/components/response",
+                         "/docs/components/activity",
+                         "/docs/components/separator"
+                       ])
+
+  @ai_component_paths MapSet.new([
+                        "/docs/components/response",
+                        "/docs/components/activity"
+                      ])
+
+  def new_component?(href), do: MapSet.member?(@new_component_paths, href)
+
+  def component_marker_emoji(href) do
+    if MapSet.member?(@ai_component_paths, href), do: "🔥"
+  end
 
   def color_theme_picker(assigns) do
     assigns = assign(assigns, :themes, @themes)
@@ -1069,6 +1095,8 @@ defmodule SutrauiDemoWeb.Layouts do
       ]
     }
   ]
+
+  def nav_items, do: @nav_items
 
   def command_palette(assigns) do
     assigns = assign(assigns, :nav_items, @nav_items)

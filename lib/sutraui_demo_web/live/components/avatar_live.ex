@@ -133,24 +133,21 @@ defmodule SutrauiDemoWeb.Components.AvatarLive do
             <span
               class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2"
               style="background: #22c55e; border-color: var(--bg);"
-            >
-            </span>
+            ></span>
           </div>
           <div class="relative">
             <.avatar initials="JD" />
             <span
               class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2"
               style="background: #ef4444; border-color: var(--bg);"
-            >
-            </span>
+            ></span>
           </div>
           <div class="relative">
             <.avatar initials="AB" />
             <span
               class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2"
               style="background: #eab308; border-color: var(--bg);"
-            >
-            </span>
+            ></span>
           </div>
         </div>
       </.component_demo>

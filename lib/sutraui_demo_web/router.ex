@@ -25,6 +25,7 @@ defmodule SutrauiDemoWeb.Router do
     live("/docs/theming", Docs.ThemingLive, :index)
 
     # Component pages
+    live("/docs/components", Components.IndexLive, :index)
     live("/docs/components/button", Components.ButtonLive, :index)
     live("/docs/components/badge", Components.BadgeLive, :index)
     live("/docs/components/card", Components.CardLive, :index)
@@ -80,6 +81,8 @@ defmodule SutrauiDemoWeb.Router do
     live("/docs/components/tree-view", Components.TreeViewLive, :index)
     live("/docs/components/response", Components.ResponseLive, :index)
     live("/docs/components/activity", Components.ActivityLive, :index)
+
+    get("/*path", NotFoundController, :not_found)
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

@@ -36,8 +36,8 @@ defmodule SutrauiDemoWeb.Components.HoverCardLive do
               Phoenix LiveView components with CSS-first styling and colocated hooks.
             </p>
             <div class="flex gap-4 text-xs text-muted-foreground">
-              <span><strong class="text-foreground">55</strong> Components</span>
-              <span><strong class="text-foreground">962</strong> Tests</span>
+              <span><strong class="text-foreground">56</strong> Components</span>
+              <span><strong class="text-foreground">Full</strong> test suite</span>
               <span><strong class="text-foreground">0</strong> JS deps</span>
             </div>
           </div>
@@ -65,7 +65,7 @@ defmodule SutrauiDemoWeb.Components.HoverCardLive do
             <span class="text-primary underline-offset-4 hover:underline">Release notes</span>
           </:trigger>
           <div class="space-y-2">
-            <p class="text-sm font-medium text-foreground">v0.3.0</p>
+            <p class="text-sm font-medium text-foreground">v0.4.0</p>
             <p class="text-sm text-muted-foreground">
               Includes new display primitives, runtime hooks, and docs updates.
             </p>
@@ -158,7 +158,7 @@ defmodule SutrauiDemoWeb.Components.HoverCardLive do
     <.hover_card id="release-hover-card" side="top" align="start">
       <:trigger>Release notes</:trigger>
       <div>
-        <p>v0.3.0</p>
+        <p>v0.4.0</p>
         <p>Includes new display primitives, runtime hooks, and docs updates.</p>
       </div>
     </.hover_card>\
@@ -168,7 +168,7 @@ defmodule SutrauiDemoWeb.Components.HoverCardLive do
   defp link_code do
     """
     <.hover_card id="link-hover-card" side="right" align="start">
-      <:trigger><a href="/docs">the hover card docs</a></:trigger>
+      <:trigger><a href="/docs/components/hover-card">the hover card docs</a></:trigger>
       <div>
         <p>Hover Card</p>
         <p>Reveals rich preview content on hover or keyboard focus.</p>

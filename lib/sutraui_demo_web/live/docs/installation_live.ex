@@ -14,7 +14,7 @@ defmodule SutrauiDemoWeb.Docs.InstallationLive do
       />
 
       <.callout variant="info">
-        Sutra UI requires Phoenix 1.8+, LiveView 1.1+, and Tailwind CSS v4.
+        Sutra UI requires Phoenix 1.8+, LiveView 1.2+, and Tailwind CSS v4.
       </.callout>
 
       <.section_heading>Quick Install</.section_heading>
@@ -29,12 +29,12 @@ defmodule SutrauiDemoWeb.Docs.InstallationLive do
         Then run:
       </.prose>
 
-      <.code_block language="elixir" code={quick_install_code()} />
+      <.code_block language="bash" code={quick_install_code()} />
 
       <.prose>
-        The installer will configure your CSS and web module automatically.
-        No JavaScript configuration is required — Sutra UI uses Phoenix 1.8+ runtime
-        colocated hooks that work out of the box.
+        The installer configures your CSS and web module automatically. Runtime
+        colocated hooks work from the rendered components; extracted hooks such as
+        dialog and animated response should be merged into your LiveSocket.
       </.prose>
 
       <.section_heading>Manual Installation</.section_heading>
@@ -54,7 +54,7 @@ defmodule SutrauiDemoWeb.Docs.InstallationLive do
           <.prose>
             Then fetch the dependencies:
           </.prose>
-          <.code_block language="elixir" code="mix deps.get" />
+          <.code_block language="bash" code="mix deps.get" />
         </.step>
 
         <.step number={2} title="Delete core_components.ex">
@@ -75,7 +75,7 @@ defmodule SutrauiDemoWeb.Docs.InstallationLive do
             In your <.inline_code>assets/css/app.css</.inline_code>, add the Sutra UI
             source path and import after the Tailwind import:
           </.prose>
-          <.code_block language="elixir" code={css_code()} />
+          <.code_block language="css" code={css_code()} />
         </.step>
 
         <.step number={4} title="Import components">
@@ -91,7 +91,15 @@ defmodule SutrauiDemoWeb.Docs.InstallationLive do
           <.code_block language="elixir" code={selective_import_code()} />
         </.step>
 
-        <.step number={5} title="Verify installation">
+        <.step number={5} title="Merge extracted hooks">
+          <.prose>
+            In <.inline_code>assets/js/app.js</.inline_code>, merge the generated
+            Sutra UI hooks into your LiveSocket hook map:
+          </.prose>
+          <.code_block language="js" code={hooks_code()} />
+        </.step>
+
+        <.step number={6} title="Verify installation">
           <.prose>
             Start your Phoenix server and try a component:
           </.prose>
@@ -149,7 +157,7 @@ defmodule SutrauiDemoWeb.Docs.InstallationLive do
     # mix.exs
     def deps do
       [
-        {:sutra_ui, "~> 0.1"}
+        {:sutra_ui, "~> 0.4.0"}
       ]
     end\
     """
@@ -166,7 +174,7 @@ defmodule SutrauiDemoWeb.Docs.InstallationLive do
     """
     def deps do
       [
-        {:sutra_ui, "~> 0.1"}
+        {:sutra_ui, "~> 0.4.0"}
       ]
     end\
     """
@@ -190,6 +198,16 @@ defmodule SutrauiDemoWeb.Docs.InstallationLive do
         # ... other imports
       end
     end\
+    """
+  end
+
+  defp hooks_code do
+    """
+    import {hooks as sutraUiHooks} from "phoenix-colocated/sutra_ui"
+
+    const liveSocket = new LiveSocket("/live", Socket, {
+      hooks: {...sutraUiHooks}
+    })\
     """
   end
 

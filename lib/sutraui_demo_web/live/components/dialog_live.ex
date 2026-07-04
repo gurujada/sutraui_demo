@@ -10,7 +10,7 @@ defmodule SutrauiDemoWeb.Components.DialogLive do
     <Layouts.docs flash={@flash} current_path="/docs/components/dialog">
       <.docs_header
         title="Dialog"
-        description="Modal dialog using the native HTML dialog element with full accessibility support."
+        description="Modal dialog using a screen-share friendly overlay with accessible dialog semantics."
       />
 
       <.component_demo title="Basic Dialog" code={basic_code()}>
@@ -64,11 +64,8 @@ defmodule SutrauiDemoWeb.Components.DialogLive do
       <.section_heading id="notes">Notes</.section_heading>
       <.list>
         <.list_item>
-          Uses the native
-          <.inline_code>&lt;dialog&gt;</.inline_code>
-          element with
-          <.inline_code>showModal()</.inline_code>
-          and <.inline_code>close()</.inline_code>.
+          Uses a div-based overlay instead of the browser top layer, so dialogs remain
+          visible in screen-sharing tools.
         </.list_item>
         <.list_item>
           Focus is automatically trapped within the dialog.

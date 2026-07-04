@@ -34,16 +34,16 @@ defmodule SutrauiDemoWeb.Components.BreadcrumbLive do
       <.component_demo title="Chevron Separator" code={chevron_code()}>
         <.breadcrumb separator="chevron">
           <:item navigate="/">Home</:item>
-          <:item navigate="/products">Products</:item>
-          <:item>Details</:item>
+          <:item navigate="/docs">Documentation</:item>
+          <:item>Components</:item>
         </.breadcrumb>
       </.component_demo>
 
       <.component_demo title="Slash Separator" code={slash_code()}>
         <.breadcrumb separator="slash">
           <:item navigate="/">Home</:item>
-          <:item navigate="/products">Products</:item>
-          <:item>Details</:item>
+          <:item navigate="/docs/components">Components</:item>
+          <:item>Breadcrumb</:item>
         </.breadcrumb>
       </.component_demo>
 
@@ -57,7 +57,7 @@ defmodule SutrauiDemoWeb.Components.BreadcrumbLive do
       <.component_demo title="External Link" code={external_code()}>
         <.breadcrumb>
           <:item href="https://github.com">GitHub</:item>
-          <:item href="https://github.com/sutra-ui">Sutra UI</:item>
+          <:item href="https://github.com/gurujada/sutra_ui">Sutra UI</:item>
           <:item>Repository</:item>
         </.breadcrumb>
       </.component_demo>
@@ -99,8 +99,8 @@ defmodule SutrauiDemoWeb.Components.BreadcrumbLive do
     """
     <.breadcrumb separator="chevron">
       <:item navigate="/">Home</:item>
-      <:item navigate="/products">Products</:item>
-      <:item>Details</:item>
+      <:item navigate="/docs">Documentation</:item>
+      <:item>Components</:item>
     </.breadcrumb>\
     """
   end
@@ -109,8 +109,8 @@ defmodule SutrauiDemoWeb.Components.BreadcrumbLive do
     """
     <.breadcrumb separator="slash">
       <:item navigate="/">Home</:item>
-      <:item navigate="/products">Products</:item>
-      <:item>Details</:item>
+      <:item navigate="/docs/components">Components</:item>
+      <:item>Breadcrumb</:item>
     </.breadcrumb>\
     """
   end
@@ -119,7 +119,7 @@ defmodule SutrauiDemoWeb.Components.BreadcrumbLive do
     """
     <.breadcrumb>
       <:item href="https://github.com">GitHub</:item>
-      <:item href="https://github.com/sutra-ui">Sutra UI</:item>
+      <:item href="https://github.com/gurujada/sutra_ui">Sutra UI</:item>
       <:item>Repository</:item>
     </.breadcrumb>\
     """

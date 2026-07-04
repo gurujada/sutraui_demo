@@ -19,7 +19,6 @@ defmodule SutrauiDemoWeb.Components.TextareaLive do
         </div>
       </.component_demo>
 
-      <%!-- TODO: Uncomment after fixing rows CSS issue in Sutra UI (see ISSUES.md)
       <.section_heading id="with-rows">Custom Rows</.section_heading>
       <.prose>
         Control the initial height with the
@@ -43,7 +42,6 @@ defmodule SutrauiDemoWeb.Components.TextareaLive do
           </div>
         </div>
       </.component_demo>
-      --%>
 
       <.section_heading id="disabled">Disabled</.section_heading>
       <.prose>
@@ -68,13 +66,12 @@ defmodule SutrauiDemoWeb.Components.TextareaLive do
     """
   end
 
-  # TODO: Uncomment after fixing rows CSS issue in Sutra UI (see ISSUES.md)
-  # defp rows_code do
-  #   """
-  #   <.textarea placeholder="2 rows" rows={2} />
-  #   <.textarea placeholder="5 rows" rows={5} />\
-  #   """
-  # end
+  defp rows_code do
+    """
+    <.textarea placeholder="2 rows" rows={2} />
+    <.textarea placeholder="5 rows" rows={5} />\
+    """
+  end
 
   defp form_code do
     """

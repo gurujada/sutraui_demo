@@ -163,7 +163,7 @@ defmodule SutrauiDemoWeb.Components.ItemLive do
     """
     <.item>
       <:leading>
-        <.avatar src="https://..." fallback="JD" size="md" />
+        <.avatar src="https://..." initials="JD" size="md" />
       </:leading>
       <:title>John Doe</:title>
       <:description>Last seen 5 minutes ago</:description>

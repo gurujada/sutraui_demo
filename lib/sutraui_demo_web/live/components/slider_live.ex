@@ -38,7 +38,9 @@ defmodule SutrauiDemoWeb.Components.SliderLive do
             <label for="volume-slider" class="text-sm font-medium" style="color: var(--fg);">
               Volume
             </label>
-            <span class="text-sm tabular-nums" style="color: var(--fg-muted);">{@volume}%</span>
+            <span class="text-sm tabular-nums" style="color: var(--fg-muted);">
+              <output for="volume-slider">{@volume}</output>%
+            </span>
           </div>
           <.slider
             id="volume-slider"
@@ -46,7 +48,6 @@ defmodule SutrauiDemoWeb.Components.SliderLive do
             value={@volume}
             min={0}
             max={100}
-            phx-change="volume_change"
           />
         </div>
       </.component_demo>
@@ -86,7 +87,13 @@ defmodule SutrauiDemoWeb.Components.SliderLive do
             <label for="opacity-slider" class="text-sm font-medium" style="color: var(--fg);">
               Opacity
             </label>
-            <span class="text-sm tabular-nums" style="color: var(--fg-muted);">{@opacity}</span>
+            <output
+              for="opacity-slider"
+              class="text-sm tabular-nums"
+              style="color: var(--fg-muted);"
+            >
+              {@opacity}
+            </output>
           </div>
           <.slider
             id="opacity-slider"
@@ -95,7 +102,6 @@ defmodule SutrauiDemoWeb.Components.SliderLive do
             min={0.0}
             max={1.0}
             step={0.01}
-            phx-change="opacity_change"
           />
         </div>
       </.component_demo>
@@ -116,9 +122,11 @@ defmodule SutrauiDemoWeb.Components.SliderLive do
 
       <.section_heading id="events">Events</.section_heading>
       <.prose>
-        The slider emits
+        Pair the slider with an
+        <.inline_code>output</.inline_code>
+        element for instant local value display. Use
         <.inline_code>phx-change</.inline_code>
-        events as the user drags the handle.
+        when the value needs to update LiveView state.
       </.prose>
 
       <.code_block language="elixir" code={event_code()} />
@@ -130,7 +138,7 @@ defmodule SutrauiDemoWeb.Components.SliderLive do
     """
     <div class="flex justify-between items-center">
       <label for="volume-slider">Volume</label>
-      <span>{@volume}%</span>
+      <span><output for="volume-slider">{@volume}</output>%</span>
     </div>
     <.slider
       id="volume-slider"
@@ -138,7 +146,6 @@ defmodule SutrauiDemoWeb.Components.SliderLive do
       value={@volume}
       min={0}
       max={100}
-      phx-change="volume_change"
     />\
     """
   end
@@ -159,7 +166,6 @@ defmodule SutrauiDemoWeb.Components.SliderLive do
       min={0.0}
       max={1.0}
       step={0.01}
-      phx-change="opacity_change"
     />\
     """
   end

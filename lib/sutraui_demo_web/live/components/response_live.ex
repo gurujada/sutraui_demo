@@ -111,8 +111,8 @@ defmodule SutrauiDemoWeb.Components.ResponseLive do
       <.prose>
         Set
         <.inline_code>format="markdown"</.inline_code>
-        for Markdown. Markdown streams by chunk so partial content stays valid
-        and sanitized.
+        for Markdown. Stream the value from the parent LiveView; the component
+        re-renders sanitized Markdown as each word arrives.
       </.prose>
 
       <.component_demo title="Markdown" code={markdown_code()}>
@@ -223,8 +223,8 @@ defmodule SutrauiDemoWeb.Components.ResponseLive do
   defp reveal_code do
     """
     <.response value={@reveal_value} streaming={@reveal_streaming} />
-    <.response id="answer-word" value={@reveal_value} streaming={@reveal_streaming} reveal="word" />
-    <.response id="answer-character" value={@reveal_value} streaming={@reveal_streaming} reveal="character" />\
+    <.response id="response-word" value={@reveal_value} streaming={@reveal_streaming} reveal="word" />
+    <.response id="response-character" value={@reveal_value} streaming={@reveal_streaming} reveal="character" />\
     """
   end
 
