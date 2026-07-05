@@ -604,6 +604,68 @@ HERO
 }
 
 /* ========================================
+   RELEASE NOTE
+   ======================================== */
+
+.release-section {
+    background: var(--bg-subtle);
+    border-bottom: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+}
+
+.release-links {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 640px) {
+    .release-links {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.release-link {
+    align-items: center;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    color: var(--fg);
+    display: flex;
+    font-size: 0.875rem;
+    font-weight: 500;
+    gap: 0.75rem;
+    justify-content: space-between;
+    min-height: 3rem;
+    padding: 0.75rem 1rem;
+    transition:
+        border-color 0.2s,
+        color 0.2s,
+        transform 0.2s;
+}
+
+.release-link:hover {
+    border-color: var(--border-strong);
+    color: var(--site-accent);
+    transform: translateY(-1px);
+}
+
+.release-all-link {
+    align-items: center;
+    color: var(--site-accent);
+    display: inline-flex;
+    font-size: 0.875rem;
+    font-weight: 500;
+    gap: 0.25rem;
+    margin-top: 1rem;
+    transition: gap 0.2s;
+}
+
+.release-all-link:hover {
+    gap: 0.5rem;
+}
+
+/* ========================================
    COMPONENT SHOWCASE
    ======================================== */
 

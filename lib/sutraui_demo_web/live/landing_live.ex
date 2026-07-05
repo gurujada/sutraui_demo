@@ -33,6 +33,55 @@ defmodule SutrauiDemoWeb.LandingLive do
         </div>
       </section>
 
+      <%!-- Release note - second fold --%>
+      <section class="release-section py-12 md:py-16">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6">
+          <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.9fr)] lg:items-end">
+            <div class="animate-fade-up">
+              <p class="section-label">New in v0.4.0</p>
+              <h2 class="section-title mt-2">More primitives for real product interfaces</h2>
+              <p class="section-subtitle mt-4">
+                Build richer LiveView workflows with new primitives for AI output,
+                multi-step forms, calendars, timelines, menus, uploads, and structured data.
+              </p>
+            </div>
+
+            <div class="animate-fade-up delay-1">
+              <div class="release-links">
+                <.link navigate="/docs/components/response" class="release-link">
+                  <span>Response</span>
+                  <span aria-hidden="true">→</span>
+                </.link>
+                <.link navigate="/docs/components/activity" class="release-link">
+                  <span>Activity</span>
+                  <span aria-hidden="true">→</span>
+                </.link>
+                <.link navigate="/docs/components/stepper" class="release-link">
+                  <span>Stepper</span>
+                  <span aria-hidden="true">→</span>
+                </.link>
+                <.link navigate="/docs/components/calendar" class="release-link">
+                  <span>Calendar</span>
+                  <span aria-hidden="true">→</span>
+                </.link>
+                <.link navigate="/docs/components/timeline" class="release-link">
+                  <span>Timeline</span>
+                  <span aria-hidden="true">→</span>
+                </.link>
+                <.link navigate="/docs/components/context-menu" class="release-link">
+                  <span>Context Menu</span>
+                  <span aria-hidden="true">→</span>
+                </.link>
+              </div>
+
+              <.link navigate="/docs/components" class="release-all-link">
+                Browse all components <span aria-hidden="true">→</span>
+              </.link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <%!-- Features - grid with numbers --%>
       <section class="py-0">
         <div class="mx-auto max-w-6xl px-4 sm:px-0">
