@@ -144,7 +144,10 @@ defmodule SutrauiDemoWeb.Components.SelectLive do
           <.button type="submit">Send invite</.button>
         </.form>
         <p :if={@saved} id="invite-saved" class="mt-3 text-sm text-muted-foreground">
-          Posted: {inspect(@saved)}
+          Posted: {@saved["email"]}, role {@saved["role"]}, subjects {@saved["tags"]
+          |> List.wrap()
+          |> Enum.reject(&(&1 == ""))
+          |> Enum.join(", ")}
         </p>
       </.component_demo>
 

@@ -147,7 +147,16 @@ defmodule SutrauiDemoWeb.Components.InputLive do
             <.input type="number" label="Amount" placeholder="0" />
           </div>
           <div>
-            <.input type="date" label="Date" />
+            <.input type="date" id="date" name="date" label="Date" />
+            <.input type="time" id="time" name="time" label="Time" />
+            <.input
+              type="datetime-local"
+              id="starts"
+              name="starts"
+              label="Starts"
+              zone="Asia/Kolkata"
+            />
+            <.input type="date" id="date_native" name="date_native" label="Browser's own date" native />
           </div>
         </div>
       </.component_demo>
@@ -329,7 +338,7 @@ defmodule SutrauiDemoWeb.Components.InputLive do
     <.input type="email" label="Email" placeholder="name@example.com" />
     <.input type="password" label="Password" placeholder="Enter password" />
     <.input type="number" label="Amount" placeholder="0" />
-    <.input type="date" label="Date" />\
+    <.input type="date" id="date" name="date" label="Date" />\
     """
   end
 

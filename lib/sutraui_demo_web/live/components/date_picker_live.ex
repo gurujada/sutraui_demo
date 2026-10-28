@@ -111,14 +111,6 @@ defmodule SutrauiDemoWeb.Components.DatePickerLive do
     end
   end
 
-  defp errors(form, field) do
-    if Phoenix.Component.used_input?(form[field]) do
-      for {message, _} <- form[field].errors, do: message
-    else
-      []
-    end
-  end
-
   def render(assigns) do
     ~H"""
     <Layouts.docs
@@ -159,36 +151,13 @@ defmodule SutrauiDemoWeb.Components.DatePickerLive do
             phx-submit="book"
             class="w-full max-w-lg"
           >
-            <div class="mb-5 space-y-1.5">
-              <.label for="booking_day">Day</.label>
-              <.date_picker
-                field={@booking[:day]}
-                label="Day"
-                rules={rules()}
-                zone={@zone}
-                aria-describedby="booking-day-errors"
-              />
-              <p
-                :for={message <- errors(@booking, :day)}
-                id="booking-day-errors"
-                class="text-sm text-destructive"
-              >
-                {message}
-              </p>
-            </div>
-
-            <div class="mb-5 space-y-1.5">
-              <.label for="booking_time">Time</.label>
-              <.time_picker field={@booking[:time]} label="Time" rules={rules()} step={15} />
-              <p :for={message <- errors(@booking, :time)} class="text-sm text-destructive">
-                {message}
-              </p>
-            </div>
-
-            <div class="mb-5 space-y-1.5">
-              <.label for="booking_starts">Class starts (Asia/Kolkata)</.label>
-              <.datetime_picker field={@booking[:starts]} label="Class starts" zone={@zone} />
-            </div>
+            <.date_picker field={@booking[:day]} label="Day" rules={rules()} zone={@zone} />
+            <.time_picker field={@booking[:time]} label="Time" rules={rules()} step={15} />
+            <.datetime_picker
+              field={@booking[:starts]}
+              label="Class starts (Asia/Kolkata)"
+              zone={@zone}
+            />
 
             <.button type="submit">Book</.button>
           </.form>
@@ -220,21 +189,16 @@ defmodule SutrauiDemoWeb.Components.DatePickerLive do
       <.component_demo title="Date range" code={range_code()} class="[&_.demo-preview]:items-start">
         <div class="w-full">
           <.form for={%{}} as={:period} id="period-form" phx-change="period" class="w-full max-w-lg">
-            <div class="mb-5 space-y-1.5">
-              <.label for="period_start">Period (at most 14 days)</.label>
-              <.date_range_picker
-                id="period"
-                name="period"
-                label="Period"
-                rules={%DateRules{max_length: 14}}
-                preset_key
-                zone={@zone}
-                value={@period}
-              />
-              <p :if={@period_error} id="period-error" class="text-sm text-destructive">
-                {@period_error}
-              </p>
-            </div>
+            <.date_range_picker
+              id="period"
+              name="period"
+              label="Period (at most 14 days)"
+              rules={%DateRules{max_length: 14}}
+              preset_key
+              zone={@zone}
+              value={@period}
+              errors={List.wrap(@period_error)}
+            />
           </.form>
           <p :if={@period != %{}} id="period-posted" class="mt-4 text-sm text-muted-foreground">
             Posted: {@period["start"] || "none"} to {@period["end"] || "none"}<span :if={
@@ -256,40 +220,31 @@ defmodule SutrauiDemoWeb.Components.DatePickerLive do
 
       <.component_demo title="Presets" code={presets_code()} class="[&_.demo-preview]:items-start">
         <div class="grid w-full max-w-sm gap-5">
-          <div class="space-y-1.5">
-            <.label for="preset_none">No presets</.label>
-            <.date_picker
-              id="preset_none"
-              name="preset_none"
-              label="No presets"
-              presets={[]}
-              zone={@zone}
-            />
-          </div>
-          <div class="space-y-1.5">
-            <.label for="preset_custom">Custom presets</.label>
-            <.date_picker
-              id="preset_custom"
-              name="preset_custom"
-              label="Custom presets"
-              zone={@zone}
-              presets={[
-                :today,
-                :end_of_month,
-                %{key: "term_start", label: "Start of term", value: ~D[2026-11-02]}
-              ]}
-            />
-          </div>
-          <div class="space-y-1.5">
-            <.label for="preset_range">Range presets</.label>
-            <.date_range_picker
-              id="preset_range"
-              name="preset_range"
-              label="Range presets"
-              zone={@zone}
-              presets={[:last_7_days, :this_week, :last_month]}
-            />
-          </div>
+          <.date_picker
+            id="preset_none"
+            name="preset_none"
+            label="No presets"
+            presets={[]}
+            zone={@zone}
+          />
+          <.date_picker
+            id="preset_custom"
+            name="preset_custom"
+            label="Custom presets"
+            zone={@zone}
+            presets={[
+              :today,
+              :end_of_month,
+              %{key: "term_start", label: "Start of term", value: ~D[2026-11-02]}
+            ]}
+          />
+          <.date_range_picker
+            id="preset_range"
+            name="preset_range"
+            label="Range presets"
+            zone={@zone}
+            presets={[:last_7_days, :this_week, :last_month]}
+          />
         </div>
       </.component_demo>
 
@@ -311,16 +266,13 @@ defmodule SutrauiDemoWeb.Components.DatePickerLive do
       >
         <div class="w-full">
           <.form for={%{}} as={:ny} id="ny-form" phx-change="ny" class="w-full max-w-lg">
-            <div class="mb-5 space-y-1.5">
-              <.label for="ny_starts">Starts (New York time)</.label>
-              <.datetime_picker
-                id="ny_starts"
-                name="ny[starts]"
-                label="Starts"
-                zone="America/New_York"
-                value={@ny}
-              />
-            </div>
+            <.datetime_picker
+              id="ny_starts"
+              name="ny[starts]"
+              label="Starts (New York time)"
+              zone="America/New_York"
+              value={@ny}
+            />
           </.form>
           <p id="ny-result" class="mt-2 text-sm text-muted-foreground">{@ny_result}</p>
         </div>
@@ -353,10 +305,7 @@ defmodule SutrauiDemoWeb.Components.DatePickerLive do
               prompt="Choose a campus"
               options={["Hyderabad", "Bengaluru", "Chennai"]}
             />
-            <div class="mb-5 space-y-1.5">
-              <.label for="visit_day">Day</.label>
-              <.date_picker field={@dialog_form[:day]} label="Day" rules={rules()} zone={@zone} />
-            </div>
+            <.date_picker field={@dialog_form[:day]} label="Day" rules={rules()} zone={@zone} />
             <div class="flex justify-end gap-2">
               <.button type="button" variant="outline" phx-click="close_dialog">Cancel</.button>
               <.button type="submit">Save</.button>
@@ -389,9 +338,13 @@ defmodule SutrauiDemoWeb.Components.DatePickerLive do
           Read a datetime with <.inline_code>SutraUI.Time.parse_datetime/3</.inline_code>.
         </.list_item>
         <.list_item>
-          The pickers draw no label or error text of their own; put them beside a
-          <.inline_code>label</.inline_code>
-          and your own errors, as above.
+          Each picker draws its own label, description and errors, like
+          <.inline_code>&lt;.input&gt;</.inline_code>
+          (errors come from <.inline_code>field</.inline_code>; pass
+          <.inline_code>errors</.inline_code>
+          otherwise). Pass
+          <.inline_code>bare</.inline_code>
+          to lay the label out yourself.
         </.list_item>
       </.list>
     </Layouts.docs>
