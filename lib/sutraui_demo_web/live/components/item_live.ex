@@ -7,7 +7,7 @@ defmodule SutrauiDemoWeb.Components.ItemLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/item">
+    <Layouts.docs flash={@flash} sutra_commands={@sutra_commands} current_path="/docs/components/item">
       <.docs_header
         title="Item"
         description="A versatile list item component for displaying content with icons, avatars, and actions."
@@ -52,7 +52,7 @@ defmodule SutrauiDemoWeb.Components.ItemLive do
       <.component_demo title="With Avatar" code={avatar_code()}>
         <.item>
           <:leading>
-            <.avatar src="https://i.pravatar.cc/150?u=demo" initials="JD" size="md" />
+            <.avatar src="/images/demo/pravatar.jpg" initials="JD" size="md" />
           </:leading>
           <:title>John Doe</:title>
           <:description>Last seen 5 minutes ago</:description>

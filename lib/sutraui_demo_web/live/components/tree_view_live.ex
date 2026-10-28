@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.TreeViewLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/tree-view">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/tree-view"
+    >
       <.docs_header
         title="Tree View"
         description="A hierarchical disclosure tree for nested navigation and file structures."
@@ -15,7 +19,7 @@ defmodule SutrauiDemoWeb.Components.TreeViewLive do
 
       <.component_demo title="File Browser" code={files_code()}>
         <div class="w-full max-w-sm">
-          <.tree_view id="project-files-tree" label="Project files">
+          <.tree_view nonce={@csp_nonce} id="project-files-tree" label="Project files">
             <.tree_item label="lib" expanded>
               <.tree_item label="sutra_ui" expanded>
                 <.tree_item label="button.ex" href="/docs/components/button" />
@@ -52,7 +56,12 @@ defmodule SutrauiDemoWeb.Components.TreeViewLive do
 
       <.component_demo title="Settings Tree" code={interactive_code()}>
         <div class="w-full max-w-sm">
-          <.tree_view id="settings-tree" label="Settings" select_event="select_node">
+          <.tree_view
+            nonce={@csp_nonce}
+            id="settings-tree"
+            label="Settings"
+            select_event="select_node"
+          >
             <.tree_item label="Workspace" expanded value="ws">
               <.tree_item label="General" value="general" selected={@selected_node == "general"} />
               <.tree_item label="Members" value="members" selected={@selected_node == "members"} />
@@ -82,7 +91,7 @@ defmodule SutrauiDemoWeb.Components.TreeViewLive do
 
       <.component_demo title="Custom Triggers" code={custom_code()}>
         <div class="w-full max-w-sm">
-          <.tree_view id="file-system-tree" label="File system">
+          <.tree_view nonce={@csp_nonce} id="file-system-tree" label="File system">
             <.tree_item expanded>
               <:trigger>
                 <.icon name="lucide-folder-open" class="size-4 text-muted-foreground" />

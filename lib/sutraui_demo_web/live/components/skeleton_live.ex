@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.SkeletonLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/skeleton">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/skeleton"
+    >
       <.docs_header
         title="Skeleton"
         description="A placeholder component to show while content is loading."
@@ -53,10 +57,7 @@ defmodule SutrauiDemoWeb.Components.SkeletonLive do
       </.prose>
 
       <.component_demo title="Card Layout" code={card_code()}>
-        <div
-          class="p-4 rounded-lg border space-y-4"
-          style="background: var(--bg-elevated); border-color: var(--border);"
-        >
+        <div class="p-4 rounded-lg border space-y-4 sx-0d75e6d">
           <.skeleton class="h-[150px] w-full" />
           <div class="space-y-2">
             <.skeleton class="h-5 w-[60%]" />
@@ -81,23 +82,23 @@ defmodule SutrauiDemoWeb.Components.SkeletonLive do
         <div class="flex flex-wrap gap-4">
           <div class="text-center space-y-2">
             <.skeleton class="size-20" radius="none" />
-            <span class="text-xs" style="color: var(--fg-muted);">none</span>
+            <span class="text-xs sx-a2be682">none</span>
           </div>
           <div class="text-center space-y-2">
             <.skeleton class="size-20" radius="sm" />
-            <span class="text-xs" style="color: var(--fg-muted);">sm</span>
+            <span class="text-xs sx-a2be682">sm</span>
           </div>
           <div class="text-center space-y-2">
             <.skeleton class="size-20" radius="md" />
-            <span class="text-xs" style="color: var(--fg-muted);">md</span>
+            <span class="text-xs sx-a2be682">md</span>
           </div>
           <div class="text-center space-y-2">
             <.skeleton class="size-20" radius="lg" />
-            <span class="text-xs" style="color: var(--fg-muted);">lg</span>
+            <span class="text-xs sx-a2be682">lg</span>
           </div>
           <div class="text-center space-y-2">
             <.skeleton class="size-20" radius="full" />
-            <span class="text-xs" style="color: var(--fg-muted);">full</span>
+            <span class="text-xs sx-a2be682">full</span>
           </div>
         </div>
       </.component_demo>

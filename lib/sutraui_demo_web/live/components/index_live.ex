@@ -9,7 +9,7 @@ defmodule SutrauiDemoWeb.Components.IndexLive do
     assigns = assign(assigns, :groups, component_groups())
 
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components">
+    <Layouts.docs flash={@flash} sutra_commands={@sutra_commands} current_path="/docs/components">
       <.docs_header
         title="Components"
         description="Browse the Sutra UI component set by category."
@@ -22,8 +22,7 @@ defmodule SutrauiDemoWeb.Components.IndexLive do
             <.link
               :for={item <- group.items}
               navigate={item.href}
-              class="group rounded-md border px-3 py-2 text-sm transition-colors hover:bg-muted/50"
-              style="border-color: var(--border);"
+              class="group rounded-md border px-3 py-2 text-sm transition-colors hover:bg-muted/50 sx-635c873"
             >
               <span class="flex min-w-0 items-center gap-2">
                 <span class="truncate font-medium text-foreground group-hover:text-primary">

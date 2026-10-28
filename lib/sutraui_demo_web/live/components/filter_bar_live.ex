@@ -39,7 +39,11 @@ defmodule SutrauiDemoWeb.Components.FilterBarLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/filter-bar">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/filter-bar"
+    >
       <.docs_header
         title="Filter Bar"
         description="A standardized filter bar for index pages with responsive grid layout and optional clear button."
@@ -93,8 +97,7 @@ defmodule SutrauiDemoWeb.Components.FilterBarLive do
 
         <div
           :if={@has_filters}
-          class="mt-4 p-3 rounded-lg text-sm"
-          style="background: var(--bg-subtle);"
+          class="mt-4 p-3 rounded-lg text-sm sx-a366919"
         >
           Active filters: {if @search != "", do: "search=\"#{@search}\" ", else: ""}{if @status != "",
             do: "status=\"#{@status}\" ",

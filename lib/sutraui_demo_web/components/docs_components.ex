@@ -23,8 +23,7 @@ defmodule SutrauiDemoWeb.DocsComponents do
     ~H"""
     <h2
       id={@id}
-      class="text-lg font-semibold mt-12 mb-4 scroll-mt-20"
-      style="letter-spacing: -0.01em;"
+      class="text-lg font-semibold mt-12 mb-4 scroll-mt-20 sx-1759238"
     >
       {render_slot(@inner_block)}
     </h2>
@@ -53,8 +52,7 @@ defmodule SutrauiDemoWeb.DocsComponents do
     <div class={["demo-container my-6", @class]}>
       <div
         :if={@title}
-        class="px-4 py-2 text-xs font-medium border-b"
-        style="border-color: var(--border); color: var(--fg-muted);"
+        class="px-4 py-2 text-xs font-medium border-b sx-f6cfa08"
       >
         {@title}
       </div>
@@ -66,12 +64,11 @@ defmodule SutrauiDemoWeb.DocsComponents do
           <div class="flex-1"></div>
           <button
             type="button"
-            class="demo-copy-btn px-3 text-xs hover:cursor-pointer"
-            style="color: var(--fg-muted);"
+            class="demo-copy-btn px-3 text-xs hover:cursor-pointer sx-a2be682"
             aria-label="Copy code"
           >
             <span class="copy-text">Copy</span>
-            <span class="check-text hidden" style="color: var(--site-accent);">Copied</span>
+            <span class="check-text hidden sx-246373e">Copied</span>
           </button>
         </div>
 
@@ -86,6 +83,8 @@ defmodule SutrauiDemoWeb.DocsComponents do
     </div>
 
     <script :type={Phoenix.LiveView.ColocatedHook} name=".DemoTabs">
+      import {toast} from "sutra_ui/toast"
+
       export default {
         mounted() {
           const container = this.el;
@@ -120,11 +119,7 @@ defmodule SutrauiDemoWeb.DocsComponents do
                 checkText.classList.remove('hidden');
 
                 // Trigger toast notification
-                this.pushEvent("show_toast", {
-                  variant: "default",
-                  title: "Copied to clipboard",
-                  description: "Code snippet copied successfully"
-                });
+                toast("success", "Code copied to the clipboard");
 
                 setTimeout(() => {
                   copyText.classList.remove('hidden');
@@ -170,10 +165,7 @@ defmodule SutrauiDemoWeb.DocsComponents do
 
   def inline_code(assigns) do
     ~H"""
-    <code
-      class="px-1.5 py-0.5 rounded text-sm"
-      style="background: var(--bg-muted); font-family: var(--font-mono);"
-    >
+    <code class="px-1.5 py-0.5 rounded text-sm sx-3be6047">
       {render_slot(@inner_block)}
     </code>
     """
@@ -183,7 +175,7 @@ defmodule SutrauiDemoWeb.DocsComponents do
 
   def prose(assigns) do
     ~H"""
-    <p class="leading-7 [&:not(:first-child)]:mt-4" style="color: var(--fg-muted);">
+    <p class="leading-7 [&:not(:first-child)]:mt-4 sx-a2be682">
       {render_slot(@inner_block)}
     </p>
     """
@@ -194,10 +186,7 @@ defmodule SutrauiDemoWeb.DocsComponents do
 
   def callout(assigns) do
     ~H"""
-    <div
-      class="my-4 p-4 rounded-lg text-sm leading-relaxed"
-      style="background: var(--bg-subtle); border: 1px solid var(--border);"
-    >
+    <div class="my-4 p-4 rounded-lg text-sm leading-relaxed sx-1a3d162">
       {render_slot(@inner_block)}
     </div>
     """
@@ -207,7 +196,7 @@ defmodule SutrauiDemoWeb.DocsComponents do
 
   def list(assigns) do
     ~H"""
-    <ul class="my-4 ml-5 list-disc space-y-1" style="color: var(--fg-muted);">
+    <ul class="my-4 ml-5 list-disc space-y-1 sx-a2be682">
       {render_slot(@inner_block)}
     </ul>
     """
@@ -228,15 +217,12 @@ defmodule SutrauiDemoWeb.DocsComponents do
   def step(assigns) do
     ~H"""
     <div class="relative pl-10 pb-8 last:pb-0">
-      <div
-        class="absolute left-0 flex h-6 w-6 items-center justify-center rounded-full text-xs font-medium"
-        style="background: var(--fg); color: var(--bg);"
-      >
+      <div class="absolute left-0 flex h-6 w-6 items-center justify-center rounded-full text-xs font-medium sx-8cfd7e3">
         {@number}
       </div>
       <div>
         <h3 class="font-medium mb-2">{@title}</h3>
-        <div style="color: var(--fg-muted);">
+        <div class="sx-a2be682">
           {render_slot(@inner_block)}
         </div>
       </div>
@@ -262,14 +248,14 @@ defmodule SutrauiDemoWeb.DocsComponents do
 
   def props_table(assigns) do
     ~H"""
-    <div class="my-4 border rounded-lg overflow-hidden" style="border-color: var(--border);">
+    <div class="my-4 border rounded-lg overflow-hidden sx-635c873">
       <table class="w-full text-sm">
         <thead>
-          <tr style="background: var(--bg-subtle); border-bottom: 1px solid var(--border);">
-            <th class="px-4 py-2 text-left font-medium" style="color: var(--fg);">Prop</th>
-            <th class="px-4 py-2 text-left font-medium" style="color: var(--fg);">Type</th>
-            <th class="px-4 py-2 text-left font-medium" style="color: var(--fg);">Default</th>
-            <th class="px-4 py-2 text-left font-medium" style="color: var(--fg);">Description</th>
+          <tr class="sx-9507d40">
+            <th class="px-4 py-2 text-left font-medium sx-916ff3c">Prop</th>
+            <th class="px-4 py-2 text-left font-medium sx-916ff3c">Type</th>
+            <th class="px-4 py-2 text-left font-medium sx-916ff3c">Default</th>
+            <th class="px-4 py-2 text-left font-medium sx-916ff3c">Description</th>
           </tr>
         </thead>
         <tbody>
@@ -288,23 +274,20 @@ defmodule SutrauiDemoWeb.DocsComponents do
 
   def prop(assigns) do
     ~H"""
-    <tr style="border-bottom: 1px solid var(--border);">
+    <tr class="sx-9459a2d">
       <td class="px-4 py-2">
-        <code
-          class="px-1.5 py-0.5 rounded text-xs"
-          style="background: var(--bg-muted); font-family: var(--font-mono);"
-        >
+        <code class="px-1.5 py-0.5 rounded text-xs sx-3be6047">
           {@name}
         </code>
-        <span :if={@required} class="ml-1 text-xs" style="color: var(--destructive);">*</span>
+        <span :if={@required} class="ml-1 text-xs sx-5f69581">*</span>
       </td>
-      <td class="px-4 py-2" style="color: var(--fg-muted);">
-        <code class="text-xs" style="font-family: var(--font-mono);">{@type}</code>
+      <td class="px-4 py-2 sx-a2be682">
+        <code class="text-xs sx-f43dcc6">{@type}</code>
       </td>
-      <td class="px-4 py-2" style="color: var(--fg-muted);">
-        <code class="text-xs" style="font-family: var(--font-mono);">{@default}</code>
+      <td class="px-4 py-2 sx-a2be682">
+        <code class="text-xs sx-f43dcc6">{@default}</code>
       </td>
-      <td class="px-4 py-2" style="color: var(--fg-muted);">
+      <td class="px-4 py-2 sx-a2be682">
         {render_slot(@inner_block)}
       </td>
     </tr>

@@ -7,7 +7,7 @@ defmodule SutrauiDemoWeb.Docs.InstallationLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/installation">
+    <Layouts.docs flash={@flash} sutra_commands={@sutra_commands} current_path="/docs/installation">
       <.docs_header
         title="Installation"
         description="Get up and running with Sutra UI in your Phoenix project."
@@ -33,8 +33,13 @@ defmodule SutrauiDemoWeb.Docs.InstallationLive do
 
       <.prose>
         The installer configures your CSS and web module automatically. Runtime
-        colocated hooks work from the rendered components; extracted hooks such as
-        dialog and animated response should be merged into your LiveSocket.
+        colocated hooks work from the rendered components; extracted hooks (dialog, select,
+        the pickers, toast, confirm, the command palette, time) must be merged into your LiveSocket,
+        and your esbuild must resolve
+        <.inline_code>sutra_ui/&lt;module&gt;</.inline_code>
+        by listing
+        <.inline_code>deps</.inline_code>
+        in <.inline_code>NODE_PATH</.inline_code>.
       </.prose>
 
       <.section_heading>Manual Installation</.section_heading>
@@ -157,7 +162,7 @@ defmodule SutrauiDemoWeb.Docs.InstallationLive do
     # mix.exs
     def deps do
       [
-        {:sutra_ui, "~> 0.4.0"}
+        {:sutra_ui, "~> 0.5.0"}
       ]
     end\
     """
@@ -174,7 +179,7 @@ defmodule SutrauiDemoWeb.Docs.InstallationLive do
     """
     def deps do
       [
-        {:sutra_ui, "~> 0.4.0"}
+        {:sutra_ui, "~> 0.5.0"}
       ]
     end\
     """
@@ -203,7 +208,13 @@ defmodule SutrauiDemoWeb.Docs.InstallationLive do
 
   defp hooks_code do
     """
+    // config/config.exs: esbuild finds sutra_ui/<module> through deps
+    //   env: %{"NODE_PATH" => [Path.expand("../deps", __DIR__), Mix.Project.build_path()]}
+
     import {hooks as sutraUiHooks} from "phoenix-colocated/sutra_ui"
+    import {installConfirm} from "sutra_ui/confirm"
+
+    installConfirm() // catch data-confirm before the LiveView connects
 
     const liveSocket = new LiveSocket("/live", Socket, {
       hooks: {...sutraUiHooks}

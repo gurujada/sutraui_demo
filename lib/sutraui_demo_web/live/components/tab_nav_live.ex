@@ -12,7 +12,11 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/tab-nav">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/tab-nav"
+    >
       <.docs_header
         title="Tab Nav"
         description="Responsive routed tab navigation for LiveView pages."
@@ -26,7 +30,7 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
       </.prose>
 
       <.component_demo title="Default" code={default_code()}>
-        <.tab_nav id="tab-nav-demo">
+        <.tab_nav nonce={@csp_nonce} id="tab-nav-demo">
           <:tab patch="/docs/components/tab-nav?tab=about" active={@active_tab == "about"}>
             About
           </:tab>
@@ -56,7 +60,7 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
       </.prose>
 
       <.component_demo title="With Icons" code={icons_code()}>
-        <.tab_nav id="tab-nav-icons-demo">
+        <.tab_nav nonce={@csp_nonce} id="tab-nav-icons-demo">
           <:tab patch="/docs/components/tab-nav?tab=about" active={@active_tab == "about"}>
             <.icon name="lucide-info" class="size-4 mr-2" /> About
           </:tab>
@@ -73,7 +77,7 @@ defmodule SutrauiDemoWeb.Components.TabNavLive do
       <.prose>
         Tab Nav is ideal for scenarios where:
       </.prose>
-      <ul class="list-disc list-inside space-y-1 text-sm" style="color: var(--fg-secondary);">
+      <ul class="list-disc list-inside space-y-1 text-sm sx-69cf8f3">
         <li>Each tab loads different data from the server</li>
         <li>Tab content is heavy (analytics, tables, charts)</li>
         <li>You want separate URLs for each tab for bookmarking</li>

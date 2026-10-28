@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.LoadingStateLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/loading-state">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/loading-state"
+    >
       <.docs_header
         title="Loading State"
         description="A centered loading indicator with spinner and message, commonly used while data is being fetched."
@@ -62,7 +66,7 @@ defmodule SutrauiDemoWeb.Components.LoadingStateLive do
 
       <.component_demo title="Inline Usage" code={inline_code()}>
         <div class="flex items-center gap-4">
-          <span style="color: var(--fg-muted);">Saving changes</span>
+          <span class="sx-a2be682">Saving changes</span>
           <.loading_state wrap_card={false} spinner_size="sm" message="" />
         </div>
       </.component_demo>

@@ -20,7 +20,11 @@ defmodule SutrauiDemoWeb.Components.RangeSliderLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/range-slider">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/range-slider"
+    >
       <.docs_header
         title="Range Slider"
         description="A dual-handle slider for selecting a range of values."
@@ -28,7 +32,7 @@ defmodule SutrauiDemoWeb.Components.RangeSliderLive do
 
       <.component_demo title="Default" code={~s|<.range_slider name="range" />|}>
         <div class="w-full max-w-sm">
-          <.range_slider name="range" />
+          <.range_slider nonce={@csp_nonce} name="range" />
         </div>
       </.component_demo>
 
@@ -40,12 +44,13 @@ defmodule SutrauiDemoWeb.Components.RangeSliderLive do
       <.component_demo title="With Labels" code={label_code()}>
         <div class="w-full max-w-sm space-y-2">
           <div class="flex justify-between items-center">
-            <label class="text-sm font-medium" style="color: var(--fg);">Price Range</label>
-            <span class="text-sm tabular-nums" style="color: var(--fg-muted);">
+            <label class="text-sm font-medium sx-916ff3c">Price Range</label>
+            <span class="text-sm tabular-nums sx-a2be682">
               ${@price_min} - ${@price_max}
             </span>
           </div>
           <.range_slider
+            nonce={@csp_nonce}
             name="price"
             min={0}
             max={1000}
@@ -64,7 +69,7 @@ defmodule SutrauiDemoWeb.Components.RangeSliderLive do
 
       <.component_demo title="Tooltips" code={tooltip_code()}>
         <div class="w-full max-w-sm pt-6">
-          <.range_slider name="with_tips" tooltips value_min={25} value_max={75} />
+          <.range_slider nonce={@csp_nonce} name="with_tips" tooltips value_min={25} value_max={75} />
         </div>
       </.component_demo>
 
@@ -78,6 +83,7 @@ defmodule SutrauiDemoWeb.Components.RangeSliderLive do
       <.component_demo title="Pips" code={pips_code()}>
         <div class="w-full max-w-sm pb-4">
           <.range_slider
+            nonce={@csp_nonce}
             name="with_pips"
             pips
             min={0}
@@ -99,6 +105,7 @@ defmodule SutrauiDemoWeb.Components.RangeSliderLive do
       <.component_demo title="Custom Format" code={format_code()}>
         <div class="w-full max-w-sm pt-6">
           <.range_slider
+            nonce={@csp_nonce}
             name="formatted"
             tooltips
             min={0}
@@ -120,7 +127,7 @@ defmodule SutrauiDemoWeb.Components.RangeSliderLive do
         code={~s|<.range_slider name="disabled" value_min={25} value_max={75} disabled />|}
       >
         <div class="w-full max-w-sm">
-          <.range_slider name="disabled" value_min={25} value_max={75} disabled />
+          <.range_slider nonce={@csp_nonce} name="disabled" value_min={25} value_max={75} disabled />
         </div>
       </.component_demo>
 

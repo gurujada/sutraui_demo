@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.LabelLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/label">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/label"
+    >
       <.docs_header
         title="Label"
         description="Renders an accessible label associated with form controls."
@@ -64,7 +68,7 @@ defmodule SutrauiDemoWeb.Components.LabelLive do
       <.component_demo title="Required" code={required_code()}>
         <div class="space-y-2">
           <.label for="email-required">
-            Email <span style="color: var(--destructive);">*</span>
+            Email <span class="sx-5f69581">*</span>
           </.label>
           <.input type="email" id="email-required" name="email" required />
         </div>
@@ -79,7 +83,7 @@ defmodule SutrauiDemoWeb.Components.LabelLive do
         <div class="space-y-2">
           <.label for="password">Password</.label>
           <.input type="password" id="password" name="password" />
-          <p class="text-sm" style="color: var(--fg-muted);">
+          <p class="text-sm sx-a2be682">
             Must be at least 8 characters long.
           </p>
         </div>
@@ -106,13 +110,13 @@ defmodule SutrauiDemoWeb.Components.LabelLive do
         <form class="space-y-4">
           <div class="space-y-2">
             <.label for="form-name">
-              Full name <span style="color: var(--destructive);">*</span>
+              Full name <span class="sx-5f69581">*</span>
             </.label>
             <.input type="text" id="form-name" name="name" required />
           </div>
           <div class="space-y-2">
             <.label for="form-email">
-              Email <span style="color: var(--destructive);">*</span>
+              Email <span class="sx-5f69581">*</span>
             </.label>
             <.input type="email" id="form-email" name="email" required />
           </div>

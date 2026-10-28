@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/timeline">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/timeline"
+    >
       <.docs_header
         title="Timeline"
         description="A vertical list of chronological events with dot markers and connector lines."
@@ -142,7 +146,7 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
             <:item time="12 min ago">
               <div class="flex items-start gap-3">
                 <img
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face"
+                  src="/images/demo/face-1472099645785-5658abf4ff4e.jpg"
                   alt=""
                   class="size-8 rounded-full"
                 />
@@ -159,7 +163,7 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
             <:item time="1 hour ago">
               <div class="flex items-start gap-3">
                 <img
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64&h=64&fit=crop&crop=face"
+                  src="/images/demo/face-1494790108377-be9c29b29330.jpg"
                   alt=""
                   class="size-8 rounded-full"
                 />
@@ -178,7 +182,7 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
             <:item time="3 hours ago">
               <div class="flex items-start gap-3">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face"
+                  src="/images/demo/face-1507003211169-0a1dd7228f2d.jpg"
                   alt=""
                   class="size-8 rounded-full"
                 />
@@ -321,7 +325,7 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
       <:item time="12 min ago">
         <div class="flex items-start gap-3">
           <img
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face"
+            src="/images/demo/face-1472099645785-5658abf4ff4e.jpg"
             alt=""
             class="size-8 rounded-full"
           />
@@ -338,7 +342,7 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
       <:item time="1 hour ago">
         <div class="flex items-start gap-3">
           <img
-            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64&h=64&fit=crop&crop=face"
+            src="/images/demo/face-1494790108377-be9c29b29330.jpg"
             alt=""
             class="size-8 rounded-full"
           />
@@ -357,7 +361,7 @@ defmodule SutrauiDemoWeb.Components.TimelineLive do
       <:item time="3 hours ago">
         <div class="flex items-start gap-3">
           <img
-            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face"
+            src="/images/demo/face-1507003211169-0a1dd7228f2d.jpg"
             alt=""
             class="size-8 rounded-full"
           />

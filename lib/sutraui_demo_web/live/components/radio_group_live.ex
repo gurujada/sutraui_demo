@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.RadioGroupLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/radio-group">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/radio-group"
+    >
       <.docs_header
         title="Radio Group"
         description="A set of checkable buttons where only one can be checked at a time."

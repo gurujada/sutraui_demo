@@ -7,7 +7,7 @@ defmodule SutrauiDemoWeb.Docs.ThemingLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/theming">
+    <Layouts.docs flash={@flash} sutra_commands={@sutra_commands} current_path="/docs/theming">
       <.docs_header
         title="Theming"
         description="Customize the look and feel of Sutra UI components with CSS variables."
@@ -81,70 +81,70 @@ defmodule SutrauiDemoWeb.Docs.ThemingLive do
 
       <.subsection_heading>Core Colors</.subsection_heading>
 
-      <div class="my-6 overflow-hidden rounded-lg border" style="border-color: var(--border);">
+      <div class="my-6 overflow-hidden rounded-lg border sx-635c873">
         <table class="w-full text-sm">
           <thead>
-            <tr style="background: var(--bg-subtle); border-bottom: 1px solid var(--border);">
+            <tr class="sx-9507d40">
               <th class="px-4 py-3 text-left font-medium">Variable</th>
               <th class="px-4 py-3 text-left font-medium">Description</th>
             </tr>
           </thead>
           <tbody>
-            <tr style="border-bottom: 1px solid var(--border);">
+            <tr class="sx-9459a2d">
               <td class="px-4 py-3">
                 <.inline_code>--background</.inline_code>
               </td>
               <td class="px-4 py-3 text-muted-foreground">Page background color</td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
+            <tr class="sx-9459a2d">
               <td class="px-4 py-3">
                 <.inline_code>--foreground</.inline_code>
               </td>
               <td class="px-4 py-3 text-muted-foreground">Default text color</td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
+            <tr class="sx-9459a2d">
               <td class="px-4 py-3">
                 <.inline_code>--primary</.inline_code>
               </td>
               <td class="px-4 py-3 text-muted-foreground">Primary brand color (buttons, links)</td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
+            <tr class="sx-9459a2d">
               <td class="px-4 py-3">
                 <.inline_code>--secondary</.inline_code>
               </td>
               <td class="px-4 py-3 text-muted-foreground">Secondary/muted actions</td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
+            <tr class="sx-9459a2d">
               <td class="px-4 py-3">
                 <.inline_code>--muted</.inline_code>
               </td>
               <td class="px-4 py-3 text-muted-foreground">Muted backgrounds</td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
+            <tr class="sx-9459a2d">
               <td class="px-4 py-3">
                 <.inline_code>--accent</.inline_code>
               </td>
               <td class="px-4 py-3 text-muted-foreground">Hover/active states</td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
+            <tr class="sx-9459a2d">
               <td class="px-4 py-3">
                 <.inline_code>--destructive</.inline_code>
               </td>
               <td class="px-4 py-3 text-muted-foreground">Error/danger color</td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
+            <tr class="sx-9459a2d">
               <td class="px-4 py-3">
                 <.inline_code>--border</.inline_code>
               </td>
               <td class="px-4 py-3 text-muted-foreground">Border color</td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
+            <tr class="sx-9459a2d">
               <td class="px-4 py-3">
                 <.inline_code>--input</.inline_code>
               </td>
               <td class="px-4 py-3 text-muted-foreground">Input border color</td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
+            <tr class="sx-9459a2d">
               <td class="px-4 py-3">
                 <.inline_code>--ring</.inline_code>
               </td>
@@ -162,16 +162,16 @@ defmodule SutrauiDemoWeb.Docs.ThemingLive do
 
       <.subsection_heading>Surface Colors</.subsection_heading>
 
-      <div class="my-6 overflow-hidden rounded-lg border" style="border-color: var(--border);">
+      <div class="my-6 overflow-hidden rounded-lg border sx-635c873">
         <table class="w-full text-sm">
           <thead>
-            <tr style="background: var(--bg-subtle); border-bottom: 1px solid var(--border);">
+            <tr class="sx-9507d40">
               <th class="px-4 py-3 text-left font-medium">Variable</th>
               <th class="px-4 py-3 text-left font-medium">Description</th>
             </tr>
           </thead>
           <tbody>
-            <tr style="border-bottom: 1px solid var(--border);">
+            <tr class="sx-9459a2d">
               <td class="px-4 py-3">
                 <.inline_code>--card</.inline_code>
               </td>
@@ -189,40 +189,40 @@ defmodule SutrauiDemoWeb.Docs.ThemingLive do
 
       <.subsection_heading>Drawer Colors</.subsection_heading>
 
-      <div class="my-6 overflow-hidden rounded-lg border" style="border-color: var(--border);">
+      <div class="my-6 overflow-hidden rounded-lg border sx-635c873">
         <table class="w-full text-sm">
           <thead>
-            <tr style="background: var(--bg-subtle); border-bottom: 1px solid var(--border);">
+            <tr class="sx-9507d40">
               <th class="px-4 py-3 text-left font-medium">Variable</th>
               <th class="px-4 py-3 text-left font-medium">Description</th>
             </tr>
           </thead>
           <tbody>
-            <tr style="border-bottom: 1px solid var(--border);">
+            <tr class="sx-9459a2d">
               <td class="px-4 py-3">
                 <.inline_code>--drawer</.inline_code>
               </td>
               <td class="px-4 py-3 text-muted-foreground">Drawer background</td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
+            <tr class="sx-9459a2d">
               <td class="px-4 py-3">
                 <.inline_code>--drawer-foreground</.inline_code>
               </td>
               <td class="px-4 py-3 text-muted-foreground">Drawer text color</td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
+            <tr class="sx-9459a2d">
               <td class="px-4 py-3">
                 <.inline_code>--drawer-primary</.inline_code>
               </td>
               <td class="px-4 py-3 text-muted-foreground">Drawer active item</td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
+            <tr class="sx-9459a2d">
               <td class="px-4 py-3">
                 <.inline_code>--drawer-accent</.inline_code>
               </td>
               <td class="px-4 py-3 text-muted-foreground">Drawer hover state</td>
             </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
+            <tr class="sx-9459a2d">
               <td class="px-4 py-3">
                 <.inline_code>--drawer-border</.inline_code>
               </td>
@@ -245,10 +245,10 @@ defmodule SutrauiDemoWeb.Docs.ThemingLive do
         chart tokens in the theme so application charts can share the same palette.
       </.prose>
 
-      <div class="my-6 overflow-hidden rounded-lg border" style="border-color: var(--border);">
+      <div class="my-6 overflow-hidden rounded-lg border sx-635c873">
         <table class="w-full text-sm">
           <thead>
-            <tr style="background: var(--bg-subtle); border-bottom: 1px solid var(--border);">
+            <tr class="sx-9507d40">
               <th class="px-4 py-3 text-left font-medium">Variable</th>
               <th class="px-4 py-3 text-left font-medium">Description</th>
             </tr>

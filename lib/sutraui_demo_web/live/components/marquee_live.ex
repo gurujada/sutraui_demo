@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.MarqueeLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/marquee">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/marquee"
+    >
       <.docs_header
         title="Marquee"
         description="A CSS-only scrolling banner for announcements, logo strips, and repeating inline content."

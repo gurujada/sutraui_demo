@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.ProgressLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/progress">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/progress"
+    >
       <.docs_header
         title="Progress"
         description="Displays an indicator showing the completion progress of a task."
@@ -27,31 +31,31 @@ defmodule SutrauiDemoWeb.Components.ProgressLive do
       <.component_demo title="Values" code={values_code()}>
         <div class="space-y-4">
           <div class="space-y-2">
-            <div class="flex justify-between text-sm" style="color: var(--fg-muted);">
+            <div class="flex justify-between text-sm sx-a2be682">
               <span>0%</span>
             </div>
             <.progress value={0} />
           </div>
           <div class="space-y-2">
-            <div class="flex justify-between text-sm" style="color: var(--fg-muted);">
+            <div class="flex justify-between text-sm sx-a2be682">
               <span>25%</span>
             </div>
             <.progress value={25} />
           </div>
           <div class="space-y-2">
-            <div class="flex justify-between text-sm" style="color: var(--fg-muted);">
+            <div class="flex justify-between text-sm sx-a2be682">
               <span>50%</span>
             </div>
             <.progress value={50} />
           </div>
           <div class="space-y-2">
-            <div class="flex justify-between text-sm" style="color: var(--fg-muted);">
+            <div class="flex justify-between text-sm sx-a2be682">
               <span>75%</span>
             </div>
             <.progress value={75} />
           </div>
           <div class="space-y-2">
-            <div class="flex justify-between text-sm" style="color: var(--fg-muted);">
+            <div class="flex justify-between text-sm sx-a2be682">
               <span>100%</span>
             </div>
             <.progress value={100} />
@@ -69,19 +73,19 @@ defmodule SutrauiDemoWeb.Components.ProgressLive do
       <.component_demo title="Sizes" code={sizes_code()}>
         <div class="space-y-4">
           <div class="space-y-2">
-            <span class="text-sm" style="color: var(--fg-muted);">Small</span>
+            <span class="text-sm sx-a2be682">Small</span>
             <.progress value={60} size="sm" />
           </div>
           <div class="space-y-2">
-            <span class="text-sm" style="color: var(--fg-muted);">Default</span>
+            <span class="text-sm sx-a2be682">Default</span>
             <.progress value={60} />
           </div>
           <div class="space-y-2">
-            <span class="text-sm" style="color: var(--fg-muted);">Large</span>
+            <span class="text-sm sx-a2be682">Large</span>
             <.progress value={60} size="lg" />
           </div>
           <div class="space-y-2">
-            <span class="text-sm" style="color: var(--fg-muted);">Extra Large</span>
+            <span class="text-sm sx-a2be682">Extra Large</span>
             <.progress value={60} size="xl" />
           </div>
         </div>
@@ -95,8 +99,8 @@ defmodule SutrauiDemoWeb.Components.ProgressLive do
       <.component_demo title="With Label" code={label_code()}>
         <div class="space-y-2">
           <div class="flex justify-between text-sm">
-            <span style="color: var(--fg);">Uploading...</span>
-            <span style="color: var(--fg-muted);">{@progress}%</span>
+            <span class="sx-916ff3c">Uploading...</span>
+            <span class="sx-a2be682">{@progress}%</span>
           </div>
           <.progress value={@progress} aria_label="Upload progress" />
         </div>

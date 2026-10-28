@@ -10,7 +10,7 @@ defmodule SutrauiDemoWeb.Components.KbdLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/kbd">
+    <Layouts.docs flash={@flash} sutra_commands={@sutra_commands} current_path="/docs/components/kbd">
       <.docs_header
         title="Kbd"
         description="Displays keyboard input that triggers an action in the application."
@@ -46,23 +46,23 @@ defmodule SutrauiDemoWeb.Components.KbdLive do
         <div class="flex flex-col gap-3">
           <div class="flex items-center gap-1">
             <.kbd>Ctrl</.kbd>
-            <span style="color: var(--fg-muted);">+</span>
+            <span class="sx-a2be682">+</span>
             <.kbd>C</.kbd>
-            <span class="ml-2 text-sm" style="color: var(--fg-muted);">Copy</span>
+            <span class="ml-2 text-sm sx-a2be682">Copy</span>
           </div>
           <div class="flex items-center gap-1">
             <.kbd>Ctrl</.kbd>
-            <span style="color: var(--fg-muted);">+</span>
+            <span class="sx-a2be682">+</span>
             <.kbd>V</.kbd>
-            <span class="ml-2 text-sm" style="color: var(--fg-muted);">Paste</span>
+            <span class="ml-2 text-sm sx-a2be682">Paste</span>
           </div>
           <div class="flex items-center gap-1">
             <.kbd>Ctrl</.kbd>
-            <span style="color: var(--fg-muted);">+</span>
+            <span class="sx-a2be682">+</span>
             <.kbd>Shift</.kbd>
-            <span style="color: var(--fg-muted);">+</span>
+            <span class="sx-a2be682">+</span>
             <.kbd>Z</.kbd>
-            <span class="ml-2 text-sm" style="color: var(--fg-muted);">Redo</span>
+            <span class="ml-2 text-sm sx-a2be682">Redo</span>
           </div>
         </div>
       </.component_demo>
@@ -76,23 +76,23 @@ defmodule SutrauiDemoWeb.Components.KbdLive do
         <div class="flex flex-col gap-3">
           <div class="flex items-center gap-1">
             <.kbd>⌘</.kbd>
-            <span style="color: var(--fg-muted);">+</span>
+            <span class="sx-a2be682">+</span>
             <.kbd>K</.kbd>
-            <span class="ml-2 text-sm" style="color: var(--fg-muted);">Command palette</span>
+            <span class="ml-2 text-sm sx-a2be682">Command palette</span>
           </div>
           <div class="flex items-center gap-1">
             <.kbd>⌘</.kbd>
-            <span style="color: var(--fg-muted);">+</span>
+            <span class="sx-a2be682">+</span>
             <.kbd>S</.kbd>
-            <span class="ml-2 text-sm" style="color: var(--fg-muted);">Save</span>
+            <span class="ml-2 text-sm sx-a2be682">Save</span>
           </div>
           <div class="flex items-center gap-1">
             <.kbd>⌥</.kbd>
-            <span style="color: var(--fg-muted);">+</span>
+            <span class="sx-a2be682">+</span>
             <.kbd>⇧</.kbd>
-            <span style="color: var(--fg-muted);">+</span>
+            <span class="sx-a2be682">+</span>
             <.kbd>F</.kbd>
-            <span class="ml-2 text-sm" style="color: var(--fg-muted);">Format</span>
+            <span class="ml-2 text-sm sx-a2be682">Format</span>
           </div>
         </div>
       </.component_demo>
@@ -117,7 +117,7 @@ defmodule SutrauiDemoWeb.Components.KbdLive do
       </.prose>
 
       <.component_demo title="In Context" code={context_code()}>
-        <div class="space-y-3 text-sm" style="color: var(--fg);">
+        <div class="space-y-3 text-sm sx-916ff3c">
           <p>
             Press
             <.kbd>⌘</.kbd>
@@ -147,26 +147,23 @@ defmodule SutrauiDemoWeb.Components.KbdLive do
       </.prose>
 
       <.component_demo title="Shortcut List" code={list_code()}>
-        <div
-          class="rounded-lg border divide-y"
-          style="background: var(--bg-elevated); border-color: var(--border); --tw-divide-opacity: 1; divide-color: var(--border);"
-        >
+        <div class="rounded-lg border divide-y sx-31ea948">
           <div class="flex items-center justify-between px-4 py-3">
-            <span class="text-sm" style="color: var(--fg);">Search</span>
+            <span class="text-sm sx-916ff3c">Search</span>
             <div class="flex items-center gap-1">
               <.kbd>⌘</.kbd>
               <.kbd>K</.kbd>
             </div>
           </div>
           <div class="flex items-center justify-between px-4 py-3">
-            <span class="text-sm" style="color: var(--fg);">New file</span>
+            <span class="text-sm sx-916ff3c">New file</span>
             <div class="flex items-center gap-1">
               <.kbd>⌘</.kbd>
               <.kbd>N</.kbd>
             </div>
           </div>
           <div class="flex items-center justify-between px-4 py-3">
-            <span class="text-sm" style="color: var(--fg);">Settings</span>
+            <span class="text-sm sx-916ff3c">Settings</span>
             <div class="flex items-center gap-1">
               <.kbd>⌘</.kbd>
               <.kbd>,</.kbd>

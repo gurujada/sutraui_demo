@@ -45,7 +45,11 @@ defmodule SutrauiDemoWeb.Components.ResponseLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/response">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/response"
+    >
       <.docs_header
         title="Response"
         description="Render model output as plain text or streamed Markdown with MDEx-backed sanitization."

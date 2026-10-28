@@ -13,7 +13,11 @@ defmodule SutrauiDemoWeb.Components.TableLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/table">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/table"
+    >
       <.docs_header
         title="Table"
         description="Table component with two variants: simple wrapper and data-driven."

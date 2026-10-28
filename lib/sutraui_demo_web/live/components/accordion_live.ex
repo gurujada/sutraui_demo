@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.AccordionLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/accordion">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/accordion"
+    >
       <.docs_header
         title="Accordion"
         description="A vertically stacked set of interactive headings that reveal associated content sections."

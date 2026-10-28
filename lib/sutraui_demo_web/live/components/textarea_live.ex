@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.TextareaLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/textarea">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/textarea"
+    >
       <.docs_header
         title="Textarea"
         description="A multi-line text input for longer form content."
@@ -29,13 +33,13 @@ defmodule SutrauiDemoWeb.Components.TextareaLive do
       <.component_demo title="Custom Rows" code={rows_code()}>
         <div class="grid grid-cols-2 gap-4 w-full">
           <div>
-            <label class="text-sm font-medium mb-1.5 block" style="color: var(--fg);">
+            <label class="text-sm font-medium mb-1.5 block sx-916ff3c">
               2 rows
             </label>
             <.textarea placeholder="Short textarea" rows={2} />
           </div>
           <div>
-            <label class="text-sm font-medium mb-1.5 block" style="color: var(--fg);">
+            <label class="text-sm font-medium mb-1.5 block sx-916ff3c">
               5 rows
             </label>
             <.textarea placeholder="Taller textarea" rows={5} />

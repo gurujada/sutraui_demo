@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.HoverCardLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/hover-card">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/hover-card"
+    >
       <.docs_header
         title="Hover Card"
         description="Reveals rich preview content on hover or keyboard focus."
@@ -18,7 +22,7 @@ defmodule SutrauiDemoWeb.Components.HoverCardLive do
         code={profile_code()}
         class="[&_.demo-preview]:min-h-[260px]"
       >
-        <.hover_card id="user-hover-card">
+        <.hover_card nonce={@csp_nonce} id="user-hover-card">
           <:trigger>
             <span class="text-primary underline-offset-4 hover:underline">@sutra_ui</span>
           </:trigger>
@@ -60,12 +64,12 @@ defmodule SutrauiDemoWeb.Components.HoverCardLive do
         code={top_code()}
         class="[&_.demo-preview]:min-h-[260px] [&_.demo-preview]:items-end"
       >
-        <.hover_card id="release-hover-card" side="top" align="start">
+        <.hover_card nonce={@csp_nonce} id="release-hover-card" side="top" align="start">
           <:trigger>
             <span class="text-primary underline-offset-4 hover:underline">Release notes</span>
           </:trigger>
           <div class="space-y-2">
-            <p class="text-sm font-medium text-foreground">v0.4.0</p>
+            <p class="text-sm font-medium text-foreground">v0.5.0</p>
             <p class="text-sm text-muted-foreground">
               Includes new display primitives, runtime hooks, and docs updates.
             </p>
@@ -84,7 +88,7 @@ defmodule SutrauiDemoWeb.Components.HoverCardLive do
         code={link_code()}
         class="[&_.demo-preview]:min-h-[260px]"
       >
-        <.hover_card id="link-hover-card" side="right" align="start">
+        <.hover_card nonce={@csp_nonce} id="link-hover-card" side="right" align="start">
           <:trigger>
             <a
               href="/docs/components/hover-card"
@@ -118,7 +122,7 @@ defmodule SutrauiDemoWeb.Components.HoverCardLive do
         code={delays_code()}
         class="[&_.demo-preview]:min-h-[260px]"
       >
-        <.hover_card id="delayed-hover-card" open_delay={500} close_delay={200}>
+        <.hover_card nonce={@csp_nonce} id="delayed-hover-card" open_delay={500} close_delay={200}>
           <:trigger>
             <span class="text-primary underline-offset-4 hover:underline">Hover slowly (500ms)</span>
           </:trigger>
@@ -158,7 +162,7 @@ defmodule SutrauiDemoWeb.Components.HoverCardLive do
     <.hover_card id="release-hover-card" side="top" align="start">
       <:trigger>Release notes</:trigger>
       <div>
-        <p>v0.4.0</p>
+        <p>v0.5.0</p>
         <p>Includes new display primitives, runtime hooks, and docs updates.</p>
       </div>
     </.hover_card>\

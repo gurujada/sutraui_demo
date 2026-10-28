@@ -58,7 +58,11 @@ defmodule SutrauiDemoWeb.Components.InputLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/input">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/input"
+    >
       <.docs_header
         title="Input"
         description="The unified form field component. Renders inputs with optional label, description, and error handling. Integrates with Phoenix forms."
@@ -185,13 +189,25 @@ defmodule SutrauiDemoWeb.Components.InputLive do
       <.prose>
         Use
         <.inline_code>type="select"</.inline_code>
-        for native select dropdowns.
+        for a select: it renders
+        <.inline_code>SutraUI.Select</.inline_code>
+        (a real
+        <.inline_code>&lt;select&gt;</.inline_code>
+        with SutraUI's list on top). Add <.inline_code>searchable</.inline_code>,
+        <.inline_code>multiple</.inline_code>
+        or
+        <.inline_code>native</.inline_code>
+        (the browser's own control). See the <.link
+          navigate="/docs/components/select"
+          class="underline"
+        >Select page</.link>.
       </.prose>
 
       <.component_demo title="Select" code={select_code()}>
         <div class="w-full max-w-sm">
           <.input
             type="select"
+            id="country-input"
             name="country"
             label="Country"
             description="Choose your country of residence."

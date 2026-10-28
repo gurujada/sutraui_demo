@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.SimpleFormLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/simple-form">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/simple-form"
+    >
       <.docs_header
         title="Simple Form"
         description="A form wrapper that automatically styles all child form elements without requiring explicit classes."

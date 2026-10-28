@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.SeparatorLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/separator">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/separator"
+    >
       <.docs_header
         title="Separator"
         description="A themed one-pixel rule for visually or semantically separating content."

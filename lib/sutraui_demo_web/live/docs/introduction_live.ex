@@ -7,7 +7,7 @@ defmodule SutrauiDemoWeb.Docs.IntroductionLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs">
+    <Layouts.docs flash={@flash} sutra_commands={@sutra_commands} current_path="/docs">
       <.docs_header
         title="Introduction"
         description="A collection of beautiful, accessible components built entirely with Phoenix LiveView."

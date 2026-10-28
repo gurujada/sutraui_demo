@@ -41,7 +41,11 @@ defmodule SutrauiDemoWeb.Components.PaginationLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/pagination">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/pagination"
+    >
       <.docs_header
         title="Pagination"
         description="Pagination with page navigation, next and previous links."
@@ -109,7 +113,7 @@ defmodule SutrauiDemoWeb.Components.PaginationLive do
       <.prose>
         The pagination component includes proper ARIA attributes:
       </.prose>
-      <ul class="list-disc list-inside space-y-1 text-sm" style="color: var(--fg-secondary);">
+      <ul class="list-disc list-inside space-y-1 text-sm sx-69cf8f3">
         <li>
           Uses
           <.inline_code>&lt;nav&gt;</.inline_code>

@@ -10,13 +10,9 @@ defmodule SutrauiDemoWeb.DocsHandlers do
     socket =
       attach_hook(socket, :docs_handlers, :handle_event, fn
         "show_toast", %{"variant" => variant, "title" => title} = params, socket ->
-          {:halt,
-           push_event(socket, "toast", %{
-             variant: variant,
-             title: title,
-             description: Map.get(params, "description"),
-             duration: 3000
-           })}
+          kind = if variant == "destructive", do: :error, else: :info
+          SutraUI.Toast.send(kind, Map.get(params, "description") || title, title: title)
+          {:halt, socket}
 
         _event, _params, socket ->
           {:cont, socket}

@@ -23,7 +23,11 @@ defmodule SutrauiDemoWeb.Components.CalendarLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/calendar">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/calendar"
+    >
       <.docs_header
         title="Calendar"
         description="A monthly calendar grid for date selection, range selection, and LiveView-owned month navigation."
@@ -52,7 +56,7 @@ defmodule SutrauiDemoWeb.Components.CalendarLive do
           class="w-full max-w-sm space-y-2"
         >
           <.label for="booking-date">Date</.label>
-          <.popover id="booking-date-popover" class="p-0">
+          <.popover nonce={@csp_nonce} id="booking-date-popover" class="p-0">
             <:trigger>
               <span class="inline-flex h-9 w-64 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground shadow-xs">
                 <span>{date_label(@picker_selected)}</span>

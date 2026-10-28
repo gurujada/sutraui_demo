@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.BreadcrumbLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/breadcrumb">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/breadcrumb"
+    >
       <.docs_header
         title="Breadcrumb"
         description="Displays the path to the current resource using a hierarchy of links."
@@ -66,7 +70,7 @@ defmodule SutrauiDemoWeb.Components.BreadcrumbLive do
       <.prose>
         The breadcrumb component includes proper ARIA attributes for accessibility:
       </.prose>
-      <ul class="list-disc list-inside space-y-1 text-sm" style="color: var(--fg-secondary);">
+      <ul class="list-disc list-inside space-y-1 text-sm sx-69cf8f3">
         <li>
           Uses semantic
           <.inline_code>&lt;nav&gt;</.inline_code>

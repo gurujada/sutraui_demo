@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.DrawerLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/drawer">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/drawer"
+    >
       <.docs_header
         title="Drawer"
         description="A collapsible drawer navigation component with mobile toggle support."
@@ -29,28 +33,19 @@ defmodule SutrauiDemoWeb.Components.DrawerLive do
       </.prose>
 
       <.component_demo title="Basic Drawer" code={basic_code()}>
-        <div
-          class="demo-drawer-wrapper border rounded-lg"
-          style="height: 400px; border-color: var(--border);"
-        >
-          <div
-            class="demo-drawer-header p-3 flex items-center justify-between border-b"
-            style="border-color: var(--border); background: var(--bg);"
-          >
-            <span class="text-sm font-medium" style="color: var(--fg);">My App</span>
+        <div class="demo-drawer-wrapper border rounded-lg sx-c78eaf2">
+          <div class="demo-drawer-header p-3 flex items-center justify-between border-b sx-c61a60e">
+            <span class="text-sm font-medium sx-916ff3c">My App</span>
             <.drawer_trigger for="demo-basic" class="demo-trigger-btn" variant="outline" size="sm">
               <.icon name="lucide-menu" class="size-4" />
               <span class="ml-1">Menu</span>
             </.drawer_trigger>
           </div>
 
-          <.drawer id="demo-basic">
+          <.drawer nonce={@csp_nonce} id="demo-basic">
             <:header>
-              <div
-                class="flex items-center gap-2 p-4 border-b"
-                style="border-color: var(--border);"
-              >
-                <span class="font-semibold" style="color: var(--fg);">My App</span>
+              <div class="flex items-center gap-2 p-4 border-b sx-635c873">
+                <span class="font-semibold sx-916ff3c">My App</span>
               </div>
             </:header>
 
@@ -61,7 +56,7 @@ defmodule SutrauiDemoWeb.Components.DrawerLive do
             </.drawer_group>
           </.drawer>
 
-          <div class="p-4" style="color: var(--fg-muted);">
+          <div class="p-4 sx-a2be682">
             <p>Main content area</p>
             <p class="text-sm mt-2">Click the Menu button to toggle the drawer.</p>
             <p class="text-sm mt-1">Click outside the drawer to close it.</p>
@@ -77,22 +72,16 @@ defmodule SutrauiDemoWeb.Components.DrawerLive do
       </.prose>
 
       <.component_demo title="Collapsible Submenu" code={submenu_code()}>
-        <div
-          class="demo-drawer-wrapper border rounded-lg"
-          style="height: 450px; border-color: var(--border);"
-        >
-          <div
-            class="demo-drawer-header p-3 flex items-center justify-between border-b"
-            style="border-color: var(--border); background: var(--bg);"
-          >
-            <span class="text-sm font-medium" style="color: var(--fg);">Navigation</span>
+        <div class="demo-drawer-wrapper border rounded-lg sx-ea8d5ec">
+          <div class="demo-drawer-header p-3 flex items-center justify-between border-b sx-c61a60e">
+            <span class="text-sm font-medium sx-916ff3c">Navigation</span>
             <.drawer_trigger for="demo-submenu" class="demo-trigger-btn" variant="outline" size="sm">
               <.icon name="lucide-menu" class="size-4" />
               <span class="ml-1">Menu</span>
             </.drawer_trigger>
           </div>
 
-          <.drawer id="demo-submenu">
+          <.drawer nonce={@csp_nonce} id="demo-submenu">
             <.drawer_group label="Navigation">
               <.drawer_item href="#">Overview</.drawer_item>
 
@@ -106,7 +95,7 @@ defmodule SutrauiDemoWeb.Components.DrawerLive do
             </.drawer_group>
           </.drawer>
 
-          <div class="p-4" style="color: var(--fg-muted);">
+          <div class="p-4 sx-a2be682">
             <p>Main content area</p>
             <p class="text-sm mt-2">Click the Menu button to toggle the drawer.</p>
           </div>
@@ -119,22 +108,13 @@ defmodule SutrauiDemoWeb.Components.DrawerLive do
       </.prose>
 
       <.component_demo title="Header and Footer" code={footer_code()}>
-        <div
-          class="demo-drawer-wrapper border rounded-lg"
-          style="height: 500px; border-color: var(--border);"
-        >
-          <div
-            class="demo-drawer-header p-3 flex items-center justify-between border-b"
-            style="border-color: var(--border); background: var(--bg);"
-          >
+        <div class="demo-drawer-wrapper border rounded-lg sx-ad29458">
+          <div class="demo-drawer-header p-3 flex items-center justify-between border-b sx-c61a60e">
             <div class="flex items-center gap-2">
-              <div
-                class="w-6 h-6 rounded flex items-center justify-center text-xs font-medium"
-                style="background: var(--site-accent); color: #fff;"
-              >
+              <div class="w-6 h-6 rounded flex items-center justify-center text-xs font-medium sx-5a55c83">
                 S
               </div>
-              <span class="text-sm font-medium" style="color: var(--fg);">Sutra UI</span>
+              <span class="text-sm font-medium sx-916ff3c">Sutra UI</span>
             </div>
             <.drawer_trigger for="demo-footer" class="demo-trigger-btn" variant="outline" size="sm">
               <.icon name="lucide-menu" class="size-4" />
@@ -142,19 +122,13 @@ defmodule SutrauiDemoWeb.Components.DrawerLive do
             </.drawer_trigger>
           </div>
 
-          <.drawer id="demo-footer">
+          <.drawer nonce={@csp_nonce} id="demo-footer">
             <:header>
-              <div
-                class="flex items-center gap-2 p-4 border-b"
-                style="border-color: var(--border);"
-              >
-                <div
-                  class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-medium"
-                  style="background: var(--site-accent); color: #fff;"
-                >
+              <div class="flex items-center gap-2 p-4 border-b sx-635c873">
+                <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-medium sx-5a55c83">
                   S
                 </div>
-                <span class="font-semibold" style="color: var(--fg);">Sutra UI</span>
+                <span class="font-semibold sx-916ff3c">Sutra UI</span>
               </div>
             </:header>
 
@@ -174,7 +148,7 @@ defmodule SutrauiDemoWeb.Components.DrawerLive do
             </div>
 
             <:footer>
-              <div class="p-2 border-t" style="border-color: var(--border);">
+              <div class="p-2 border-t sx-635c873">
                 <.drawer_item href="#">
                   <span class="flex items-center gap-2">
                     <.icon name="lucide-settings" class="size-4" /> Settings
@@ -184,7 +158,7 @@ defmodule SutrauiDemoWeb.Components.DrawerLive do
             </:footer>
           </.drawer>
 
-          <div class="p-4" style="color: var(--fg-muted);">
+          <div class="p-4 sx-a2be682">
             <p>Main content area</p>
             <p class="text-sm mt-2">
               Drawer has header branding, content sections, and a footer with settings.
@@ -201,15 +175,9 @@ defmodule SutrauiDemoWeb.Components.DrawerLive do
       </.prose>
 
       <.component_demo title="Trigger Variants" code={trigger_code()}>
-        <div
-          class="demo-drawer-wrapper border rounded-lg"
-          style="height: 300px; border-color: var(--border);"
-        >
-          <div
-            class="demo-drawer-header p-3 flex items-center justify-between border-b"
-            style="border-color: var(--border); background: var(--bg);"
-          >
-            <span class="text-sm font-medium" style="color: var(--fg);">Trigger Demo</span>
+        <div class="demo-drawer-wrapper border rounded-lg sx-c480978">
+          <div class="demo-drawer-header p-3 flex items-center justify-between border-b sx-c61a60e">
+            <span class="text-sm font-medium sx-916ff3c">Trigger Demo</span>
             <div class="flex items-center gap-2">
               <.drawer_trigger for="demo-trigger-showcase" variant="ghost" size="sm">
                 <.icon name="lucide-menu" class="size-4" />
@@ -220,24 +188,21 @@ defmodule SutrauiDemoWeb.Components.DrawerLive do
             </div>
           </div>
 
-          <div class="flex flex-wrap items-center gap-4 p-4" style="color: var(--fg-muted);">
+          <div class="flex flex-wrap items-center gap-4 p-4 sx-a2be682">
             <p class="text-sm w-full">Each trigger controls a different drawer:</p>
             <div class="flex items-center gap-2 text-xs">
-              <span class="px-2 py-1 rounded" style="background: var(--bg-muted);">Ghost</span>
-              <span style="color: var(--fg-secondary);">→ Left drawer</span>
+              <span class="px-2 py-1 rounded sx-f4f45ad">Ghost</span>
+              <span class="sx-69cf8f3">→ Left drawer</span>
             </div>
             <div class="flex items-center gap-2 text-xs">
-              <span
-                class="px-2 py-1 rounded border"
-                style="border-color: var(--border); background: var(--bg);"
-              >
+              <span class="px-2 py-1 rounded border sx-c61a60e">
                 Outline
               </span>
-              <span style="color: var(--fg-secondary);">→ Right drawer</span>
+              <span class="sx-69cf8f3">→ Right drawer</span>
             </div>
           </div>
 
-          <.drawer id="demo-trigger-showcase">
+          <.drawer nonce={@csp_nonce} id="demo-trigger-showcase">
             <.drawer_group label="Left Menu">
               <.drawer_item href="#">Option 1</.drawer_item>
               <.drawer_item href="#">Option 2</.drawer_item>
@@ -245,7 +210,7 @@ defmodule SutrauiDemoWeb.Components.DrawerLive do
             </.drawer_group>
           </.drawer>
 
-          <.drawer id="demo-trigger-showcase-2" side="right">
+          <.drawer nonce={@csp_nonce} id="demo-trigger-showcase-2" side="right">
             <.drawer_group label="Right Menu">
               <.drawer_item href="#">Option A</.drawer_item>
               <.drawer_item href="#">Option B</.drawer_item>
@@ -270,7 +235,7 @@ defmodule SutrauiDemoWeb.Components.DrawerLive do
       <.prose>
         The drawer component includes comprehensive accessibility features:
       </.prose>
-      <ul class="list-disc list-inside space-y-1 text-sm" style="color: var(--fg-secondary);">
+      <ul class="list-disc list-inside space-y-1 text-sm sx-69cf8f3">
         <li>
           Uses semantic
           <.inline_code>&lt;aside&gt;</.inline_code>

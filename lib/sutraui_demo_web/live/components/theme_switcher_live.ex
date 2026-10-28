@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.ThemeSwitcherLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/theme-switcher">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/theme-switcher"
+    >
       <.docs_header
         title="Theme Switcher"
         description="A button component that toggles between light and dark themes with localStorage persistence."
@@ -20,8 +24,8 @@ defmodule SutrauiDemoWeb.Components.ThemeSwitcherLive do
 
       <.component_demo title="Basic" code={basic_code()}>
         <div class="flex items-center gap-4">
-          <.theme_switcher id="demo-theme-1" />
-          <span style="color: var(--fg-muted);">Click to toggle theme</span>
+          <.theme_switcher nonce={@csp_nonce} id="demo-theme-1" />
+          <span class="sx-a2be682">Click to toggle theme</span>
         </div>
       </.component_demo>
 
@@ -33,20 +37,20 @@ defmodule SutrauiDemoWeb.Components.ThemeSwitcherLive do
       <.component_demo title="Variants" code={variants_code()}>
         <div class="flex flex-wrap items-center gap-4">
           <div class="text-center">
-            <.theme_switcher id="demo-outline" variant="outline" />
-            <p class="text-xs mt-1" style="color: var(--fg-muted);">outline</p>
+            <.theme_switcher nonce={@csp_nonce} id="demo-outline" variant="outline" />
+            <p class="text-xs mt-1 sx-a2be682">outline</p>
           </div>
           <div class="text-center">
-            <.theme_switcher id="demo-ghost" variant="ghost" />
-            <p class="text-xs mt-1" style="color: var(--fg-muted);">ghost</p>
+            <.theme_switcher nonce={@csp_nonce} id="demo-ghost" variant="ghost" />
+            <p class="text-xs mt-1 sx-a2be682">ghost</p>
           </div>
           <div class="text-center">
-            <.theme_switcher id="demo-secondary" variant="secondary" />
-            <p class="text-xs mt-1" style="color: var(--fg-muted);">secondary</p>
+            <.theme_switcher nonce={@csp_nonce} id="demo-secondary" variant="secondary" />
+            <p class="text-xs mt-1 sx-a2be682">secondary</p>
           </div>
           <div class="text-center">
-            <.theme_switcher id="demo-primary" variant="primary" />
-            <p class="text-xs mt-1" style="color: var(--fg-muted);">primary</p>
+            <.theme_switcher nonce={@csp_nonce} id="demo-primary" variant="primary" />
+            <p class="text-xs mt-1 sx-a2be682">primary</p>
           </div>
         </div>
       </.component_demo>
@@ -61,20 +65,20 @@ defmodule SutrauiDemoWeb.Components.ThemeSwitcherLive do
       <.component_demo title="Icon Sizes" code={sizes_code()}>
         <div class="flex flex-wrap items-center gap-4">
           <div class="text-center">
-            <.theme_switcher id="demo-icon-sm" icon_class="size-3" />
-            <p class="text-xs mt-1" style="color: var(--fg-muted);">size-3</p>
+            <.theme_switcher nonce={@csp_nonce} id="demo-icon-sm" icon_class="size-3" />
+            <p class="text-xs mt-1 sx-a2be682">size-3</p>
           </div>
           <div class="text-center">
-            <.theme_switcher id="demo-icon-default" icon_class="size-4" />
-            <p class="text-xs mt-1" style="color: var(--fg-muted);">size-4 (default)</p>
+            <.theme_switcher nonce={@csp_nonce} id="demo-icon-default" icon_class="size-4" />
+            <p class="text-xs mt-1 sx-a2be682">size-4 (default)</p>
           </div>
           <div class="text-center">
-            <.theme_switcher id="demo-icon-lg" icon_class="size-5" />
-            <p class="text-xs mt-1" style="color: var(--fg-muted);">size-5</p>
+            <.theme_switcher nonce={@csp_nonce} id="demo-icon-lg" icon_class="size-5" />
+            <p class="text-xs mt-1 sx-a2be682">size-5</p>
           </div>
           <div class="text-center">
-            <.theme_switcher id="demo-icon-xl" icon_class="size-6" />
-            <p class="text-xs mt-1" style="color: var(--fg-muted);">size-6</p>
+            <.theme_switcher nonce={@csp_nonce} id="demo-icon-xl" icon_class="size-6" />
+            <p class="text-xs mt-1 sx-a2be682">size-6</p>
           </div>
         </div>
       </.component_demo>
@@ -88,8 +92,14 @@ defmodule SutrauiDemoWeb.Components.ThemeSwitcherLive do
 
       <.component_demo title="With Tooltip" code={tooltip_code()}>
         <div class="flex items-center gap-8">
-          <.theme_switcher id="demo-tooltip-bottom" tooltip="Toggle theme" tooltip_side="bottom" />
           <.theme_switcher
+            nonce={@csp_nonce}
+            id="demo-tooltip-bottom"
+            tooltip="Toggle theme"
+            tooltip_side="bottom"
+          />
+          <.theme_switcher
+            nonce={@csp_nonce}
             id="demo-tooltip-right"
             tooltip="Switch to dark/light"
             tooltip_side="right"

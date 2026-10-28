@@ -15,7 +15,11 @@ defmodule SutrauiDemoWeb.Components.SliderLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/slider">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/slider"
+    >
       <.docs_header
         title="Slider"
         description="An input that allows selecting a value from a range by dragging a handle."
@@ -23,7 +27,7 @@ defmodule SutrauiDemoWeb.Components.SliderLive do
 
       <.component_demo title="Default" code={~s|<.slider id="default-slider" />|}>
         <div class="w-full max-w-sm">
-          <.slider id="default-slider" />
+          <.slider nonce={@csp_nonce} id="default-slider" />
         </div>
       </.component_demo>
 
@@ -35,14 +39,15 @@ defmodule SutrauiDemoWeb.Components.SliderLive do
       <.component_demo title="With Label" code={label_code()}>
         <div class="w-full max-w-sm space-y-2">
           <div class="flex justify-between items-center">
-            <label for="volume-slider" class="text-sm font-medium" style="color: var(--fg);">
+            <label for="volume-slider" class="text-sm font-medium sx-916ff3c">
               Volume
             </label>
-            <span class="text-sm tabular-nums" style="color: var(--fg-muted);">
+            <span class="text-sm tabular-nums sx-a2be682">
               <output for="volume-slider">{@volume}</output>%
             </span>
           </div>
           <.slider
+            nonce={@csp_nonce}
             id="volume-slider"
             name="volume"
             value={@volume}
@@ -60,16 +65,16 @@ defmodule SutrauiDemoWeb.Components.SliderLive do
       <.component_demo title="Custom Range" code={range_code()}>
         <div class="w-full max-w-sm space-y-4">
           <div>
-            <label class="text-sm font-medium block mb-2" style="color: var(--fg);">
+            <label class="text-sm font-medium block mb-2 sx-916ff3c">
               Temperature (0-40°C)
             </label>
-            <.slider id="temp-slider" min={0} max={40} step={1} value={22} />
+            <.slider nonce={@csp_nonce} id="temp-slider" min={0} max={40} step={1} value={22} />
           </div>
           <div>
-            <label class="text-sm font-medium block mb-2" style="color: var(--fg);">
+            <label class="text-sm font-medium block mb-2 sx-916ff3c">
               Rating (1-5)
             </label>
-            <.slider id="rating-slider" min={1} max={5} step={1} value={3} />
+            <.slider nonce={@csp_nonce} id="rating-slider" min={1} max={5} step={1} value={3} />
           </div>
         </div>
       </.component_demo>
@@ -84,18 +89,18 @@ defmodule SutrauiDemoWeb.Components.SliderLive do
       <.component_demo title="Float Mode" code={float_code()}>
         <div class="w-full max-w-sm space-y-2">
           <div class="flex justify-between items-center">
-            <label for="opacity-slider" class="text-sm font-medium" style="color: var(--fg);">
+            <label for="opacity-slider" class="text-sm font-medium sx-916ff3c">
               Opacity
             </label>
             <output
               for="opacity-slider"
-              class="text-sm tabular-nums"
-              style="color: var(--fg-muted);"
+              class="text-sm tabular-nums sx-a2be682"
             >
               {@opacity}
             </output>
           </div>
           <.slider
+            nonce={@csp_nonce}
             id="opacity-slider"
             name="opacity"
             value={@opacity}
@@ -116,7 +121,7 @@ defmodule SutrauiDemoWeb.Components.SliderLive do
         code={~s|<.slider id="disabled-slider" value={30} disabled />|}
       >
         <div class="w-full max-w-sm">
-          <.slider id="disabled-slider" value={30} disabled />
+          <.slider nonce={@csp_nonce} id="disabled-slider" value={30} disabled />
         </div>
       </.component_demo>
 

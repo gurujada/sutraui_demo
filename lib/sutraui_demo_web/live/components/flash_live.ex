@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.FlashLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/flash">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/flash"
+    >
       <.docs_header
         title="Flash"
         description="Flash notifications for displaying temporary feedback messages after actions."
@@ -21,7 +25,7 @@ defmodule SutrauiDemoWeb.Components.FlashLive do
       </.prose>
 
       <.component_demo title="Info" code={info_code()}>
-        <.flash kind={:info}>
+        <.flash id="flash-demo-1" kind={:info}>
           Your changes have been saved successfully.
         </.flash>
       </.component_demo>
@@ -34,7 +38,7 @@ defmodule SutrauiDemoWeb.Components.FlashLive do
       </.prose>
 
       <.component_demo title="Error" code={error_code()}>
-        <.flash kind={:error}>
+        <.flash id="flash-demo-2" kind={:error}>
           There was a problem processing your request.
         </.flash>
       </.component_demo>
@@ -48,11 +52,11 @@ defmodule SutrauiDemoWeb.Components.FlashLive do
 
       <.component_demo title="With Title" code={title_code()}>
         <div class="space-y-4">
-          <.flash kind={:info} title="Success">
+          <.flash id="flash-demo-3" kind={:info} title="Success">
             Your profile has been updated.
           </.flash>
 
-          <.flash kind={:error} title="Connection Error">
+          <.flash id="flash-demo-4" kind={:error} title="Connection Error">
             Unable to reach the server. Please check your connection.
           </.flash>
         </div>
@@ -64,7 +68,7 @@ defmodule SutrauiDemoWeb.Components.FlashLive do
       </.prose>
 
       <.component_demo title="With Formatting" code={formatting_code()}>
-        <.flash kind={:info} title="File Uploaded">
+        <.flash id="flash-demo-5" kind={:info} title="File Uploaded">
           Your file <strong>report.pdf</strong> has been uploaded successfully.
         </.flash>
       </.component_demo>

@@ -7,21 +7,21 @@ defmodule SutrauiDemoWeb.Layouts do
 
   embed_templates("layouts/*")
 
-  defp sutra_version, do: "0.4.0"
+  defp sutra_version, do: "0.5"
 
   attr(:flash, :map, required: true)
   attr(:current_scope, :map, default: nil)
+  attr(:sutra_commands, :map, default: nil)
   slot(:inner_block, required: true)
 
   def app(assigns) do
     ~H"""
-    <div class="min-h-screen" style="background: var(--bg); color: var(--fg);">
+    <div class="min-h-screen sx-919e9bd">
       <.site_header />
       <main>
         {render_slot(@inner_block)}
       </main>
-      <.command_palette />
-      <.toast_container flash={@flash} />
+      <.site_footer_widgets flash={@flash} sutra_commands={@sutra_commands} />
     </div>
     """
   end
@@ -30,16 +30,12 @@ defmodule SutrauiDemoWeb.Layouts do
     ~H"""
     <button
       type="button"
-      class="search-trigger hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm transition-colors"
-      style="background: var(--bg-subtle); border-color: var(--border); color: var(--fg-muted);"
-      phx-click={JS.dispatch("phx:open-command-palette")}
+      class="search-trigger hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm transition-colors sx-8b32ffe"
+      phx-click={SutraUI.Commands.Palette.show_palette("command-palette")}
     >
       <.icon name="lucide-search" class="size-4" />
       <span class="hidden md:inline">Search...</span>
-      <kbd
-        class="hidden md:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs font-mono"
-        style="background: var(--bg-muted); color: var(--fg-muted);"
-      >
+      <kbd class="hidden md:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs font-mono sx-ad3ac6e">
         <span class="text-xs">⌘</span>K
       </kbd>
     </button>
@@ -49,11 +45,12 @@ defmodule SutrauiDemoWeb.Layouts do
   attr(:flash, :map, required: true)
   attr(:current_scope, :map, default: nil)
   attr(:current_path, :string, default: "/")
+  attr(:sutra_commands, :map, default: nil)
   slot(:inner_block, required: true)
 
   def docs(assigns) do
     ~H"""
-    <div class="min-h-screen" style="background: var(--bg); color: var(--fg);">
+    <div class="min-h-screen sx-919e9bd">
       <.site_header show_menu_button={true} current_path={@current_path} />
 
       <div class="mx-auto max-w-6xl px-6">
@@ -64,7 +61,7 @@ defmodule SutrauiDemoWeb.Layouts do
             </div>
           </aside>
 
-          <main class="flex-1 min-w-0 py-12 lg:border-l" style="border-color: var(--border);">
+          <main class="flex-1 min-w-0 py-12 lg:border-l sx-635c873">
             <article class="max-w-2xl lg:pl-12">
               {render_slot(@inner_block)}
             </article>
@@ -73,9 +70,25 @@ defmodule SutrauiDemoWeb.Layouts do
       </div>
 
       <.mobile_drawer current_path={@current_path} />
-      <.command_palette />
-      <.toast_container flash={@flash} />
+      <.site_footer_widgets flash={@flash} sutra_commands={@sutra_commands} />
     </div>
+    """
+  end
+
+  # Once per page: the command palette (mod+k), the toast stack and the data-confirm host.
+  attr(:flash, :map, required: true)
+  attr(:sutra_commands, :map, default: nil)
+
+  def site_footer_widgets(assigns) do
+    ~H"""
+    <.command_palette
+      id="command-palette"
+      commands={@sutra_commands}
+      actions={if is_nil(@sutra_commands), do: SutrauiDemoWeb.Commands.static_actions(), else: []}
+      placeholder="Search the docs, or type a command..."
+    />
+    <.toast_group flash={@flash} live={not is_nil(@sutra_commands)} />
+    <.confirm_host />
     """
   end
 
@@ -134,21 +147,16 @@ defmodule SutrauiDemoWeb.Layouts do
       phx-hook=".MobileDrawer"
     >
       <div
-        class="mobile-drawer-backdrop absolute inset-0 opacity-0 transition-opacity duration-300"
-        style="background: rgba(0, 0, 0, 0.5);"
+        class="mobile-drawer-backdrop absolute inset-0 opacity-0 transition-opacity duration-300 sx-9b3e851"
         data-drawer-backdrop
       >
       </div>
 
       <div
-        class="mobile-drawer-panel absolute left-0 top-0 h-full w-72 -translate-x-full transition-transform duration-300"
-        style="background: var(--bg); border-right: 1px solid var(--border);"
+        class="mobile-drawer-panel absolute left-0 top-0 h-full w-72 -translate-x-full transition-transform duration-300 sx-a9d5122"
         data-drawer-panel
       >
-        <div
-          class="flex h-16 items-center justify-between px-6 border-b"
-          style="border-color: var(--border);"
-        >
+        <div class="flex h-16 items-center justify-between px-6 border-b sx-635c873">
           <div class="flex items-center gap-2">
             <span class="site-logo">Sutra UI</span>
             <span class="inline-flex items-center rounded-md border border-border bg-muted/40 px-2 py-0.5 text-xs font-medium text-muted-foreground">
@@ -165,7 +173,7 @@ defmodule SutrauiDemoWeb.Layouts do
           </button>
         </div>
 
-        <div class="px-6 py-8 overflow-y-auto" style="height: calc(100% - 4rem);">
+        <div class="px-6 py-8 overflow-y-auto sx-83b5951">
           <.docs_drawer current_path={@current_path} />
         </div>
       </div>
@@ -274,27 +282,19 @@ defmodule SutrauiDemoWeb.Layouts do
       </button>
 
       <div
-        class="theme-dropdown absolute right-0 top-full mt-2 p-1.5 rounded-lg border hidden"
-        style="background: var(--bg-elevated); border-color: var(--border); min-width: 140px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);"
+        class="theme-dropdown absolute right-0 top-full mt-2 p-1.5 rounded-lg border hidden sx-8ebaeac"
         data-theme-dropdown
       >
-        <div
-          class="px-2 py-1.5 text-xs font-medium mb-1"
-          style="color: var(--fg-muted); font-family: var(--font-mono);"
-        >
+        <div class="px-2 py-1.5 text-xs font-medium mb-1 sx-df5655f">
           Color Theme
         </div>
         <button
           :for={theme <- @themes}
           type="button"
-          class="theme-option w-full flex items-center gap-2.5 px-2 py-1.5 rounded text-sm text-left transition-colors"
-          style="color: var(--fg-secondary);"
+          class="theme-option w-full flex items-center gap-2.5 px-2 py-1.5 rounded text-sm text-left transition-colors sx-69cf8f3"
           data-theme-value={theme.id}
         >
-          <span
-            class="w-3.5 h-3.5 rounded-full border"
-            style={"background: #{theme.color}; border-color: color-mix(in srgb, #{theme.color} 70%, black);"}
-          ></span>
+          <span class={["theme-dot w-3.5 h-3.5 rounded-full border", "theme-dot-#{theme.id}"]}></span>
           {theme.label}
           <.icon name="lucide-check" class="theme-check ml-auto size-4 hidden" />
         </button>
@@ -508,6 +508,12 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["check", "tick", "toggle", "boolean"]
         },
         %{
+          label: "Date & Time Pickers",
+          href: "/docs/components/date-picker",
+          keywords: ["date", "calendar", "time", "datetime", "range", "zone", "picker"],
+          marker: "New"
+        },
+        %{
           label: "Input",
           href: "/docs/components/input",
           keywords: ["text", "field", "form", "textbox"]
@@ -600,6 +606,12 @@ defmodule SutrauiDemoWeb.Layouts do
           href: "/docs/components/accordion",
           keywords: ["collapse", "expand", "faq", "sections", "disclosure"]
         },
+        %{
+          label: "URL Tabs",
+          href: "/docs/components/url-tabs",
+          keywords: ["tabs", "routes", "patch", "navigate", "live_action", "keep"],
+          marker: "New"
+        },
         %{label: "Card", href: "/docs/components/card", keywords: ["container", "box", "panel"]},
         %{
           label: "Filter Bar",
@@ -682,6 +694,12 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["empty state", "placeholder", "no data", "blank"]
         },
         %{
+          label: "Confirm",
+          href: "/docs/components/confirm",
+          keywords: ["confirmation", "data-confirm", "alert dialog", "are you sure", "delete"],
+          marker: "New"
+        },
+        %{
           label: "Flash",
           href: "/docs/components/flash",
           keywords: ["notification", "message", "alert", "feedback"]
@@ -720,6 +738,12 @@ defmodule SutrauiDemoWeb.Layouts do
           label: "Command",
           href: "/docs/components/command",
           keywords: ["palette", "search", "cmdk", "spotlight", "keyboard"]
+        },
+        %{
+          label: "Command Palette",
+          href: "/docs/components/command-palette",
+          keywords: ["mod+k", "search", "actions", "shortcuts", "server", "spotlight"],
+          marker: "New"
         },
         %{
           label: "Dialog",
@@ -793,6 +817,12 @@ defmodule SutrauiDemoWeb.Layouts do
           keywords: ["data", "grid", "list", "rows"]
         },
         %{
+          label: "Time",
+          href: "/docs/components/time",
+          keywords: ["relative", "ago", "local time", "zone", "clock", "date"],
+          marker: "New"
+        },
+        %{
           label: "Timeline",
           href: "/docs/components/timeline",
           keywords: ["timeline", "activity", "events", "history"],
@@ -843,88 +873,4 @@ defmodule SutrauiDemoWeb.Layouts do
   ]
 
   def nav_items, do: @nav_items
-
-  def command_palette(assigns) do
-    assigns = assign(assigns, :nav_items, @nav_items)
-
-    ~H"""
-    <.command_dialog id="cmd-palette" placeholder="Search documentation...">
-      <.command_group :for={section <- @nav_items} heading={section.group}>
-        <.command_item
-          :for={item <- section.items}
-          id={"cmd-#{item.label |> String.downcase() |> String.replace(" ", "-")}"}
-          keywords={item.keywords}
-          phx-click={JS.navigate(item.href)}
-        >
-          <.icon name="lucide-file-text" class="size-4 opacity-60" />
-          {item.label}
-        </.command_item>
-      </.command_group>
-    </.command_dialog>
-
-    <div id="cmd-k-listener" phx-hook=".CommandPalette"></div>
-
-    <script :type={Phoenix.LiveView.ColocatedHook} name=".CommandPalette">
-      export default {
-        mounted() {
-          const openPalette = () => {
-            const dialog = document.getElementById('cmd-palette');
-            if (dialog) {
-              dialog.showModal();
-              const input = dialog.querySelector('input');
-              if (input) {
-                input.focus();
-                input.value = '';
-              }
-            }
-          };
-
-          const handleKeydown = (e) => {
-            // Cmd+K (Mac) or Ctrl+K (Windows/Linux)
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-              e.preventDefault();
-              openPalette();
-            }
-          };
-
-          document.addEventListener('keydown', handleKeydown);
-          window.addEventListener('phx:open-command-palette', openPalette);
-
-          // Close dialog on item selection (navigation)
-          const dialog = document.getElementById('cmd-palette');
-          if (dialog) {
-            dialog.addEventListener('click', (e) => {
-              const item = e.target.closest('[role="menuitem"]');
-              if (item) {
-                dialog.close();
-              }
-            });
-
-            // Close on backdrop click
-            dialog.addEventListener('click', (e) => {
-              if (e.target === dialog) {
-                dialog.close();
-              }
-            });
-
-            // Close on Escape
-            dialog.addEventListener('keydown', (e) => {
-              if (e.key === 'Escape') {
-                dialog.close();
-              }
-            });
-          }
-
-          this.destroy = () => {
-            document.removeEventListener('keydown', handleKeydown);
-            window.removeEventListener('phx:open-command-palette', openPalette);
-          };
-        },
-        destroyed() {
-          if (this.destroy) this.destroy();
-        }
-      }
-    </script>
-    """
-  end
 end

@@ -2,12 +2,24 @@ defmodule SutrauiDemoWeb.Components.DialogLive do
   use SutrauiDemoWeb, :live_view
 
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, page_title: "Dialog")}
+    {:ok, assign(socket, page_title: "Dialog", open: nil)}
+  end
+
+  def handle_event("open-" <> placement, _params, socket) do
+    {:noreply, assign(socket, :open, placement)}
+  end
+
+  def handle_event("close", _params, socket) do
+    {:noreply, assign(socket, :open, nil)}
   end
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/dialog">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/dialog"
+    >
       <.docs_header
         title="Dialog"
         description="Modal dialog using a screen-share friendly overlay with accessible dialog semantics."
@@ -58,6 +70,91 @@ defmodule SutrauiDemoWeb.Components.DialogLive do
               Save Changes
             </.button>
           </:footer>
+        </.dialog>
+      </.component_demo>
+
+      <.section_heading id="placement">Placement</.section_heading>
+      <.prose>
+        <.inline_code>placement</.inline_code>
+        says where the panel sits. All four are the same div-based dialog: focus is trapped,
+        Escape and the backdrop close it. Below 640 px (768 px for <.inline_code>side</.inline_code>) three of them become a bottom sheet.
+      </.prose>
+
+      <.component_demo title="Placements" code={placement_code()}>
+        <div id="placement-buttons" class="flex flex-wrap gap-3">
+          <.button variant="outline" phx-click="open-center">Center</.button>
+          <.button variant="outline" phx-click="open-side">Side</.button>
+          <.button variant="outline" phx-click="open-sheet">Sheet</.button>
+          <.button id="popover-trigger" variant="outline" phx-click="open-popover">Popover</.button>
+        </div>
+
+        <.dialog id="placement-center" show={@open == "center"} on_cancel="close">
+          <:title>Centred card</:title>
+          <:description>The default. Best for a question or a short form.</:description>
+          <p class="text-sm text-muted-foreground">Escape, the backdrop or Close all dismiss it.</p>
+          <:footer><.button phx-click="close">Close</.button></:footer>
+        </.dialog>
+
+        <.dialog
+          id="placement-side"
+          placement="side"
+          size="lg"
+          show={@open == "side"}
+          on_cancel="close"
+        >
+          <:title>Filters</:title>
+          <:description>
+            Docked right and full height from 768 px; a bottom sheet below. size sets the width.
+          </:description>
+          <div class="space-y-4 py-2">
+            <.input
+              type="select"
+              id="side-status"
+              name="status"
+              label="Status"
+              options={["Open", "Closed", "Waiting"]}
+              prompt="Any status"
+            />
+            <.input
+              type="select"
+              id="side-owner"
+              name="owner"
+              label="Owner"
+              options={["Asha", "Vikram", "Meera"]}
+              prompt="Anyone"
+            />
+          </div>
+          <:footer>
+            <.button variant="outline" phx-click="close">Cancel</.button>
+            <.button phx-click="close">Apply</.button>
+          </:footer>
+        </.dialog>
+
+        <.dialog id="placement-sheet" placement="sheet" show={@open == "sheet"} on_cancel="close">
+          <:title>Share this page</:title>
+          <:description>A bottom sheet on phones, a centred card above.</:description>
+          <.input
+            id="share-link"
+            name="link"
+            label="Link"
+            value="https://sutraui.example/docs/dialog"
+          />
+          <:footer><.button phx-click="close">Done</.button></:footer>
+        </.dialog>
+
+        <.dialog
+          id="placement-popover"
+          placement="popover"
+          anchor="#popover-trigger"
+          show={@open == "popover"}
+          on_cancel="close"
+        >
+          <:title>Why is this blocked?</:title>
+          <p class="text-sm text-muted-foreground">
+            A popover placement hangs under its anchor with the page visible behind it, from 640 px. Use
+            <.inline_code>SutraUI.Popover</.inline_code>
+            for a small card beside a button.
+          </p>
         </.dialog>
       </.component_demo>
 
@@ -122,6 +219,26 @@ defmodule SutrauiDemoWeb.Components.DialogLive do
         </.button>
         <.button>Save Changes</.button>
       </:footer>
+    </.dialog>\
+    """
+  end
+
+  defp placement_code do
+    """
+    <.dialog id="filters" placement="side" size="lg" show={@open == "side"} on_cancel="close">
+      ...
+    </.dialog>
+
+    <.dialog id="share" placement="sheet" show={@open == "sheet"} on_cancel="close">...</.dialog>
+
+    <.dialog
+      id="why"
+      placement="popover"
+      anchor="#why-trigger"
+      show={@open == "popover"}
+      on_cancel="close"
+    >
+      ...
     </.dialog>\
     """
   end

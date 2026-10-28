@@ -2,12 +2,25 @@ defmodule SutrauiDemoWeb.Components.AvatarLive do
   use SutrauiDemoWeb, :live_view
 
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, page_title: "Avatar")}
+    people = [
+      %{name: "Asha Rao", initials: "AR"},
+      %{name: "Vikram Nair", initials: "VN"},
+      %{name: "Meera Iyer", initials: "MI"},
+      %{name: "Rahul Shah", initials: "RS"},
+      %{name: "Divya Menon", initials: "DM"},
+      %{name: "Kabir Singh", initials: "KS"}
+    ]
+
+    {:ok, assign(socket, page_title: "Avatar", people: people)}
   end
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/avatar">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/avatar"
+    >
       <.docs_header
         title="Avatar"
         description="An image element with a fallback for representing the user."
@@ -15,9 +28,9 @@ defmodule SutrauiDemoWeb.Components.AvatarLive do
 
       <.component_demo
         title="Default"
-        code={~s|<.avatar src="https://github.com/shadcn.png" alt="User" />|}
+        code={~s|<.avatar src="/images/demo/shadcn.jpg" alt="User" />|}
       >
-        <.avatar src="https://github.com/shadcn.png" alt="User" />
+        <.avatar src="/images/demo/shadcn.jpg" alt="User" />
       </.component_demo>
 
       <.section_heading id="with-initials">With Initials Fallback</.section_heading>
@@ -45,20 +58,20 @@ defmodule SutrauiDemoWeb.Components.AvatarLive do
       <.component_demo title="Sizes" code={sizes_code()}>
         <div class="flex items-end gap-4">
           <div class="text-center space-y-2">
-            <.avatar src="https://github.com/shadcn.png" alt="User" size="sm" />
-            <span class="block text-xs" style="color: var(--fg-muted);">sm</span>
+            <.avatar src="/images/demo/shadcn.jpg" alt="User" size="sm" />
+            <span class="block text-xs sx-a2be682">sm</span>
           </div>
           <div class="text-center space-y-2">
-            <.avatar src="https://github.com/shadcn.png" alt="User" size="md" />
-            <span class="block text-xs" style="color: var(--fg-muted);">md</span>
+            <.avatar src="/images/demo/shadcn.jpg" alt="User" size="md" />
+            <span class="block text-xs sx-a2be682">md</span>
           </div>
           <div class="text-center space-y-2">
-            <.avatar src="https://github.com/shadcn.png" alt="User" size="lg" />
-            <span class="block text-xs" style="color: var(--fg-muted);">lg</span>
+            <.avatar src="/images/demo/shadcn.jpg" alt="User" size="lg" />
+            <span class="block text-xs sx-a2be682">lg</span>
           </div>
           <div class="text-center space-y-2">
-            <.avatar src="https://github.com/shadcn.png" alt="User" size="xl" />
-            <span class="block text-xs" style="color: var(--fg-muted);">xl</span>
+            <.avatar src="/images/demo/shadcn.jpg" alt="User" size="xl" />
+            <span class="block text-xs sx-a2be682">xl</span>
           </div>
         </div>
       </.component_demo>
@@ -73,12 +86,12 @@ defmodule SutrauiDemoWeb.Components.AvatarLive do
       <.component_demo title="Shapes" code={shapes_code()}>
         <div class="flex items-center gap-4">
           <div class="text-center space-y-2">
-            <.avatar src="https://github.com/shadcn.png" alt="User" shape="circle" />
-            <span class="block text-xs" style="color: var(--fg-muted);">circle</span>
+            <.avatar src="/images/demo/shadcn.jpg" alt="User" shape="circle" />
+            <span class="block text-xs sx-a2be682">circle</span>
           </div>
           <div class="text-center space-y-2">
-            <.avatar src="https://github.com/shadcn.png" alt="User" shape="square" />
-            <span class="block text-xs" style="color: var(--fg-muted);">square</span>
+            <.avatar src="/images/demo/shadcn.jpg" alt="User" shape="square" />
+            <span class="block text-xs sx-a2be682">square</span>
           </div>
         </div>
       </.component_demo>
@@ -107,17 +120,33 @@ defmodule SutrauiDemoWeb.Components.AvatarLive do
 
       <.section_heading id="avatar-group">Avatar Group</.section_heading>
       <.prose>
-        Wrap avatars in a container with the
-        <.inline_code>avatar-group</.inline_code>
-        class for stacked display.
+        <.inline_code>avatar_group</.inline_code>
+        stacks faces and shows "+n" beyond <.inline_code>max</.inline_code>. Faces are parted by a ring in the background colour.
+        It is one
+        <.inline_code>role="group"</.inline_code>
+        named by
+        <.inline_code>label</.inline_code>
+        and every name; each face shows its name as a tooltip.
       </.prose>
 
       <.component_demo title="Avatar Group" code={group_code()}>
-        <div class="avatar-group">
-          <.avatar src="https://github.com/shadcn.png" alt="User 1" />
-          <.avatar initials="JD" />
-          <.avatar initials="AB" />
-          <.avatar initials="+3" />
+        <div class="space-y-4">
+          <.avatar_group id="team-group" nonce={@csp_nonce} label="Project team" people={@people} />
+          <.avatar_group
+            id="team-group-wide"
+            nonce={@csp_nonce}
+            label="Project team"
+            people={@people}
+            max={5}
+            size="md"
+          />
+          <.avatar_group
+            id="team-group-large"
+            nonce={@csp_nonce}
+            label="Reviewers"
+            people={Enum.take(@people, 2)}
+            size="lg"
+          />
         </div>
       </.component_demo>
 
@@ -129,25 +158,16 @@ defmodule SutrauiDemoWeb.Components.AvatarLive do
       <.component_demo title="With Status" code={status_code()}>
         <div class="flex items-center gap-6">
           <div class="relative">
-            <.avatar src="https://github.com/shadcn.png" alt="Online user" />
-            <span
-              class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2"
-              style="background: #22c55e; border-color: var(--bg);"
-            ></span>
+            <.avatar src="/images/demo/shadcn.jpg" alt="Online user" />
+            <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 sx-644b8c2"></span>
           </div>
           <div class="relative">
             <.avatar initials="JD" />
-            <span
-              class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2"
-              style="background: #ef4444; border-color: var(--bg);"
-            ></span>
+            <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 sx-e9be1b7"></span>
           </div>
           <div class="relative">
             <.avatar initials="AB" />
-            <span
-              class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2"
-              style="background: #eab308; border-color: var(--bg);"
-            ></span>
+            <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 sx-d262195"></span>
           </div>
         </div>
       </.component_demo>
@@ -191,12 +211,11 @@ defmodule SutrauiDemoWeb.Components.AvatarLive do
 
   defp group_code do
     """
-    <div class="avatar-group">
-      <.avatar src="/user1.png" alt="User 1" />
-      <.avatar initials="JD" />
-      <.avatar initials="AB" />
-      <.avatar initials="+3" />
-    </div>\
+    <.avatar_group id="team" label="Project team" people={[
+      %{name: "Asha Rao", initials: "AR"},
+      %{name: "Vikram Nair", src: ~p"/images/vikram.png"},
+      %{name: "Meera Iyer"}
+    ]} max={3} size="sm" />\
     """
   end
 

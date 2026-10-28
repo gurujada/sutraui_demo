@@ -11,7 +11,11 @@ defmodule SutrauiDemoWeb.Components.SwitchLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/switch">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/switch"
+    >
       <.docs_header
         title="Switch"
         description="A toggle control that allows the user to switch between on and off states."
@@ -28,7 +32,7 @@ defmodule SutrauiDemoWeb.Components.SwitchLive do
 
       <.component_demo title="With Label" code={label_code()}>
         <div class="flex items-center justify-between w-full max-w-xs">
-          <label for="notifications-switch" class="text-sm font-medium" style="color: var(--fg);">
+          <label for="notifications-switch" class="text-sm font-medium sx-916ff3c">
             Enable notifications
           </label>
           <.switch name="notifications" id="notifications-switch" />
@@ -44,7 +48,7 @@ defmodule SutrauiDemoWeb.Components.SwitchLive do
 
       <.component_demo title="Checked" code={~s|<.switch name="feature" checked />|}>
         <div class="flex items-center justify-between w-full max-w-xs">
-          <label for="feature-switch" class="text-sm font-medium" style="color: var(--fg);">
+          <label for="feature-switch" class="text-sm font-medium sx-916ff3c">
             Dark mode
           </label>
           <.switch name="feature" id="feature-switch" checked />
@@ -61,10 +65,10 @@ defmodule SutrauiDemoWeb.Components.SwitchLive do
       <.component_demo title="Interactive" code={interactive_code()}>
         <div class="flex items-center justify-between w-full max-w-xs">
           <div>
-            <label for="airplane-switch" class="text-sm font-medium block" style="color: var(--fg);">
+            <label for="airplane-switch" class="text-sm font-medium block sx-916ff3c">
               Airplane Mode
             </label>
-            <span class="text-xs" style="color: var(--fg-muted);">
+            <span class="text-xs sx-a2be682">
               {if @airplane_mode, do: "Enabled", else: "Disabled"}
             </span>
           </div>
@@ -85,11 +89,11 @@ defmodule SutrauiDemoWeb.Components.SwitchLive do
       <.component_demo title="Disabled" code={disabled_code()}>
         <div class="space-y-4">
           <div class="flex items-center justify-between w-full max-w-xs">
-            <label class="text-sm" style="color: var(--fg-muted);">Disabled off</label>
+            <label class="text-sm sx-a2be682">Disabled off</label>
             <.switch name="disabled1" disabled />
           </div>
           <div class="flex items-center justify-between w-full max-w-xs">
-            <label class="text-sm" style="color: var(--fg-muted);">Disabled on</label>
+            <label class="text-sm sx-a2be682">Disabled on</label>
             <.switch name="disabled2" checked disabled />
           </div>
         </div>

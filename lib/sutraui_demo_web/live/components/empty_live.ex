@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.EmptyLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/empty">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/empty"
+    >
       <.docs_header
         title="Empty"
         description="A placeholder component for empty states, such as when no data is available."
@@ -45,6 +49,36 @@ defmodule SutrauiDemoWeb.Components.EmptyLive do
         </.empty>
       </.component_demo>
 
+      <.section_heading id="inline">Inline</.section_heading>
+      <.prose>
+        <.inline_code>variant="inline"</.inline_code>
+        is one quiet line for a small list or a table cell. The inner block is the one description line; an
+        <.inline_code>action</.inline_code>
+        slot (beside <.inline_code>actions</.inline_code>) holds a link or button. No description or action markup is rendered when none is given.
+      </.prose>
+
+      <.component_demo title="Inline" code={inline_code()}>
+        <div id="empty-inline-demos" class="w-full max-w-md space-y-4">
+          <.empty variant="inline">
+            <:icon><.icon name="lucide-inbox" class="size-4" /></:icon>
+            <:title>No replies yet</:title>
+          </.empty>
+          <.empty variant="inline">
+            <:icon><.icon name="lucide-inbox" class="size-4" /></:icon>
+            <:title>No replies yet</:title>
+            Replies from your class show up here.
+          </.empty>
+          <.empty variant="inline">
+            <:icon><.icon name="lucide-users" class="size-4" /></:icon>
+            <:title>No learners</:title>
+            Invite someone to get started.
+            <:action>
+              <.button size="sm" variant="outline">Invite</.button>
+            </:action>
+          </.empty>
+        </div>
+      </.component_demo>
+
       <.section_heading id="outline">Outline Variant</.section_heading>
       <.prose>
         Use
@@ -80,7 +114,7 @@ defmodule SutrauiDemoWeb.Components.EmptyLive do
           <:title>No results found</:title>
           <:description>Try adjusting your search or filters.</:description>
           <:footer>
-            <a href="#" class="text-sm underline" style="color: var(--primary);">
+            <a href="#" class="text-sm underline sx-009cc8c">
               Clear all filters
             </a>
           </:footer>
@@ -137,6 +171,17 @@ defmodule SutrauiDemoWeb.Components.EmptyLive do
       <:footer>
         <a href="#">Clear all filters</a>
       </:footer>
+    </.empty>\
+    """
+  end
+
+  defp inline_code do
+    """
+    <.empty variant="inline">
+      <:icon><.icon name="lucide-users" class="size-4" /></:icon>
+      <:title>No learners</:title>
+      Invite someone to get started.
+      <:action><.button size="sm" variant="outline">Invite</.button></:action>
     </.empty>\
     """
   end

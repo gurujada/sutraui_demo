@@ -31,7 +31,11 @@ defmodule SutrauiDemoWeb.Components.FileUploadLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/file-upload">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/file-upload"
+    >
       <.docs_header
         title="File Upload"
         description="Drag-and-drop file upload built on Phoenix LiveView uploads."
@@ -40,6 +44,7 @@ defmodule SutrauiDemoWeb.Components.FileUploadLive do
       <.component_demo title="Document Dropzone" code={dropzone_code()}>
         <form phx-change="validate-documents" phx-submit="save-documents" class="w-full max-w-lg">
           <.file_upload
+            nonce={@csp_nonce}
             upload={@uploads.documents}
             label="Upload documents"
             description="PDF, PNG, or ZIP up to 10MB"
@@ -59,6 +64,7 @@ defmodule SutrauiDemoWeb.Components.FileUploadLive do
       <.component_demo title="Image Upload" code={images_code()}>
         <form phx-change="validate-photos" phx-submit="save-photos" class="w-full max-w-lg">
           <.file_upload
+            nonce={@csp_nonce}
             upload={@uploads.photos}
             label="Upload photos"
             description="JPG, PNG, or WebP up to 5MB"
@@ -80,6 +86,7 @@ defmodule SutrauiDemoWeb.Components.FileUploadLive do
       <.component_demo title="Avatar Upload" code={avatar_code()}>
         <form phx-change="validate-avatar" phx-submit="save-avatar" class="w-full max-w-sm">
           <.file_upload
+            nonce={@csp_nonce}
             upload={@uploads.avatar}
             label="Upload profile photo"
             description="JPG or PNG, max 2MB"
@@ -98,7 +105,7 @@ defmodule SutrauiDemoWeb.Components.FileUploadLive do
 
       <.component_demo title="Custom Content" code={custom_code()}>
         <form phx-change="validate-attachments" phx-submit="save-attachments" class="w-full max-w-lg">
-          <.file_upload upload={@uploads.attachments}>
+          <.file_upload nonce={@csp_nonce} upload={@uploads.attachments}>
             <:drop_content>
               <span class="text-4xl">📁</span>
               <span class="text-sm font-medium text-foreground">Drop your files here</span>

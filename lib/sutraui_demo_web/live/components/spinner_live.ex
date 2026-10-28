@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.SpinnerLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/spinner">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/spinner"
+    >
       <.docs_header
         title="Spinner"
         description="A loading indicator that shows an indeterminate operation is in progress."
@@ -28,19 +32,19 @@ defmodule SutrauiDemoWeb.Components.SpinnerLive do
         <div class="flex items-center gap-8">
           <div class="text-center space-y-2">
             <.spinner size="sm" />
-            <span class="block text-xs" style="color: var(--fg-muted);">Small</span>
+            <span class="block text-xs sx-a2be682">Small</span>
           </div>
           <div class="text-center space-y-2">
             <.spinner />
-            <span class="block text-xs" style="color: var(--fg-muted);">Default</span>
+            <span class="block text-xs sx-a2be682">Default</span>
           </div>
           <div class="text-center space-y-2">
             <.spinner size="lg" />
-            <span class="block text-xs" style="color: var(--fg-muted);">Large</span>
+            <span class="block text-xs sx-a2be682">Large</span>
           </div>
           <div class="text-center space-y-2">
             <.spinner size="xl" />
-            <span class="block text-xs" style="color: var(--fg-muted);">Extra Large</span>
+            <span class="block text-xs sx-a2be682">Extra Large</span>
           </div>
         </div>
       </.component_demo>
@@ -89,7 +93,7 @@ defmodule SutrauiDemoWeb.Components.SpinnerLive do
             <.spinner_icon class="mr-2" /> Loading
           </.button>
         </div>
-        <p class="mt-4 text-sm" style="color: var(--fg-muted);">
+        <p class="mt-4 text-sm sx-a2be682">
           Click the first button to see the loading state.
         </p>
       </.component_demo>
@@ -111,10 +115,7 @@ defmodule SutrauiDemoWeb.Components.SpinnerLive do
       </.prose>
 
       <.component_demo title="Centered" code={centered_code()}>
-        <div
-          class="flex items-center justify-center p-12 rounded-lg border"
-          style="background: var(--bg-subtle); border-color: var(--border);"
-        >
+        <div class="flex items-center justify-center p-12 rounded-lg border sx-e024d20">
           <.spinner size="lg">
             <:text>Loading content...</:text>
           </.spinner>

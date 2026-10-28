@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.ButtonLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/button">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/button"
+    >
       <.docs_header
         title="Button"
         description="A versatile button component with multiple variants, sizes, and navigation support."

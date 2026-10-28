@@ -26,7 +26,11 @@ defmodule SutrauiDemoWeb.Components.ActivityLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/activity">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/activity"
+    >
       <.docs_header
         title="Activity"
         description="Show safe user-facing progress for agent work, jobs, and background tasks."

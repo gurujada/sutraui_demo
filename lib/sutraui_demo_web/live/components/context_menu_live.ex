@@ -13,7 +13,11 @@ defmodule SutrauiDemoWeb.Components.ContextMenuLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/context-menu">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/context-menu"
+    >
       <.docs_header
         title="Context Menu"
         description="Displays actions from a right click, long press, or keyboard context-menu command."
@@ -25,7 +29,7 @@ defmodule SutrauiDemoWeb.Components.ContextMenuLive do
         class="[&_.demo-preview]:min-h-[300px]"
       >
         <div class="grid w-full gap-4">
-          <.context_menu id="message-menu" trigger_class="w-full">
+          <.context_menu nonce={@csp_nonce} id="message-menu" trigger_class="w-full">
             <:trigger>
               <div class="flex h-40 w-full items-center justify-center rounded-lg border-2 border-dashed border-border text-sm text-muted-foreground">
                 Right click here
@@ -71,7 +75,7 @@ defmodule SutrauiDemoWeb.Components.ContextMenuLive do
         code={shortcuts_code()}
         class="[&_.demo-preview]:min-h-[300px]"
       >
-        <.context_menu id="editor-menu" trigger_class="w-full">
+        <.context_menu nonce={@csp_nonce} id="editor-menu" trigger_class="w-full">
           <:trigger>
             <div class="flex h-40 w-full items-center justify-center rounded-lg border-2 border-dashed border-border text-sm text-muted-foreground">
               Right click the editor
@@ -99,7 +103,7 @@ defmodule SutrauiDemoWeb.Components.ContextMenuLive do
         code={checkbox_radio_code()}
         class="[&_.demo-preview]:min-h-[300px]"
       >
-        <.context_menu id="settings-menu" trigger_class="w-full">
+        <.context_menu nonce={@csp_nonce} id="settings-menu" trigger_class="w-full">
           <:trigger>
             <div class="flex h-40 w-full items-center justify-center rounded-lg border-2 border-dashed border-border text-sm text-muted-foreground">
               Right click for settings
@@ -153,7 +157,7 @@ defmodule SutrauiDemoWeb.Components.ContextMenuLive do
         code={submenu_code()}
         class="[&_.demo-preview]:min-h-[300px]"
       >
-        <.context_menu id="share-menu" trigger_class="w-full">
+        <.context_menu nonce={@csp_nonce} id="share-menu" trigger_class="w-full">
           <:trigger>
             <div class="flex h-40 w-full items-center justify-center rounded-lg border-2 border-dashed border-border text-sm text-muted-foreground">
               Right click to share

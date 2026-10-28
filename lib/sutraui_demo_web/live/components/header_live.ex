@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.HeaderLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/header">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/header"
+    >
       <.docs_header
         title="Header"
         description="A page header component for titles, subtitles, and action buttons."

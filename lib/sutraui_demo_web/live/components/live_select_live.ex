@@ -66,7 +66,11 @@ defmodule SutrauiDemoWeb.Components.LiveSelectLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/live-select">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/live-select"
+    >
       <.docs_header
         title="Live Select"
         description="A searchable select component with support for single selection, tags, and async search."
@@ -77,6 +81,7 @@ defmodule SutrauiDemoWeb.Components.LiveSelectLive do
           <.form for={@form} phx-change="validate">
             <.live_component
               module={SutraUI.LiveSelect}
+              nonce={@csp_nonce}
               id="country-select"
               field={@form[:country]}
               placeholder="Select a country..."
@@ -98,6 +103,7 @@ defmodule SutrauiDemoWeb.Components.LiveSelectLive do
           <.form for={@form} phx-change="validate">
             <.live_component
               module={SutraUI.LiveSelect}
+              nonce={@csp_nonce}
               id="tags-select"
               field={@form[:tags]}
               mode={:tags}
@@ -120,6 +126,7 @@ defmodule SutrauiDemoWeb.Components.LiveSelectLive do
           <.form for={@form} phx-change="validate">
             <.live_component
               module={SutraUI.LiveSelect}
+              nonce={@csp_nonce}
               id="skills-select"
               field={@form[:skills]}
               mode={:quick_tags}
@@ -140,6 +147,7 @@ defmodule SutrauiDemoWeb.Components.LiveSelectLive do
           <.form for={@form} phx-change="validate">
             <.live_component
               module={SutraUI.LiveSelect}
+              nonce={@csp_nonce}
               id="clearable-select"
               field={@form[:country]}
               placeholder="Select a country..."
@@ -195,6 +203,7 @@ defmodule SutrauiDemoWeb.Components.LiveSelectLive do
           <.form for={@form} phx-change="validate">
             <.live_component
               module={SutraUI.LiveSelect}
+              nonce={@csp_nonce}
               id="disabled-select"
               field={@form[:country]}
               placeholder="Select a country..."

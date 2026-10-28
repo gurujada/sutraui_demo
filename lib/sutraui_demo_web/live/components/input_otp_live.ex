@@ -7,14 +7,18 @@ defmodule SutrauiDemoWeb.Components.InputOTPLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/input-otp">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/input-otp"
+    >
       <.docs_header
         title="Input OTP"
         description="One-time password input with individual digit slots, paste support, and arrow-key navigation."
       />
 
       <.component_demo title="Six-digit Code" code={default_code()}>
-        <.input_otp id="demo-otp" name="code" length={6} />
+        <.input_otp nonce={@csp_nonce} id="demo-otp" name="code" length={6} />
       </.component_demo>
 
       <.section_heading id="masked-pin">Masked PIN</.section_heading>
@@ -27,7 +31,7 @@ defmodule SutrauiDemoWeb.Components.InputOTPLive do
       </.prose>
 
       <.component_demo title="Four-digit PIN" code={pin_code()}>
-        <.input_otp id="demo-pin" name="pin" length={4} mask placeholder="•" />
+        <.input_otp nonce={@csp_nonce} id="demo-pin" name="pin" length={4} mask placeholder="•" />
       </.component_demo>
 
       <.section_heading id="grouped">Grouped With Separator</.section_heading>
@@ -40,7 +44,14 @@ defmodule SutrauiDemoWeb.Components.InputOTPLive do
       </.prose>
 
       <.component_demo title="Grouped" code={grouped_code()}>
-        <.input_otp id="demo-grouped" name="code" length={6} value="123" groups={[3, 3]}>
+        <.input_otp
+          nonce={@csp_nonce}
+          id="demo-grouped"
+          name="code"
+          length={6}
+          value="123"
+          groups={[3, 3]}
+        >
           <:separator>—</:separator>
         </.input_otp>
       </.component_demo>
@@ -55,7 +66,13 @@ defmodule SutrauiDemoWeb.Components.InputOTPLive do
 
       <.component_demo title="Auto-Verify" code={auto_verify_code()}>
         <div class="grid justify-items-center gap-4">
-          <.input_otp id="demo-auto" name="code" length={6} on_complete="verify_code" />
+          <.input_otp
+            nonce={@csp_nonce}
+            id="demo-auto"
+            name="code"
+            length={6}
+            on_complete="verify_code"
+          />
           <p :if={@completed_code} class="text-sm text-muted-foreground">
             Auto-verified code: <strong class="text-foreground">{@completed_code}</strong>
           </p>
@@ -73,7 +90,14 @@ defmodule SutrauiDemoWeb.Components.InputOTPLive do
       </.prose>
 
       <.component_demo title="Invalid" code={invalid_code()}>
-        <.input_otp id="demo-invalid" name="code" length={6} value="000000" invalid />
+        <.input_otp
+          nonce={@csp_nonce}
+          id="demo-invalid"
+          name="code"
+          length={6}
+          value="000000"
+          invalid
+        />
       </.component_demo>
     </Layouts.docs>
     """

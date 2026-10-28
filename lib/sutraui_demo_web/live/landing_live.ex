@@ -7,7 +7,7 @@ defmodule SutrauiDemoWeb.LandingLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.app flash={@flash}>
+    <Layouts.app flash={@flash} sutra_commands={@sutra_commands}>
       <%!-- Hero - editorial, spacious --%>
       <section class="hero-section min-h-[70vh] md:min-h-[90vh] flex items-center relative py-16 md:py-0">
         <%!-- Decorative typography - hidden on mobile --%>
@@ -38,38 +38,39 @@ defmodule SutrauiDemoWeb.LandingLive do
         <div class="mx-auto max-w-6xl px-4 sm:px-6">
           <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.9fr)] lg:items-end">
             <div class="animate-fade-up">
-              <p class="section-label">New in v0.4.0</p>
-              <h2 class="section-title mt-2">More primitives for real product interfaces</h2>
+              <p class="section-label">New in v0.5</p>
+              <h2 class="section-title mt-2">Pickers, a command palette and toasts that behave</h2>
               <p class="section-subtitle mt-4">
-                Build richer LiveView workflows with new primitives for AI output,
-                multi-step forms, calendars, timelines, menus, uploads, and structured data.
+                A real select, date and time pickers with zones, a command palette with
+                server actions, one toast stack, confirmations, URL tabs and a strict
+                Content-Security-Policy.
               </p>
             </div>
 
             <div class="animate-fade-up delay-1">
               <div class="release-links">
-                <.link navigate="/docs/components/response" class="release-link">
-                  <span>Response</span>
+                <.link navigate="/docs/components/command-palette" class="release-link">
+                  <span>Command Palette</span>
                   <span aria-hidden="true">→</span>
                 </.link>
-                <.link navigate="/docs/components/activity" class="release-link">
-                  <span>Activity</span>
+                <.link navigate="/docs/components/date-picker" class="release-link">
+                  <span>Date &amp; Time Pickers</span>
                   <span aria-hidden="true">→</span>
                 </.link>
-                <.link navigate="/docs/components/stepper" class="release-link">
-                  <span>Stepper</span>
+                <.link navigate="/docs/components/select" class="release-link">
+                  <span>Select</span>
                   <span aria-hidden="true">→</span>
                 </.link>
-                <.link navigate="/docs/components/calendar" class="release-link">
-                  <span>Calendar</span>
+                <.link navigate="/docs/components/toast" class="release-link">
+                  <span>Toast</span>
                   <span aria-hidden="true">→</span>
                 </.link>
-                <.link navigate="/docs/components/timeline" class="release-link">
-                  <span>Timeline</span>
+                <.link navigate="/docs/components/confirm" class="release-link">
+                  <span>Confirm</span>
                   <span aria-hidden="true">→</span>
                 </.link>
-                <.link navigate="/docs/components/context-menu" class="release-link">
-                  <span>Context Menu</span>
+                <.link navigate="/docs/components/url-tabs" class="release-link">
+                  <span>URL Tabs</span>
                   <span aria-hidden="true">→</span>
                 </.link>
               </div>
@@ -141,7 +142,7 @@ defmodule SutrauiDemoWeb.LandingLive do
       </section>
 
       <%!-- Component Showcase --%>
-      <section class="py-16 md:py-32" style="background: var(--bg-subtle);">
+      <section class="py-16 md:py-32 sx-a366919">
         <div class="mx-auto max-w-6xl px-4 sm:px-6">
           <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 md:mb-16">
             <div class="animate-fade-up">
@@ -216,16 +217,16 @@ defmodule SutrauiDemoWeb.LandingLive do
             <div class="showcase-card animate-fade-up delay-3">
               <div class="showcase-preview">
                 <div class="w-full">
-                  <.tabs id="landing-tabs" default_value="account">
+                  <.tabs nonce={@csp_nonce} id="landing-tabs" default_value="account">
                     <:tab value="account">Account</:tab>
                     <:tab value="settings">Settings</:tab>
                     <:panel value="account">
-                      <p class="text-sm py-2" style="color: var(--fg-muted);">
+                      <p class="text-sm py-2 sx-a2be682">
                         Manage account details.
                       </p>
                     </:panel>
                     <:panel value="settings">
-                      <p class="text-sm py-2" style="color: var(--fg-muted);">
+                      <p class="text-sm py-2 sx-a2be682">
                         Configure settings.
                       </p>
                     </:panel>
@@ -248,7 +249,7 @@ defmodule SutrauiDemoWeb.LandingLive do
                     <p class="font-medium">Notifications</p>
                   </:header>
                   <:content>
-                    <p class="text-sm" style="color: var(--fg-secondary);">
+                    <p class="text-sm sx-69cf8f3">
                       You have 3 unread messages.
                     </p>
                   </:content>
@@ -329,7 +330,7 @@ defmodule SutrauiDemoWeb.LandingLive do
             <div>
               <p class="site-logo whitespace-nowrap">
                 Sutra UI
-                <span class="text-sm font-normal whitespace-nowrap" style="color: var(--fg-muted);">
+                <span class="text-sm font-normal whitespace-nowrap sx-a2be682">
                   by
                   <a href="https://github.com/gurujada" class="underline hover:no-underline">
                     Gurujada
@@ -354,7 +355,7 @@ defmodule SutrauiDemoWeb.LandingLive do
     """
     defp deps do
       [
-        {:sutra_ui, "~> 0.4.0"}
+        {:sutra_ui, "~> 0.5.0"}
       ]
     end\
     """

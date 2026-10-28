@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/dropdown-menu">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/dropdown-menu"
+    >
       <.docs_header
         title="Dropdown Menu"
         description="Dropdown menu with full keyboard navigation and accessibility support."
@@ -18,7 +22,7 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
         code={basic_code()}
         class="[&_.demo-preview]:min-h-[220px] [&_.demo-preview]:items-start [&_.demo-preview]:pt-4"
       >
-        <.dropdown_menu id="demo-dropdown-1">
+        <.dropdown_menu nonce={@csp_nonce} id="demo-dropdown-1">
           <:trigger>Open Menu</:trigger>
           <.dropdown_item>Profile</.dropdown_item>
           <.dropdown_item>Settings</.dropdown_item>
@@ -37,7 +41,7 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
         code={icons_code()}
         class="[&_.demo-preview]:min-h-[280px] [&_.demo-preview]:items-start [&_.demo-preview]:pt-4"
       >
-        <.dropdown_menu id="demo-dropdown-icons">
+        <.dropdown_menu nonce={@csp_nonce} id="demo-dropdown-icons">
           <:trigger>Actions</:trigger>
           <.dropdown_item>
             <span class="flex items-center gap-2">
@@ -75,7 +79,7 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
         code={shortcuts_code()}
         class="[&_.demo-preview]:min-h-[220px] [&_.demo-preview]:items-start [&_.demo-preview]:pt-4"
       >
-        <.dropdown_menu id="demo-dropdown-2">
+        <.dropdown_menu nonce={@csp_nonce} id="demo-dropdown-2">
           <:trigger>File</:trigger>
           <.dropdown_item shortcut="⌘N">New File</.dropdown_item>
           <.dropdown_item shortcut="⌘O">Open</.dropdown_item>
@@ -95,7 +99,7 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
         code={icons_shortcuts_code()}
         class="[&_.demo-preview]:min-h-[280px] [&_.demo-preview]:items-start [&_.demo-preview]:pt-4"
       >
-        <.dropdown_menu id="demo-dropdown-full">
+        <.dropdown_menu nonce={@csp_nonce} id="demo-dropdown-full">
           <:trigger>Edit</:trigger>
           <.dropdown_item shortcut="⌘Z">
             <span class="flex items-center gap-2">
@@ -136,7 +140,7 @@ defmodule SutrauiDemoWeb.Components.DropdownMenuLive do
         code={labels_code()}
         class="[&_.demo-preview]:min-h-[280px] [&_.demo-preview]:items-start [&_.demo-preview]:pt-4"
       >
-        <.dropdown_menu id="demo-dropdown-3">
+        <.dropdown_menu nonce={@csp_nonce} id="demo-dropdown-3">
           <:trigger>My Account</:trigger>
           <.dropdown_label>My Account</.dropdown_label>
           <.dropdown_item>Profile</.dropdown_item>

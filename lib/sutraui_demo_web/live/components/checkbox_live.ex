@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.CheckboxLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/checkbox">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/checkbox"
+    >
       <.docs_header
         title="Checkbox"
         description="A control that allows the user to toggle between checked and unchecked states."
@@ -27,7 +31,7 @@ defmodule SutrauiDemoWeb.Components.CheckboxLive do
       <.component_demo title="With Label" code={label_code()}>
         <div class="flex items-center gap-2">
           <.checkbox name="agree" id="agree-checkbox" />
-          <label for="agree-checkbox" class="text-sm" style="color: var(--fg);">
+          <label for="agree-checkbox" class="text-sm sx-916ff3c">
             I agree to the terms and conditions
           </label>
         </div>
@@ -43,7 +47,7 @@ defmodule SutrauiDemoWeb.Components.CheckboxLive do
       <.component_demo title="Checked" code={~s|<.checkbox name="notifications" checked />|}>
         <div class="flex items-center gap-2">
           <.checkbox name="notifications" id="notifications-checkbox" checked />
-          <label for="notifications-checkbox" class="text-sm" style="color: var(--fg);">
+          <label for="notifications-checkbox" class="text-sm sx-916ff3c">
             Enable notifications
           </label>
         </div>
@@ -58,13 +62,13 @@ defmodule SutrauiDemoWeb.Components.CheckboxLive do
         <div class="space-y-3">
           <div class="flex items-center gap-2">
             <.checkbox name="disabled1" id="disabled-unchecked" disabled />
-            <label for="disabled-unchecked" class="text-sm" style="color: var(--fg-muted);">
+            <label for="disabled-unchecked" class="text-sm sx-a2be682">
               Disabled unchecked
             </label>
           </div>
           <div class="flex items-center gap-2">
             <.checkbox name="disabled2" id="disabled-checked" checked disabled />
-            <label for="disabled-checked" class="text-sm" style="color: var(--fg-muted);">
+            <label for="disabled-checked" class="text-sm sx-a2be682">
               Disabled checked
             </label>
           </div>

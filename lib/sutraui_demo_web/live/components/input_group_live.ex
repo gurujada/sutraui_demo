@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.InputGroupLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/input-group">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/input-group"
+    >
       <.docs_header
         title="Input Group"
         description="Display additional information or actions attached to an input or textarea using prefix, suffix, and footer slots."

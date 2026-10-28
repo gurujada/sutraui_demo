@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.CommandLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/command">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/command"
+    >
       <.docs_header
         title="Command"
         description="A command palette component for fast keyboard-driven navigation and actions."
@@ -34,7 +38,12 @@ defmodule SutrauiDemoWeb.Components.CommandLive do
       </.prose>
 
       <.component_demo title="Inline Command" code={inline_code()}>
-        <.command id="demo-command" placeholder="Search actions..." class="max-w-md">
+        <.command
+          nonce={@csp_nonce}
+          id="demo-command"
+          placeholder="Search actions..."
+          class="max-w-md"
+        >
           <.command_group heading="Suggestions">
             <.command_item id="calendar">
               <.icon name="lucide-calendar" class="mr-2 size-4" /> Calendar
@@ -62,10 +71,34 @@ defmodule SutrauiDemoWeb.Components.CommandLive do
       <.prose>
         Use
         <.inline_code>.command_dialog</.inline_code>
-        for a modal command palette triggered by a keyboard shortcut.
+        for a modal command list. It is a div-based dialog (visible in a screen share) that opens and closes with
+        <.inline_code>show_command_dialog/2</.inline_code>
+        and <.inline_code>hide_command_dialog/2</.inline_code>.
+        For shortcuts, pages, arguments and server search, use the
+        <.link navigate="/docs/components/command-palette" class="underline">command palette</.link>
+        instead.
       </.prose>
 
-      <.code_block language="heex" code={dialog_code()} />
+      <.component_demo title="Command dialog" code={dialog_code()}>
+        <.button
+          id="open-command-dialog"
+          variant="outline"
+          phx-click={SutraUI.Command.show_command_dialog("demo-command-dialog")}
+        >
+          Open command dialog
+        </.button>
+        <.command_dialog nonce={@csp_nonce} id="demo-command-dialog" placeholder="Jump to...">
+          <.command_group heading="Pages">
+            <.command_item id="dialog-item-home" phx-click={JS.navigate("/")}>Home</.command_item>
+            <.command_item id="dialog-item-docs" phx-click={JS.navigate("/docs")}>
+              Documentation
+            </.command_item>
+            <.command_item id="dialog-item-toast" phx-click={JS.navigate("/docs/components/toast")}>
+              Toast
+            </.command_item>
+          </.command_group>
+        </.command_dialog>
+      </.component_demo>
 
       <.section_heading id="keywords">Search Keywords</.section_heading>
       <.prose>
@@ -130,15 +163,9 @@ defmodule SutrauiDemoWeb.Components.CommandLive do
       </.command_group>
     </.command_dialog>
 
-    <!-- Trigger with keyboard shortcut -->
-    <script>
-      document.addEventListener('keydown', (e) => {
-        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-          e.preventDefault();
-          document.getElementById('cmd-palette').showModal();
-        }
-      });
-    </script>\
+    <button phx-click={SutraUI.Command.show_command_dialog("cmd-palette")}>
+      Open
+    </button>\
     """
   end
 

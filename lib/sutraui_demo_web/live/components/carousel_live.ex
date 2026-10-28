@@ -7,35 +7,30 @@ defmodule SutrauiDemoWeb.Components.CarouselLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/carousel">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/carousel"
+    >
       <.docs_header
         title="Carousel"
         description="A carousel component using native CSS scroll-snap for smooth, performant navigation."
       />
 
       <.component_demo title="Basic" code={basic_code()}>
-        <.carousel id="basic-carousel" class="max-w-md">
+        <.carousel nonce={@csp_nonce} id="basic-carousel" class="max-w-md">
           <:item>
-            <div
-              class="flex aspect-video items-center justify-center rounded-lg"
-              style="background: var(--bg-muted);"
-            >
+            <div class="flex aspect-video items-center justify-center rounded-lg sx-f4f45ad">
               <span class="text-2xl font-semibold">Slide 1</span>
             </div>
           </:item>
           <:item>
-            <div
-              class="flex aspect-video items-center justify-center rounded-lg"
-              style="background: var(--bg-muted);"
-            >
+            <div class="flex aspect-video items-center justify-center rounded-lg sx-f4f45ad">
               <span class="text-2xl font-semibold">Slide 2</span>
             </div>
           </:item>
           <:item>
-            <div
-              class="flex aspect-video items-center justify-center rounded-lg"
-              style="background: var(--bg-muted);"
-            >
+            <div class="flex aspect-video items-center justify-center rounded-lg sx-f4f45ad">
               <span class="text-2xl font-semibold">Slide 3</span>
             </div>
           </:item>
@@ -48,24 +43,24 @@ defmodule SutrauiDemoWeb.Components.CarouselLive do
       </.prose>
 
       <.component_demo title="Image Carousel" code={images_code()}>
-        <.carousel id="image-carousel" class="max-w-lg">
+        <.carousel nonce={@csp_nonce} id="image-carousel" class="max-w-lg">
           <:item>
             <img
-              src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop"
+              src="/images/demo/scene-1506905925346-21bda4d32df4.jpg"
               alt="Mountain landscape"
               class="w-full rounded-lg object-cover aspect-video"
             />
           </:item>
           <:item>
             <img
-              src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=400&fit=crop"
+              src="/images/demo/scene-1469474968028-56623f02e42e.jpg"
               alt="Nature scene"
               class="w-full rounded-lg object-cover aspect-video"
             />
           </:item>
           <:item>
             <img
-              src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=600&h=400&fit=crop"
+              src="/images/demo/scene-1426604966848-d7adac402bff.jpg"
               alt="Forest path"
               class="w-full rounded-lg object-cover aspect-video"
             />
@@ -81,28 +76,19 @@ defmodule SutrauiDemoWeb.Components.CarouselLive do
       </.prose>
 
       <.component_demo title="Looping Carousel" code={loop_code()}>
-        <.carousel id="loop-carousel" loop class="max-w-md">
+        <.carousel nonce={@csp_nonce} id="loop-carousel" loop class="max-w-md">
           <:item>
-            <div
-              class="flex aspect-video items-center justify-center rounded-lg"
-              style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"
-            >
+            <div class="flex aspect-video items-center justify-center rounded-lg sx-8c20a36">
               <span class="text-2xl font-semibold text-white">First</span>
             </div>
           </:item>
           <:item>
-            <div
-              class="flex aspect-video items-center justify-center rounded-lg"
-              style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"
-            >
+            <div class="flex aspect-video items-center justify-center rounded-lg sx-7029729">
               <span class="text-2xl font-semibold text-white">Second</span>
             </div>
           </:item>
           <:item>
-            <div
-              class="flex aspect-video items-center justify-center rounded-lg"
-              style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"
-            >
+            <div class="flex aspect-video items-center justify-center rounded-lg sx-2aaf8eb">
               <span class="text-2xl font-semibold text-white">Third</span>
             </div>
           </:item>
@@ -117,28 +103,19 @@ defmodule SutrauiDemoWeb.Components.CarouselLive do
       </.prose>
 
       <.component_demo title="Minimal Carousel" code={minimal_code()}>
-        <.carousel id="minimal-carousel" show_arrows={false} class="max-w-md">
+        <.carousel nonce={@csp_nonce} id="minimal-carousel" show_arrows={false} class="max-w-md">
           <:item>
-            <div
-              class="flex aspect-video items-center justify-center rounded-lg"
-              style="background: var(--bg-muted);"
-            >
+            <div class="flex aspect-video items-center justify-center rounded-lg sx-f4f45ad">
               <span class="text-lg">Swipe or use indicators</span>
             </div>
           </:item>
           <:item>
-            <div
-              class="flex aspect-video items-center justify-center rounded-lg"
-              style="background: var(--bg-muted);"
-            >
+            <div class="flex aspect-video items-center justify-center rounded-lg sx-f4f45ad">
               <span class="text-lg">No arrow buttons</span>
             </div>
           </:item>
           <:item>
-            <div
-              class="flex aspect-video items-center justify-center rounded-lg"
-              style="background: var(--bg-muted);"
-            >
+            <div class="flex aspect-video items-center justify-center rounded-lg sx-f4f45ad">
               <span class="text-lg">Clean and minimal</span>
             </div>
           </:item>
@@ -155,20 +132,14 @@ defmodule SutrauiDemoWeb.Components.CarouselLive do
       </.prose>
 
       <.component_demo title="Fixed Size" code={sizing_code()}>
-        <.carousel id="sized-carousel" width="300px" height="200px">
+        <.carousel nonce={@csp_nonce} id="sized-carousel" width="w-75" height="h-50">
           <:item>
-            <div
-              class="flex h-full w-full items-center justify-center rounded-lg"
-              style="background: var(--bg-muted);"
-            >
+            <div class="flex h-full w-full items-center justify-center rounded-lg sx-f4f45ad">
               <span>300 x 200</span>
             </div>
           </:item>
           <:item>
-            <div
-              class="flex h-full w-full items-center justify-center rounded-lg"
-              style="background: var(--bg-muted);"
-            >
+            <div class="flex h-full w-full items-center justify-center rounded-lg sx-f4f45ad">
               <span>Fixed size</span>
             </div>
           </:item>
@@ -183,28 +154,19 @@ defmodule SutrauiDemoWeb.Components.CarouselLive do
       </.prose>
 
       <.component_demo title="Gap Between Items" code={gap_code()}>
-        <.carousel id="gap-carousel" gap="1rem" class="max-w-lg">
+        <.carousel nonce={@csp_nonce} id="gap-carousel" gap="gap-4" class="max-w-lg">
           <:item>
-            <div
-              class="flex aspect-video items-center justify-center rounded-lg"
-              style="background: var(--bg-muted);"
-            >
+            <div class="flex aspect-video items-center justify-center rounded-lg sx-f4f45ad">
               <span>Item 1</span>
             </div>
           </:item>
           <:item>
-            <div
-              class="flex aspect-video items-center justify-center rounded-lg"
-              style="background: var(--bg-muted);"
-            >
+            <div class="flex aspect-video items-center justify-center rounded-lg sx-f4f45ad">
               <span>Item 2</span>
             </div>
           </:item>
           <:item>
-            <div
-              class="flex aspect-video items-center justify-center rounded-lg"
-              style="background: var(--bg-muted);"
-            >
+            <div class="flex aspect-video items-center justify-center rounded-lg sx-f4f45ad">
               <span>Item 3</span>
             </div>
           </:item>
@@ -266,7 +228,7 @@ defmodule SutrauiDemoWeb.Components.CarouselLive do
 
   defp sizing_code do
     ~s"""
-    <.carousel id="sized" width="300px" height="200px">
+    <.carousel id="sized" width="w-75" height="h-50">
       <:item>Content</:item>
     </.carousel>\
     """
@@ -274,7 +236,7 @@ defmodule SutrauiDemoWeb.Components.CarouselLive do
 
   defp gap_code do
     ~s"""
-    <.carousel id="gap-carousel" gap="1rem">
+    <.carousel id="gap-carousel" gap="gap-4">
       <:item>Item 1</:item>
       <:item>Item 2</:item>
       <:item>Item 3</:item>

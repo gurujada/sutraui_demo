@@ -7,14 +7,18 @@ defmodule SutrauiDemoWeb.Components.TooltipLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/tooltip">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/tooltip"
+    >
       <.docs_header
         title="Tooltip"
         description="A popup that displays information related to an element when hovered or focused."
       />
 
       <.component_demo title="Default" code={default_code()}>
-        <.tooltip id="tooltip-default" tooltip="Add to library">
+        <.tooltip nonce={@csp_nonce} id="tooltip-default" tooltip="Add to library">
           <.button variant="outline">Hover me</.button>
         </.tooltip>
       </.component_demo>
@@ -28,16 +32,16 @@ defmodule SutrauiDemoWeb.Components.TooltipLive do
 
       <.component_demo title="Positions" code={positions_code()}>
         <div class="flex flex-wrap items-center justify-center gap-4">
-          <.tooltip id="tooltip-top" tooltip="Tooltip on top" side="top">
+          <.tooltip nonce={@csp_nonce} id="tooltip-top" tooltip="Tooltip on top" side="top">
             <.button variant="outline">Top</.button>
           </.tooltip>
-          <.tooltip id="tooltip-bottom" tooltip="Tooltip on bottom" side="bottom">
+          <.tooltip nonce={@csp_nonce} id="tooltip-bottom" tooltip="Tooltip on bottom" side="bottom">
             <.button variant="outline">Bottom</.button>
           </.tooltip>
-          <.tooltip id="tooltip-left" tooltip="Tooltip on left" side="left">
+          <.tooltip nonce={@csp_nonce} id="tooltip-left" tooltip="Tooltip on left" side="left">
             <.button variant="outline">Left</.button>
           </.tooltip>
-          <.tooltip id="tooltip-right" tooltip="Tooltip on right" side="right">
+          <.tooltip nonce={@csp_nonce} id="tooltip-right" tooltip="Tooltip on right" side="right">
             <.button variant="outline">Right</.button>
           </.tooltip>
         </div>
@@ -52,6 +56,7 @@ defmodule SutrauiDemoWeb.Components.TooltipLive do
 
       <.component_demo title="Auto Position" code={auto_code()}>
         <.tooltip
+          nonce={@csp_nonce}
           id="tooltip-auto"
           tooltip="I automatically position based on available space"
           side="auto"
@@ -67,17 +72,17 @@ defmodule SutrauiDemoWeb.Components.TooltipLive do
 
       <.component_demo title="Icon Buttons" code={icons_code()}>
         <div class="flex items-center gap-2">
-          <.tooltip id="tooltip-bold" tooltip="Bold">
+          <.tooltip nonce={@csp_nonce} id="tooltip-bold" tooltip="Bold">
             <.button variant="ghost" size="icon">
               <.icon name="lucide-bold" class="size-4" />
             </.button>
           </.tooltip>
-          <.tooltip id="tooltip-italic" tooltip="Italic">
+          <.tooltip nonce={@csp_nonce} id="tooltip-italic" tooltip="Italic">
             <.button variant="ghost" size="icon">
               <.icon name="lucide-italic" class="size-4" />
             </.button>
           </.tooltip>
-          <.tooltip id="tooltip-underline" tooltip="Underline">
+          <.tooltip nonce={@csp_nonce} id="tooltip-underline" tooltip="Underline">
             <.button variant="ghost" size="icon">
               <.icon name="lucide-underline" class="size-4" />
             </.button>
@@ -94,13 +99,31 @@ defmodule SutrauiDemoWeb.Components.TooltipLive do
 
       <.component_demo title="Alignment" code={alignment_code()}>
         <div class="flex flex-wrap items-center gap-4">
-          <.tooltip id="tooltip-start" tooltip="Aligned to start" side="bottom" align="start">
+          <.tooltip
+            nonce={@csp_nonce}
+            id="tooltip-start"
+            tooltip="Aligned to start"
+            side="bottom"
+            align="start"
+          >
             <.button variant="outline">Start</.button>
           </.tooltip>
-          <.tooltip id="tooltip-center" tooltip="Aligned to center" side="bottom" align="center">
+          <.tooltip
+            nonce={@csp_nonce}
+            id="tooltip-center"
+            tooltip="Aligned to center"
+            side="bottom"
+            align="center"
+          >
             <.button variant="outline">Center</.button>
           </.tooltip>
-          <.tooltip id="tooltip-end" tooltip="Aligned to end" side="bottom" align="end">
+          <.tooltip
+            nonce={@csp_nonce}
+            id="tooltip-end"
+            tooltip="Aligned to end"
+            side="bottom"
+            align="end"
+          >
             <.button variant="outline">End</.button>
           </.tooltip>
         </div>
@@ -113,12 +136,12 @@ defmodule SutrauiDemoWeb.Components.TooltipLive do
 
       <.component_demo title="With Shortcut" code={shortcut_code()}>
         <div class="flex items-center gap-2">
-          <.tooltip id="tooltip-save" tooltip="Save (⌘S)">
+          <.tooltip nonce={@csp_nonce} id="tooltip-save" tooltip="Save (⌘S)">
             <.button variant="outline">
               <.icon name="lucide-save" class="size-4 mr-2" /> Save
             </.button>
           </.tooltip>
-          <.tooltip id="tooltip-copy" tooltip="Copy (⌘C)">
+          <.tooltip nonce={@csp_nonce} id="tooltip-copy" tooltip="Copy (⌘C)">
             <.button variant="outline">
               <.icon name="lucide-copy" class="size-4 mr-2" /> Copy
             </.button>

@@ -7,7 +7,11 @@ defmodule SutrauiDemoWeb.Components.AlertLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/alert">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/alert"
+    >
       <.docs_header
         title="Alert"
         description="Displays a callout for important content, with semantic variants for different message types."

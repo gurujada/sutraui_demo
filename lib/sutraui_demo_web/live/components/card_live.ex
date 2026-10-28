@@ -7,7 +7,7 @@ defmodule SutrauiDemoWeb.Components.CardLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/card">
+    <Layouts.docs flash={@flash} sutra_commands={@sutra_commands} current_path="/docs/components/card">
       <.docs_header
         title="Card"
         description="Container component with header, content, and footer sections."

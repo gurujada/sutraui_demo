@@ -7,14 +7,18 @@ defmodule SutrauiDemoWeb.Components.PopoverLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/popover">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/popover"
+    >
       <.docs_header
         title="Popover"
         description="A floating content panel that appears on click, supporting rich interactive content."
       />
 
       <.component_demo title="Default" code={default_code()}>
-        <.popover id="popover-default">
+        <.popover nonce={@csp_nonce} id="popover-default">
           <:trigger>
             <span class="btn">Open Popover</span>
           </:trigger>
@@ -36,25 +40,25 @@ defmodule SutrauiDemoWeb.Components.PopoverLive do
 
       <.component_demo title="Positions" code={positions_code()}>
         <div class="flex flex-wrap items-center gap-4">
-          <.popover id="popover-top" side="top">
+          <.popover nonce={@csp_nonce} id="popover-top" side="top">
             <:trigger>
               <span class="btn btn-outline">Top</span>
             </:trigger>
             <p class="text-sm">Popover on top</p>
           </.popover>
-          <.popover id="popover-bottom" side="bottom">
+          <.popover nonce={@csp_nonce} id="popover-bottom" side="bottom">
             <:trigger>
               <span class="btn btn-outline">Bottom</span>
             </:trigger>
             <p class="text-sm">Popover on bottom</p>
           </.popover>
-          <.popover id="popover-left" side="left">
+          <.popover nonce={@csp_nonce} id="popover-left" side="left">
             <:trigger>
               <span class="btn btn-outline">Left</span>
             </:trigger>
             <p class="text-sm">Popover on left</p>
           </.popover>
-          <.popover id="popover-right" side="right">
+          <.popover nonce={@csp_nonce} id="popover-right" side="right">
             <:trigger>
               <span class="btn btn-outline">Right</span>
             </:trigger>
@@ -69,7 +73,7 @@ defmodule SutrauiDemoWeb.Components.PopoverLive do
       </.prose>
 
       <.component_demo title="With Form" code={form_code()}>
-        <.popover id="popover-form">
+        <.popover nonce={@csp_nonce} id="popover-form">
           <:trigger>
             <span class="btn">Update dimensions</span>
           </:trigger>
@@ -114,7 +118,7 @@ defmodule SutrauiDemoWeb.Components.PopoverLive do
       </.prose>
 
       <.component_demo title="Dynamic Trigger" code={dynamic_code()}>
-        <.popover id="popover-dynamic">
+        <.popover nonce={@csp_nonce} id="popover-dynamic">
           <:trigger :let={open}>
             <span class="btn btn-secondary">
               {if open, do: "Close", else: "Open"} Popover
@@ -132,14 +136,14 @@ defmodule SutrauiDemoWeb.Components.PopoverLive do
       </.prose>
 
       <.component_demo title="User Profile" code={profile_code()}>
-        <.popover id="popover-profile">
+        <.popover nonce={@csp_nonce} id="popover-profile">
           <:trigger>
-            <.avatar src="https://github.com/shadcn.png" alt="User" size="md" />
+            <.avatar src="/images/demo/shadcn.jpg" alt="User" size="md" />
           </:trigger>
           <div class="w-64">
             <div class="pb-4 border-b border-border">
               <div class="flex items-center gap-3">
-                <.avatar src="https://github.com/shadcn.png" alt="User" size="lg" />
+                <.avatar src="/images/demo/shadcn.jpg" alt="User" size="lg" />
                 <div>
                   <p class="font-medium text-sm">John Doe</p>
                   <p class="text-xs text-muted-foreground">john@example.com</p>
@@ -165,7 +169,7 @@ defmodule SutrauiDemoWeb.Components.PopoverLive do
       <.prose>
         The popover component includes proper ARIA attributes:
       </.prose>
-      <ul class="list-disc list-inside space-y-1 text-sm" style="color: var(--fg-secondary);">
+      <ul class="list-disc list-inside space-y-1 text-sm sx-69cf8f3">
         <li>
           <.inline_code>aria-expanded</.inline_code>
           on the trigger button

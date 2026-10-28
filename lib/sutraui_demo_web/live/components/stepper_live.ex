@@ -17,7 +17,11 @@ defmodule SutrauiDemoWeb.Components.StepperLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.docs flash={@flash} current_path="/docs/components/stepper">
+    <Layouts.docs
+      flash={@flash}
+      sutra_commands={@sutra_commands}
+      current_path="/docs/components/stepper"
+    >
       <.docs_header
         title="Stepper"
         description="A progress indicator for multi-step workflows. States auto-compute from the current step."
