@@ -22,7 +22,10 @@ defmodule SutrauiDemoWeb.Components.SutraUi05PagesTest do
     {"/docs/components/date-picker", "#booking-form", "Booking form"},
     {"/docs/components/command-palette", "#open-palette-button", "One module per app"},
     {"/docs/components/command", "#open-command-dialog", "Command dialog"},
-    {"/docs/components/input", "#country-input", "Select"}
+    {"/docs/components/input", "#country-input", "Select"},
+    {"/docs/components/filter-bar", "#command-palette", "Deprecated"},
+    {"/docs/components/item", "#command-palette", "Item"},
+    {"/docs/components/popover", "#command-palette", "Popover"}
   ]
 
   for {path, selector, text} <- @pages do
@@ -154,5 +157,11 @@ defmodule SutrauiDemoWeb.Components.SutraUi05PagesTest do
   test "the New York picker names an ambiguous hour", %{conn: conn} do
     {:ok, view, _html} = live(conn, ~p"/docs/components/date-picker")
     assert render(view) =~ "Ambiguous"
+  end
+
+  test "avatars show presence", %{conn: conn} do
+    {:ok, view, _html} = live(conn, ~p"/docs/components/avatar")
+    assert has_element?(view, "#status-online[data-status=online]")
+    assert has_element?(view, "#status-group")
   end
 end

@@ -30,7 +30,7 @@ defmodule SutrauiDemoWeb.Components.AvatarLive do
         title="Default"
         code={~s|<.avatar src="/images/demo/shadcn.jpg" alt="User" />|}
       >
-        <.avatar src="/images/demo/shadcn.jpg" alt="User" />
+        <.avatar id="avatar-avatar-1" nonce={@csp_nonce} src="/images/demo/shadcn.jpg" alt="User" />
       </.component_demo>
 
       <.section_heading id="with-initials">With Initials Fallback</.section_heading>
@@ -58,19 +58,43 @@ defmodule SutrauiDemoWeb.Components.AvatarLive do
       <.component_demo title="Sizes" code={sizes_code()}>
         <div class="flex items-end gap-4">
           <div class="text-center space-y-2">
-            <.avatar src="/images/demo/shadcn.jpg" alt="User" size="sm" />
+            <.avatar
+              id="avatar-avatar-2"
+              nonce={@csp_nonce}
+              src="/images/demo/shadcn.jpg"
+              alt="User"
+              size="sm"
+            />
             <span class="block text-xs sx-a2be682">sm</span>
           </div>
           <div class="text-center space-y-2">
-            <.avatar src="/images/demo/shadcn.jpg" alt="User" size="md" />
+            <.avatar
+              id="avatar-avatar-3"
+              nonce={@csp_nonce}
+              src="/images/demo/shadcn.jpg"
+              alt="User"
+              size="md"
+            />
             <span class="block text-xs sx-a2be682">md</span>
           </div>
           <div class="text-center space-y-2">
-            <.avatar src="/images/demo/shadcn.jpg" alt="User" size="lg" />
+            <.avatar
+              id="avatar-avatar-4"
+              nonce={@csp_nonce}
+              src="/images/demo/shadcn.jpg"
+              alt="User"
+              size="lg"
+            />
             <span class="block text-xs sx-a2be682">lg</span>
           </div>
           <div class="text-center space-y-2">
-            <.avatar src="/images/demo/shadcn.jpg" alt="User" size="xl" />
+            <.avatar
+              id="avatar-avatar-5"
+              nonce={@csp_nonce}
+              src="/images/demo/shadcn.jpg"
+              alt="User"
+              size="xl"
+            />
             <span class="block text-xs sx-a2be682">xl</span>
           </div>
         </div>
@@ -86,11 +110,23 @@ defmodule SutrauiDemoWeb.Components.AvatarLive do
       <.component_demo title="Shapes" code={shapes_code()}>
         <div class="flex items-center gap-4">
           <div class="text-center space-y-2">
-            <.avatar src="/images/demo/shadcn.jpg" alt="User" shape="circle" />
+            <.avatar
+              id="avatar-avatar-6"
+              nonce={@csp_nonce}
+              src="/images/demo/shadcn.jpg"
+              alt="User"
+              shape="circle"
+            />
             <span class="block text-xs sx-a2be682">circle</span>
           </div>
           <div class="text-center space-y-2">
-            <.avatar src="/images/demo/shadcn.jpg" alt="User" shape="square" />
+            <.avatar
+              id="avatar-avatar-7"
+              nonce={@csp_nonce}
+              src="/images/demo/shadcn.jpg"
+              alt="User"
+              shape="square"
+            />
             <span class="block text-xs sx-a2be682">square</span>
           </div>
         </div>
@@ -150,27 +186,50 @@ defmodule SutrauiDemoWeb.Components.AvatarLive do
         </div>
       </.component_demo>
 
-      <.section_heading id="with-status">With Status Indicator</.section_heading>
+      <.section_heading id="with-status">Presence</.section_heading>
       <.prose>
-        Combine with a status indicator for online/offline states.
+        <.inline_code>status</.inline_code>
+        (<.inline_code>"online"</.inline_code>, <.inline_code>"away"</.inline_code>, <.inline_code>"offline"</.inline_code>)
+        adds a small dot cut into the avatar's edge. The dot is decorative and the status is also a screen-reader word, never colour alone.
+        In an
+        <.inline_code>avatar_group</.inline_code>
+        give each person a <.inline_code>:status</.inline_code>; the group's own name lists every status.
       </.prose>
 
-      <.component_demo title="With Status" code={status_code()}>
-        <div class="flex items-center gap-6">
-          <div class="relative">
-            <.avatar src="/images/demo/shadcn.jpg" alt="Online user" />
-            <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 sx-644b8c2"></span>
-          </div>
-          <div class="relative">
-            <.avatar initials="JD" />
-            <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 sx-e9be1b7"></span>
-          </div>
-          <div class="relative">
-            <.avatar initials="AB" />
-            <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 sx-d262195"></span>
-          </div>
+      <.component_demo title="Presence" code={status_code()}>
+        <div class="flex flex-wrap items-center gap-6">
+          <.avatar
+            id="status-online"
+            nonce={@csp_nonce}
+            src="/images/demo/shadcn.jpg"
+            alt="Online user"
+            status="online"
+          />
+          <.avatar initials="JD" status="away" />
+          <.avatar initials="AB" status="offline" size="lg" />
+          <.avatar_group
+            id="status-group"
+            nonce={@csp_nonce}
+            label="On call"
+            people={[
+              %{name: "Asha Rao", status: "online"},
+              %{name: "Vikram Nair", status: "away"},
+              %{name: "Meera Iyer", status: "offline"}
+            ]}
+          />
         </div>
       </.component_demo>
+
+      <.section_heading id="image-fallback">Image fallback</.section_heading>
+      <.prose>
+        An image that fails to load falls back to the initials from a small hook. Give the avatar an
+        <.inline_code>id</.inline_code>
+        (and
+        <.inline_code>nonce</.inline_code>
+        under a strict CSP); without an
+        <.inline_code>id</.inline_code>
+        there is no image-failed fallback.
+      </.prose>
     </Layouts.docs>
     """
   end
@@ -221,10 +280,13 @@ defmodule SutrauiDemoWeb.Components.AvatarLive do
 
   defp status_code do
     """
-    <div class="relative">
-      <.avatar src="/avatar.png" />
-      <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
-    </div>\
+    <.avatar id="me" nonce={@csp_nonce} src={@user.avatar} alt="Asha" status="online" />
+    <.avatar initials="JD" status="away" />
+
+    <.avatar_group id="on-call" label="On call" people={[
+      %{name: "Asha Rao", status: "online"},
+      %{name: "Vikram Nair", status: "away"}
+    ]} />\
     """
   end
 end

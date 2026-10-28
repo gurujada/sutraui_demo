@@ -143,7 +143,13 @@ defmodule SutrauiDemoWeb.Components.PopoverLive do
           <div class="w-64">
             <div class="pb-4 border-b border-border">
               <div class="flex items-center gap-3">
-                <.avatar src="/images/demo/shadcn.jpg" alt="User" size="lg" />
+                <.avatar
+                  id="popover-avatar-2"
+                  nonce={@csp_nonce}
+                  src="/images/demo/shadcn.jpg"
+                  alt="User"
+                  size="lg"
+                />
                 <div>
                   <p class="font-medium text-sm">John Doe</p>
                   <p class="text-xs text-muted-foreground">john@example.com</p>

@@ -616,7 +616,8 @@ defmodule SutrauiDemoWeb.Layouts do
         %{
           label: "Filter Bar",
           href: "/docs/components/filter-bar",
-          keywords: ["filter", "search", "form", "index", "list"]
+          keywords: ["filter", "search", "form", "index", "list"],
+          marker: "Deprecated"
         },
         %{
           label: "Header",

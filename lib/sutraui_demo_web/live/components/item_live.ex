@@ -52,7 +52,13 @@ defmodule SutrauiDemoWeb.Components.ItemLive do
       <.component_demo title="With Avatar" code={avatar_code()}>
         <.item>
           <:leading>
-            <.avatar src="/images/demo/pravatar.jpg" initials="JD" size="md" />
+            <.avatar
+              id="item-avatar-1"
+              nonce={@csp_nonce}
+              src="/images/demo/pravatar.jpg"
+              initials="JD"
+              size="md"
+            />
           </:leading>
           <:title>John Doe</:title>
           <:description>Last seen 5 minutes ago</:description>
