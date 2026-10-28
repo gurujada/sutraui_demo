@@ -24,12 +24,20 @@ import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import {hooks as colocatedHooks} from "phoenix-colocated/sutraui_demo"
 import {hooks as sutraUiHooks} from "phoenix-colocated/sutra_ui"
+import {installConfirm} from "sutra_ui/confirm"
 import topbar from "../vendor/topbar"
 
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
+// The page's CSP script nonce (the `nonce` property survives the browser hiding the attribute),
+// so components with runtime hooks render the same one after live navigation
+const cspNonce = document.querySelector("script[nonce]")?.nonce || ""
+
+// Catch data-confirm clicks before the LiveView connects
+installConfirm()
+
 const liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
-  params: {_csrf_token: csrfToken},
+  params: {_csrf_token: csrfToken, csp_nonce: cspNonce},
   hooks: {...sutraUiHooks, ...colocatedHooks},
 })
 

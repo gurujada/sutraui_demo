@@ -66,7 +66,10 @@ defmodule SutrauiDemo.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
-      {:sutra_ui, "~> 0.4.0"},
+      # until 0.5.0 is on Hex
+      {:sutra_ui, github: "gurujada/sutra_ui", branch: "master"},
+      # Time zone database for SutraUI.Time and the datetime picker
+      {:tz, "~> 0.28"},
       # Syntax highlighting
       {:makeup, "~> 1.2"},
       {:makeup_elixir, "~> 1.0"},

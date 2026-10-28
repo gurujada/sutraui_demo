@@ -22,6 +22,10 @@ config :sutraui_demo, SutrauiDemoWeb.Endpoint,
   pubsub_server: SutrauiDemo.PubSub,
   live_view: [signing_salt: "obVjdq9U"]
 
+# SutraUI: day-first date pickers, and a time zone database for zoned times
+config :sutra_ui, locale: "en-IN"
+config :elixir, :time_zone_database, Tz.TimeZoneDatabase
+
 # Configure the mailer
 #
 # By default it uses the "Local" adapter which stores the emails
