@@ -138,7 +138,13 @@ defmodule SutrauiDemoWeb.Components.PopoverLive do
       <.component_demo title="User Profile" code={profile_code()}>
         <.popover nonce={@csp_nonce} id="popover-profile">
           <:trigger>
-            <.avatar src="/images/demo/shadcn.jpg" alt="User" size="md" />
+            <.avatar
+              id="popover-avatar-1"
+              nonce={@csp_nonce}
+              src="/images/demo/shadcn.jpg"
+              alt="User"
+              size="md"
+            />
           </:trigger>
           <div class="w-64">
             <div class="pb-4 border-b border-border">

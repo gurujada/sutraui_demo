@@ -56,8 +56,8 @@ defmodule SutrauiDemoWeb.Components.ResponseLive do
       />
 
       <.component_demo title="Streaming Text" code={streaming_code()}>
-        <div class="grid w-full max-w-lg gap-4">
-          <div class="rounded-lg border bg-card p-4 shadow-xs">
+        <div class="grid w-full max-w-lg grid-cols-[minmax(0,1fr)] gap-4">
+          <div class="min-w-0 rounded-lg border bg-card p-4 shadow-xs">
             <.response
               id="response-stream"
               value={@stream_value}
@@ -83,11 +83,11 @@ defmodule SutrauiDemoWeb.Components.ResponseLive do
 
       <.component_demo title="Reveal Styles" code={reveal_code()}>
         <div class="grid w-full max-w-lg gap-3">
-          <div class="rounded-lg border bg-card p-4 shadow-xs">
+          <div class="min-w-0 rounded-lg border bg-card p-4 shadow-xs">
             <p class="mb-2 text-xs font-medium text-muted-foreground">Chunk</p>
             <.response id="response-chunk" value={@reveal_value} streaming={@reveal_streaming} />
           </div>
-          <div class="rounded-lg border bg-card p-4 shadow-xs">
+          <div class="min-w-0 rounded-lg border bg-card p-4 shadow-xs">
             <p class="mb-2 text-xs font-medium text-muted-foreground">Word</p>
             <.response
               id="response-word"
@@ -96,7 +96,7 @@ defmodule SutrauiDemoWeb.Components.ResponseLive do
               reveal="word"
             />
           </div>
-          <div class="rounded-lg border bg-card p-4 shadow-xs">
+          <div class="min-w-0 rounded-lg border bg-card p-4 shadow-xs">
             <p class="mb-2 text-xs font-medium text-muted-foreground">Character</p>
             <.response
               id="response-character"
@@ -120,8 +120,8 @@ defmodule SutrauiDemoWeb.Components.ResponseLive do
       </.prose>
 
       <.component_demo title="Markdown" code={markdown_code()}>
-        <div class="grid w-full max-w-lg gap-4">
-          <div class="rounded-lg border bg-card p-4 shadow-xs">
+        <div class="grid w-full max-w-lg grid-cols-[minmax(0,1fr)] gap-4">
+          <div class="min-w-0 rounded-lg border bg-card p-4 shadow-xs">
             <.response
               id="response-markdown"
               value={@markdown_value}

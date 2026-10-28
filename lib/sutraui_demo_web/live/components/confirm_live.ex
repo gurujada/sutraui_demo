@@ -105,11 +105,8 @@ defmodule SutrauiDemoWeb.Components.ConfirmLive do
             data-confirm-tone="primary"
           >
             <.input id="send-subject" name="subject" label="Subject" value="Class moved to 6 pm" />
+            <.button type="submit" id="send-button" class="mb-5">Send to everyone</.button>
           </form>
-          <%!-- Outside the form (form="send-form"): a click inside a data-confirm form also reaches phoenix_html's own window.confirm() --%>
-          <.button type="submit" form="send-form" id="send-button" class="mb-5">
-            Send to everyone
-          </.button>
         </div>
       </.component_demo>
 
