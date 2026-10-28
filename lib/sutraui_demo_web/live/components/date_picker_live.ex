@@ -192,7 +192,15 @@ defmodule SutrauiDemoWeb.Components.DatePickerLive do
 
             <.button type="submit">Book</.button>
           </.form>
-          <pre id="booking-posted" class="mt-4 w-full overflow-x-auto rounded-md bg-muted p-3 text-xs">{inspect(@booking_params, pretty: true)}</pre>
+          <p
+            :if={@booking_params != %{}}
+            id="booking-posted"
+            class="mt-4 text-sm text-muted-foreground"
+          >
+            Posted: day {@booking_params["day"] || "none"}, time {@booking_params["time"] || "none"}, starts {@booking_params[
+              "starts"
+            ] || "none"}
+          </p>
         </div>
       </.component_demo>
 
@@ -228,7 +236,11 @@ defmodule SutrauiDemoWeb.Components.DatePickerLive do
               </p>
             </div>
           </.form>
-          <pre id="period-posted" class="mt-4 w-full overflow-x-auto rounded-md bg-muted p-3 text-xs">{inspect(@period, pretty: true)}</pre>
+          <p :if={@period != %{}} id="period-posted" class="mt-4 text-sm text-muted-foreground">
+            Posted: {@period["start"] || "none"} to {@period["end"] || "none"}<span :if={
+              @period["preset"] not in [nil, ""]
+            }> (preset {@period["preset"]})</span>
+          </p>
         </div>
       </.component_demo>
 
